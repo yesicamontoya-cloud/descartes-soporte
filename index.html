@@ -3,178 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte Hub - Phantom</title>
+    <title>Soporte Hub - Estandarización</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .active-link { background: #3b82f6; color: white; border-radius: 8px; }
-        .card-shadow { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .step-active { background: #00C896 !important; color: white !important; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .card-pro { border-radius: 20px; transition: all 0.3s ease; border: 1px solid #e5e7eb; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
+<body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
 
-    <div class="flex h-screen overflow-hidden">
-        <aside class="w-64 bg-slate-900 text-white p-6 hidden md:flex flex-col">
-            <h1 class="text-2xl font-bold mb-8 flex items-center gap-2">
-                <i class="fas fa-ghost text-blue-400"></i> PHANTOM
+    <header class="glass sticky top-0 z-50 border-b border-slate-200 p-4 mb-6 shadow-sm">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <h1 class="font-bold text-xl flex items-center gap-2">
+                <i class="fas fa-network-wired text-emerald-500"></i> SOPORTE HUB
             </h1>
-            <nav class="flex-1 space-y-2">
-                <p class="text-xs text-slate-500 uppercase font-bold mb-4">Procesos N1</p>
-                <button onclick="loadProcess('descartes_n1')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg">
-                    <i class="fas fa-bolt"></i> Descartes N1
-                </button>
-                <button onclick="loadProcess('fibra_n1')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg text-left">
-                    <i class="fas fa-network-wired"></i> Fibra Óptica
-                </button>
-                
-                <p class="text-xs text-slate-500 uppercase font-bold mt-8 mb-4">Procesos N2 / Líderes</p>
-                <button onclick="loadProcess('descartes_n2')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg">
-                    <i class="fas fa-shield-halved"></i> Descartes N2
-                </button>
-                <button onclick="loadProcess('masivas')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg text-left">
-                    <i class="fas fa-broadcast-tower"></i> Falla Masiva
-                </button>
-            </nav>
-            <div class="mt-auto pt-6 border-t border-slate-800 text-xs text-slate-500">
-                Plataforma Formativa v2.0
-            </div>
-        </aside>
+            <span class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded-full uppercase tracking-widest">N1 / N2</span>
+        </div>
+    </header>
 
-        <main class="flex-1 overflow-y-auto p-4 md:p-10">
-            <header class="flex justify-between items-center mb-10">
-                <div>
-                    <h2 id="process-title" class="text-3xl font-bold text-slate-900">Bienvenido al Centro de Soporte</h2>
-                    <p id="process-desc" class="text-slate-500">Selecciona un proceso en el menú para comenzar el diagnóstico.</p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Asesor Online</span>
-                </div>
-            </header>
+    <main class="max-w-md mx-auto p-4 pb-24">
+        
+        <div class="flex gap-2 mb-6">
+            <button onclick="changeFlow('phantom')" id="tab-phantom" class="flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm border-2 border-transparent transition-all">Phantom</button>
+            <button onclick="changeFlow('vilo')" id="tab-vilo" class="flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm border-2 border-transparent transition-all">Vilo</button>
+        </div>
 
-            <div id="welcome-screen" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100">
-                    <i class="fas fa-graduation-cap text-3xl text-blue-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Aprendizaje Dinámico</h3>
-                    <p class="text-slate-600 text-sm">Cada paso incluye una explicación técnica para que aprendas mientras resuelves.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100">
-                    <i class="fas fa-copy text-3xl text-green-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Reportes Listos</h3>
-                    <p class="text-slate-600 text-sm">Al finalizar, obtendrás un resumen técnico profesional para pegar en tu ticket.</p>
-                </div>
+        <div id="step-menu" class="flex gap-1 mb-6 overflow-x-auto pb-2">
             </div>
 
-            <div id="diagnostic-area" class="hidden max-w-2xl mx-auto bg-white rounded-3xl card-shadow overflow-hidden border border-slate-200">
-                <div class="bg-slate-50 p-4 border-b border-slate-100 flex justify-between items-center">
-                    <span id="step-count" class="text-xs font-bold text-slate-400 uppercase">Paso 1 de 4</span>
-                    <div class="w-32 bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="bg-blue-500 h-full transition-all duration-500" style="width: 25%"></div>
-                    </div>
+        <div id="step-container" class="card-pro bg-white p-6 shadow-xl relative overflow-hidden">
+            <div id="content-area">
                 </div>
-                <div class="p-8">
-                    <h3 id="question-text" class="text-2xl font-bold mb-4">¿Pregunta?</h3>
-                    <div id="hint-area" class="bg-blue-50 p-4 rounded-xl text-blue-800 text-sm mb-8 flex gap-3">
-                        <i class="fas fa-info-circle mt-1"></i>
-                        <span id="hint-text">Pista técnica aquí.</span>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="handleResponse(true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl transition transform active:scale-95">
-                            <i class="fas fa-check mr-2"></i> CORRECTO / SÍ
-                        </button>
-                        <button onclick="handleResponse(false)" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-4 rounded-xl transition transform active:scale-95">
-                            <i class="fas fa-xmark mr-2"></i> FALLA / NO
-                        </button>
-                    </div>
+        </div>
 
-                    <div id="error-msg" class="hidden mt-6 p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-800 text-sm animate-pulse">
-                        <strong>ACCIÓN REQUERIDA:</strong> <span id="error-text"></span>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 p-4 glass border-t border-slate-200">
+        <div class="max-w-md mx-auto flex gap-3">
+            <button onclick="reset()" class="bg-slate-200 p-4 rounded-xl text-slate-600 hover:bg-slate-300 transition">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            <button onclick="nextStep()" id="btn-main" class="flex-1 bg-emerald-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-200 hover:bg-emerald-600 transition">
+                CONTINUAR <i class="fas fa-chevron-right ml-2"></i>
+            </button>
+        </div>
+    </footer>
 
     <script>
-        const flows = {
-            descartes_n1: {
-                title: "Descartes N1 - Phantom",
+        // BASE DE DATOS DE PROCESOS (Aquí puedes añadir más fácil)
+        const database = {
+            phantom: {
+                name: "Phantom",
                 steps: [
-                    { q: "¿Estado de servicio ACTIVO?", h: "Verifica en Radius. Si está suspendido por mora, no realices más pruebas.", f: "Debe normalizar el estado administrativo antes de seguir." },
-                    { q: "¿Tiene IP asignada?", h: "Confirma si el equipo aparece logueado en la plataforma Descartes.", f: "🚨 Escalar a N2: Equipo sin direccionamiento IP." },
-                    { q: "¿Sin Falla Masiva activa?", h: "Revisa el mapa de nodos para descartar cortes generales.", f: "Informa al cliente que el personal técnico ya trabaja en el sector." }
+                    { title: "Validación", tag: "SISTEMA", content: "Verifique estado en Radius y falta de pago. <div class='mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-xs font-bold border-l-4 border-red-500'>🚫 Suspención → Enviar link de pago.</div>", tip: "No escale si el cliente debe facturas." },
+                    { title: "Radius", tag: "BACKOFFICE", content: "Validar MAC y que tome IP. Si no toma IP, revisar aprovisionamiento.", tip: "Si no carga IP en Radius → Escalar a N2." },
+                    { title: "Física", tag: "CLIENTE", content: "Revisar cables en puerto WAN y reiniciar equipo (30 seg).", tip: "Evidencia: Solicitar foto de LEDs." },
+                    { title: "Resultado", tag: "FINAL", content: "Si persiste el error, genere el reporte para N2.", isFinal: true }
                 ]
             },
-            descartes_n2: {
-                title: "Descartes N2 - Avanzado",
+            vilo: {
+                name: "Router Vilo",
                 steps: [
-                    { q: "¿Validó duplicidad de IP?", h: "Revisar que no existan dos MAC con el mismo segmento.", f: "Conflicto de red detectado. Libere la sesión en Radius." },
-                    { q: "¿Puerto LAN a 1Gbps?", h: "Verifique en la OLT o equipo que la negociación no sea 10/100.", f: "⚠️ Negociación baja: Solicite cambio de cable UTP Categoría 5e o 6." }
+                    { title: "Validación", tag: "SISTEMA", content: "Verificar mora y fallas masivas en la zona.", tip: "Página 4 del guion de fallas." },
+                    { title: "LED Vilo", tag: "FÍSICO", content: "<b>Naranja:</b> Configurar en Inventory.<br><b>Rojo:</b> Revisar WAN.", tip: "Blanco/Azul significa OK." },
+                    { title: "Resultado", tag: "FINAL", content: "Validación Vilo completada.", isFinal: true }
                 ]
             }
         };
 
-        let currentFlowKey = '';
-        let stepIdx = 0;
-        let logs = [];
+        let currentFlow = 'phantom';
+        let currentIdx = 0;
 
-        function loadProcess(key) {
-            currentFlowKey = key;
-            stepIdx = 0;
-            logs = [];
-            document.getElementById('welcome-screen').classList.add('hidden');
-            document.getElementById('diagnostic-area').classList.remove('hidden');
-            document.getElementById('process-title').innerText = flows[key].title;
-            document.getElementById('process-desc').innerText = "Siga los pasos para completar el diagnóstico.";
+        function changeFlow(key) {
+            currentFlow = key;
+            currentIdx = 0;
+            // Estilos de pestañas
+            document.getElementById('tab-phantom').className = key === 'phantom' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg shadow-slate-300 border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
+            document.getElementById('tab-vilo').className = key === 'vilo' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg shadow-slate-300 border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
+            
+            buildMenu();
             render();
         }
 
-        function render() {
-            const flow = flows[currentFlowKey];
-            const step = flow.steps[stepIdx];
-            document.getElementById('question-text').innerText = step.q;
-            document.getElementById('hint-text').innerText = step.h;
-            document.getElementById('step-count').innerText = `Paso ${stepIdx + 1} de ${flow.steps.length}`;
-            document.getElementById('progress-bar').style.width = ((stepIdx + 1) / flow.steps.length * 100) + "%";
-            document.getElementById('error-msg').classList.add('hidden');
+        function buildMenu() {
+            const menu = document.getElementById('step-menu');
+            menu.innerHTML = database[currentFlow].steps.map((s, i) => `
+                <button onclick="goTo(${i})" class="flex-1 py-2 px-1 rounded-lg text-[10px] font-bold transition-all ${i === currentIdx ? 'step-active' : 'bg-white text-slate-400 border border-slate-200'}">
+                    ${s.title}
+                </button>
+            `).join('');
         }
 
-        function handleResponse(isOk) {
-            if (isOk) {
-                logs.push(`Paso ${stepIdx + 1}: OK`);
-                stepIdx++;
-                if (stepIdx < flows[currentFlowKey].steps.length) {
-                    render();
-                } else {
-                    showFinal();
-                }
+        function render() {
+            const step = database[currentFlow].steps[currentIdx];
+            const content = document.getElementById('content-area');
+            
+            content.innerHTML = `
+                <span class="text-[10px] font-black bg-blue-100 text-blue-600 px-2 py-1 rounded-md tracking-tighter uppercase">${step.tag}</span>
+                <h2 class="text-xl font-bold mt-3 mb-4 text-slate-800">${step.title}</h2>
+                <div class="text-slate-600 text-sm leading-relaxed mb-6">${step.content}</div>
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 flex gap-3">
+                    <i class="fas fa-lightbulb text-amber-500 mt-1"></i>
+                    <p class="text-xs text-amber-800 italic">${step.tip || 'Siga las instrucciones al pie de la letra.'}</p>
+                </div>
+            `;
+
+            const btn = document.getElementById('btn-main');
+            if(step.isFinal) {
+                btn.innerHTML = `<i class="fas fa-copy mr-2"></i> COPIAR REPORTE N2`;
+                btn.classList.replace('bg-emerald-500', 'bg-blue-600');
             } else {
-                document.getElementById('error-text').innerText = flows[currentFlowKey].steps[stepIdx].f;
-                document.getElementById('error-msg').classList.remove('hidden');
+                btn.innerHTML = `CONTINUAR <i class="fas fa-chevron-right ml-2"></i>`;
+                btn.classList.replace('bg-blue-600', 'bg-emerald-500');
+            }
+            buildMenu();
+        }
+
+        function nextStep() {
+            if (database[currentFlow].steps[currentIdx].isFinal) {
+                copyReport();
+            } else {
+                currentIdx++;
+                render();
             }
         }
 
-        function showFinal() {
-            document.getElementById('diagnostic-area').innerHTML = `
-                <div class="p-8 text-center">
-                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-check-double text-3xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold mb-2">Diagnóstico Completo</h2>
-                    <p class="text-slate-500 mb-6 text-sm">Copia el resumen para tu ticket técnico.</p>
-                    <textarea id="copyArea" class="w-full p-4 border rounded-xl bg-slate-50 font-mono text-xs mb-4" readonly>${logs.join('\n')}</textarea>
-                    <button onclick="copyToClipboard()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Copiar Resumen</button>
-                    <button onclick="location.reload()" class="w-full mt-3 text-slate-400 text-sm hover:underline">Reiniciar App</button>
-                </div>
-            `;
+        function goTo(i) { currentIdx = i; render(); }
+        function reset() { currentIdx = 0; render(); }
+
+        function copyReport() {
+            const report = `REPORTE TÉCNICO - ${database[currentFlow].name}\nValidaciones completas.\nEstado: Pendiente N2\nResponsable: Soporte Hub`;
+            navigator.clipboard.writeText(report);
+            alert("Reporte copiado al portapapeles");
         }
 
-        function copyToClipboard() {
-            const area = document.getElementById('copyArea');
-            area.select();
-            document.execCommand('copy');
-            alert("¡Resumen copiado con éxito!");
-        }
+        // Iniciar
+        changeFlow('phantom');
     </script>
 </body>
 </html>
