@@ -9,7 +9,6 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-    
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; height: 100vh; overflow: hidden; display: flex; }
 
     /* SIDEBAR */
@@ -19,8 +18,6 @@
 
     /* CONTENIDO PRINCIPAL */
     .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; box-shadow: -10px 0 50px rgba(0,0,0,0.05); }
-    
-    /* SELECTOR EQUIPO (TABS) */
     .selector { display: flex; gap: 40px; border-bottom: 1px solid #f1f5f9; padding: 0 40px; }
     .selector button { padding: 20px 0; font-weight: 800; font-size: 13px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.3s; text-transform: uppercase; }
     .selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
@@ -32,20 +29,28 @@
 
     /* BLOQUE DE INFORMACIÓN */
     .block { background: #fff; border-radius: 24px; padding: 32px; border: 1px solid #e2e8f0; }
-    h3 { font-size: 26px; font-weight: 800; margin-bottom: 15px; color: #0f172a; letter-spacing: -0.5px; }
-    .item { font-size: 15px; margin-bottom: 10px; line-height: 1.5; color: #475569; }
-    .tag { display: inline-block; font-size: 10px; font-weight: 800; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; margin-bottom: 10px; }
+    h3 { font-size: 26px; font-weight: 800; margin-bottom: 15px; color: #0f172a; }
+    .item { font-size: 15px; margin-bottom: 10px; color: #475569; }
+    .tag { display: inline-block; font-size: 10px; font-weight: 800; background: #eef3ff; color: #3b5bcc; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; margin-bottom: 10px; }
     
-    /* ALERTAS ESTILO SOPORTE */
-    .nota-box { background: #fef9c3; border-left: 4px solid #facc15; padding: 15px; border-radius: 12px; font-size: 13px; color: #854d0e; margin-bottom: 12px; }
-    .alert-pago { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; }
-    .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; }
-    .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
+    /* DISEÑO INTEGRADO DE RESULTADOS (SOLICITADO) */
+    .res-container { border-radius: 16px; padding: 20px; margin-bottom: 15px; border-left: 5px solid transparent; }
+    
+    .res-ok { background: #ecfdf5; border-left-color: #10b981; }
+    .res-ok .status-title { color: #065f46; font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .res-ok .instruction { color: #065f46; font-size: 14px; font-weight: 500; opacity: 0.9; }
 
-    /* BOTONES */
+    .res-bad { background: #fef2f2; border-left-color: #ef4444; }
+    .res-bad .status-title { color: #991b1b; font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .res-bad .instruction { color: #991b1b; font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+    
+    .checklist { background: rgba(255,255,255,0.5); padding: 15px; border-radius: 12px; font-size: 13px; color: #7f1d1d; }
+    .checklist b { display: block; margin-bottom: 5px; text-transform: uppercase; font-size: 11px; }
+
+    /* BOTONES ACCION */
     .btn { margin-top: 20px; width: 100%; padding: 16px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 15px; transition: 0.3s; }
     .btn:hover { background: #1e293b; transform: translateY(-1px); }
-    .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
+    .btn-reset { color: #94a3b8; font-size: 11px; font-weight: 800; border: none; margin-top: 20px; cursor: pointer; width: 100%; text-align: center; }
 
     .ref-img { margin-top: 15px; border-radius: 20px; overflow: hidden; border: 1px solid #e2e8f0; }
     .ref-img img { width: 100%; height: auto; object-fit: cover; }
@@ -60,10 +65,7 @@
         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
-    
-    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Procesos N1</p>
     <div class="nav-item active"><i class="fas fa-power-off"></i> Router Offline</div>
-    
     <div class="mt-auto p-4 bg-slate-800/50 rounded-2xl flex items-center gap-3">
         <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center text-[10px] font-bold">JD</div>
         <div class="text-xs font-bold text-slate-300">Panel de Control</div>
@@ -90,9 +92,7 @@ function activar(btn){
 
 function openLink(url){ window.open(url,"_blank"); }
 
-/* =========================
-   LÓGICA PHANTOM (TU DATA)
-========================= */
+/* PHANTOM */
 function loadPhantom(){
     activar(document.getElementById("btnPhantom"));
     document.getElementById("contenido").innerHTML = `
@@ -109,49 +109,29 @@ function loadPhantom(){
 
 function initPhantom(){
     const blocks = [
-        {
-            title:"🔍 Router Offline",
-            html:`<div class="tag">Sistema</div>
-            <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-            <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-            <div class="item">Revise si existe una falla masiva en la zona</div>
-            <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-            <button class="btn" style="background:#3b82f6" onclick="openLink('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>`
-        },
-        {
-            title:"🖥 Router principal",
-            html:`<div class="tag">Herramienta</div>
-            <div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div>
-            <div class="action">Si no está activo → escalar backoffice</div>
-            <div class="item"> Verificar que el router tome IP</div>
-            <div class="action">Si no toma IP → escalar a N2</div>
-            <div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"><div class="caption">No toma IP = no carga información en Radius</div></div>`
-        },
-        {
-            title:"🔀 Router secundario",
-            html:`<div class="tag">Red</div>
-            <div class="item">Confirmar que no tenga la misma IP que el principal</div>
-            <div class="item">Validar en Grafana que no esté en NA</div>
-            <div class="item">Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</div>
-            <div class="nota-box">Nota: No aplica para domótica: la velocidad de los puertos no es relevante</div>
-            <div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>`
-        },
-        {
-            title:"🔌 Validación física",
-            html:`<div class="tag">Cliente</div>
-            <div class="item">Revisar conexiones físicas y energía</div>
-            <div class="item">Confirmar que no haya cables en el puerto WAN</div>
-            <div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div>
-            <div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorrinete y volver a conectar)</div>
-            <div class="action">No chuzar el equipo</div>`
-        },
-        {
-            title:"✅ Resultado",
-            html:`<div class="tag">Resultado</div>
-            <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div>
-            <div class="nota-box">Dar por finalizado el chat.</div>
-            <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div>
-            <div class="nota-box">Escalar a N2. <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>`
+        { title:"🔍 Router Offline", html:`<div class="tag">Sistema</div><div class="item">Verifique suspensión o falla masiva.</div>` },
+        { title:"🖥 Router principal", html:`<div class="tag">Herramienta</div><div class="item">Validar MAC y Radius.</div>` },
+        { title:"🔀 Router secundario", html:`<div class="tag">Red</div><div class="item">Validar Grafana y puertos.</div>` },
+        { title:"🔌 Validación física", html:`<div class="tag">Cliente</div><div class="item">Reiniciar equipo (30s). No chuzar.</div>` },
+        { 
+            title:"✅ Resultado", 
+            html:`
+            <div class="tag">Resultado</div>
+            <div class="res-container res-ok">
+                <div class="status-title"><i class="fas fa-check-circle"></i> Funciona</div>
+                <div class="instruction">Dar por finalizado el chat.</div>
+            </div>
+            <div class="res-container res-bad">
+                <div class="status-title"><i class="fas fa-times-circle"></i> No funciona</div>
+                <div class="instruction">Escalar a N2.</div>
+                <div class="checklist">
+                    <b>Antes de escalar validar:</b>
+                    • Router principal validado<br>
+                    • Router secundario validado<br>
+                    • Conexiones correctas<br>
+                    • Energía OK
+                </div>
+            </div>`
         }
     ];
 
@@ -164,17 +144,15 @@ function initPhantom(){
         <div class="block">
             <h3>${blocks[step].title}</h3>
             ${blocks[step].html}
-            ${step < blocks.length - 1 ? `<button class="btn" onclick="next()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ``}
-            <button class="btn-reset" onclick="loadPhantom()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar</button>
+            ${step < blocks.length - 1 ? `<button class="btn" onclick="next()">Continuar Paso <i class="fas fa-arrow-right ml-2 text-xs"></i></button>` : ``}
+            <div class="btn-reset" onclick="loadPhantom()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso</div>
         </div>`;
         document.querySelectorAll('.menu button').forEach((b,i)=> b.classList.toggle('active', i===step));
     }
     render();
 }
 
-/* =========================
-   LÓGICA VILO (TU DATA)
-========================= */
+/* VILO */
 function loadVilo(){
     activar(document.getElementById("btnVilo"));
     document.getElementById("contenido").innerHTML = `
@@ -190,36 +168,21 @@ function loadVilo(){
 
 function initVilo(){
     const blocksVilo = [
-        {
-            title:"🔍 Router Offline",
-            html:`<div class="tag">Sistema</div>
-            <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-            <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-            <div class="item">Revise si existe una falla masiva en la zona</div>
-            <div class="alert-falla">⚠️ Si hay falla → usar guion</div>`
-        },
-        {
-            title:"🖥 Router principal",
-            html:`<div class="tag">Herramienta</div>
-            <div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div>
-            <div class="action">Si no está activo → escalar backoffice</div>
-            <div class="item">Verificar que el router tome IP</div>
-            <div class="action">Si no toma IP → escalar a N2</div>`
-        },
-        {
-            title:"🔌 Validación física",
-            html:`<div class="tag">Cliente</div>
-            <div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div>
-            <div class="nota-box"><b style="color:#EF4444">Rojo:</b> Validar cables físicos, desconectar/conectar y reiniciar físicamente.</div>
-            <div class="nota-box"><b>WAN:</b> Principal (con cable), Secundario (sin cable).</div>
-            <div class="nota-box"><b>Estados:</b> Blanco (WiFi 6 OK) / Azul (WiFi 5 OK)</div>`
-        },
-        {
-            title:"✅ Resultado",
-            html:`<div class="tag">Resultado</div>
-            <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div>
-            <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div>
-            <div class="nota-box">Escalar a N2 validando conexiones y energía.</div>`
+        { title:"🔍 Router Offline", html:`<div class="tag">Sistema</div><div class="item">Verificar morosidad y fallas masivas.</div>` },
+        { title:"🖥 Router principal", html:`<div class="tag">Herramienta</div><div class="item">Validar MAC y Radius.</div>` },
+        { title:"🔌 Validación física", html:`<div class="tag">Cliente</div><div class="item">Validar LEDs y conexiones.</div>` },
+        { 
+            title:"✅ Resultado", 
+            html:`
+            <div class="tag">Resultado</div>
+            <div class="res-container res-ok">
+                <div class="status-title"><i class="fas fa-check-circle"></i> Funciona</div>
+                <div class="instruction">Dar por finalizado el chat.</div>
+            </div>
+            <div class="res-container res-bad">
+                <div class="status-title"><i class="fas fa-times-circle"></i> No funciona</div>
+                <div class="instruction">Escalar a N2.</div>
+            </div>`
         }
     ];
 
@@ -232,8 +195,8 @@ function initVilo(){
         <div class="block">
             <h3>${blocksVilo[stepV].title}</h3>
             ${blocksVilo[stepV].html}
-            ${stepV < blocksVilo.length - 1 ? `<button class="btn" onclick="nextVilo()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ``}
-            <button class="btn-reset" onclick="loadVilo()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar</button>
+            ${stepV < blocksVilo.length - 1 ? `<button class="btn" onclick="nextVilo()">Continuar Paso <i class="fas fa-arrow-right ml-2 text-xs"></i></button>` : ``}
+            <div class="btn-reset" onclick="loadVilo()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso</div>
         </div>`;
         document.querySelectorAll('.menu button').forEach((b,i)=> b.classList.toggle('active', i===stepV));
     }
