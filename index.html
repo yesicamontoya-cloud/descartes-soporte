@@ -3,165 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SupportOS Pro</title>
+<title>SupportOS - Editor Mode</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; display: flex; height: 100vh; overflow: hidden; }
     
-    /* SIDEBAR */
+    /* SIDEBAR OSCURA */
     .sidebar { width: 260px; background: #0f172a; color: white; display: flex; flex-direction: column; padding: 30px 20px; }
-    .nav-btn { padding: 12px 15px; border-radius: 12px; margin-bottom: 5px; cursor: pointer; color: #94a3b8; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; transition: 0.3s; }
-    .nav-btn.active { background: #3b82f6; color: white; }
-
-    /* CONTENEDOR PRINCIPAL */
-    .main { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 30px 0 0 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
     
-    /* SELECTOR DE EQUIPO (TABS SUPERIORES) */
-    .eq-selector { display: flex; gap: 10px; padding: 25px 40px; background: #f8fafc; border-radius: 30px 0 0 0; }
-    .eq-btn { flex: 1; padding: 15px; border-radius: 15px; font-weight: 800; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .eq-btn.active { background: #0f172a; color: white; }
-    .eq-btn.inactive { background: white; color: #0f172a; }
-
-    /* BOTONES DE PASOS (TEXTO COMO TUS IMÁGENES) */
-    .step-menu { display: flex; gap: 8px; padding: 0 40px 20px; flex-wrap: wrap; }
-    .step-btn { padding: 8px 18px; border-radius: 12px; background: #e2e8f0; color: #475569; font-weight: 700; font-size: 13px; transition: 0.2s; }
-    .step-btn.active { background: #00c896; color: white; }
-
-    /* BLOQUE DE INFORMACIÓN */
-    .content-card { margin: 0 40px; padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; background: white; flex: 1; overflow-y: auto; }
-    .tag-final { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 8px; font-weight: 800; font-size: 10px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; }
+    /* CONTENEDOR BLANCO */
+    .main-app { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 30px 0 0 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
     
-    /* ESTILOS DE TUS PROCESOS */
-    .alert-red { background: #fef2f2; border: 1px solid #fee2e2; color: #991b1b; padding: 15px; border-radius: 15px; text-align: center; font-weight: 700; margin-bottom: 15px; }
-    .box-validar { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 20px; margin-top: 15px; }
-    .box-validar h4 { color: #64748b; font-weight: 800; font-size: 12px; text-align: center; margin-bottom: 15px; text-transform: uppercase; }
-    .box-validar ul { color: #475569; font-size: 14px; font-weight: 500; }
-    .box-validar li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-    .box-validar li::before { content: "•"; color: #3b82f6; font-weight: bold; }
+    /* BOTONES DE EQUIPO (TABS) */
+    .tab-container { display: flex; gap: 10px; padding: 20px 40px; background: #f8fafc; border-radius: 30px 0 0 0; }
+    .btn-tab { flex: 1; padding: 15px; border-radius: 15px; font-weight: 800; transition: 0.3s; font-size: 16px; }
+    .btn-tab.active { background: #0f172a; color: white; }
+    .btn-tab.inactive { background: white; color: #0f172a; border: 1px solid #e2e8f0; }
 
-    .btn-next { background: #0f172a; color: white; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 20px; }
+    /* BOTONES DE PASOS (TEXTO) */
+    .step-list { display: flex; gap: 10px; padding: 10px 40px; flex-wrap: wrap; }
+    .btn-step { padding: 8px 20px; border-radius: 12px; background: #f1f5f9; color: #64748b; font-weight: 700; font-size: 13px; }
+    .btn-step.active { background: #00c896; color: white; }
+
+    /* CAJAS DE DISEÑO PARA TU INFO */
+    .card-info { margin: 20px 40px; padding: 30px; border-radius: 20px; border: 1px solid #e2e8f0; flex: 1; overflow-y: auto; }
+    .badge { background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 10px; text-transform: uppercase; }
+    
+    /* CLASES PARA QUE USES EN TU EDICIÓN */
+    .alerta-roja { background: #fef2f2; border: 1px solid #fee2e2; color: #991b1b; padding: 15px; border-radius: 15px; text-align: center; font-weight: 700; margin: 15px 0; }
+    .caja-validacion { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 15px; padding: 20px; }
+    .caja-validacion h4 { color: #64748b; font-weight: 800; font-size: 12px; text-align: center; margin-bottom: 10px; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
+    .caja-validacion ul { list-style: none; padding: 0; color: #475569; font-size: 14px; }
+    .caja-validacion li { margin-bottom: 8px; }
+    .caja-validacion li::before { content: "•"; color: #3b82f6; font-weight: bold; margin-right: 8px; }
 </style>
 </head>
 <body>
 
 <aside class="sidebar">
     <div class="flex items-center gap-3 mb-10">
-        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
-        <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-tools text-white"></i></div>
+        <span class="text-xl font-extrabold">SupportOS</span>
     </div>
-    <div class="nav-btn active"><i class="fas fa-power-off"></i> Router Offline</div>
-    <div class="nav-btn"><i class="fas fa-chart-line"></i> Bajas Velocidades</div>
+    <div class="p-3 bg-blue-500 rounded-xl font-bold text-sm"><i class="fas fa-wifi mr-2"></i> Router Offline</div>
 </aside>
 
-<main class="main">
-    <div class="eq-selector">
-        <button id="tabPhantom" class="eq-btn active" onclick="setEquipo('phantom')">Phantom</button>
-        <button id="tabVilo" class="eq-btn inactive" onclick="setEquipo('vilo')">Router Vilo</button>
+<main class="main-app">
+    <div class="tab-container">
+        <button id="tab1" class="btn-tab active" onclick="cambiarEquipo('phantom')">Phantom</button>
+        <button id="tab2" class="btn-tab inactive" onclick="cambiarEquipo('vilo')">Router Vilo</button>
     </div>
 
-    <div id="stepMenu" class="step-menu"></div>
+    <div id="contenedorPasos" class="step-list"></div>
 
-    <div class="content-card">
-        <div id="displayArea"></div>
-        <button id="mainBtn" class="btn-next" onclick="nextStep()">Siguiente Paso</button>
+    <div class="card-info">
+        <div id="espacioInfo"></div>
+        <button class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold mt-6 shadow-lg" onclick="siguiente()">Siguiente Paso <i class="fas fa-chevron-right ml-2"></i></button>
     </div>
 </main>
 
 <script>
-/* ==========================================
-   BASE DE DATOS: EDITA AQUÍ TU INFORMACIÓN
-   ========================================== */
-const DATA = {
+/* ============================================================
+   /* === PANEL DE EDICIÓN: AQUÍ PONES TU PROPIA INFO === */
+   /* ============================================================ */
+const MI_PROCESO = {
     phantom: [
         { 
-            btn: "Validación", 
-            tag: "INICIO", 
-            title: "Router Offline", 
-            content: `<p>Verifique que el servicio no esté suspendido o congelado.</p><div class="alert-red" style="background:#fff7ed; color:#9a3412; border-color:#ffedd5;">⚠️ Revisar falla masiva en la zona</div>` 
+            boton: "Validación", 
+            etiqueta: "PASO 1", 
+            titulo: "Validación de Cuenta", 
+            html: `
+                <p class="text-slate-600 mb-4">Verifique el estado del servicio en el sistema.</p>
+                <div class="alerta-roja" style="background:#fff7ed; color:#9a3412; border-color:#fed7aa">⚠️ REVISAR FALLA MASIVA</div>
+            `
         },
         { 
-            btn: "Principal", 
-            tag: "SISTEMA", 
-            title: "Router Principal", 
-            content: `<p>Validar MAC en Radius y que tome IP.</p>` 
+            boton: "Principal", 
+            etiqueta: "HERRAMIENTA", 
+            titulo: "Router Principal", 
+            html: `<p class="text-slate-600">Validar MAC y Radius.</p>`
         },
         { 
-            btn: "Secundario", 
-            tag: "RED", 
-            title: "Router Secundario", 
-            content: `<p>Validar en Grafana y velocidad de puertos LAN.</p>` 
-        },
-        { 
-            btn: "Usuario", 
-            tag: "CLIENTE", 
-            title: "Validación Física", 
-            content: `<div class="alert-red">⚠️ No chuzar el equipo Phantom</div>` 
-        },
-        { 
-            btn: "Resultado", 
-            tag: "FINAL", 
-            title: "Resultado", 
-            content: `
-                <div class="alert-red"><i class="fas fa-times"></i> No funciona</div>
-                <div class="box-validar">
-                    <h4>Antes de escalar validar:</h4>
+            boton: "Resultado", 
+            etiqueta: "FINAL", 
+            titulo: "Resultado", 
+            html: `
+                <div class="alerta-roja"><i class="fas fa-times mr-2"></i> No funciona</div>
+                <div class="caja-validacion">
+                    <h4>ANTES DE ESCALAR VALIDAR:</h4>
                     <ul>
                         <li>Router principal validado</li>
                         <li>Router secundario validado</li>
                         <li>Conexiones correctas</li>
                         <li>Energía / luz del router OK</li>
                     </ul>
-                </div>` 
+                </div>
+            `
         }
     ],
     vilo: [
-        { btn: "Validación", tag: "INICIO", title: "Offline Vilo", content: "..." },
-        { btn: "Principal", tag: "SISTEMA", title: "Configuración", content: "..." },
-        { btn: "Físico", tag: "LED", title: "Estado de LED", content: "..." },
-        { btn: "Resultado", tag: "FINAL", title: "Resultado", content: "..." }
+        { 
+            boton: "Validación", 
+            etiqueta: "VILO", 
+            titulo: "Router Vilo", 
+            html: `<p>Pegue aquí su información de Vilo...</p>`
+        }
     ]
 };
 
-/* ==========================================
-   LÓGICA (NO NECESITAS TOCAR ESTO)
-   ========================================== */
-let equipoActual = 'phantom';
-let pasoActual = 0;
+/* ============================================================
+   LÓGICA DEL SISTEMA (YA NO NECESITAS TOCAR ESTO)
+   ============================================================ */
+let eqActual = 'phantom';
+let pasoIdx = 0;
 
-function setEquipo(eq) {
-    equipoActual = eq;
-    pasoActual = 0;
-    document.getElementById('tabPhantom').className = eq === 'phantom' ? 'eq-btn active' : 'eq-btn inactive';
-    document.getElementById('tabVilo').className = eq === 'vilo' ? 'eq-btn active' : 'eq-btn inactive';
-    render();
+function cambiarEquipo(e) {
+    eqActual = e; pasoIdx = 0;
+    document.getElementById('tab1').className = e === 'phantom' ? 'btn-tab active' : 'btn-tab inactive';
+    document.getElementById('tab2').className = e === 'vilo' ? 'btn-tab active' : 'btn-tab inactive';
+    dibujar();
 }
 
-function render() {
-    const pasos = DATA[equipoActual];
-    const data = pasos[pasoActual];
+function dibujar() {
+    const lista = MI_PROCESO[eqActual];
+    const data = lista[pasoIdx];
     
-    // Render botones de pasos
-    const menu = document.getElementById('stepMenu');
-    menu.innerHTML = pasos.map((p, i) => `
-        <button class="step-btn ${i === pasoActual ? 'active' : ''}" onclick="goTo(${i})">${p.btn}</button>
+    // Botones superiores (Puntos de navegación)
+    document.getElementById('contenedorPasos').innerHTML = lista.map((p, i) => `
+        <button class="btn-step ${i === pasoIdx ? 'active' : ''}" onclick="irA(${i})">${p.boton}</button>
     `).join('');
 
-    // Render contenido
-    document.getElementById('displayArea').innerHTML = `
-        <span class="tag-final">${data.tag}</span>
-        <h2 class="text-3xl font-extrabold text-slate-900 mb-6">${data.title}</h2>
-        <div>${data.content}</div>
+    // Contenido central
+    document.getElementById('espacioInfo').innerHTML = `
+        <span class="badge">${data.etiqueta}</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 mt-2 mb-6">${data.titulo}</h2>
+        <div>${data.html}</div>
     `;
-
-    document.getElementById('mainBtn').style.display = pasoActual === pasos.length - 1 ? 'none' : 'block';
 }
 
-function nextStep() { if(pasoActual < DATA[equipoActual].length - 1) { pasoActual++; render(); } }
-function goTo(i) { pasoActual = i; render(); }
+function siguiente() { if(pasoIdx < MI_PROCESO[eqActual].length - 1) { pasoIdx++; dibujar(); } }
+function irA(i) { pasoIdx = i; dibujar(); }
 
-render();
+dibujar(); // Iniciar app
 </script>
 </body>
 </html>
