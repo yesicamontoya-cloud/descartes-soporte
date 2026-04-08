@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Pro - Phantom</title>
+    <style>
+        :root { --primary: #1e40af; --success: #16a34a; --danger: #dc2626; --bg: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 450px; width: 100%; }
+        h1 { color: #1e293b; font-size: 1.5rem; text-align: center; }
+        .menu-btn { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 10px; background: white; cursor: pointer; text-align: left; font-size: 1rem; font-weight: bold; transition: 0.2s; }
+        .menu-btn:hover { border-color: var(--primary); background: #eff6ff; }
+        .step-info { color: var(--primary); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+        .question { font-size: 1.3rem; margin: 15px 0; font-weight: bold; color: #1e293b; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .btn { flex: 1; padding: 15px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; font-size: 1rem; }
+        .btn-yes { background: var(--success); }
+        .btn-no { background: var(--danger); }
+        .alert-box { background: #fef2f2; border-left: 4px solid var(--danger); padding: 15px; margin-top: 15px; color: #991b1b; font-size: 0.9rem; }
+        textarea { width: 100%; height: 100px; margin-top: 10px; padding: 10px; box-sizing: border-box; border-radius: 5px; border: 1px solid #cbd5e1; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="view-menu">
+        <h1>Centro de Descartes</h1>
+        <p style="text-align:center; color:#64748b;">Selecciona el proceso a estandarizar:</p>
+        <button class="menu-btn" onclick="startApp('n1')">🔵 Descartes N1 (Asesores)</button>
+        <button class="menu-btn" onclick="startApp('n2')">🔴 Descartes N2 (Líderes/Técnicos)</button>
+        <button class="menu-btn" onclick="startApp('fisico')">🔌 Revisión Física (Terreno)</button>
+    </div>
+
+    <div id="view-app" class="hidden">
+        <div id="step-label" class="step-info"></div>
+        <div id="question-text" class="question"></div>
+        <div class="btn-group">
+            <button class="btn btn-yes" onclick="answer(true)">SÍ / OK</button>
+            <button class="btn btn-no" onclick="answer(false)">NO / FALLA</button>
+        </div>
+        <div id="alert-box" class="alert-box hidden"></div>
+        <button onclick="location.reload()" style="margin-top:20px; background:none; border:none; color:gray; cursor:pointer;">⬅ Volver al inicio</button>
+    </div>
+</div>
+
+<script>
+    const data = {
+        n1: [
+            { q: "¿Servicio Activo en Radius?", f: "❌ Detente: Primero activa el servicio en sistema." },
+            { q: "¿Equipo tiene IP?", f: "🚨 Escalar a N2: El equipo no navega por falta de IP." },
+            { q: "¿Sin Falla Masiva?", f: "📢 Informa al cliente que hay una falla en el sector." }
+        ],
+        n2: [
+            { q: "¿Misma IP en dos equipos?", f: "🛠️ Conflicto detectado: Cambia el segmento de red." },
+            { q: "¿Puerto LAN a 1G?", f: "⚠️ Puerto negociando a 100Mb. Cambia el cable UTP." }
+        ],
+        fisico: [
+            { q: "¿Puerto WAN vacío?", f: "🔌 El cable de internet debe ir en el puerto WAN, verifica." },
+            { q: "¿Tiene energía estable?", f: "⚡ Revisa el regulador de voltaje." }
+        ]
+    };
+
+    let currentFlow = [];
+    let index = 0;
+    let log = [];
+
+    function startApp(id) {
+        currentFlow = data[id];
+        index = 0;
+        log = [];
+        document.getElementById('view-menu').classList.add('hidden');
+        document.getElementById('view-app').classList.remove('hidden');
+        showStep();
+    }
+
+    function showStep() {
+        if (index < currentFlow.length) {
+            document.getElementById('step-label').innerText = "PASO " + (index + 1);
+            document.getElementById('question-text').innerText = currentFlow[index].q;
+            document.getElementById('alert-box').classList.add('hidden');
+        } else {
+            finish();
+        }
+    }
+
+    function answer(isOk) {
+        if (isOk) {
+            log.push(currentFlow[index].q + ": OK");
+            index++;
+            showStep();
+        } else {
+            const box = document.getElementById('alert-box');
+            box.innerText = currentFlow[index].f;
+            box.classList.remove('hidden');
+        }
+    }
+
+    function finish() {
+        document.getElementById('view-app').innerHTML = `
+            <h1>✅ ¡Listo!</h1>
+            <p>Diagnóstico completado. Copia el resumen:</p>
+            <textarea id="res">${log.join('\n')}</textarea>
+            <button class="btn btn-yes" style="width:100%; margin-top:10px;" onclick="copy()">Copiar Resumen</button>
+            <button class="btn" style="width:100%; margin-top:10px; background:#64748b;" onclick="location.reload()">Hacer otro</button>
+        `;
+    }
+
+    function copy() {
+        const t = document.getElementById('res');
+        t.select();
+        document.execCommand('copy');
+        alert("¡Copiado! Pégalo en el ticket.");
+    }
+</script>
+</body>
+</html>
