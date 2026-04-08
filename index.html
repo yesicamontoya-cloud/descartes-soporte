@@ -1,323 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte Hub N1 - Enterprise</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soporte Hub N1 - Full</title>
 
-        .app-container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            min-height: 650px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.7);
-        }
+<style>
+body{font-family:'Segoe UI',sans-serif;background:#f4f6f8;padding:16px;max-width:420px;margin:auto}
 
-        /* Sidebar Navegación */
-        .sidebar {
-            width: 280px;
-            background: #0f172a;
-            padding: 40px 24px;
-            color: white;
-        }
+/* SELECTOR DE PROCESO (SUPERIOR) */
+.main-nav{display:flex;gap:8px;margin-bottom:15px;background:#fff;padding:6px;border-radius:14px;border:1px solid #e3e7ed}
+.main-nav button{
+    flex:1;padding:10px;border:none;border-radius:10px;
+    font-size:11px;font-weight:800;cursor:pointer;background:transparent;color:#6b7280;
+    text-transform:uppercase;transition:0.3s;
+}
+.main-nav button.active{background:#111827;color:#fff}
 
-        .proc-item {
-            padding: 16px;
-            border-radius: 18px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #94a3b8;
-        }
+/* SELECTOR DE EQUIPO */
+.selector{display:flex;gap:8px;margin-bottom:12px}
+.selector button{
+  flex:1;padding:10px;border:none;border-radius:10px;
+  font-weight:600;cursor:pointer;background:#e5e7eb;
+}
+.selector button.active{background:#3b5bcc;color:#fff}
 
-        .proc-item:hover { background: rgba(255,255,255,0.05); color: #f1f5f9; }
-        .proc-item.active { background: #3b82f6; color: white; box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4); }
+/* MENÚ DE PASOS */
+.menu{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.menu button{
+  flex:1;min-width:70px;padding:6px;border:none;border-radius:8px;
+  background:#e5e7eb;font-size:10px;cursor:pointer;font-weight:600;
+}
+.menu button.active{background:#00C896;color:white}
 
-        /* Contenido */
-        .main-content { flex: 1; display: flex; flex-col; background: white; }
+/* BLOQUES Y CONTENIDO */
+.block{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid #e3e7ed;box-shadow:0 2px 4px rgba(0,0,0,0.02)}
+h3{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.item{font-size:13px;margin-bottom:10px;line-height:1.4}
+.tag{display:inline-block;font-size:10px;font-weight:700;background:#eef3ff;color:#3b5bcc;padding:3px 8px;border-radius:20px;margin-bottom:6px}
+.action{background:#f0f4ff;border-left:3px solid #3b5bcc;padding:8px 10px;border-radius:8px;margin-top:6px;font-size:12px}
 
-        /* Status Pills */
-        .status-pill { padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-        .pill-sys { background: #e0f2fe; color: #0369a1; }
-        
-        /* Cajas de Información */
-        .info-card { padding: 20px; border-radius: 20px; margin: 15px 0; border-left: 6px solid; transition: 0.3s; }
-        .critical { background: #fef2f2; border-color: #ef4444; color: #991b1b; }
-        .warning { background: #fffbeb; border-color: #f59e0b; color: #92400e; }
-        .success { background: #f0fdf4; border-color: #22c55e; color: #166534; }
-        .standard { background: #f8fafc; border-color: #3b82f6; color: #1e40af; }
+/* ALERTAS ESTILO ORIGINAL */
+.nota-box{background:#FEF9C3;border-left:4px solid #FACC15;padding:8px 10px;border-radius:8px;font-size:12px;color:#854D0E;margin-bottom:10px}
+.alert-pago{background:#FEF2F2;border-left:4px solid #DC2626;color:#7F1D1D;padding:10px;border-radius:10px;font-weight:600;margin-top:8px;font-size:12px}
+.alert-falla{background:#FFF7ED;border-left:4px solid #F97316;color:#9A3412;padding:10px;border-radius:10px;font-weight:600;margin-top:8px;font-size:12px}
 
-        .btn-step {
-            background: #0f172a;
-            color: white;
-            padding: 18px 30px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 14px;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-step:hover { background: #1e293b; transform: translateY(-2px); }
+/* BOTONES */
+.btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:10px;background:#00C896;color:white;font-weight:600;cursor:pointer}
+.btn-reset{background:#fff;color:#555;border:1px solid #ddd;margin-top:6px}
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-    </style>
+/* IMÁGENES */
+.ref-img{margin-top:9px;border-radius:9px;overflow:hidden;border:1px solid #e5e7eb}
+.ref-img img{width:100%;height:120px;object-fit:cover}
+.caption{font-size:10px;padding:5px;background:#f9fafb;color:#6b7280;text-align:center}
+</style>
 </head>
+
 <body>
 
-    <div class="app-container">
-        <aside class="sidebar flex flex-col justify-between">
-            <div>
-                <div class="flex items-center gap-3 mb-12 px-2">
-                    <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
-                        <i class="fas fa-network-wired text-white"></i>
-                    </div>
-                    <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
-                </div>
+<div class="main-nav">
+    <button id="navOffline" class="active" onclick="setProcess('offline')">Router Offline</button>
+    <button id="navSlow" onclick="setProcess('slow')">Baja Velocidad</button>
+</div>
 
-                <nav>
-                    <p class="text-[10px] font-black text-slate-500 uppercase tracking-[2px] mb-4 px-2">Diagnóstico N1</p>
-                    <div onclick="switchMainProc('offline')" id="proc-offline" class="proc-item active">
-                        <i class="fas fa-link-slash"></i> Router Offline
-                    </div>
-                    <div onclick="switchMainProc('slow')" id="proc-slow" class="proc-item">
-                        <i class="fas fa-chart-line"></i> Bajas Velocidades
-                    </div>
-                </nav>
-            </div>
+<div class="selector">
+  <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
+  <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
+</div>
 
-            <div class="bg-slate-800/50 p-4 rounded-2xl border border-white/5">
-                <p class="text-[10px] text-slate-400 font-bold uppercase mb-2">Usuario N1</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center text-xs">JD</div>
-                    <span class="text-xs font-semibold">Panel de Control</span>
-                </div>
-            </div>
-        </aside>
+<div id="menuPasos" class="menu"></div>
+<div id="app"></div>
 
-        <main class="main-content flex flex-col">
-            <header class="h-20 border-b border-slate-100 px-8 flex items-center justify-between">
-                <div class="flex gap-8">
-                    <button onclick="switchEquipo('phantom')" id="eq-phantom" class="text-sm font-extrabold pb-7 mt-7 border-b-2 border-blue-600 text-blue-600 transition-all">PHANTOM</button>
-                    <button onclick="switchEquipo('vilo')" id="eq-vilo" class="text-sm font-extrabold pb-7 mt-7 border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-all">ROUTER VILO</button>
-                </div>
-                <div id="step-counter" class="text-[10px] font-black text-slate-400 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-tighter">Paso 1 de 5</div>
-            </header>
+<script>
+let currentProcess = 'offline';
+let currentEquipo = 'phantom';
+let currentStep = 0;
 
-            <div class="flex-1 p-10 overflow-y-auto">
-                <div id="content-viewer" class="max-w-xl">
-                    </div>
-            </div>
+const database = {
+    offline: {
+        phantom: [
+            { title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item">Verifique que el servicio no esté suspendido o congelado</div><div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div><div class="item">Revise si existe una falla masiva en la zona</div><div class="alert-falla">⚠️ Si hay falla → usar guion</div>` },
+            { title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar MAC asociada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item">Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div><div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"><div class="caption">No carga información en Radius = No IP</div></div>` },
+            { title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="item">Validar en Grafana que no esté en NA</div><div class="item">Puerto LAN a 1G o 2G (según plan)</div><div class="nota-box">Nota: No aplica para domótica.</div>` },
+            { title: "🔌 Validación física", tag: "Cliente", html: `<div class="item">Revisar conexiones físicas y energía</div><div class="item">Puerto WAN debe estar VACÍO</div><div class="action">⚠️ NO chuzar el equipo (Phantom)</div><div class="item">Reiniciar 30 seg.</div>` },
+            { title: "✅ Resultado", tag: "Final", html: `<div style="background:#E6FBF5;color:#007A5E;padding:10px;border-radius:10px;font-weight:700">✅ Funciona → Cerrar chat</div><div style="background:#FFF0F0;color:#A83030;padding:10px;border-radius:10px;font-weight:700;margin-top:10px">❌ No funciona → Escalar N2</div><div class="nota-box" style="margin-top:10px">Validar antes de escalar: Radius, Grafana y conexiones.</div>` }
+        ],
+        vilo: [
+            { title: "🔍 Router Offline", tag: "Sistema", html: `<div class="alert-pago">🚫 Revisar morosidad</div><div class="alert-falla">⚠️ Revisar falla masiva</div>` },
+            { title: "🖥 Router principal", tag: "Radius", html: `<div class="item">Validar MAC y que tome IP en Radius.</div><div class="action">Si no toma IP → Escalar N2.</div>` },
+            { title: "🔌 Validación física", tag: "LED Vilo", html: `<div class="nota-box"><b style="color:#F59E0B">Naranja</b><br>Configurar ISP en Inventory. Si no sube: Chuzar y re-configurar.</div><div class="nota-box"><b style="color:#EF4444">Rojo</b><br>Validar cables y reiniciar físicamente.</div><div class="nota-box"><b>Blanco/Azul:</b> OK</div>` },
+            { title: "✅ Resultado", tag: "Final", html: `<div class="item">Si tras configurar ISP no funciona → Escalar N2.</div>` }
+        ]
+    },
+    slow: {
+        phantom: [
+            { title: "📉 Validación Plan", tag: "Sistema", html: `<div class="item">Confirmar plan contratado.</div><div class="nota-box">Asegurar que los routers no tengan la misma IP interna.</div>` },
+            { title: "📊 Puerto Grafana", tag: "Herramienta", html: `<div class="item">Verificar negociación del puerto LAN:</div><div class="action">1000M: OK<br>100M: El cable del cliente está limitando.</div>` },
+            { title: "📶 Test WiFi 5G", tag: "Pruebas", html: `<div class="item">Hacer test en banda 5G (Servidor SOMOS).</div><div class="item">Cerca del router y sin VPN.</div><div class="action">Si por cable da y por WiFi no → Interferencia.</div>` },
+            { title: "⚙️ Canales", tag: "Soporte", html: `<div class="item">Solicitar cambio de canales por el grupo de soporte.</div><div class="nota-box">Separar redes 2.4 y 5G si es necesario.</div>` },
+            { title: "✅ Resultado", tag: "Final", html: `<div class="item">Si persiste bajo rendimiento tras cambio de canales → Escalar N2 con test de cable adjunto.</div>` }
+        ],
+        vilo: [
+            { title: "📉 Cobertura Mesh", tag: "Vilo App", html: `<div class="item">Nodos a máximo 2 paredes de distancia.</div><div class="nota-box">Revisar estado de conexión entre nodos en Inventory.</div>` },
+            { title: "📶 Optimización", tag: "WiFi", html: `<div class="item">Ancho de banda a 80MHz en 5G.</div><div class="item">Verificar Firmware actualizado.</div>` },
+            { title: "✅ Resultado", tag: "Final", html: `<div class="item">Si la malla está OK y el firmware al día pero persiste lentitud → Escalar N2.</div>` }
+        ]
+    }
+};
 
-            <footer class="p-8 border-t border-slate-50 bg-slate-50/50 flex justify-between items-center">
-                <button onclick="reset()" class="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold text-xs uppercase tracking-widest transition-all">
-                    <i class="fas fa-sync-alt"></i> Reiniciar Proceso
-                </button>
-                <button onclick="nextStep()" id="main-btn" class="btn-step shadow-xl shadow-slate-900/10">
-                    Siguiente <i class="fas fa-chevron-right text-[10px]"></i>
-                </button>
-            </footer>
-        </main>
-    </div>
+function setProcess(proc) {
+    currentProcess = proc;
+    currentStep = 0;
+    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
+    document.getElementById('navSlow').classList.toggle('active', proc === 'slow');
+    renderMenu();
+    renderContent();
+}
 
-    <script>
-        const database = {
-            offline: {
-                phantom: [
-                    { title: "Verificación de Cuenta", tag: "Sistema", content: `
-                        <p class="text-slate-500 mb-4">Verificar el estado del servicio en el CRM antes de cualquier validación física.</p>
-                        <div class="info-card critical">
-                            <b class="block mb-1 italic">Validación de Morosidad:</b>
-                            Si el servicio está suspendido o congelado → <b>Informar al cliente y enviar link de pago.</b> No proceder con soporte técnico.
-                        </div>
-                        <div class="info-card warning">
-                            <b class="block mb-1 italic">Falla Masiva:</b>
-                            Revisar mapa de nodos. Si hay afectación en la zona → <b>Usar guion de falla masiva (Pág 4).</b>
-                        </div>` 
-                    },
-                    { title: "Radius & IP", tag: "Radius", content: `
-                        <p class="text-slate-500 mb-4">Validar la autenticación del equipo en la red.</p>
-                        <div class="info-card standard font-semibold">
-                            <ul class="space-y-3">
-                                <li><i class="fas fa-check text-blue-500 mr-2"></i> Validar MAC asociada en Inventory.</li>
-                                <li><i class="fas fa-check text-blue-500 mr-2"></i> Estado en Radius debe ser "Activo".</li>
-                                <li><i class="fas fa-check text-blue-500 mr-2"></i> Verificar que el router esté tomando IP.</li>
-                            </ul>
-                        </div>
-                        <div class="info-card critical text-sm">
-                            <b>Escalamiento N2:</b> Si la MAC está activa en Radius pero el router NO toma IP → Escalar de inmediato.
-                        </div>` 
-                    },
-                    { title: "Telemetría Grafana", tag: "Grafana", content: `
-                        <p class="text-slate-500 mb-4">Revisión de puertos y conflictos de red.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                <span class="text-[10px] font-black text-slate-400 uppercase">Puerto LAN</span>
-                                <div class="text-lg font-extrabold text-slate-800">1G / 2G</div>
-                            </div>
-                            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                                <span class="text-[10px] font-black text-slate-400 uppercase">Estado</span>
-                                <div class="text-lg font-extrabold text-blue-600 italic">No NA</div>
-                            </div>
-                        </div>
-                        <div class="info-card warning mt-6 text-sm">
-                            <b>Conflicto de IP:</b> Si ambos routers tienen la misma IP, el servicio se degradará. Validar y cambiar remotamente.
-                        </div>` 
-                    },
-                    { title: "Validación en Sitio", tag: "Físico", content: `
-                        <p class="text-slate-500 mb-4">Instrucciones críticas para el usuario final.</p>
-                        <div class="info-card critical py-6 text-center shadow-lg shadow-red-100">
-                            <i class="fas fa-hand-paper text-2xl mb-2"></i><br>
-                            <b class="text-base uppercase tracking-wider">¡ATENCIÓN!</b><br>
-                            PROHIBIDO chuzar (resetear) el equipo Phantom.
-                        </div>
-                        <ul class="mt-6 space-y-4 text-sm font-medium">
-                            <li class="flex items-center gap-3"><span class="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-[10px]">1</span> Reiniciar el router (30 segundos desconectado).</li>
-                            <li class="flex items-center gap-3"><span class="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-[10px]">2</span> Puerto WAN debe estar totalmente vacío.</li>
-                            <li class="flex items-center gap-3"><span class="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-[10px]">3</span> Solicitar fotos de las conexiones.</li>
-                        </ul>` 
-                    },
-                    { title: "Cierre de Caso", tag: "Reporte", isFinal: true, content: `
-                        <div class="bg-blue-600 text-white p-8 rounded-3xl shadow-xl shadow-blue-200">
-                            <h3 class="text-xl font-black mb-2">Finalizar Soporte</h3>
-                            <p class="text-blue-100 text-sm mb-6">¿El servicio se restableció correctamente tras las pruebas?</p>
-                            <div class="flex gap-4">
-                                <button class="flex-1 bg-white text-blue-600 py-3 rounded-xl font-black text-xs uppercase tracking-widest">Sí, Cerrar</button>
-                                <button class="flex-1 bg-blue-500 text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest">No, Escalar N2</button>
-                            </div>
-                        </div>` 
-                    }
-                ],
-                vilo: [
-                    { title: "Estado del LED", tag: "Hardware", content: `
-                        <div class="info-card warning">
-                            <b class="block text-lg mb-2 underline">LED NARANJA</b>
-                            1. Configurar ISP Inventory.<br>
-                            2. Si no sube: Chuzar el equipo.<br>
-                            3. Re-configurar ISP Inventory.
-                        </div>
-                        <div class="info-card critical">
-                            <b class="block text-lg mb-2 underline">LED ROJO</b>
-                            1. Validar cables físicamente.<br>
-                            2. Desconectar y conectar cable de red.<br>
-                            3. Reiniciar físicamente.
-                        </div>` 
-                    },
-                    { title: "Modo de Conexión", tag: "Red", content: `
-                        <div class="info-card standard">
-                            <b class="block mb-2">Validación WAN:</b>
-                            - <b>Principal:</b> Debe tener el cable en el puerto WAN.<br>
-                            - <b>Secundarios:</b> No deben tener cable en puerto WAN (Conexión Mesh).
-                        </div>` 
-                    }
-                ]
-            },
-            slow: {
-                phantom: [
-                    { title: "Validación de Plan", tag: "Cuentas", content: `<div class="info-card standard">Validar plan contratado vs realidad en sistema. Revisar que no haya conflictos de IP entre routers.</div>` },
-                    { title: "Negociación de Puerto", tag: "Grafana", content: `
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
-                                <b class="block text-emerald-700">1000 Mbps</b>
-                                <span class="text-[10px] text-emerald-600 uppercase font-black">Puerto Correcto</span>
-                            </div>
-                            <div class="p-4 bg-rose-50 border border-rose-200 rounded-xl">
-                                <b class="block text-rose-700">100 Mbps</b>
-                                <span class="text-[10px] text-rose-600 uppercase font-black">Problema de Cable</span>
-                            </div>
-                        </div>` 
-                    },
-                    { title: "Test de Velocidad", tag: "Ookla", content: `
-                        <ul class="space-y-4">
-                            <li>• Test en red <b>5G</b> únicamente.</li>
-                            <li>• Usar servidor <b>SOMOS (Ookla)</b>.</li>
-                            <li>• Validar en 2 o más dispositivos.</li>
-                            <li>• Confirmar que <b>NO</b> tenga VPN activa.</li>
-                        </ul>` 
-                    },
-                    { title: "Canales & WiFi", tag: "Soporte", content: `
-                        <div class="info-card warning">
-                            <b>Acción Técnica:</b><br>
-                            Solicitar cambio de canales por el grupo de Soporte. Separar redes 2.4 y 5 en caso de saturación.
-                        </div>` 
-                    }
-                ],
-                vilo: [
-                    { title: "Señal Mesh", tag: "Inventory", content: `<div class="info-card warning">Validar que los nodos estén a máximo 2 paredes de distancia. Revisar estados en App Vilo.</div>` },
-                    { title: "Ajuste de Banda", tag: "Config", content: `<div class="info-card standard">Configurar ancho de banda a <b>80MHz</b> en la banda 5G y validar versión de firmware.</div>` }
-                ]
-            }
-        };
+function setEquipo(eq) {
+    currentEquipo = eq;
+    currentStep = 0;
+    document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
+    document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
+    renderMenu();
+    renderContent();
+}
 
-        let currentMainProc = 'offline';
-        let currentEq = 'phantom';
-        let currentIdx = 0;
+function renderMenu() {
+    const steps = database[currentProcess][currentEquipo];
+    const menuDiv = document.getElementById('menuPasos');
+    menuDiv.innerHTML = steps.map((s, i) => 
+        `<button class="${i === currentStep ? 'active' : ''}" onclick="goTo(${i})">${s.title.split(' ')[1] || s.title}</button>`
+    ).join('');
+}
 
-        function switchMainProc(proc) {
-            currentMainProc = proc;
-            currentIdx = 0;
-            document.querySelectorAll('.proc-item').forEach(b => b.classList.remove('active'));
-            document.getElementById(`proc-${proc}`).classList.add('active');
-            render();
-        }
+function renderContent() {
+    const steps = database[currentProcess][currentEquipo];
+    const s = steps[currentStep];
+    const app = document.getElementById('app');
+    
+    app.innerHTML = `
+        <div class="block">
+            <div class="tag">${s.tag}</div>
+            <h3>${s.title}</h3>
+            ${s.html}
+            ${currentStep < steps.length - 1 ? `<button class="btn" onclick="next()">Continuar</button>` : ''}
+            <button class="btn btn-reset" onclick="reset()">Reiniciar</button>
+        </div>
+    `;
+}
 
-        function switchEquipo(eq) {
-            currentEq = eq;
-            currentIdx = 0;
-            document.getElementById('eq-phantom').className = eq === 'phantom' ? 'text-sm font-extrabold pb-7 mt-7 border-b-2 border-blue-600 text-blue-600 transition-all' : 'text-sm font-extrabold pb-7 mt-7 border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-all';
-            document.getElementById('eq-vilo').className = eq === 'vilo' ? 'text-sm font-extrabold pb-7 mt-7 border-b-2 border-blue-600 text-blue-600 transition-all' : 'text-sm font-extrabold pb-7 mt-7 border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-all';
-            render();
-        }
+function next() { currentStep++; renderMenu(); renderContent(); }
+function goTo(i) { currentStep = i; renderMenu(); renderContent(); }
+function reset() { currentStep = 0; renderMenu(); renderContent(); }
 
-        function render() {
-            const steps = database[currentMainProc][currentEq];
-            const step = steps[currentIdx];
-            
-            document.getElementById('step-counter').textContent = `Paso ${currentIdx + 1} de ${steps.length}`;
+// Inicio
+setProcess('offline');
+</script>
 
-            document.getElementById('content-viewer').innerHTML = `
-                <div class="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <span class="status-pill pill-sys mb-4 inline-block">${step.tag}</span>
-                    <h2 class="text-4xl font-extrabold text-slate-900 mb-8 tracking-tighter">${step.title}</h2>
-                    <div class="text-slate-600 leading-relaxed">${step.content}</div>
-                </div>
-            `;
-
-            const btn = document.getElementById('main-btn');
-            btn.innerHTML = currentIdx === steps.length - 1 ? 'Finalizar Proceso' : 'Siguiente Paso <i class="fas fa-chevron-right text-[10px] ml-2"></i>';
-        }
-
-        function nextStep() {
-            const steps = database[currentMainProc][currentEq];
-            if (currentIdx < steps.length - 1) {
-                currentIdx++;
-                render();
-            } else {
-                alert("Proceso finalizado con éxito.");
-            }
-        }
-
-        function reset() { currentIdx = 0; render(); }
-
-        render();
-    </script>
 </body>
 </html>
