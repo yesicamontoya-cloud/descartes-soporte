@@ -32,7 +32,6 @@
     text-align: center;
   }
 
-  /* Selector de Proceso (Offline / Bajas Velocidades) */
   .process-selector {
     display: flex;
     gap: 10px;
@@ -47,12 +46,13 @@
     font-weight: 800;
     cursor: pointer;
     border: 2px solid #e5e7eb;
-    font-size: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
   }
   .btn-proc.active {
-    background: #3b82f6;
+    background: #0f172a;
     color: white;
-    border-color: #3b82f6;
+    border-color: #0f172a;
   }
 
   .panel{
@@ -82,30 +82,28 @@
   }
 
   .top-tab.active{
-    background:#0f172a;
+    background:#3b82f6;
     color:#fff;
   }
 
   .step-row{
     display:flex;
-    gap:8px;
-    margin-bottom:8px;
+    gap:6px;
+    margin-bottom:12px;
     flex-wrap:wrap;
   }
 
   .step-chip{
-    min-width:0;
     flex:1;
+    min-width: 80px;
     border:none;
     border-radius:8px;
-    padding:6px 8px;
-    font-size:11px;
+    padding:8px 4px;
+    font-size:10px;
     font-weight:700;
     cursor:pointer;
     background:#e5e7eb;
     color:#111;
-    transition:.2s;
-    white-space:nowrap;
     text-align: center;
   }
 
@@ -115,7 +113,6 @@
   }
 
   .card{
-    margin-top:12px;
     background:#fff;
     border:1px solid #d1d5db;
     border-radius:14px;
@@ -190,8 +187,8 @@
     <div class="page-title">SOPORTE TÉCNICO N1</div>
 
     <div class="process-selector">
-      <button id="procOffline" class="btn-proc active" onclick="switchProceso('offline')">ROUTER OFFLINE</button>
-      <button id="procSlow" class="btn-proc" onclick="switchProceso('slow')">BAJA VELOCIDAD</button>
+      <button id="procOffline" class="btn-proc active" onclick="switchProceso('offline')">Router Offline</button>
+      <button id="procSlow" class="btn-proc" onclick="switchProceso('slow')">Baja Velocidad</button>
     </div>
 
     <div class="panel">
@@ -203,7 +200,7 @@
       <div id="stepRow" class="step-row"></div>
 
       <div class="card">
-        <h3 id="cardTitle" class="card-title">📉 Proceso</h3>
+        <h3 id="cardTitle" class="card-title">Cargando...</h3>
         <div id="contenido"></div>
       </div>
     </div>
@@ -234,19 +231,19 @@
     },
     slow: {
       phantom: [
-        { title: 'Validación', tag: 'Entorno', html: `<div class="item">Validar que NO haya falla masiva.</div><div class="item">Confirmar plan contratado vs realidad.</div><div class="nota-box">Asegurar que Routers NO tengan la misma IP.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Capacidad', tag: 'Hardware', html: `<div class="item">Revisar negociación de puerto (Debe ser 1G).</div><div class="alert-box">Si negocia a 100Mbps → Cambiar cable LAN.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'WiFi 5G', tag: 'Usuario', html: `<div class="item">Test en red 5G a través de SOMOS (Ookla).</div><div class="item">Validar en 2 o más dispositivos.</div><div class="item">Confirmar NO uso de VPN.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Interferencia', tag: 'Canales', html: `<div class="item">Solicitar cambio de canales por Soporte.</div><div class="nota-box">Separar redes 2.4 y 5 si están unidas.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Cable', tag: 'Físico', html: `<div class="item">Realizar test por cable directo (Mínimo Cat 5e).</div><div class="item">Validar configuración Tarjeta de Red.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Resultado', tag: 'Escalamiento', html: `<div class="item">¿Velocidad persiste baja por CABLE?</div><button class="btn btn-primary" onclick="resetFlow()">✅ Solucionado</button><button class="btn btn-danger" onclick="nextStep()">❌ Escalar N2</button>` },
-        { title: 'Reporte', tag: 'N2', html: `<div class="nota-box">✔ Test por cable adjunto<br>✔ Cambio canales realizado<br>✔ Sin VPN confirmada</div><button class="btn btn-secondary" onclick="resetFlow()">Reiniciar</button>` }
+        { title: 'Validación', tag: 'Sistema', html: `<div class="item">Validar que NO haya falla masiva.</div><div class="item">Confirmar plan contratado.</div><div class="nota-box">Asegurar que los routers NO tengan la misma IP.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Principal', tag: 'Hardware', html: `<div class="item">Revisar negociación de puerto en sistema (Debe ser 1000M).</div><div class="alert-box">Si negocia a 100M → Cambiar cable LAN del cliente.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'WiFi 5G', tag: 'Usuario', html: `<div class="item">Test en red 5G cerca del router principal (SOMOS Ookla).</div><div class="item">Validar en 2 o más dispositivos.</div><div class="item">Confirmar NO uso de VPN.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Canales', tag: 'Soporte', html: `<div class="item">Solicitar cambio de canales por Soporte.</div><div class="nota-box">Separar redes 2.4 y 5 si están unidas (SSID distinto).</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Cable', tag: 'Físico', html: `<div class="item">Realizar test por cable directo (Mínimo Cat 5e).</div><div class="item">Validar tarjeta de red del PC (Gigabit).</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Resultado', tag: 'Final', html: `<div class="item">¿Velocidad normalizada?</div><button class="btn btn-primary" onclick="resetFlow()">✅ Solucionado</button><button class="btn btn-danger" onclick="nextStep()">❌ Escalar N2</button>` },
+        { title: 'Reporte', tag: 'N2', html: `<div class="nota-box">✔ Test cable adjunto<br>✔ Cambio canales solicitado<br>✔ Sin VPN</div><button class="btn btn-secondary" onclick="resetFlow()">Reiniciar</button>` }
       ],
       vilo: [
-        { title: 'Validación', tag: 'Sistema', html: `<div class="item">Revisar falla masiva y plan.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Mesh', tag: 'Cobertura', html: `<div class="item">Validar distancia entre nodos (Máx 2 paredes).</div><div class="nota-box">Revisar estado de nodos en App Vilo/Inventory.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'WiFi', tag: 'Config', html: `<div class="item">Cambio de canales y ancho de banda (80MHz en 5G).</div><div class="item">Confirmar Firmware actualizado.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
-        { title: 'Pruebas', tag: 'Speedtest', html: `<div class="item">Test cerca del Vilo Principal.</div><div class="item">Desconectar equipos fantasma.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Validación', tag: 'Sistema', html: `<div class="item">Revisar falla masiva y plan contratado.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Mesh', tag: 'Cobertura', html: `<div class="item">Validar distancia entre nodos (Máx 2 paredes).</div><div class="nota-box">Verificar si hay nodos desconectados en App Inventory.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Optimización', tag: 'WiFi', html: `<div class="item">Cambio de canales y ancho de banda a 80MHz.</div><div class="item">Confirmar Firmware actualizado.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
+        { title: 'Pruebas', tag: 'Velocidad', html: `<div class="item">Test cerca del Vilo Principal con red 5G.</div><div class="item">Identificar equipos con alto consumo.</div><button class="btn btn-primary" onclick="nextStep()">Continuar</button>` },
         { title: 'Resultado', tag: 'Final', html: `<div class="item">¿Persiste lentitud?</div><button class="btn btn-primary" onclick="resetFlow()">✅ Solucionado</button><button class="btn btn-danger" onclick="nextStep()">❌ Escalar N2</button>` },
         { title: 'Escalar', tag: 'N2', html: `<div class="nota-box">✔ Nodos validados<br>✔ Canales optimizados</div><button class="btn btn-secondary" onclick="resetFlow()">Reiniciar</button>` }
       ]
@@ -273,7 +270,7 @@
     const steps = data[procesoActual][equipoActual];
     const step = steps[currentIndex];
     
-    // Render de Chips/Pasos
+    // Renderizado de botones superiores (chips)
     const row = document.getElementById('stepRow');
     row.innerHTML = '';
     steps.forEach((s, i) => {
@@ -284,7 +281,11 @@
       row.appendChild(chip);
     });
 
-    document.getElementById('cardTitle').textContent = (procesoActual === 'offline' ? '❌ Router Offline' : '📉 Baja Velocidad');
+    // Título dinámico
+    const tituloTexto = (procesoActual === 'offline' ? '❌ Router Offline' : '📉 Baja Velocidad');
+    document.getElementById('cardTitle').textContent = tituloTexto;
+    
+    // Contenido dinámico
     document.getElementById('contenido').innerHTML = `<div class="tag">${step.tag}</div>${step.html}`;
   }
 
@@ -301,8 +302,12 @@
     render();
   }
 
+  // Inicialización
   render();
 </script>
 </body>
 </html>
-          
+ 
+    
+
+ 
