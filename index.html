@@ -91,9 +91,22 @@ function activar(btn){
 function openLink(url){ window.open(url,"_blank"); }
 
 /* =========================
- /* =========================
-   LÓGICA PHANTOM (RESTAURADA)
+   LÓGICA PHANTOM (TU DATA)
 ========================= */
+function loadPhantom(){
+    activar(document.getElementById("btnPhantom"));
+    document.getElementById("contenido").innerHTML = `
+    <div class="menu">
+        <button id="p0" onclick="goTo(0)">Validación</button>
+        <button id="p1" onclick="goTo(1)">Principal</button>
+        <button id="p2" onclick="goTo(2)">Secundario</button>
+        <button id="p3" onclick="goTo(3)">Usuario</button>
+        <button id="p4" onclick="goTo(4)">Resultado</button>
+    </div>
+    <div id="app"></div>`;
+    initPhantom();
+}
+
 function initPhantom(){
     const blocks = [
         {
@@ -135,38 +148,30 @@ function initPhantom(){
         {
             title:"✅ Resultado",
             html:`<div class="tag">Resultado</div>
-            
-            <div style="background:#f0fdf4; border-left:5px solid #10b981; padding:20px; border-radius:16px; margin-bottom:15px;">
-                <div style="color:#065f46; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-                    <i class="fas fa-check-circle"></i> Funciona
-                </div>
-                <div style="color:#065f46; font-size:14px; margin-top:4px; font-weight:500;">
-                    Dar por finalizado el chat.
-                </div>
-            </div>
-
-            <div style="background:#fef2f2; border-left:5px solid #ef4444; padding:20px; border-radius:16px;">
-                <div style="color:#991b1b; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-                    <i class="fas fa-times-circle"></i> No funciona
-                </div>
-                <div style="color:#991b1b; font-size:14px; margin-top:4px; margin-bottom:15px;">
-                    Escalar a N2.
-                </div>
-                
-                <div style="background:rgba(255,255,255,0.6); padding:15px; border-radius:12px; border:1px solid #fee2e2;">
-                    <b style="color:#7f1d1d; font-size:11px; text-transform:uppercase; display:block; margin-bottom:8px;">Antes de escalar validar:</b>
-                    <ul style="color:#991b1b; font-size:13px; list-style:none; padding:0; margin:0;">
-                        <li style="margin-bottom:4px;">• Router principal validado</li>
-                        <li style="margin-bottom:4px;">• Router secundario validado</li>
-                        <li style="margin-bottom:4px;">• Conexiones correctas</li>
-                        <li>• Energía OK</li>
-                    </ul>
-                </div>
-            </div>`
+            <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div>
+            <div class="nota-box">Dar por finalizado el chat.</div>
+            <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div>
+            <div class="nota-box">Escalar a N2. <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>`
         }
     ];
-    // ... resto de tu lógica de renderizado
+
+    let step = 0;
+    window.next = function(){ step++; render(); }
+    window.goTo = function(i){ step=i; render(); }
+
+    function render(){
+        document.getElementById("app").innerHTML = `
+        <div class="block">
+            <h3>${blocks[step].title}</h3>
+            ${blocks[step].html}
+            ${step < blocks.length - 1 ? `<button class="btn" onclick="next()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ``}
+            <button class="btn-reset" onclick="loadPhantom()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar</button>
+        </div>`;
+        document.querySelectorAll('.menu button').forEach((b,i)=> b.classList.toggle('active', i===step));
+    }
+    render();
 }
+
 /* =========================
    LÓGICA VILO (TU DATA)
 ========================= */
@@ -209,24 +214,13 @@ function initVilo(){
             <div class="nota-box"><b>WAN:</b> Principal (con cable), Secundario (sin cable).</div>
             <div class="nota-box"><b>Estados:</b> Blanco (WiFi 6 OK) / Azul (WiFi 5 OK)</div>`
         },
-       {
-    title:"✅ Resultado",
-    html:`<div class="tag">Resultado</div>
-    
-    <div style="background:#f0fdf4; border-left:5px solid #10b981; padding:20px; border-radius:16px; margin-bottom:15px;">
-        <div style="color:#065f46; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-check-circle"></i> Funciona
-        </div>
-        <div style="color:#065f46; font-size:14px; margin-top:4px;">Dar por finalizado el chat.</div>
-    </div>
-
-    <div style="background:#fef2f2; border-left:5px solid #ef4444; padding:20px; border-radius:16px;">
-        <div style="color:#991b1b; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-times-circle"></i> No funciona
-        </div>
-        <div style="color:#991b1b; font-size:14px; margin-top:4px;">Escalar a N2 validando conexiones y energía.</div>
-    </div>`
-}
+        {
+            title:"✅ Resultado",
+            html:`<div class="tag">Resultado</div>
+            <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div>
+            <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div>
+            <div class="nota-box">Escalar a N2 validando conexiones y energía.</div>`
+        }
     ];
 
     let stepV = 0;
