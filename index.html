@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte Hub - Estandarización</title>
+    <title>Soporte Hub - Phantom & Vilo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         .step-active { background: #00C896 !important; color: white !important; }
         .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         .card-pro { border-radius: 20px; transition: all 0.3s ease; border: 1px solid #e5e7eb; }
+        .alert-pago { background:#FEF2F2; border-left:4px solid #DC2626; color:#7F1D1D; padding:10px; border-radius:10px; font-weight:600; margin:10px 0; }
+        .alert-falla { background:#FFF7ED; border-left:4px solid #F97316; color:#9A3412; padding:10px; border-radius:10px; font-weight:600; margin:10px 0; }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
@@ -17,9 +19,9 @@
     <header class="glass sticky top-0 z-50 border-b border-slate-200 p-4 mb-6 shadow-sm">
         <div class="max-w-md mx-auto flex justify-between items-center">
             <h1 class="font-bold text-xl flex items-center gap-2">
-                <i class="fas fa-network-wired text-emerald-500"></i> SOPORTE HUB
+                <i class="fas fa-ghost text-emerald-500"></i> SOPORTE HUB
             </h1>
-            <span class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded-full uppercase tracking-widest">N1 / N2</span>
+            <span class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded-full uppercase tracking-widest italic">Phantom Edition</span>
         </div>
     </header>
 
@@ -27,15 +29,13 @@
         
         <div class="flex gap-2 mb-6">
             <button onclick="changeFlow('phantom')" id="tab-phantom" class="flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm border-2 border-transparent transition-all">Phantom</button>
-            <button onclick="changeFlow('vilo')" id="tab-vilo" class="flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm border-2 border-transparent transition-all">Vilo</button>
+            <button onclick="changeFlow('vilo')" id="tab-vilo" class="flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm border-2 border-transparent transition-all">Router Vilo</button>
         </div>
 
-        <div id="step-menu" class="flex gap-1 mb-6 overflow-x-auto pb-2">
-            </div>
+        <div id="step-menu" class="flex gap-1 mb-6 overflow-x-auto pb-2"></div>
 
-        <div id="step-container" class="card-pro bg-white p-6 shadow-xl relative overflow-hidden">
-            <div id="content-area">
-                </div>
+        <div id="step-container" class="card-pro bg-white p-6 shadow-xl relative overflow-hidden min-h-[300px]">
+            <div id="content-area"></div>
         </div>
 
     </main>
@@ -52,78 +52,131 @@
     </footer>
 
     <script>
-        // BASE DE DATOS DE PROCESOS (Aquí puedes añadir más fácil)
         const database = {
             phantom: {
                 name: "Phantom",
                 steps: [
-                    { title: "Validación", tag: "SISTEMA", content: "Verifique estado en Radius y falta de pago. <div class='mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-xs font-bold border-l-4 border-red-500'>🚫 Suspención → Enviar link de pago.</div>", tip: "No escale si el cliente debe facturas." },
-                    { title: "Radius", tag: "BACKOFFICE", content: "Validar MAC y que tome IP. Si no toma IP, revisar aprovisionamiento.", tip: "Si no carga IP en Radius → Escalar a N2." },
-                    { title: "Física", tag: "CLIENTE", content: "Revisar cables en puerto WAN y reiniciar equipo (30 seg).", tip: "Evidencia: Solicitar foto de LEDs." },
-                    { title: "Resultado", tag: "FINAL", content: "Si persiste el error, genere el reporte para N2.", isFinal: true }
+                    { 
+                        title: "Validación", 
+                        tag: "SISTEMA", 
+                        content: `<p>Verifique que el servicio no esté suspendido por falta de pago o congelado.</p>
+                                 <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+                                 <p class="mt-4">Revise si existe una falla masiva en la zona.</p>
+                                 <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
+                                 <button onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing','_blank')" class="w-full mt-2 bg-slate-100 p-2 rounded text-xs font-bold border border-slate-200 uppercase">Abrir guion falla masiva (Pág 4)</button>`,
+                        tip: "No realice más pruebas si hay mora." 
+                    },
+                    { 
+                        title: "Principal", 
+                        tag: "ROUTER", 
+                        content: `<p>Validar que la MAC esté asociada y autenticada en Radius (estado activo).</p>
+                                 <div class="bg-blue-50 border-l-4 border-blue-500 p-3 my-3 text-sm">Si no está activo → escalar backoffice</div>
+                                 <p>Verificar que el router tome IP.</p>
+                                 <div class="bg-blue-50 border-l-4 border-blue-500 p-3 my-3 text-sm">Si no toma IP → escalar a N2</div>
+                                 <div class="mt-4 border rounded p-2 bg-slate-50"><img src="https://i.imgur.com/f0ERrPo.png" class="rounded w-full h-32 object-cover"></div>`,
+                        tip: "No toma IP = no carga información en Radius." 
+                    },
+                    { 
+                        title: "Secundario", 
+                        tag: "RED", 
+                        content: `<ul class="list-disc ml-4 space-y-2 text-sm">
+                                    <li>Confirmar que no tenga la misma IP que el principal.</li>
+                                    <li>Validar en Grafana que no esté en NA.</li>
+                                    <li>Verificar que el puerto LAN registre 1G o 2G.</li>
+                                 </ul>
+                                 <div class="mt-4 p-3 bg-amber-50 text-amber-700 rounded-lg text-xs italic">Nota: No aplica para domótica: la velocidad de los puertos no es relevante.</div>`,
+                        tip: "Si hay inconsistencia → escalar a N2." 
+                    },
+                    { 
+                        title: "Resultado", 
+                        tag: "FINAL", 
+                        content: `<div class="bg-emerald-100 text-emerald-800 p-4 rounded-lg font-bold mb-2 text-center">✅ Funciona: Dar por finalizado chat</div>
+                                 <div class="bg-rose-100 text-rose-800 p-4 rounded-lg font-bold text-center">❌ No funciona: Escalar a N2</div>
+                                 <div class="mt-4 text-[10px] text-slate-500 uppercase font-bold tracking-wider text-center italic">Validar conexiones y energía antes de escalar</div>`,
+                        isFinal: true 
+                    }
                 ]
             },
             vilo: {
                 name: "Router Vilo",
                 steps: [
-                    { title: "Validación", tag: "SISTEMA", content: "Verificar mora y fallas masivas en la zona.", tip: "Página 4 del guion de fallas." },
-                    { title: "LED Vilo", tag: "FÍSICO", content: "<b>Naranja:</b> Configurar en Inventory.<br><b>Rojo:</b> Revisar WAN.", tip: "Blanco/Azul significa OK." },
-                    { title: "Resultado", tag: "FINAL", content: "Validación Vilo completada.", isFinal: true }
+                    { 
+                        title: "Validación", 
+                        tag: "SISTEMA", 
+                        content: `<div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+                                 <div class="alert-falla">⚠️ Si hay falla → usar guion</div>`,
+                        tip: "Revisar mora y falla masiva primero." 
+                    },
+                    { 
+                        title: "LED Vilo", 
+                        tag: "FÍSICO", 
+                        content: `<div class="space-y-3">
+                                    <div class="p-3 border-l-4 border-orange-400 bg-orange-50">
+                                        <b class="text-orange-700">NARANJA:</b> Configurar router en ISP desde Inventory. Si no sube, chuzar equipo.
+                                    </div>
+                                    <div class="p-3 border-l-4 border-red-500 bg-red-50">
+                                        <b class="text-red-700">ROJO:</b> Validar conexiones físicas. Verificar cable de red y energía.
+                                    </div>
+                                    <div class="p-3 bg-slate-50 rounded text-xs">
+                                        <b>Indicador:</b> Blanco (WiFi 6) / Azul (WiFi 5).
+                                    </div>
+                                 </div>`,
+                        tip: "Router secundario NO debe tener cable en puerto WAN." 
+                    },
+                    { 
+                        title: "Resultado", 
+                        tag: "FINAL", 
+                        content: `<p class="text-sm">Confirme si el servicio funciona correctamente tras las validaciones físicas y de configuración.</p>`, 
+                        isFinal: true 
+                    }
                 ]
             }
         };
 
-        let currentFlow = 'phantom';
+        let currentFlowKey = 'phantom';
         let currentIdx = 0;
 
         function changeFlow(key) {
-            currentFlow = key;
+            currentFlowKey = key;
             currentIdx = 0;
-            // Estilos de pestañas
-            document.getElementById('tab-phantom').className = key === 'phantom' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg shadow-slate-300 border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
-            document.getElementById('tab-vilo').className = key === 'vilo' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg shadow-slate-300 border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
-            
+            document.getElementById('tab-phantom').className = key === 'phantom' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
+            document.getElementById('tab-vilo').className = key === 'vilo' ? 'flex-1 py-3 rounded-xl font-bold text-sm bg-slate-900 text-white shadow-lg border-2 border-slate-900' : 'flex-1 py-3 rounded-xl font-bold text-sm bg-white shadow-sm';
             buildMenu();
             render();
         }
 
         function buildMenu() {
             const menu = document.getElementById('step-menu');
-            menu.innerHTML = database[currentFlow].steps.map((s, i) => `
-                <button onclick="goTo(${i})" class="flex-1 py-2 px-1 rounded-lg text-[10px] font-bold transition-all ${i === currentIdx ? 'step-active' : 'bg-white text-slate-400 border border-slate-200'}">
+            menu.innerHTML = database[currentFlowKey].steps.map((s, i) => `
+                <button onclick="goTo(${i})" class="flex-1 py-2 px-1 rounded-lg text-[9px] font-bold transition-all ${i === currentIdx ? 'step-active' : 'bg-white text-slate-400 border border-slate-100'}">
                     ${s.title}
                 </button>
             `).join('');
         }
 
         function render() {
-            const step = database[currentFlow].steps[currentIdx];
-            const content = document.getElementById('content-area');
-            
-            content.innerHTML = `
-                <span class="text-[10px] font-black bg-blue-100 text-blue-600 px-2 py-1 rounded-md tracking-tighter uppercase">${step.tag}</span>
-                <h2 class="text-xl font-bold mt-3 mb-4 text-slate-800">${step.title}</h2>
+            const step = database[currentFlowKey].steps[currentIdx];
+            document.getElementById('content-area').innerHTML = `
+                <span class="text-[9px] font-black bg-emerald-100 text-emerald-600 px-2 py-1 rounded tracking-widest uppercase">${step.tag}</span>
+                <h2 class="text-xl font-bold mt-2 mb-4 text-slate-800">${step.title}</h2>
                 <div class="text-slate-600 text-sm leading-relaxed mb-6">${step.content}</div>
-                <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 flex gap-3">
-                    <i class="fas fa-lightbulb text-amber-500 mt-1"></i>
-                    <p class="text-xs text-amber-800 italic">${step.tip || 'Siga las instrucciones al pie de la letra.'}</p>
+                <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex gap-2">
+                    <i class="fas fa-info-circle text-blue-500 text-xs mt-1"></i>
+                    <p class="text-[11px] text-blue-800 italic">${step.tip}</p>
                 </div>
             `;
-
             const btn = document.getElementById('btn-main');
-            if(step.isFinal) {
-                btn.innerHTML = `<i class="fas fa-copy mr-2"></i> COPIAR REPORTE N2`;
-                btn.classList.replace('bg-emerald-500', 'bg-blue-600');
-            } else {
-                btn.innerHTML = `CONTINUAR <i class="fas fa-chevron-right ml-2"></i>`;
-                btn.classList.replace('bg-blue-600', 'bg-emerald-500');
-            }
+            btn.innerHTML = step.isFinal ? `<i class="fas fa-copy mr-2"></i> COPIAR TEMPLATE N2` : `CONTINUAR <i class="fas fa-chevron-right ml-2"></i>`;
+            btn.classList.toggle('bg-blue-600', step.isFinal);
+            btn.classList.toggle('bg-emerald-500', !step.isFinal);
             buildMenu();
         }
 
         function nextStep() {
-            if (database[currentFlow].steps[currentIdx].isFinal) {
-                copyReport();
+            if (database[currentFlowKey].steps[currentIdx].isFinal) {
+                const report = `ESCALAMIENTO N2\n\nProceso: ${database[currentFlowKey].name}\nValidaciones completas ✔\nEstado: Pendiente revisión técnica N2.`;
+                navigator.clipboard.writeText(report);
+                alert("Template N2 copiado al portapapeles");
             } else {
                 currentIdx++;
                 render();
@@ -133,13 +186,6 @@
         function goTo(i) { currentIdx = i; render(); }
         function reset() { currentIdx = 0; render(); }
 
-        function copyReport() {
-            const report = `REPORTE TÉCNICO - ${database[currentFlow].name}\nValidaciones completas.\nEstado: Pendiente N2\nResponsable: Soporte Hub`;
-            navigator.clipboard.writeText(report);
-            alert("Reporte copiado al portapapeles");
-        }
-
-        // Iniciar
         changeFlow('phantom');
     </script>
 </body>
