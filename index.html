@@ -91,22 +91,9 @@ function activar(btn){
 function openLink(url){ window.open(url,"_blank"); }
 
 /* =========================
-   LÓGICA PHANTOM (TU DATA)
+ /* =========================
+   LÓGICA PHANTOM (RESTAURADA)
 ========================= */
-function loadPhantom(){
-    activar(document.getElementById("btnPhantom"));
-    document.getElementById("contenido").innerHTML = `
-    <div class="menu">
-        <button id="p0" onclick="goTo(0)">Validación</button>
-        <button id="p1" onclick="goTo(1)">Principal</button>
-        <button id="p2" onclick="goTo(2)">Secundario</button>
-        <button id="p3" onclick="goTo(3)">Usuario</button>
-        <button id="p4" onclick="goTo(4)">Resultado</button>
-    </div>
-    <div id="app"></div>`;
-    initPhantom();
-}
-
 function initPhantom(){
     const blocks = [
         {
@@ -145,57 +132,41 @@ function initPhantom(){
             <div class="item">Reiniciar el equipo (30 segundos desconectado)</div>
             <div class="action">No chuzar el equipo</div>`
         },
-        {{
-    title:"✅ Resultado",
-    html:`<div class="tag">Resultado</div>
-    
-    <div style="background:#f0fdf4; border-left:5px solid #10b981; padding:20px; border-radius:16px; margin-bottom:15px;">
-        <div style="color:#065f46; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-check-circle"></i> Funciona
-        </div>
-        <div style="color:#065f46; font-size:14px; margin-top:4px; font-weight:500;">
-            Dar por finalizado el chat.
-        </div>
-    </div>
+        {
+            title:"✅ Resultado",
+            html:`<div class="tag">Resultado</div>
+            
+            <div style="background:#f0fdf4; border-left:5px solid #10b981; padding:20px; border-radius:16px; margin-bottom:15px;">
+                <div style="color:#065f46; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-check-circle"></i> Funciona
+                </div>
+                <div style="color:#065f46; font-size:14px; margin-top:4px; font-weight:500;">
+                    Dar por finalizado el chat.
+                </div>
+            </div>
 
-    <div style="background:#fef2f2; border-left:5px solid #ef4444; padding:20px; border-radius:16px;">
-        <div style="color:#991b1b; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-times-circle"></i> No funciona
-        </div>
-        <div style="color:#991b1b; font-size:14px; margin-top:4px; margin-bottom:15px;">
-            Escalar a N2.
-        </div>
-        
-        <div style="background:rgba(255,255,255,0.5); padding:15px; border-radius:12px; border:1px solid #fee2e2;">
-            <b style="color:#7f1d1d; font-size:11px; text-transform:uppercase; display:block; margin-bottom:8px;">Antes de escalar validar:</b>
-            <ul style="color:#991b1b; font-size:13px; list-style:none; padding:0; margin:0;">
-                <li style="margin-bottom:4px;">• Router principal validado</li>
-                <li style="margin-bottom:4px;">• Router secundario validado</li>
-                <li style="margin-bottom:4px;">• Conexiones correctas</li>
-                <li>• Energía OK</li>
-            </ul>
-        </div>
-    </div>`
-}
+            <div style="background:#fef2f2; border-left:5px solid #ef4444; padding:20px; border-radius:16px;">
+                <div style="color:#991b1b; font-weight:800; font-size:18px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-times-circle"></i> No funciona
+                </div>
+                <div style="color:#991b1b; font-size:14px; margin-top:4px; margin-bottom:15px;">
+                    Escalar a N2.
+                </div>
+                
+                <div style="background:rgba(255,255,255,0.6); padding:15px; border-radius:12px; border:1px solid #fee2e2;">
+                    <b style="color:#7f1d1d; font-size:11px; text-transform:uppercase; display:block; margin-bottom:8px;">Antes de escalar validar:</b>
+                    <ul style="color:#991b1b; font-size:13px; list-style:none; padding:0; margin:0;">
+                        <li style="margin-bottom:4px;">• Router principal validado</li>
+                        <li style="margin-bottom:4px;">• Router secundario validado</li>
+                        <li style="margin-bottom:4px;">• Conexiones correctas</li>
+                        <li>• Energía OK</li>
+                    </ul>
+                </div>
+            </div>`
+        }
     ];
-
-    let step = 0;
-    window.next = function(){ step++; render(); }
-    window.goTo = function(i){ step=i; render(); }
-
-    function render(){
-        document.getElementById("app").innerHTML = `
-        <div class="block">
-            <h3>${blocks[step].title}</h3>
-            ${blocks[step].html}
-            ${step < blocks.length - 1 ? `<button class="btn" onclick="next()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ``}
-            <button class="btn-reset" onclick="loadPhantom()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar</button>
-        </div>`;
-        document.querySelectorAll('.menu button').forEach((b,i)=> b.classList.toggle('active', i===step));
-    }
-    render();
+    // ... resto de tu lógica de renderizado
 }
-
 /* =========================
    LÓGICA VILO (TU DATA)
 ========================= */
