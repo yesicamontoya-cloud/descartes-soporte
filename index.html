@@ -3,116 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte Pro - Phantom</title>
+    <title>Soporte Hub - Phantom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --primary: #1e40af; --success: #16a34a; --danger: #dc2626; --bg: #f8fafc; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 450px; width: 100%; }
-        h1 { color: #1e293b; font-size: 1.5rem; text-align: center; }
-        .menu-btn { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 10px; background: white; cursor: pointer; text-align: left; font-size: 1rem; font-weight: bold; transition: 0.2s; }
-        .menu-btn:hover { border-color: var(--primary); background: #eff6ff; }
-        .step-info { color: var(--primary); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
-        .question { font-size: 1.3rem; margin: 15px 0; font-weight: bold; color: #1e293b; }
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        .btn { flex: 1; padding: 15px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; font-size: 1rem; }
-        .btn-yes { background: var(--success); }
-        .btn-no { background: var(--danger); }
-        .alert-box { background: #fef2f2; border-left: 4px solid var(--danger); padding: 15px; margin-top: 15px; color: #991b1b; font-size: 0.9rem; }
-        textarea { width: 100%; height: 100px; margin-top: 10px; padding: 10px; box-sizing: border-box; border-radius: 5px; border: 1px solid #cbd5e1; }
-        .hidden { display: none; }
+        .active-link { background: #3b82f6; color: white; border-radius: 8px; }
+        .card-shadow { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans">
 
-<div class="card">
-    <div id="view-menu">
-        <h1>Centro de Descartes</h1>
-        <p style="text-align:center; color:#64748b;">Selecciona el proceso a estandarizar:</p>
-        <button class="menu-btn" onclick="startApp('n1')">🔵 Descartes N1 (Asesores)</button>
-        <button class="menu-btn" onclick="startApp('n2')">🔴 Descartes N2 (Líderes/Técnicos)</button>
-        <button class="menu-btn" onclick="startApp('fisico')">🔌 Revisión Física (Terreno)</button>
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-slate-900 text-white p-6 hidden md:flex flex-col">
+            <h1 class="text-2xl font-bold mb-8 flex items-center gap-2">
+                <i class="fas fa-ghost text-blue-400"></i> PHANTOM
+            </h1>
+            <nav class="flex-1 space-y-2">
+                <p class="text-xs text-slate-500 uppercase font-bold mb-4">Procesos N1</p>
+                <button onclick="loadProcess('descartes_n1')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg">
+                    <i class="fas fa-bolt"></i> Descartes N1
+                </button>
+                <button onclick="loadProcess('fibra_n1')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg text-left">
+                    <i class="fas fa-network-wired"></i> Fibra Óptica
+                </button>
+                
+                <p class="text-xs text-slate-500 uppercase font-bold mt-8 mb-4">Procesos N2 / Líderes</p>
+                <button onclick="loadProcess('descartes_n2')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg">
+                    <i class="fas fa-shield-halved"></i> Descartes N2
+                </button>
+                <button onclick="loadProcess('masivas')" class="w-full flex items-center gap-3 p-3 hover:bg-slate-800 transition rounded-lg text-left">
+                    <i class="fas fa-broadcast-tower"></i> Falla Masiva
+                </button>
+            </nav>
+            <div class="mt-auto pt-6 border-t border-slate-800 text-xs text-slate-500">
+                Plataforma Formativa v2.0
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-4 md:p-10">
+            <header class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 id="process-title" class="text-3xl font-bold text-slate-900">Bienvenido al Centro de Soporte</h2>
+                    <p id="process-desc" class="text-slate-500">Selecciona un proceso en el menú para comenzar el diagnóstico.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Asesor Online</span>
+                </div>
+            </header>
+
+            <div id="welcome-screen" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100">
+                    <i class="fas fa-graduation-cap text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Aprendizaje Dinámico</h3>
+                    <p class="text-slate-600 text-sm">Cada paso incluye una explicación técnica para que aprendas mientras resuelves.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100">
+                    <i class="fas fa-copy text-3xl text-green-500 mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Reportes Listos</h3>
+                    <p class="text-slate-600 text-sm">Al finalizar, obtendrás un resumen técnico profesional para pegar en tu ticket.</p>
+                </div>
+            </div>
+
+            <div id="diagnostic-area" class="hidden max-w-2xl mx-auto bg-white rounded-3xl card-shadow overflow-hidden border border-slate-200">
+                <div class="bg-slate-50 p-4 border-b border-slate-100 flex justify-between items-center">
+                    <span id="step-count" class="text-xs font-bold text-slate-400 uppercase">Paso 1 de 4</span>
+                    <div class="w-32 bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-blue-500 h-full transition-all duration-500" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 id="question-text" class="text-2xl font-bold mb-4">¿Pregunta?</h3>
+                    <div id="hint-area" class="bg-blue-50 p-4 rounded-xl text-blue-800 text-sm mb-8 flex gap-3">
+                        <i class="fas fa-info-circle mt-1"></i>
+                        <span id="hint-text">Pista técnica aquí.</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="handleResponse(true)" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl transition transform active:scale-95">
+                            <i class="fas fa-check mr-2"></i> CORRECTO / SÍ
+                        </button>
+                        <button onclick="handleResponse(false)" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-4 rounded-xl transition transform active:scale-95">
+                            <i class="fas fa-xmark mr-2"></i> FALLA / NO
+                        </button>
+                    </div>
+
+                    <div id="error-msg" class="hidden mt-6 p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-800 text-sm animate-pulse">
+                        <strong>ACCIÓN REQUERIDA:</strong> <span id="error-text"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <div id="view-app" class="hidden">
-        <div id="step-label" class="step-info"></div>
-        <div id="question-text" class="question"></div>
-        <div class="btn-group">
-            <button class="btn btn-yes" onclick="answer(true)">SÍ / OK</button>
-            <button class="btn btn-no" onclick="answer(false)">NO / FALLA</button>
-        </div>
-        <div id="alert-box" class="alert-box hidden"></div>
-        <button onclick="location.reload()" style="margin-top:20px; background:none; border:none; color:gray; cursor:pointer;">⬅ Volver al inicio</button>
-    </div>
-</div>
+    <script>
+        const flows = {
+            descartes_n1: {
+                title: "Descartes N1 - Phantom",
+                steps: [
+                    { q: "¿Estado de servicio ACTIVO?", h: "Verifica en Radius. Si está suspendido por mora, no realices más pruebas.", f: "Debe normalizar el estado administrativo antes de seguir." },
+                    { q: "¿Tiene IP asignada?", h: "Confirma si el equipo aparece logueado en la plataforma Descartes.", f: "🚨 Escalar a N2: Equipo sin direccionamiento IP." },
+                    { q: "¿Sin Falla Masiva activa?", h: "Revisa el mapa de nodos para descartar cortes generales.", f: "Informa al cliente que el personal técnico ya trabaja en el sector." }
+                ]
+            },
+            descartes_n2: {
+                title: "Descartes N2 - Avanzado",
+                steps: [
+                    { q: "¿Validó duplicidad de IP?", h: "Revisar que no existan dos MAC con el mismo segmento.", f: "Conflicto de red detectado. Libere la sesión en Radius." },
+                    { q: "¿Puerto LAN a 1Gbps?", h: "Verifique en la OLT o equipo que la negociación no sea 10/100.", f: "⚠️ Negociación baja: Solicite cambio de cable UTP Categoría 5e o 6." }
+                ]
+            }
+        };
 
-<script>
-    const data = {
-        n1: [
-            { q: "¿Servicio Activo en Radius?", f: "❌ Detente: Primero activa el servicio en sistema." },
-            { q: "¿Equipo tiene IP?", f: "🚨 Escalar a N2: El equipo no navega por falta de IP." },
-            { q: "¿Sin Falla Masiva?", f: "📢 Informa al cliente que hay una falla en el sector." }
-        ],
-        n2: [
-            { q: "¿Misma IP en dos equipos?", f: "🛠️ Conflicto detectado: Cambia el segmento de red." },
-            { q: "¿Puerto LAN a 1G?", f: "⚠️ Puerto negociando a 100Mb. Cambia el cable UTP." }
-        ],
-        fisico: [
-            { q: "¿Puerto WAN vacío?", f: "🔌 El cable de internet debe ir en el puerto WAN, verifica." },
-            { q: "¿Tiene energía estable?", f: "⚡ Revisa el regulador de voltaje." }
-        ]
-    };
+        let currentFlowKey = '';
+        let stepIdx = 0;
+        let logs = [];
 
-    let currentFlow = [];
-    let index = 0;
-    let log = [];
-
-    function startApp(id) {
-        currentFlow = data[id];
-        index = 0;
-        log = [];
-        document.getElementById('view-menu').classList.add('hidden');
-        document.getElementById('view-app').classList.remove('hidden');
-        showStep();
-    }
-
-    function showStep() {
-        if (index < currentFlow.length) {
-            document.getElementById('step-label').innerText = "PASO " + (index + 1);
-            document.getElementById('question-text').innerText = currentFlow[index].q;
-            document.getElementById('alert-box').classList.add('hidden');
-        } else {
-            finish();
+        function loadProcess(key) {
+            currentFlowKey = key;
+            stepIdx = 0;
+            logs = [];
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('diagnostic-area').classList.remove('hidden');
+            document.getElementById('process-title').innerText = flows[key].title;
+            document.getElementById('process-desc').innerText = "Siga los pasos para completar el diagnóstico.";
+            render();
         }
-    }
 
-    function answer(isOk) {
-        if (isOk) {
-            log.push(currentFlow[index].q + ": OK");
-            index++;
-            showStep();
-        } else {
-            const box = document.getElementById('alert-box');
-            box.innerText = currentFlow[index].f;
-            box.classList.remove('hidden');
+        function render() {
+            const flow = flows[currentFlowKey];
+            const step = flow.steps[stepIdx];
+            document.getElementById('question-text').innerText = step.q;
+            document.getElementById('hint-text').innerText = step.h;
+            document.getElementById('step-count').innerText = `Paso ${stepIdx + 1} de ${flow.steps.length}`;
+            document.getElementById('progress-bar').style.width = ((stepIdx + 1) / flow.steps.length * 100) + "%";
+            document.getElementById('error-msg').classList.add('hidden');
         }
-    }
 
-    function finish() {
-        document.getElementById('view-app').innerHTML = `
-            <h1>✅ ¡Listo!</h1>
-            <p>Diagnóstico completado. Copia el resumen:</p>
-            <textarea id="res">${log.join('\n')}</textarea>
-            <button class="btn btn-yes" style="width:100%; margin-top:10px;" onclick="copy()">Copiar Resumen</button>
-            <button class="btn" style="width:100%; margin-top:10px; background:#64748b;" onclick="location.reload()">Hacer otro</button>
-        `;
-    }
+        function handleResponse(isOk) {
+            if (isOk) {
+                logs.push(`Paso ${stepIdx + 1}: OK`);
+                stepIdx++;
+                if (stepIdx < flows[currentFlowKey].steps.length) {
+                    render();
+                } else {
+                    showFinal();
+                }
+            } else {
+                document.getElementById('error-text').innerText = flows[currentFlowKey].steps[stepIdx].f;
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        }
 
-    function copy() {
-        const t = document.getElementById('res');
-        t.select();
-        document.execCommand('copy');
-        alert("¡Copiado! Pégalo en el ticket.");
-    }
-</script>
+        function showFinal() {
+            document.getElementById('diagnostic-area').innerHTML = `
+                <div class="p-8 text-center">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-double text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Diagnóstico Completo</h2>
+                    <p class="text-slate-500 mb-6 text-sm">Copia el resumen para tu ticket técnico.</p>
+                    <textarea id="copyArea" class="w-full p-4 border rounded-xl bg-slate-50 font-mono text-xs mb-4" readonly>${logs.join('\n')}</textarea>
+                    <button onclick="copyToClipboard()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">Copiar Resumen</button>
+                    <button onclick="location.reload()" class="w-full mt-3 text-slate-400 text-sm hover:underline">Reiniciar App</button>
+                </div>
+            `;
+        }
+
+        function copyToClipboard() {
+            const area = document.getElementById('copyArea');
+            area.select();
+            document.execCommand('copy');
+            alert("¡Resumen copiado con éxito!");
+        }
+    </script>
 </body>
 </html>
