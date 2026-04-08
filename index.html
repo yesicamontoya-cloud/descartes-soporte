@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte Hub - Estandarización</title>
+    <title>Soporte Hub - Phantom & Vilo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -12,6 +12,7 @@
         .card-pro { border-radius: 20px; transition: all 0.3s ease; border: 1px solid #e5e7eb; }
         .alert-pago { background:#FEF2F2; border-left:4px solid #DC2626; color:#7F1D1D; padding:10px; border-radius:10px; font-weight:600; margin:10px 0; }
         .alert-falla { background:#FFF7ED; border-left:4px solid #F97316; color:#9A3412; padding:10px; border-radius:10px; font-weight:600; margin:10px 0; }
+        .vilo-box { background:#f9fafb; border:1px solid #e5e7eb; padding:10px; border-radius:10px; margin-bottom:8px; font-size:12px; }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
@@ -21,7 +22,7 @@
             <h1 class="font-bold text-xl flex items-center gap-2">
                 <i class="fas fa-ghost text-emerald-500"></i> SOPORTE HUB
             </h1>
-            <span class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded-full uppercase tracking-widest italic font-bold">Líder / N1</span>
+            <span class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded-full uppercase tracking-widest font-bold">Oficial</span>
         </div>
     </header>
 
@@ -34,7 +35,7 @@
 
         <div id="step-menu" class="flex gap-1 mb-6 overflow-x-auto pb-2"></div>
 
-        <div id="step-container" class="card-pro bg-white p-6 shadow-xl relative overflow-hidden min-h-[350px]">
+        <div id="step-container" class="card-pro bg-white p-6 shadow-xl relative overflow-hidden min-h-[400px]">
             <div id="content-area"></div>
         </div>
 
@@ -58,41 +59,45 @@
                 steps: [
                     { 
                         title: "Validación", 
-                        tag: "SISTEMA", 
-                        content: `<p>Verifique que el servicio no esté suspendido por falta de pago o congelado.</p>
+                        tag: "Sistema", 
+                        content: `<div class="item text-sm mb-2">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
                                  <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-                                 <p class="mt-4">Revise si existe una falla masiva en la zona.</p>
+                                 <div class="item text-sm mb-2 mt-4">Revise si existe una falla masiva en la zona</div>
                                  <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-                                 <button onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing','_blank')" class="w-full mt-2 bg-slate-100 p-2 rounded text-[10px] font-bold border border-slate-200 uppercase">Abrir guion falla masiva (Pág 4)</button>`,
-                        tip: "Validar mora antes de cualquier soporte físico." 
+                                 <button onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing','_blank')" class="w-full mt-2 bg-slate-800 text-white p-3 rounded-lg text-xs font-bold uppercase">Abrir guion falla masiva (Pág. 4)</button>`,
+                        tip: "No realizar más pruebas si hay mora." 
                     },
                     { 
                         title: "Principal", 
-                        tag: "ROUTER", 
-                        content: `<p>Validar que la MAC esté asociada y autenticada en Radius.</p>
-                                 <div class="bg-blue-50 border-l-4 border-blue-500 p-3 my-3 text-sm italic">Si no está activo → escalar backoffice</div>
-                                 <p>Verificar que el router tome IP.</p>
-                                 <div class="bg-blue-50 border-l-4 border-blue-500 p-3 my-3 text-sm italic">Si no toma IP → escalar a N2</div>
-                                 <div class="mt-4 border rounded p-2 bg-slate-50"><img src="https://i.imgur.com/f0ERrPo.png" class="rounded w-full h-32 object-cover"></div>`,
+                        tag: "Herramienta", 
+                        content: `<div class="item text-sm mb-2">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div>
+                                 <div class="p-3 bg-blue-50 border-l-4 border-blue-500 text-xs mb-4">Si no está activo → escalar backoffice</div>
+                                 <div class="item text-sm mb-2">Verificar que el router tome IP</div>
+                                 <div class="p-3 bg-blue-50 border-l-4 border-blue-500 text-xs mb-4">Si no toma IP → escalar a N2</div>
+                                 <div class="mt-4 border rounded overflow-hidden"><img src="https://i.imgur.com/f0ERrPo.png" class="w-full h-32 object-cover"></div>`,
                         tip: "No toma IP = no carga información en Radius." 
                     },
                     { 
                         title: "Secundario", 
-                        tag: "RED", 
-                        content: `<ul class="list-disc ml-4 space-y-2 text-sm">
-                                    <li>Confirmar que no tenga la misma IP que el principal.</li>
-                                    <li>Validar en Grafana que no esté en NA.</li>
-                                    <li>Puerto LAN registre 1G o 2G.</li>
-                                 </ul>
-                                 <div class="mt-4 p-3 bg-amber-50 text-amber-700 rounded-lg text-xs italic">Nota: En domótica la velocidad de los puertos no es relevante.</div>`,
-                        tip: "Si hay inconsistencia → escalar a N2." 
+                        tag: "Red", 
+                        content: `<div class="space-y-2 text-sm">
+                                    <p>• Confirmar que no tenga la misma IP que el principal</p>
+                                    <p>• Validar en Grafana que no esté en NA</p>
+                                    <p>• Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</p>
+                                 </div>
+                                 <div class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-lg text-[11px] border border-yellow-200">
+                                    <b>Nota:</b> No aplica para domótica: la velocidad de los puertos no es relevante
+                                 </div>
+                                 <div class="p-3 bg-blue-50 border-l-4 border-blue-500 text-xs mt-4 uppercase font-bold">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>`,
+                        tip: "Revise bien la velocidad del puerto." 
                     },
                     { 
                         title: "Resultado", 
-                        tag: "FINAL", 
-                        content: `<div class="bg-emerald-50 text-emerald-700 p-3 rounded-lg font-bold mb-3 border border-emerald-200">✅ Funciona: Dar por finalizado chat</div>
-                                 <div class="bg-rose-50 text-rose-700 p-3 rounded-lg font-bold border border-rose-200">❌ No funciona: Escalar a N2</div>
-                                 <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        tag: "Final", 
+                        content: `<div class="bg-emerald-100 text-emerald-800 p-3 rounded-lg font-bold mb-2 text-center">✅ Funciona</div>
+                                 <div class="bg-slate-50 text-slate-600 p-2 text-center text-[11px] mb-4 italic italic">Dar por finalizado el chat.</div>
+                                 <div class="bg-rose-100 text-rose-800 p-3 rounded-lg font-bold mb-2 text-center">❌ No funciona</div>
+                                 <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
                                     <p class="text-xs font-black text-slate-400 uppercase mb-2">Antes de escalar validar:</p>
                                     <ul class="text-[12px] space-y-1 text-slate-600">
                                         <li>• Router principal validado</li>
@@ -110,33 +115,55 @@
                 steps: [
                     { 
                         title: "Validación", 
-                        tag: "SISTEMA", 
-                        content: `<div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-                                 <div class="alert-falla">⚠️ Si hay falla → usar guion</div>`,
+                        tag: "Sistema", 
+                        content: `<div class="item text-sm mb-2">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
+                                 <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+                                 <div class="item text-sm mb-2 mt-4">Revise si existe una falla masiva en la zona</div>
+                                 <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
+                                 <button onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?slide=id.g36fddf917a8_1_61#slide=id.g36fddf917a8_1_61','_blank')" class="w-full mt-2 bg-slate-800 text-white p-3 rounded-lg text-xs font-bold uppercase">Abrir guion de falla masiva (Pág. 4)</button>`,
                         tip: "Revisar mora y falla masiva primero." 
                     },
                     { 
-                        title: "LED Vilo", 
-                        tag: "FÍSICO", 
-                        content: `<div class="space-y-3">
-                                    <div class="p-3 border-l-4 border-orange-400 bg-orange-50 text-xs">
-                                        <b class="text-orange-700">NARANJA:</b> Configurar router en ISP desde Inventory. Si no sube, chuzar equipo.
-                                    </div>
-                                    <div class="p-3 border-l-4 border-red-500 bg-red-50 text-xs">
-                                        <b class="text-red-700">ROJO:</b> Validar conexiones físicas, cable de red y energía. Reiniciar físicamente.
-                                    </div>
-                                    <div class="p-3 bg-slate-50 rounded text-xs italic">
-                                        Blanco (WiFi 6) / Azul (WiFi 5).
-                                    </div>
+                        title: "Principal", 
+                        tag: "Herramienta", 
+                        content: `<div class="item text-sm mb-2">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div>
+                                 <div class="p-3 bg-blue-50 border-l-4 border-blue-500 text-xs mb-4 italic">Si no está activo → escalar backoffice</div>
+                                 <div class="item text-sm mb-2">Verificar que el router tome IP</div>
+                                 <div class="p-3 bg-blue-50 border-l-4 border-blue-500 text-xs mb-4 italic">Si no toma IP → escalar a N2</div>`,
+                        tip: "Si no hay IP en Radius, no hay navegación." 
+                    },
+                    { 
+                        title: "Validación física", 
+                        tag: "Cliente", 
+                        content: `<div class="item text-xs font-bold mb-3">Validar color del bombillo del Vilo:</div>
+                                 <div class="vilo-box">
+                                    <b class="text-orange-600">NARANJA</b><br>
+                                    Configurar router en ISP desde Inventory. Si no sube:<br>
+                                    • Chuzar el equipo<br>
+                                    • Regresar a configuración en Inventory<br>
+                                    Si no sube → escalar a N2
+                                 </div>
+                                 <div class="vilo-box border-l-4 border-l-red-500">
+                                    <b class="text-red-600">ROJO</b><br>
+                                    Validar conexiones físicas. Si están erradas, corregirlas. Desconectar y conectar cable de red. Verificar energía y reiniciar físicamente.
+                                 </div>
+                                 <div class="vilo-box">
+                                    <b>Validación WAN:</b><br>
+                                    Router principal → debe tener cable en puerto WAN<br>
+                                    Router secundario → NO debe tener cable en puerto WAN
+                                 </div>
+                                 <div class="vilo-box">
+                                    <b>Indicador de estado (Vilo):</b><br>
+                                    Blanco → WiFi 6 (OK) | Azul → WiFi 5 (OK)
                                  </div>`,
-                        tip: "Router secundario NO debe tener cable en puerto WAN." 
+                        tip: "Revise los cables WAN con el cliente." 
                     },
                     { 
                         title: "Resultado", 
-                        tag: "FINAL", 
-                        content: `<div class="bg-rose-50 text-rose-700 p-3 rounded-lg font-bold border border-rose-200">❌ Escalar a N2</div>
-                                 <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
-                                    <p class="text-xs font-black text-slate-400 uppercase mb-2">Antes de escalar validar:</p>
+                        tag: "Final", 
+                        content: `<div class="bg-rose-100 text-rose-800 p-3 rounded-lg font-bold mb-2 text-center">❌ No funciona</div>
+                                 <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                    <p class="text-xs font-black text-slate-400 uppercase mb-2 text-center">Antes de escalar validar:</p>
                                     <ul class="text-[12px] space-y-1 text-slate-600">
                                         <li>• Router principal validado</li>
                                         <li>• Router secundario validado</li>
@@ -172,7 +199,10 @@
         }
 
         function render() {
-            const step = database[currentFlowKey].steps[currentIdx];
+            const flow = database[currentFlowKey];
+            const step = flow.steps[currentIdx];
+            const isFinal = (currentIdx === flow.steps.length - 1);
+            
             document.getElementById('content-area').innerHTML = `
                 <span class="text-[9px] font-black bg-emerald-100 text-emerald-600 px-2 py-1 rounded tracking-widest uppercase">${step.tag}</span>
                 <h2 class="text-xl font-bold mt-2 mb-4 text-slate-800">${step.title}</h2>
@@ -182,18 +212,20 @@
                     <p class="text-[11px] text-blue-800 italic">${step.tip}</p>
                 </div>
             `;
+
             const btn = document.getElementById('btn-main');
-            btn.innerHTML = step.isFinal ? `<i class="fas fa-copy mr-2"></i> COPIAR REPORTE N2` : `CONTINUAR <i class="fas fa-chevron-right ml-2"></i>`;
-            btn.classList.toggle('bg-blue-600', step.isFinal);
-            btn.classList.toggle('bg-emerald-500', !step.isFinal);
+            btn.innerHTML = isFinal ? `<i class="fas fa-copy mr-2"></i> COPIAR TEMPLATE N2` : `CONTINUAR <i class="fas fa-chevron-right ml-2"></i>`;
+            btn.classList.toggle('bg-blue-600', isFinal);
+            btn.classList.toggle('bg-emerald-500', !isFinal);
             buildMenu();
         }
 
         function nextStep() {
-            if (database[currentFlowKey].steps[currentIdx].isFinal) {
-                const report = `ESCALAMIENTO N2\nProceso: ${database[currentFlowKey].name}\nValidaciones: OK\n\nResumen:\n- Router principal validado\n- Router secundario validado\n- Conexiones y Energía OK`;
+            const flow = database[currentFlowKey];
+            if (currentIdx === flow.steps.length - 1) {
+                const report = `ESCALAMIENTO N2\nProceso: ${flow.name}\n\n- Router principal validado ✔\n- Router secundario validado ✔\n- Conexiones y Energía OK ✔`;
                 navigator.clipboard.writeText(report);
-                alert("¡Reporte copiado!");
+                alert("¡Template N2 copiado!");
             } else {
                 currentIdx++;
                 render();
@@ -207,3 +239,4 @@
     </script>
 </body>
 </html>
+             
