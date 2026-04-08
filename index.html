@@ -125,6 +125,7 @@ function initPhantom(){
             <div class="action">Si no está activo → escalar backoffice</div>
             <div class="item"> Verificar que el router tome IP</div>
             <div class="action">Si no toma IP → escalar a N2</div>
+            </div> Ejemplo como se ve en Radius: </div>
             <div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"><div class="caption">No toma IP = no carga información en Radius</div></div>`
         },
         {
@@ -139,10 +140,10 @@ function initPhantom(){
         {
             title:"🔌 Validación física",
             html:`<div class="tag">Cliente</div>
-            <div class="item">Revisar conexiones físicas y energía</div>
+            <div class="item">Revisar conexiones físicas y que tenga energía</div>
             <div class="item">Confirmar que no haya cables en el puerto WAN</div>
             <div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div>
-            <div class="item">Reiniciar el equipo (30 segundos desconectado)</div>
+            <div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorriente)</div>
             <div class="action">No chuzar el equipo</div>`
         },
         {
@@ -190,14 +191,16 @@ function loadVilo(){
 
 function initVilo(){
     const blocksVilo = [
-        {
+        
+       {
             title:"🔍 Router Offline",
             html:`<div class="tag">Sistema</div>
             <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
             <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
             <div class="item">Revise si existe una falla masiva en la zona</div>
-            <div class="alert-falla">⚠️ Si hay falla → usar guion</div>`
-        },
+            <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
+            <button class="btn" style="background:#3b82f6" onclick="openLink('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>`
+            },
         {
             title:"🖥 Router principal",
             html:`<div class="tag">Herramienta</div>
@@ -215,11 +218,12 @@ function initVilo(){
             <div class="nota-box"><b>Estados:</b> Blanco (WiFi 6 OK) / Azul (WiFi 5 OK)</div>`
         },
         {
-            title:"✅ Resultado",
+           title:"✅ Resultado",
             html:`<div class="tag">Resultado</div>
             <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div>
+            <div class="nota-box">Dar por finalizado el chat.</div>
             <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div>
-            <div class="nota-box">Escalar a N2 validando conexiones y energía.</div>`
+            <div class="nota-box">Escalar a N2. <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Ener
         }
     ];
 
