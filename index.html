@@ -81,8 +81,8 @@ const DATA = {
         vilo: [
             { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div><div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div><div class="item">Revise si existe una falla masiva en la zona</div><div class="alert-falla">⚠️ Si hay falla → usar guion</div><button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
             { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item">Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div>` },
-            { pill: "Física", title: "🔌 Validación física", tag: "Cliente", html: `<div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div><div class="nota-box"><b style="color:#EF4444">Rojo:</b> Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item" style="margin-top:8px">• Validar que las conexiones estén correctas</div><div class="item">• Asegurarse de que el cable de red esté bien ajustado</div><div class="item">• Reiniciar router (30 segundos)</div><div class="nota-box"><b>WAN:</b><br>• Router principal → cable en puerto WAN<br>• Router secundario → NO cable en puerto WAN</div><div class="nota-box"><b>Luz:</b> Blanco → WiFi 6 | Azul → WiFi 5</div>` },
-            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">❌ No funciona: Escalar a N2</div>` }
+            { pill: "Física", title: "🔌 Validación física", tag: "Cliente", html: `<div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div><div class="nota-box"><b style="color:#EF4444">Rojo:</b> Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item" style="margin-top:12px">• Validar que las conexiones estén correctas</div><div class="item">• Asegurarse de que el cable de red esté bien ajustado</div><div class="item">• Reiniciar router (30 segundos)</div><div class="nota-box"><b>WAN:</b><br>• Router principal → debe tener el cable de red en el puerto WAN<br>• Router secundario → NO debe tener cable en el puerto WAN</div><div class="nota-box"><b>Luz:</b> Blanco → WiFi 6 | Azul → WiFi 5</div>` },
+            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">❌ No funciona: Escalar a N2</div><div class="nota-box"><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>` }
         ]
     },
     bajas: {
@@ -151,7 +151,3 @@ window.onload = render;
 </script>
 </body>
 </html>
-          
-
-
-
