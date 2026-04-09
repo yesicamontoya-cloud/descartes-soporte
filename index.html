@@ -153,7 +153,23 @@ const DATA = {
                     <div class="item">• Validar que los routers NO tengan la misma IP.</div>` 
             },
             { pill: "Principal", title: "📉 Bajas Velocidades", tag: "Principal", html: `<div class="item">Realizar test de  velocidad desde sistema.</div><div class="item">Revisar que el router NO esté linqueando a 100 Mbps (Debe ser 1G).</div><div class="item"> Si es necesario, solicitar cambio de canales por el grupo de Soporte Calidad y validar firmware.</div>` },
-            { pill: "Usuario", title: "📉 Bajas Velocidades", tag: "Usuario", html: `<div class="item">Test en servidor SOMOS (Ookla) en red 5G.</div><div class="item">Validar distancia y entorno.</div>` },
+            { 
+                pill: "Usuario", 
+                title: "📉 Bajas Velocidades", 
+                tag: "Vilo – Validación de velocidad", 
+                html: `
+                    <div class="item">• Realizar test de velocidad en red 5 GHz usando servidor de SOMOS</div>
+                    <div class="item">• Validar resultados en varios dispositivos</div>
+                    <div class="item">• Confirmar que NO tenga VPN activa</div>
+                    <div class="item">• Separar redes 2.4 GHz y 5 GHz (si no están separadas)</div>
+                    <div class="item">• Validar cantidad de equipos conectados</div>
+                    <div class="item">• Evaluar condiciones del entorno (muros, interferencias)</div>
+                    <div class="item">• Validar distancia del dispositivo al router</div>
+                    <div class="nota-box"><b>Mantenimiento:</b> Verificar firmware actualizado (Firmware Upgrade)</div>
+                    <div class="item">• Realizar test por cable (LAN) desde el router principal</div>
+                    <div class="item">• Validar configuración de la tarjeta de red</div>
+                    <div class="item">• Validar categoría del cable (mínimo Cat5e o superior)</div>` 
+            },
             { pill: "Cable", title: "📉 Bajas Velocidades", tag: "Validación", html: `<div class="item">Realizar test por cable (Cat5e mínimo).</div>` },
             { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si por cable es correcto → WiFi.</div><div class="item">Si sigue bajo → Red.</div>` },
             { pill: "Escalar", title: "📉 Bajas Velocidades", tag: "Escalar N2", html: `<div class="nota-box">✔ Cambio canales hecho.<br>✔ Baja por cable comprobada.</div>` }
