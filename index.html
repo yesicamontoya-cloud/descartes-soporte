@@ -11,24 +11,20 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; height: 100vh; overflow: hidden; display: flex; }
 
-    /* SIDEBAR */
     .sidebar { width: 280px; background: #0f172a; color: white; display: flex; flex-direction: column; padding: 40px 24px; }
     .nav-item { padding: 14px 18px; border-radius: 14px; margin-bottom: 8px; cursor: pointer; transition: 0.3s; color: #94a3b8; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
     .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
     .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
 
-    /* CONTENIDO PRINCIPAL */
     .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; box-shadow: -10px 0 50px rgba(0,0,0,0.05); }
     .selector { display: flex; gap: 40px; border-bottom: 1px solid #f1f5f9; padding: 0 40px; }
     .selector button { padding: 20px 0; font-weight: 800; font-size: 13px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.3s; text-transform: uppercase; }
     .selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
 
-    /* PASOS (PILLS) */
     .menu { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; padding: 20px 40px 0 40px; }
     .menu button { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 11px; font-weight: 800; color: #64748b; transition: 0.2s; }
     .menu button.active { background: #00c896; color: white; }
 
-    /* BLOQUE DE INFORMACIÓN */
     .block { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; }
     h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #0f172a; letter-spacing: -0.5px; }
     .item { font-size: 13px; margin-bottom: 4px; line-height: 1.4; color: #475569; }
@@ -62,7 +58,7 @@
     
     <div class="mt-auto p-4 bg-slate-800/50 rounded-2xl flex items-center gap-3">
         <div class="w-8 h-8 bg-slate-700 rounded-full flex items-center justify-center text-[10px] font-bold">JD</div>
-        <div class="text-xs font-bold text-slate-300">Panel de Control</div>
+        <div class="text-xs font-bold text-slate-300">N1 Agent</div>
     </div>
 </aside>
 
@@ -78,63 +74,55 @@
 </main>
 
 <script>
-/* ============================================================
-   📦 BASE DE DATOS SOPORTE (ROUTER OFFLINE + BAJAS VELOCIDADES)
-   ============================================================ */
 const DATA = {
     offline: {
         phantom: [
             { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div><div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div><div class="item">Revise si existe una falla masiva en la zona</div><div class="alert-falla">⚠️ Si hay falla → usar guion</div><button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
-            { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius</div><div class="action">Si no toma IP → escalar a N2</div><div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"></div>` },
-            { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="nota-box">Nota: Si es domótica → no validar velocidad del puerto.</div>` },
-            { pill: "Usuario", title: "🔌 Validación física", tag: "Cliente", html: `<div class="item">Reiniciar el equipo (30 segundos desconectado)</div><div class="action">No chuzar el equipo</div>` },
-            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700;">✅ Funciona: Finalizar chat.</div><div class="nota-box">Escalar a N2 si persiste.</div>` }
+            { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item"> Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div><div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"><div class="caption">No toma IP = no carga información en Radius</div></div>` },
+            { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="item">Validar en Grafana que no esté en NA</div><div class="item">Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</div><div class="nota-box">Nota: Si es equipo de domótica → no validar velocidad del puerto.</div><div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>` },
+            { pill: "Usuario", title: "🔌 Validación física", tag: "Cliente", html: `<div class="item">Revisar conexiones físicas y energía</div><div class="item">Confirmar que no haya cables en el puerto WAN</div><div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorriente y volver a conectar)</div><div class="action">No chuzar el equipo</div>` },
+            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div><div class="nota-box">Dar por finalizado el chat.</div><div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div><div class="nota-box">Escalar a N2. <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>` }
         ],
         vilo: [
-            { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item">Verifique servicio no suspendido...</div><div class="alert-pago">🚫 Suspendido → enviar pago</div>` },
-            { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar MAC y Radius (estado activo)</div>` },
-            { pill: "Física", title: "🔌 Validación física", tag: "Cliente", html: `<div class="nota-box"><b>Naranja:</b> Configurar router en ISP...</div><div class="nota-box"><b>Rojo:</b> Solicitar fotos LEDs...</div>` },
-            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div class="nota-box"><b>Escalar a N2.</b> Validar conexiones y energía.</div>` }
+            { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div><div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div><div class="item">Revise si existe una falla masiva en la zona</div><div class="alert-falla">⚠️ Si hay falla → usar guion</div>` },
+            { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item">Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div>` },
+            { pill: "Física", title: "🔌 Validación física", tag: "Cliente", html: `<div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div><div class="nota-box"><b style="color:#EF4444">Rojo:</b> Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item" style="margin-top:8px">• Validar que las conexiones estén correctas (Si están erradas, corregirlas)</div><div class="item">• Asegurarse de que el cable de red esté bien ajustado</div><div class="item">• Reiniciar router (30 segundos desconectado del tomacorriente y volver a conectar)</div><div class="nota-box"><b>WAN:</b><br>• Router principal → debe tener el cable de red en el puerto WAN<br>• Router secundario → NO debe tener cable en el puerto WAN</div><div class="nota-box"><b>Estados de luz del router:</b> Blanco → WiFi 6 (funcionando correctamente) <br> Azul → WiFi 5 (funcionando correctamente)</div>` },
+            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona: Dar por finalizado el chat.</div><div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div><div class="nota-box"><b>Escalar a N2.</b> <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>` }
         ]
     },
     bajas: {
         phantom: [
             { pill: "Validación", title: "📉 Bajas Velocidades", tag: "Sistema", html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div><div class="nota-box">Si hay falla → usar guion de falla masiva.</div><div class="item">Validar plan contratado.</div><div class="item">Validar que los dos routers NO tengan la misma IP.</div>` },
-            { pill: "Principal", title: "🖥 Principal", tag: "Router", html: `<div class="item">Validar velocidad desde sistema.</div><div class="item">Revisar que el router NO esté negociando a 100 Mbps.</div><div class="nota-box">Debe negociar a 1G.</div><div class="item">Solicitar cambio de canales por grupo soporte.</div>` },
-            { pill: "Usuario", title: "📱 Usuario", tag: "Router", html: `<div class="item">Realizar test de velocidad en red 5G y servidor SOMOS (Ookla).</div><div class="item">Confirmar que NO tenga VPN activa.</div><div class="item">Separar redes 2.4 y 5.</div><div class="item">Validar distancia a la cual se conecta.</div>` },
-            { pill: "Cable", title: "🔌 Validación", tag: "Validación", html: `<div class="item">Realizar test por cable.</div><div class="item">Validar configuración de la tarjeta de red.</div><div class="item">Validar categoría del cable.</div><div class="nota-box">Usar mínimo cable Cat5e.</div>` },
-            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div class="item">Si la velocidad es correcta por cable → Problema WiFi.</div><div class="item">Si sigue baja por cable → Escalar N2.</div><div class="nota-box">✔ Cambio canales hecho. ✔ Validaciones completas.</div>` }
+            { pill: "Principal", title: "📉 Bajas Velocidades", tag: "Principal", html: `<div class="item">Validar velocidad desde sistema.</div><div class="item">Revisar que el router NO esté negociando a 100 Mbps.</div><div class="nota-box">Debe negociar a 1G.</div><div class="item">Solicitar cambio de canales por grupo soporte.</div>` },
+            { pill: "Usuario", title: "📉 Bajas Velocidades", tag: "Usuario", html: `<div class="item">Realizar test de velocidad en red 5G y en servidor de SOMOS (Ookla).</div><div class="item">Validar en varios dispositivos.</div><div class="item">Confirmar que NO tenga VPN activa.</div><div class="item">Separar redes 2.4 y 5 en caso de no estar separadas.</div><div class="item">Validar cantidad de equipos conectados y condiciones del entorno.</div><div class="item">Validar distancia a la cual se conecta.</div>` },
+            { pill: "Cable", title: "📉 Bajas Velocidades", tag: "Validación", html: `<div class="item">Realizar test por cable.</div><div class="item">Validar configuración de la tarjeta de red.</div><div class="item">Validar categoría del cable.</div><div class="nota-box">Usar mínimo cable Cat5e.</div>` },
+            { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si la velocidad es correcta por cable → el problema es WiFi.</div><div class="item">Si la velocidad sigue baja por cable → el problema es de red.</div>` },
+            { pill: "Escalar", title: "📉 Bajas Velocidades", tag: "Escalar N2", html: `<div class="item">Escalar a N2 si ya se hizo todo lo siguiente:</div><div class="nota-box">✔ Cambio de canales realizado.</div><div class="nota-box">✔ Velocidad baja por cable.</div><div class="nota-box">✔ Validaciones completas.</div>` }
         ],
         vilo: [
-            { pill: "Validación", title: "📉 Bajas Velocidades", tag: "Sistema", html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div><div class="item">Validar plan contratado y que los routers NO tengan misma IP.</div>` },
-            { pill: "Principal", title: "🖥 Principal", tag: "Router", html: `<div class="item">Revisar negociación (Debe ser 1G).</div><div class="item">Solicitar cambio de canales y validar firmware.</div>` },
-            { pill: "Usuario", title: "📱 Usuario", tag: "Router", html: `<div class="item">Test en servidor SOMOS (Ookla) en red 5G.</div><div class="item">Validar cantidad de equipos y condiciones del entorno.</div>` },
-            { pill: "Cable", title: "🔌 Validación", tag: "Validación", html: `<div class="item">Realizar test por cable (Mínimo Cat5e).</div>` },
-            { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div class="nota-box"><b>Escalar a N2.</b><br>✔ Cambio canales hecho. ✔ Velocidad baja por cable comprobada.</div>` }
+            { pill: "Validación", title: "📉 Bajas Velocidades", tag: "Sistema", html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div><div class="nota-box">Si hay falla → usar guion de falla masiva.</div><div class="item">Validar plan contratado.</div><div class="item">Validar que los dos routers NO tengan la misma IP.</div>` },
+            { pill: "Principal", title: "📉 Bajas Velocidades", tag: "Principal", html: `<div class="item">Validar velocidad desde sistema.</div><div class="item">Revisar que el router NO esté negociando a 100 Mbps.</div><div class="nota-box">Debe negociar a 1G.</div><div class="item">Solicitar cambio de canales.</div><div class="item">Validar firmware del equipo.</div>` },
+            { pill: "Usuario", title: "📉 Bajas Velocidades", tag: "Usuario", html: `<div class="item">Realizar test de velocidad en red 5G y en servidor de SOMOS (Ookla).</div><div class="item">Validar en varios dispositivos.</div><div class="item">Confirmar que NO tenga VPN activa.</div><div class="item">Separar redes 2.4 y 5 en caso de no estar separadas.</div><div class="item">Validar cantidad de equipos conectados y condiciones del entorno.</div><div class="item">Validar distancia a la cual se conecta.</div>` },
+            { pill: "Cable", title: "📉 Bajas Velocidades", tag: "Validación", html: `<div class="item">Realizar test por cable.</div><div class="item">Validar configuración de la tarjeta de red.</div><div class="item">Validar categoría del cable.</div><div class="nota-box">Usar mínimo cable Cat5e.</div>` },
+            { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si la velocidad es correcta por cable → el problema es WiFi.</div><div class="item">Si la velocidad sigue baja por cable → el problema es de red.</div>` },
+            { pill: "Escalar", title: "📉 Bajas Velocidades", tag: "Escalar N2", html: `<div class="item">Escalar a N2 si ya se hizo todo lo siguiente:</div><div class="nota-box">✔ Cambio de canales realizado.</div><div class="nota-box">✔ Velocidad baja por cable.</div><div class="nota-box">✔ Validaciones completas.</div>` }
         ]
     }
 };
 
-/* ============================================================
-   🛡️ EL MOTOR DE LA APP
-   ============================================================ */
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
 
 function cambiarProceso(proc) {
-    procesoActual = proc;
-    pasoActual = 0;
-    // Actualizar UI Sidebar
+    procesoActual = proc; pasoActual = 0;
     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
     document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
     render();
 }
 
 function setEquipo(eq) {
-    equipoActual = eq;
-    pasoActual = 0;
-    // Actualizar UI Pestañas
+    equipoActual = eq; pasoActual = 0;
     document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
     document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
     render();
@@ -143,22 +131,20 @@ function setEquipo(eq) {
 function render() {
     const pasos = DATA[procesoActual][equipoActual];
     const data = pasos[pasoActual];
-
-    // Render Pildoras Superiores
     let pillsHtml = '';
     pasos.forEach((p, index) => {
         pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
     });
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
-
-    // Render Bloque de Contenido
     document.getElementById("app").innerHTML = `
         <div class="block">
             <h3>${data.title}</h3>
             <div class="tag">${data.tag}</div>
             ${data.html}
-            ${pasoActual < pasos.length - 1 ? `<button class="btn" onclick="siguiente()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ''}
-            <button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar</button>
+            <div class="flex gap-2">
+                ${pasoActual < pasos.length - 1 ? `<button class="btn" onclick="siguiente()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ''}
+            </div>
+            <button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso</button>
         </div>`;
 }
 
@@ -166,7 +152,6 @@ function siguiente() { pasoActual++; render(); }
 function irAPaso(i) { pasoActual = i; render(); }
 function reset() { pasoActual = 0; render(); }
 
-// Inicio
 window.onload = render;
 </script>
 </body>
