@@ -108,15 +108,17 @@ const DATA = {
             title: "📉 Bajas Velocidades", 
             tag: "Usuario", 
             html: `
-                <div class="item">• Solicitar test de velocidad en red 5G usando servidor de SOMOS (Ookla)</div>
+                <div class="item">• Solicitar test de velocidad en red 5G usando servidor de SOMOS</div>
+                <div class="item">• Preferir test por cable (LAN) conectado al router principal</div>
                 <div class="item">• Validar en varios dispositivos</div>
                 <div class="item">• Confirmar que NO tenga VPN activa</div>
                 <div class="item">• Separar redes 2.4 GHz y 5 GHz (si no están separadas)</div>
                 <div class="item">• Validar cantidad de equipos conectados</div>
-                <div class="nota-box">Nota: dispositivos de domótica consumen poco ancho de banda</div>
+                <div class="nota-box">Nota: dispositivos de domótica consumen poca velocidad</div>
                 <div class="item">• Evaluar condiciones del entorno (muros, interferencias)</div>
                 <div class="item">• Validar distancia del dispositivo al router</div>
-                <div class="item">• Si la velocidad no supera 100 Mbps, revisar la tarjeta de red del equipo</div>` 
+                <div class="item">• Si la velocidad no supera 100 Mbps, revisar la tarjeta de red del equipo</div>
+                <div class="item">• Validar categoría del cable de red</div>` 
         },
             { pill: "Cable", title: "📉 Bajas Velocidades", tag: "Validación", html: `<div class="item">Realizar test por cable.</div><div class="item">Validar tarjeta de red y categoría del cable (Mínimo Cat5e).</div>` },
             { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si por cable es correcto → Problema WiFi.</div><div class="item">Si por cable sigue bajo → Problema de red.</div>` },
