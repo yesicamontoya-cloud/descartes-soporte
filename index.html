@@ -106,7 +106,7 @@ const DATA = {
             { 
             pill: "Usuario", 
             title: "📉 Bajas Velocidades", 
-            tag: "Usuario", 
+            tag: "Usuario-Validación de velocidad", 
             html: `
                 <div class="item">• Solicitar test de velocidad en red 5G usando servidor de SOMOS</div>
                 <div class="item">• Preferir test por cable (LAN) conectado al router principal</div>
@@ -156,7 +156,7 @@ const DATA = {
             { 
                 pill: "Usuario", 
                 title: "📉 Bajas Velocidades", 
-                tag: "Vilo – Validación de velocidad", 
+                tag: "Usuario– Validación de velocidad", 
                 html: `
                     <div class="item">• Realizar test de velocidad en red 5 GHz usando servidor de SOMOS</div>
                     <div class="item">• Validar resultados en varios dispositivos</div>
@@ -169,10 +169,27 @@ const DATA = {
                     <div class="nota-box"><b>Nota:</b> dispositivos de domótica consumen poca velocidad</div>
                     <div class="item">• Realizar test por cable (LAN) desde el router principal</div>
                     <div class="item">• Si la velocidad no supera 100 Mbps, revisar la tarjeta de red del equipo del usuario</div>
-                    <div class="item">• Validar categoría del cable </div>` 
+                    <div class="item">• Validar categoría del cable de Red </div>` 
             },    
-            { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si por cable es correcto → WiFi.</div><div class="item">Si sigue bajo → Red.</div>` },
-            { pill: "Escalar", title: "📉 Bajas Velocidades", tag: "Escalar N2", html: `<div class="nota-box">✔ Cambio canales hecho.<br>✔ Baja por cable comprobada.</div>` }
+           { 
+                pill: "Resultado", 
+                title: "📉 Bajas Velocidades", 
+                tag: "Resultado", 
+                html: `
+                    <div class="item">• Si la velocidad es correcta por cable → el problema es WiFi.</div>
+                    <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o hardware.</div>
+                    
+                    <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
+                        ❌ Si no se soluciona → Escalar al área especializada (N2)
+                    </div>
+                    
+                    <div class="nota-box">
+                        <b>Antes de escalar, confirmar:</b><br>
+                        • ✔ Se realizó cambio de canal WiFi / Firmware ok<br>
+                        • ✔ La velocidad sigue baja por cable (LAN)<br>
+                        • ✔ Todas las validaciones fueron completadas
+                    </div>` 
+            }
         ]
     }
 };
