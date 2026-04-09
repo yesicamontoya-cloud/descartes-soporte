@@ -133,7 +133,7 @@ function initPhantom(){
             <div class="item">Confirmar que no tenga la misma IP que el principal</div>
             <div class="item">Validar en Grafana que no esté en NA</div>
             <div class="item">Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</div>
-            <div class="nota-box">Nota: No aplica para domótica: la velocidad de los puertos no es relevante</div>
+            <div class="nota-box">Nota: Si es equipo de domótica → no validar velocidad del puerto.</div>
             <div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>`
         },
         {
@@ -142,7 +142,7 @@ function initPhantom(){
             <div class="item">Revisar conexiones físicas y energía</div>
             <div class="item">Confirmar que no haya cables en el puerto WAN</div>
             <div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div>
-            <div class="item">Reiniciar el equipo (30 segundos desconectado)</div>
+            <div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorriente y volver a conectar)</div>
             <div class="action">No chuzar el equipo</div>`
         },
         {
@@ -213,7 +213,7 @@ function initVilo(){
             title:"🔌 Validación física",
             html:`<div class="tag">Cliente</div>
             <div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div>
-            <div class="nota-box"><b style="color:#EF4444">Rojo:</b> Validar cables físicos, desconectar/conectar y reiniciar físicamente.</div>
+            <div class="nota-box"><b style="color:#EF4444">Rojo:</b> Validar cables físicos, desconectar/conectar y reiniciar físicamente desconectado el router del tomacorriente por 30 segundos y volver a conectar.</div>
             <div class="nota-box"><b>WAN:</b> Principal (con cable), Secundario (sin cable).</div>
             <div class="nota-box"><b>Estados:</b> Blanco (WiFi 6 OK) / Azul (WiFi 5 OK)</div>`
         },
