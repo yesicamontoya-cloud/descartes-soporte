@@ -215,7 +215,7 @@ const DATA = {
             }
         ]
     }
-};
+
 
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
@@ -225,7 +225,8 @@ function cambiarProceso(proc) {
     procesoActual = proc; pasoActual = 0;
     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
     document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
-    render();
+    document.getElementById('navN2').classList.toggle('active', proc === 'n2');
+    render(); 
 }
 
 function setEquipo(eq) {
