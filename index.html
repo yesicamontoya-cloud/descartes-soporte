@@ -120,8 +120,25 @@ const DATA = {
                 <div class="item">• Si la velocidad no supera 100 Mbps, revisar la tarjeta de red del equipo</div>
                 <div class="item">• Validar categoría del cable de red</div>` 
         },           
-            { pill: "Resultado", title: "📉 Bajas Velocidades", tag: "Resultado", html: `<div class="item">Si la velocidad es correcta por cable → el problema es WiFi.</div><div class="item">Si la velocidad sigue baja por cable → el problema es de red.</div>` },
-            { pill: "Escalar", title: "📉 Bajas Velocidades", tag: "Escalar N2", html: `<div class="nota-box">✔ Cambio de canales realizado.<br>✔ Velocidad baja por cable.<br>✔ Validaciones completas.</div>` }
+            { 
+            pill: "Resultado", 
+            title: "📉 Bajas Velocidades", 
+            tag: "Resultado", 
+            html: `
+                <div class="item">• Si la velocidad es correcta por cable → el problema es la cobertura o interferencia WiFi.</div>
+                <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o configuración del equipo.</div>
+                
+                <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
+                    ❌ Si no se soluciona → Escalar al área especializada (N2)
+                </div>
+                
+                <div class="nota-box">
+                    <b>Antes de escalar, confirmar:</b><br>
+                    • ✔ Se realizó cambio de canal WiFi<br>
+                    • ✔ La velocidad sigue baja por cable (LAN)<br>
+                    • ✔ Todas las validaciones fueron completadas
+                </div>` 
+        },
         ],
         vilo: [
             { pill: "Validación", title: "📉 Bajas Velocidades", tag: "Sistema", html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div><div class="nota-box">Si hay falla → usar guion de falla masiva.</div><button class="btn" style="background:#3b82f6; margin-bottom:10px" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva</button><div class="item">Validar plan contratado y que los routers NO tengan misma IP.</div>` },
