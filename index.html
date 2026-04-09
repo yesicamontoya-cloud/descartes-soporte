@@ -51,12 +51,16 @@
         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
-    
-    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Diagnóstico-N1</p>
+
+    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Diagnóstico</p>
     <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')"><i class="fas fa-power-off"></i> Router Offline</div>
     <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')"><i class="fas fa-chart-line"></i> Bajas Velocidades</div>
-</aside>
 
+    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-8 mb-4">Nivel 2</p>
+    <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
+        <i class="fas fa-user-shield"></i> Soporte N2
+    </div>
+</aside>
 <main class="main-content">
     <div class="selector">
         <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
@@ -189,6 +193,25 @@ const DATA = {
                         • ✔ La velocidad sigue baja por cable (LAN)<br>
                         • ✔ Todas las validaciones fueron completadas
                     </div>` 
+            }
+        ]
+    }
+},
+    n2: {
+        phantom: [
+            { 
+                pill: "Diagnóstico", 
+                title: "🛠 Soporte Especializado N2", 
+                tag: "Análisis Técnico", 
+                html: `<div class="item">• Revisión de niveles de potencia y saturación de OLT.</div>` 
+            }
+        ],
+        vilo: [
+            { 
+                pill: "Diagnóstico", 
+                title: "🛠 Soporte Especializado N2", 
+                tag: "Análisis Técnico", 
+                html: `<div class="item">• Análisis de interferencia y saltos de malla Mesh.</div>` 
             }
         ]
     }
