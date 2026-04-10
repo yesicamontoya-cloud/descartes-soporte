@@ -52,25 +52,20 @@
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
 
-    <div class="section-header">
-        <span><i class="fas fa-folder-open mr-2"></i> Soporte Nivel 1</span>
+    <div class="section-header" onclick="cambiarProceso('offline')" style="cursor:pointer">
+        <span><i class="fas fa-folder-open mr-2"></i> Diagnóstico-N1</span>
         <i class="fas fa-chevron-down text-[8px]"></i>
     </div>
     <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')">
         <i class="fas fa-power-off"></i> Router Offline
     </div>
-    <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')">
-        <i class="fas fa-chart-line"></i> Bajas Velocidades
-    </div>
-
-    <div class="area-separator"></div>
-
-    <div class="section-header">
-        <span><i class="fas fa-folder-open mr-2"></i> Soporte Nivel 2</span>
+    
+    <div class="section-header" onclick="cambiarProceso('n2')" style="cursor:pointer">
+        <span><i class="fas fa-folder-open mr-2"></i> Especializados-N2</span>
         <i class="fas fa-chevron-down text-[8px]"></i>
     </div>
     <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
-        <i class="fas fa-user-shield"></i> Diagnóstico Especializado
+        <i class="fas fa-user-shield"></i> Especializado
     </div>
 </aside>
 <main class="main-content">
