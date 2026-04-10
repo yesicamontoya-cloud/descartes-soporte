@@ -8,13 +8,17 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; height: 100vh; overflow: hidden; display: flex; }
 
     .sidebar { width: 280px; background: #0f172a; color: white; display: flex; flex-direction: column; padding: 40px 24px; }
     .nav-item { padding: 14px 18px; border-radius: 14px; margin-bottom: 8px; cursor: pointer; transition: 0.3s; color: #94a3b8; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
     .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
     .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+    /* Estos son los títulos de las carpetas N1 y N2 */
+    .section-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin-top: 20px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; }
+    .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0; }
 
     .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; box-shadow: -10px 0 50px rgba(0,0,0,0.05); }
     .selector { display: flex; gap: 40px; border-bottom: 1px solid #f1f5f9; padding: 0 40px; }
@@ -37,10 +41,6 @@
 
     .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
     .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
-
-    .ref-img { margin-top: 15px; border-radius: 20px; overflow: hidden; border: 1px solid #e2e8f0; }
-    .ref-img img { width: 100%; height: auto; object-fit: cover; }
-    .caption { font-size: 11px; padding: 10px; background: #f8fafc; color: #64748b; text-align: center; font-weight: 600; }
 </style>
 </head>
 
@@ -52,13 +52,25 @@
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
 
-    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Diagnóstico</p>
-    <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')"><i class="fas fa-power-off"></i> Router Offline</div>
-    <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')"><i class="fas fa-chart-line"></i> Bajas Velocidades</div>
+    <div class="section-header">
+        <span><i class="fas fa-folder-open mr-2"></i> Soporte Nivel 1</span>
+        <i class="fas fa-chevron-down text-[8px]"></i>
+    </div>
+    <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')">
+        <i class="fas fa-power-off"></i> Router Offline
+    </div>
+    <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')">
+        <i class="fas fa-chart-line"></i> Bajas Velocidades
+    </div>
 
-    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-8 mb-4">Nivel 2</p>
+    <div class="area-separator"></div>
+
+    <div class="section-header">
+        <span><i class="fas fa-folder-open mr-2"></i> Soporte Nivel 2</span>
+        <i class="fas fa-chevron-down text-[8px]"></i>
+    </div>
     <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
-        <i class="fas fa-user-shield"></i> Soporte N2
+        <i class="fas fa-user-shield"></i> Diagnóstico Especializado
     </div>
 </aside>
 <main class="main-content">
