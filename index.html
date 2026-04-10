@@ -41,6 +41,12 @@
 
     .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
     .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
+   /* Oculta el contenido de las carpetas por defecto */
+    .nav-group { display: none; }
+    /* Clase para mostrar el contenido cuando se hace clic */
+    .nav-group.open { display: block; }
+    /* Animación para la flechita */
+    .rotate { transform: rotate(180deg); transition: 0.3s; }
 </style>
 </head>
 
@@ -52,25 +58,28 @@
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
 
-    <div class="section-header" onclick="cambiarProceso('offline')" style="cursor:pointer">
+    <div class="section-header" onclick="toggleMenu('groupN1', this)" style="cursor:pointer">
         <span><i class="fas fa-folder-open mr-2"></i> Diagnóstico-N1</span>
-        <i class="fas fa-chevron-down text-[8px]"></i>
+        <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
     </div>
-    <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')">
-        <i class="fas fa-power-off"></i> Router Offline
-    </div>
-    <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')">
-        <i class="fas fa-chart-line"></i> Bajas Velocidades
+    <div id="groupN1" class="nav-group open"> <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')">
+            <i class="fas fa-power-off"></i> Router Offline
+        </div>
+        <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')">
+            <i class="fas fa-chart-line"></i> Bajas Velocidades
+        </div>
     </div>
 
     <div class="area-separator"></div>
 
-    <div class="section-header" onclick="cambiarProceso('n2')" style="cursor:pointer">
+    <div class="section-header" onclick="toggleMenu('groupN2', this)" style="cursor:pointer">
         <span><i class="fas fa-folder-open mr-2"></i> Especializados-N2</span>
-        <i class="fas fa-chevron-down text-[8px]"></i>
+        <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
     </div>
-    <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
-        <i class="fas fa-user-shield"></i> Especializado
+    <div id="groupN2" class="nav-group">
+        <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
+            <i class="fas fa-user-shield"></i> Especializado
+        </div>
     </div>
 </aside>
 <main class="main-content">
@@ -232,7 +241,13 @@ const DATA = {
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
-
+function toggleMenu(groupId, headerElement) {
+    const group = document.getElementById(groupId);
+    const arrow = headerElement.querySelector('.arrow-icon');
+    
+    group.classList.toggle('open');
+    arrow.classList.toggle('rotate');
+}
 function cambiarProceso(proc) {
     procesoActual = proc; pasoActual = 0;
     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
