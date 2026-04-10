@@ -268,11 +268,24 @@ function render() {
         </div>`;
 }
 
-function siguiente() { pasoActual++; render(); }
-function irAPaso(i) { pasoActual = i; render(); }
-function reset() { pasoActual = 0; render(); }
+function irAPaso(i) { 
+        pasoActual = i; 
+        render(); 
+    }
 
-window.onload = render;
+    function siguiente() { 
+        pasoActual++; 
+        render(); 
+    }
+
+    function reset() { 
+        pasoActual = 0; 
+        render(); 
+    }
+
+    window.onload = render;
 </script>
 </body>
 </html>
+
+
