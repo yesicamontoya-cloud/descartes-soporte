@@ -77,9 +77,11 @@
         <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
     </div>
     <div id="groupN2" class="nav-group">
-        <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
-            <i class="fas fa-user-shield"></i> Router Offline
-        </div>
+       <div id="navOfflineN2" class="nav-item" onclick="cambiarProceso('offlineN2')">
+        <i class="fas fa-plug-circle-xmark"></i> Router Offline
+    </div>
+    <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')">
+        <i class="fas fa-chart-line-down"></i> Bajas Velocidades 
     </div>
 </aside>
 <main class="main-content">
@@ -322,6 +324,25 @@ const DATA = {
         ]
      }   
     };
+   offlineN2: {
+        phantom: [
+            { pill: "Análisis", title: "🛠️ N2 Offline - Phantom", tag: "Técnico", html: `<div class="item"><b>EDGE:</b> Validar topología y MAC.</div><div class="alert-falla">👥 ≥ 2 usuarios: ESCALAR NOC.</div>` }
+        ],
+        vilo: [
+            { pill: "Análisis", title: "🛠️ N2 Offline - Vilo", tag: "Técnico", html: `<div class="item"><b>EDGE:</b> Validar topología y MAC.</div><div class="alert-falla">👥 ≥ 2 usuarios: ESCALAR NOC.</div>` }
+        ]
+    },
+    bajasN2: {
+        phantom: [
+            { pill: "Herramientas", title: "📉 N2 Bajas - Phantom", tag: "Descartes", html: `<div class="item"><b>EDGE:</b> Revisar errores y puerto de subida.</div><div class="item"><b>Vecinos:</b> Validar swiche.</div><div class="alert-falla"><b>IP:</b> ¿DHCP Intruso?</div><div class="action">👥 > 1 cliente → NOC | 👤 Único → VISITA.</div>` },
+            { pill: "Usuario", title: "🔌 Descartes Usuario", tag: "Phantom", html: `<div class="item">Reinicio de equipo para cambio de IP.</div>` }
+        ],
+        vilo: [
+            { pill: "Herramientas", title: "📉 N2 Bajas - Vilo", tag: "Descartes", html: `<div class="item"><b>EDGE:</b> Revisar errores y puerto de subida.</div><div class="item"><b>Vecinos:</b> Validar swiche.</div><div class="alert-falla"><b>IP:</b> ¿DHCP Intruso?</div><div class="action">👥 > 1 cliente → NOC | 👤 Único → VISITA.</div>` },
+            { pill: "Usuario", title: "🔌 Descartes Usuario", tag: "Vilo", html: `<div class="item">Reinicio de equipo para cambio de IP.</div>` }
+        ]
+    }
+   };
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
@@ -334,9 +355,20 @@ function toggleMenu(groupId, headerElement) {
 }
 function cambiarProceso(proc) {
     procesoActual = proc; pasoActual = 0;
-    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
-    document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
-    document.getElementById('navN2').classList.toggle('active', proc === 'n2');
+   // Quita el estado activo de todos los botones primero
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+    // Activa el botón que corresponde al proceso seleccionado
+    const botones = {
+        'offline': 'navOffline',
+        'bajas': 'navBajas',
+        'offlineN2': 'navOfflineN2',
+        'bajasN2': 'navBajasN2'
+    };
+
+    if (botones[proc]) {
+        document.getElementById(botones[proc]).classList.add('active');
+    }
     render(); 
 }
 
