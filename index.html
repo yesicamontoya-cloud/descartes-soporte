@@ -269,181 +269,167 @@ const DATA = {
         ]
     }
     },
-    n2: {
-            phantom: [
-                { 
-                    pill: "Herramientas", 
-                    title: "🛠️ N2 - Validación en Red", 
-                    tag: "Análisis Técnico", 
-                    html: `
-                        <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-                        <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
-                        <div class="item"><b>Análisis por Volumen:</b></div>
-                        <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-                            👤 < 2 usuarios: Caso individual → Posible visita técnica.
-                        </div>
-                        <div class="alert-falla">
-                            👥 ≥ 2 usuarios: Escalar al NOC (Incidente de red).
-                        </div>` 
-                },
-                { 
-                    pill: "Tecnología", 
-                    title: "📡 Análisis por Tecnología", 
-                    tag: "Radio / Fibra", 
-                    html: `
-                        <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
-                        <div class="alert-falla">⚠️ Si no responde o presenta error → ESCALAR Al NOC.</div>
-                        <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
-                        <div class="action">Validar que el equipo tome IP.</div>
-                        <div class="nota-box">
-                            • No toma IP o está errada → Escalar a NOC.<br>
-                            • Toma IP correcta → Continuar diagnóstico.
-                        </div>` 
-                },
-                { 
-                    pill: "Usuario", 
-                    title: "🔌 Descartes Lado Usuario", 
-                    tag: "Validación Final", 
-                    html: `
-                        <div class="item"><b>Acción Física:</b> Reset de equipo secundario (Chuzar equipo).</div>
-                        <div class="alert-pago" style="background:#fef9c3; border-color:#facc15; color:#854d0e">
-                            💡 REGLA DE ORO: Verifique las pruebas enviadas por el cliente ANTES de pedir fotos o realizar pasos innecesarios.
-                        </div>` 
-                },
-                { 
-                    pill: "Escalamiento", 
-                    title: "🚩 Reglas de Escalamiento", 
-                    tag: "Sin Interpretación", 
-                    html: `
-                        <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
-                            <b>ESCALAR A NOC SI:</b><br>
-                            • MAC no visible (≥2 usuarios)<br>
-                            • No toma IP / IP incorrecta<br>
-                            • Error en EDGE / CHR
-                        </div>
-                        <div class="action" style="margin-top:10px">
-                            <b>ESCALAR A TERRENO SI:</b><br>
-                            • Falla física confirmada (1 usuario individual)
-                        </div>` 
-                }
-            ],      
-            vilo: [
-                { 
-                    pill: "Herramientas", 
-                    title: "🛠️ N2 - Validación en Red (Vilo)", 
-                    tag: "Análisis Técnico", 
-                    html: `
-                        <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-                        <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
-                        <div class="item"><b>Análisis por Volumen:</b></div>
-                        <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-                            👤 < 2 usuarios: Caso individual → Visita técnica.
-                        </div>
-                        <div class="alert-falla">
-                            👥 ≥ 2 usuarios: Escalar al NOC (Ticket de red).
-                        </div>` 
-                },
-                { 
-                    pill: "Tecnología", 
-                    title: "📡 Análisis por Tecnología", 
-                    tag: "Radio / Fibra", 
-                    html: `
-                        <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
-                        <div class="alert-falla">⚠️ Si presenta error o no responde → ESCALAR AL NOC.</div>
-                        <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
-                        <div class="action">Validar que el equipo tome IP correcta.</div>
-                        <div class="nota-box">
-                            • No toma IP / IP errada → Escalar a NOC.<br>
-                            • Toma IP correcta → Continuar a descartes físicos.
-                        </div>` 
-                },
-                { 
-                    pill: "Usuario", 
-                    title: "🔌 Descartes Físicos", 
-                    tag: "Validación Final", 
-                    html: `
-                        <div class="item"><b>Acción obligatoria en Vilo:</b></div>
-                        <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
-                            ⚠️ Realizar Reset de equipo secundario (Chuzar equipo).
-                        </div>
-                        <div class="nota-box" style="margin-top:10px">
-                            <b>Nota:</b> Si tras el reset y reconfiguración el equipo no levanta y es un solo usuario, proceder con la visita.
-                        </div>` 
-                }
-            ]
-        }
-   };
-let procesoActual = 'offline';
-let equipoActual = 'phantom';
-let pasoActual = 0;
-function toggleMenu(groupId, headerElement) {
-    const group = document.getElementById(groupId);
-    const arrow = headerElement.querySelector('.arrow-icon');
-    
-    group.classList.toggle('open');
-    arrow.classList.toggle('rotate');
-}
-function cambiarProceso(proc) {
-    procesoActual = proc; 
-    pasoActual = 0;
-    
-    // Verificamos que los IDs existan para que no de error
-    const nOff = document.getElementById('navOffline');
-    const nBaj = document.getElementById('navBajas');
-    const nN2 = document.getElementById('navN2');
+  n2: {
+                phantom: [
+                    { 
+                        pill: "Herramientas", 
+                        title: "🛠️ N2 - Validación en Red", 
+                        tag: "Análisis Técnico", 
+                        html: `
+                            <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
+                            <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
+                            <div class="item"><b>Análisis por Volumen:</b></div>
+                            <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
+                                👤 < 2 usuarios: Caso individual → Posible visita técnica.
+                            </div>
+                            <div class="alert-falla">
+                                👥 ≥ 2 usuarios: Escalar al NOC (Incidente de red).
+                            </div>` 
+                    },
+                    { 
+                        pill: "Tecnología", 
+                        title: "📡 Análisis por Tecnología", 
+                        tag: "Radio / Fibra", 
+                        html: `
+                            <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
+                            <div class="alert-falla">⚠️ Si no responde o presenta error → ESCALAR Al NOC.</div>
+                            <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
+                            <div class="action">Validar que el equipo tome IP.</div>
+                            <div class="nota-box">
+                                • No toma IP o está errada → Escalar a NOC.<br>
+                                • Toma IP correcta → Continuar diagnóstico.
+                            </div>` 
+                    },
+                    { 
+                        pill: "Usuario", 
+                        title: "🔌 Descartes Lado Usuario", 
+                        tag: "Validación Final", 
+                        html: `
+                            <div class="item"><b>Acción Física:</b> Reset de equipo secundario (Chuzar equipo).</div>
+                            <div class="alert-pago" style="background:#fef9c3; border-color:#facc15; color:#854d0e">
+                                💡 REGLA DE ORO: Verifique las pruebas enviadas por el cliente ANTES de pedir fotos o realizar pasos innecesarios.
+                            </div>` 
+                    },
+                    { 
+                        pill: "Escalamiento", 
+                        title: "🚩 Reglas de Escalamiento", 
+                        tag: "Sin Interpretación", 
+                        html: `
+                            <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
+                                <b>ESCALAR A NOC SI:</b><br>
+                                • MAC no visible (≥2 usuarios)<br>
+                                • No toma IP / IP incorrecta<br>
+                                • Error en EDGE / CHR
+                            </div>
+                            <div class="action" style="margin-top:10px">
+                                <b>ESCALAR A TERRENO SI:</b><br>
+                                • Falla física confirmada (1 usuario individual)
+                            </div>` 
+                    }
+                ],      
+                vilo: [
+                    { 
+                        pill: "Herramientas", 
+                        title: "🛠️ N2 - Validación en Red (Vilo)", 
+                        tag: "Análisis Técnico", 
+                        html: `
+                            <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
+                            <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
+                            <div class="item"><b>Análisis por Volumen:</b></div>
+                            <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
+                                👤 < 2 usuarios: Caso individual → Visita técnica.
+                            </div>
+                            <div class="alert-falla">
+                                👥 ≥ 2 usuarios: Escalar al NOC (Ticket de red).
+                            </div>` 
+                    },
+                    { 
+                        pill: "Tecnología", 
+                        title: "📡 Análisis por Tecnología", 
+                        tag: "Radio / Fibra", 
+                        html: `
+                            <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
+                            <div class="alert-falla">⚠️ Si presenta error o no responde → ESCALAR AL NOC.</div>
+                            <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
+                            <div class="action">Validar que el equipo tome IP correcta.</div>
+                            <div class="nota-box">
+                                • No toma IP / IP errada → Escalar a NOC.<br>
+                                • Toma IP correcta → Continuar a descartes físicos.
+                            </div>` 
+                    },
+                    { 
+                        pill: "Usuario", 
+                        title: "🔌 Descartes Físicos", 
+                        tag: "Validación Final", 
+                        html: `
+                            <div class="item"><b>Acción obligatoria en Vilo:</b></div>
+                            <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
+                                ⚠️ Realizar Reset de equipo secundario (Chuzar equipo).
+                            </div>
+                            <div class="nota-box" style="margin-top:10px">
+                                <b>Nota:</b> Si tras el reset y reconfiguración el equipo no levanta y es un solo usuario, proceder con la visita.
+                            </div>` 
+                    }
+                ]
+            }
+       }; // Aquí se cierra DATA correctamente
 
-    if(nOff) nOff.classList.toggle('active', proc === 'offline');
-    if(nBaj) nBaj.classList.toggle('active', proc === 'bajas');
-    if(nN2) nN2.classList.toggle('active', proc === 'n2');
+    let procesoActual = 'offline';
+    let equipoActual = 'phantom';
+    let pasoActual = 0;
 
-    render(); 
+    function toggleMenu(groupId, headerElement) {
+        const group = document.getElementById(groupId);
+        const arrow = headerElement.querySelector('.arrow-icon');
+        group.classList.toggle('open');
+        arrow.classList.toggle('rotate');
+    }
 
-}
-
-function setEquipo(eq) {
-    equipoActual = eq; pasoActual = 0;
-    document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
-    document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
-    render();
-}
-
-function render() {
-    const pasos = DATA[procesoActual][equipoActual];
-    const data = pasos[pasoActual];
-    let pillsHtml = '';
-    pasos.forEach((p, index) => {
-        pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
-    });
-    document.getElementById('pillsContainer').innerHTML = pillsHtml;
-    document.getElementById("app").innerHTML = `
-        <div class="block">
-            <h3>${data.title}</h3>
-            <div class="tag">${data.tag}</div>
-            ${data.html}
-            <div class="flex gap-2">
-                ${pasoActual < pasos.length - 1 ? `<button class="btn" onclick="siguiente()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ''}
-            </div>
-            <button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso</button>
-        </div>`;
-}
-
-function irAPaso(i) { 
-        pasoActual = i; 
+    function cambiarProceso(proc) {
+        procesoActual = proc; 
+        pasoActual = 0;
+        const nOff = document.getElementById('navOffline');
+        const nBaj = document.getElementById('navBajas');
+        const nN2 = document.getElementById('navN2');
+        if(nOff) nOff.classList.toggle('active', proc === 'offline');
+        if(nBaj) nBaj.classList.toggle('active', proc === 'bajas');
+        if(nN2) nN2.classList.toggle('active', proc === 'n2');
         render(); 
     }
 
-    function siguiente() { 
-        pasoActual++; 
-        render(); 
+    function setEquipo(eq) {
+        equipoActual = eq; 
+        pasoActual = 0;
+        document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
+        document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
+        render();
     }
 
-    function reset() { 
-        pasoActual = 0; 
-        render(); 
+    function render() {
+        const pasos = DATA[procesoActual][equipoActual];
+        const data = pasos[pasoActual];
+        let pillsHtml = '';
+        pasos.forEach((p, index) => {
+            pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
+        });
+        document.getElementById('pillsContainer').innerHTML = pillsHtml;
+        document.getElementById("app").innerHTML = `
+            <div class="block">
+                <h3>${data.title}</h3>
+                <div class="tag">${data.tag}</div>
+                ${data.html}
+                <div class="flex gap-2">
+                    ${pasoActual < pasos.length - 1 ? `<button class="btn" onclick="siguiente()">Continuar Paso <i class="fas fa-arrow-right ml-2"></i></button>` : ''}
+                </div>
+                <button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso</button>
+            </div>`;
     }
+
+    function irAPaso(i) { pasoActual = i; render(); }
+    function siguiente() { pasoActual++; render(); }
+    function reset() { pasoActual = 0; render(); }
 
     window.onload = render;
 </script>
 </body>
 </html>
-
