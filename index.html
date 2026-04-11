@@ -269,7 +269,7 @@ const DATA = {
         ]
     }
     },
-  n2: {
+n2: {
                 phantom: [
                     { 
                         pill: "Herramientas", 
@@ -372,7 +372,7 @@ const DATA = {
                     }
                 ]
             }
-       }; // Aquí se cierra DATA correctamente
+       }; // Cierre correcto de DATA
 
     let procesoActual = 'offline';
     let equipoActual = 'phantom';
@@ -381,8 +381,8 @@ const DATA = {
     function toggleMenu(groupId, headerElement) {
         const group = document.getElementById(groupId);
         const arrow = headerElement.querySelector('.arrow-icon');
-        group.classList.toggle('open');
-        arrow.classList.toggle('rotate');
+        if(group) group.classList.toggle('open');
+        if(arrow) arrow.classList.toggle('rotate');
     }
 
     function cambiarProceso(proc) {
@@ -400,8 +400,10 @@ const DATA = {
     function setEquipo(eq) {
         equipoActual = eq; 
         pasoActual = 0;
-        document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
-        document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
+        const btnP = document.getElementById('btnPhantom');
+        const btnV = document.getElementById('btnVilo');
+        if(btnP) btnP.classList.toggle('active', eq === 'phantom');
+        if(btnV) btnV.classList.toggle('active', eq === 'vilo');
         render();
     }
 
