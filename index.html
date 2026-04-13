@@ -38,7 +38,21 @@
     .alert-pago { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
     .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
     .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
-
+#welcome-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000000; z-index: 9999; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    color: white; font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.btn-choice {
+    padding: 18px 40px; border-radius: 16px; font-weight: 800;
+    cursor: pointer; transition: all 0.3s; font-size: 14px; 
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.btn-n1 { border: 2px solid #3b82f6; background: transparent; color: #3b82f6; margin-right: 15px; }
+.btn-n1:hover { background: #3b82f6; color: white; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+.btn-n2 { border: 2px solid #f97316; background: transparent; color: #f97316; }
+.btn-n2:hover { background: #f97316; color: white; box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
     .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
     .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
    /* Oculta el contenido de las carpetas por defecto */
@@ -64,7 +78,14 @@
 </head>
 
 <body>
-
+<div id="welcome-screen">
+    <img src="https://somosinternet.com/wp-content/uploads/2023/04/logo-somos-blanco.png" style="width:200px; margin-bottom:40px;">
+    <h2 style="font-size: 22px; margin-bottom: 30px; font-weight: 400; letter-spacing: -0.5px;">Selecciona tu perfil de soporte</h2>
+    <div style="display: flex;">
+        <button class="btn-choice btn-n1" onclick="setNivel('n1')">Soporte N1</button>
+        <button class="btn-choice btn-n2" onclick="setNivel('n2')">Especializado N2</button>
+    </div>
+</div>
 <aside class="sidebar">
     <div class="flex items-center gap-3 mb-12">
         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
@@ -108,7 +129,88 @@
         <div id="app" class="max-w-2xl mx-auto"></div>
     </div>
 </main>
+<script>
+// 1. LÓGICA DE ACCESO (Selección N1 o N2)
+function setNivel(nivel) {
+    const screen = document.getElementById('welcome-screen');
+    const menuN1 = document.getElementById('groupN1')?.previousElementSibling;
+    const listN1 = document.getElementById('groupN1');
+    const menuN2 = document.getElementById('groupN2')?.previousElementSibling;
+    const listN2 = document.getElementById('groupN2');
+    const separator = document.querySelector('.area-separator');
 
+    if (nivel === 'n1') {
+        if(menuN2) menuN2.style.display = 'none';
+        if(listN2) listN2.style.display = 'none';
+        if(separator) separator.style.display = 'none';
+        cambiarProceso('offline');
+    } else {
+        if(menuN1) menuN1.style.display = 'none';
+        if(listN1) listN1.style.display = 'none';
+        if(separator) separator.style.display = 'none';
+        if(listN2) listN2.classList.add('open');
+        cambiarProceso('n2');
+    }
+
+    screen.style.transition = 'all 0.6s ease';
+    screen.style.opacity = '0';
+    setTimeout(() => screen.remove(), 600);
+}
+
+// 2. FUNCIONES DE NAVEGACIÓN
+function cambiarProceso(proc) {
+    procesoActual = proc;
+    pasoActual = 0;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const idMap = { offline: 'navOffline', bajas: 'navBajas', n2: 'navN2', bajasN2: 'navBajasN2' };
+    document.getElementById(idMap[proc])?.classList.add('active');
+    render();
+}
+
+function setEquipo(eq) {
+    equipoActual = eq;
+    pasoActual = 0;
+    document.getElementById('btnPhantom').className = eq === 'phantom' ? 'active' : '';
+    document.getElementById('btnVilo').className = eq === 'vilo' ? 'active' : '';
+    render();
+}
+
+function toggleMenu(id, header) {
+    const group = document.getElementById(id);
+    const arrow = header.querySelector('.arrow-icon');
+    group.classList.toggle('open');
+    if(arrow) arrow.classList.toggle('rotate');
+}
+
+function render() {
+    const pasos = DATA[procesoActual][equipoActual];
+    const paso = pasos[pasoActual];
+    
+    // Render de botones (pills)
+    document.getElementById('pillsContainer').innerHTML = pasos.map((p, idx) => `
+        <button class="${idx === pasoActual ? 'active' : ''}" onclick="pasoActual=${idx}; render();">${p.pill}</button>
+    `).join('');
+
+    // Render de contenido
+    document.getElementById('app').innerHTML = `
+        <div class="block">
+            <span class="tag">${paso.tag}</span>
+            <h3>${paso.title}</h3>
+            <div>${paso.html}</div>
+        </div>
+    `;
+}
+
+// Inicialización de variables globales
+let procesoActual = 'offline';
+let equipoActual = 'phantom';
+let pasoActual = 0;
+
+// Render inicial
+render();
+</script>
+</body>
+</html>
 <script>
 const DATA = {
     offline: {
