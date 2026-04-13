@@ -473,6 +473,35 @@ function irAPaso(i) {
     }
 
     window.onload = render;
+   // --- LÓGICA DE ADMINISTRADORA ABSOLUTA ---
+
+function inicializarSeguridad() {
+    // 1. Leemos la URL buscando el parámetro ?area=
+    const parametros = new URLSearchParams(window.location.search);
+    const miArea = parametros.get('area');
+
+    // 2. Referencias a los elementos de N2
+    // Ajusta estos IDs si en tu HTML tienen nombres distintos
+    const grupoN2 = document.getElementById('groupN2');
+    const headerN2 = grupoN2?.previousElementSibling; 
+    const navN2 = document.getElementById('navN2');
+    const navBajasN2 = document.getElementById('navBajasN2');
+
+    // 3. RESTRICCIÓN: Si no es N2, ocultamos todo lo avanzado
+    if (miArea !== 'n2') {
+        if(grupoN2) grupoN2.style.display = 'none';
+        if(headerN2) headerN2.style.display = 'none';
+        if(navN2) navN2.style.display = 'none';
+        if(navBajasN2) navBajasN2.style.display = 'none';
+        
+        console.log("🔒 Modo SAC (N1) Activo: Funciones de N2 restringidas.");
+    } else {
+        console.log("🔓 Modo Administradora Activo: Acceso total concedido.");
+    }
+}
+
+// Ejecutamos la seguridad apenas cargue la página
+document.addEventListener('DOMContentLoaded', inicializarSeguridad);
 </script>
 </body>
 </html>
