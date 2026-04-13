@@ -121,8 +121,8 @@
 </aside>
 <main class="main-content">
     <div class="selector">
-        <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
-        <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
+        <button class="btn-n1" onclick="setNivel('n1')">SOPORTE N1</button>
+        <button class="btn-n2" onclick="setNivel('n2')">ESPECIALIZADO N2</button>
     </div>
     <div id="pillsContainer" class="menu"></div>
     <div class="flex-1 p-10 overflow-y-auto">
@@ -130,40 +130,49 @@
     </div>
 </main>
 <script>
-// 1. LÓGICA DE ACCESO (Selección N1 o N2)
+// 1. TUS DATOS (La info que quieres que se vea)
+const DATA = {
+    offline: {
+        phantom: [{ pill: "Validación", title: "🔍 Router Offline", tag: "N1", html: `<div class="item">Verifique que el servicio no esté suspendido por falta de pago.</div>` }],
+        vilo: [{ pill: "Validación", title: "🔍 Router Offline", tag: "N1", html: `<div class="item">Verifique pagos y fallas masivas en Vilo.</div>` }]
+    },
+    bajas: {
+        phantom: [{ pill: "Inicio", title: "📉 Bajas Velocidades", tag: "N1", html: `<div class="item">Test de velocidad en servidor SOMOS.</div>` }],
+        vilo: [{ pill: "Inicio", title: "📉 Bajas Velocidades", tag: "N1", html: `<div class="item">Validar Firmware en Vilo.</div>` }]
+    },
+    n2: {
+        phantom: [{ pill: "Herramientas", title: "🛠️ N2 - Red", tag: "N2", html: `<div class="item">Revisión EDGE/Winbox.</div>` }],
+        vilo: [{ pill: "Herramientas", title: "🛠️ N2 - Vilo", tag: "N2", html: `<div class="item">Reset y reconfiguración.</div>` }]
+    },
+    bajasN2: {
+        phantom: [{ pill: "Red", title: "📊 Bajas N2", tag: "N2", html: `<div class="item">Errores puerto EDGE.</div>` }],
+        vilo: [{ pill: "Red", title: "📊 Bajas N2", tag: "N2", html: `<div class="item">Pruebas con vecinos.</div>` }]
+    }
+};
+
+let procesoActual = 'offline';
+let equipoActual = 'phantom';
+let pasoActual = 0;
+
+// 2. LÓGICA DE ACCESO
 function setNivel(nivel) {
     const screen = document.getElementById('welcome-screen');
-    const menuN1 = document.getElementById('groupN1')?.previousElementSibling;
-    const listN1 = document.getElementById('groupN1');
-    const menuN2 = document.getElementById('groupN2')?.previousElementSibling;
-    const listN2 = document.getElementById('groupN2');
-    const separator = document.querySelector('.area-separator');
-
     if (nivel === 'n1') {
-        if(menuN2) menuN2.style.display = 'none';
-        if(listN2) listN2.style.display = 'none';
-        if(separator) separator.style.display = 'none';
         cambiarProceso('offline');
     } else {
-        if(menuN1) menuN1.style.display = 'none';
-        if(listN1) listN1.style.display = 'none';
-        if(separator) separator.style.display = 'none';
-        if(listN2) listN2.classList.add('open');
         cambiarProceso('n2');
+        document.getElementById('groupN2')?.classList.add('open');
     }
-
-    screen.style.transition = 'all 0.6s ease';
-    screen.style.opacity = '0';
-    setTimeout(() => screen.remove(), 600);
+    // Animación para desaparecer la pantalla
+    if(screen) {
+        screen.style.opacity = '0';
+        setTimeout(() => screen.remove(), 500);
+    }
 }
 
-// 2. FUNCIONES DE NAVEGACIÓN
 function cambiarProceso(proc) {
     procesoActual = proc;
     pasoActual = 0;
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    const idMap = { offline: 'navOffline', bajas: 'navBajas', n2: 'navN2', bajasN2: 'navBajasN2' };
-    document.getElementById(idMap[proc])?.classList.add('active');
     render();
 }
 
@@ -175,23 +184,16 @@ function setEquipo(eq) {
     render();
 }
 
-function toggleMenu(id, header) {
-    const group = document.getElementById(id);
-    const arrow = header.querySelector('.arrow-icon');
-    group.classList.toggle('open');
-    if(arrow) arrow.classList.toggle('rotate');
-}
-
 function render() {
     const pasos = DATA[procesoActual][equipoActual];
     const paso = pasos[pasoActual];
     
-    // Render de botones (pills)
+    // Dibujar botones superiores
     document.getElementById('pillsContainer').innerHTML = pasos.map((p, idx) => `
         <button class="${idx === pasoActual ? 'active' : ''}" onclick="pasoActual=${idx}; render();">${p.pill}</button>
     `).join('');
 
-    // Render de contenido
+    // Dibujar el contenido principal
     document.getElementById('app').innerHTML = `
         <div class="block">
             <span class="tag">${paso.tag}</span>
@@ -201,12 +203,7 @@ function render() {
     `;
 }
 
-// Inicialización de variables globales
-let procesoActual = 'offline';
-let equipoActual = 'phantom';
-let pasoActual = 0;
-
-// Render inicial
+// Iniciar render por defecto
 render();
 </script>
 </body>
