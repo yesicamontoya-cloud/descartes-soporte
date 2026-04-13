@@ -327,6 +327,57 @@ const DATA = {
         ]
      }   
     };
+   bajasN2: {
+        phantom: [
+            { 
+                pill: "Herramientas", 
+                title: "🛠️ Descartes con Herramientas", 
+                tag: "Análisis de Red", 
+                html: `<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                       <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                       <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                       <button class="btn" style="background:#3b82f6; margin-top:10px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">📥 Identificar IP (Guía Somos)</button>` 
+            },
+            { 
+                pill: "Usuario", 
+                title: "❓ Descartes por Preguntas", 
+                tag: "Acciones", 
+               html: `<div class="item">• Solicitar al usuario <b>reinicio</b> del equipo.</div>`                     
+            },
+            { 
+                pill: "Resolución", 
+                title: "🚩 Criterio de Resolución", 
+                tag: "Resultado", 
+                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
+                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
+            }
+        ],
+        vilo: [
+            { 
+                pill: "Herramientas", 
+                title: "🛠️ Descartes con Herramientas", 
+                tag: "Análisis de Red", 
+                html: `<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                       <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                       <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                       <button class="btn" style="background:#3b82f6; margin-top:10px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">📥 Identificar IP (Guía Somos)</button>` 
+            },
+            { 
+                pill: "Usuario", 
+                title: "❓ Descartes por Preguntas", 
+                tag: "Acciones", 
+                html: html: `<div class="item">• Solicitar al usuario <b>reinicio forzado</b> del equipo.</div>`                     
+            },
+            { 
+                pill: "Resolución", 
+                title: "🚩 Criterio de Resolución", 
+                tag: "Resultado", 
+                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
+                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
+            }
+        ]
+    }
+    };
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
@@ -342,6 +393,8 @@ function cambiarProceso(proc) {
     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
     document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
     document.getElementById('navN2').classList.toggle('active', proc === 'n2');
+    const navBajasN2 = document.getElementById('navBajasN2');
+    if(navBajasN2) navBajasN2.classList.toggle('active', proc === 'bajasN2');
     render(); 
 }
 
