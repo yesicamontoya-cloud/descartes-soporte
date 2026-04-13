@@ -38,21 +38,7 @@
     .alert-pago { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
     .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
     .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
-#welcome-screen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000000; z-index: 9999; display: flex;
-    flex-direction: column; align-items: center; justify-content: center;
-    color: white; font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.btn-choice {
-    padding: 18px 40px; border-radius: 16px; font-weight: 800;
-    cursor: pointer; transition: all 0.3s; font-size: 14px; 
-    text-transform: uppercase; letter-spacing: 1px;
-}
-.btn-n1 { border: 2px solid #3b82f6; background: transparent; color: #3b82f6; margin-right: 15px; }
-.btn-n1:hover { background: #3b82f6; color: white; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-.btn-n2 { border: 2px solid #f97316; background: transparent; color: #f97316; }
-.btn-n2:hover { background: #f97316; color: white; box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
+
     .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
     .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
    /* Oculta el contenido de las carpetas por defecto */
@@ -78,14 +64,7 @@
 </head>
 
 <body>
-<div id="welcome-screen">
-    <img src="https://somosinternet.com/wp-content/uploads/2023/04/logo-somos-blanco.png" style="width:200px; margin-bottom:40px;">
-    <h2 style="font-size: 22px; margin-bottom: 30px; font-weight: 400; letter-spacing: -0.5px;">Selecciona tu perfil de soporte</h2>
-    <div style="display: flex;">
-        <button class="btn-choice btn-n1" onclick="setNivel('n1')">Soporte N1</button>
-        <button class="btn-choice btn-n2" onclick="setNivel('n2')">Especializado N2</button>
-    </div>
-</div>
+
 <aside class="sidebar">
     <div class="flex items-center gap-3 mb-12">
         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
@@ -121,93 +100,15 @@
 </aside>
 <main class="main-content">
     <div class="selector">
-        <button class="btn-n1" onclick="setNivel('n1')">SOPORTE N1</button>
-        <button class="btn-n2" onclick="setNivel('n2')">ESPECIALIZADO N2</button>
+        <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
+        <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
     </div>
     <div id="pillsContainer" class="menu"></div>
     <div class="flex-1 p-10 overflow-y-auto">
         <div id="app" class="max-w-2xl mx-auto"></div>
     </div>
 </main>
-<script>
-// 1. TUS DATOS (La info que quieres que se vea)
-const DATA = {
-    offline: {
-        phantom: [{ pill: "Validación", title: "🔍 Router Offline", tag: "N1", html: `<div class="item">Verifique que el servicio no esté suspendido por falta de pago.</div>` }],
-        vilo: [{ pill: "Validación", title: "🔍 Router Offline", tag: "N1", html: `<div class="item">Verifique pagos y fallas masivas en Vilo.</div>` }]
-    },
-    bajas: {
-        phantom: [{ pill: "Inicio", title: "📉 Bajas Velocidades", tag: "N1", html: `<div class="item">Test de velocidad en servidor SOMOS.</div>` }],
-        vilo: [{ pill: "Inicio", title: "📉 Bajas Velocidades", tag: "N1", html: `<div class="item">Validar Firmware en Vilo.</div>` }]
-    },
-    n2: {
-        phantom: [{ pill: "Herramientas", title: "🛠️ N2 - Red", tag: "N2", html: `<div class="item">Revisión EDGE/Winbox.</div>` }],
-        vilo: [{ pill: "Herramientas", title: "🛠️ N2 - Vilo", tag: "N2", html: `<div class="item">Reset y reconfiguración.</div>` }]
-    },
-    bajasN2: {
-        phantom: [{ pill: "Red", title: "📊 Bajas N2", tag: "N2", html: `<div class="item">Errores puerto EDGE.</div>` }],
-        vilo: [{ pill: "Red", title: "📊 Bajas N2", tag: "N2", html: `<div class="item">Pruebas con vecinos.</div>` }]
-    }
-};
 
-let procesoActual = 'offline';
-let equipoActual = 'phantom';
-let pasoActual = 0;
-
-// 2. LÓGICA DE ACCESO
-function setNivel(nivel) {
-    const screen = document.getElementById('welcome-screen');
-    if (nivel === 'n1') {
-        cambiarProceso('offline');
-    } else {
-        cambiarProceso('n2');
-        document.getElementById('groupN2')?.classList.add('open');
-    }
-    // Animación para desaparecer la pantalla
-    if(screen) {
-        screen.style.opacity = '0';
-        setTimeout(() => screen.remove(), 500);
-    }
-}
-
-function cambiarProceso(proc) {
-    procesoActual = proc;
-    pasoActual = 0;
-    render();
-}
-
-function setEquipo(eq) {
-    equipoActual = eq;
-    pasoActual = 0;
-    document.getElementById('btnPhantom').className = eq === 'phantom' ? 'active' : '';
-    document.getElementById('btnVilo').className = eq === 'vilo' ? 'active' : '';
-    render();
-}
-
-function render() {
-    const pasos = DATA[procesoActual][equipoActual];
-    const paso = pasos[pasoActual];
-    
-    // Dibujar botones superiores
-    document.getElementById('pillsContainer').innerHTML = pasos.map((p, idx) => `
-        <button class="${idx === pasoActual ? 'active' : ''}" onclick="pasoActual=${idx}; render();">${p.pill}</button>
-    `).join('');
-
-    // Dibujar el contenido principal
-    document.getElementById('app').innerHTML = `
-        <div class="block">
-            <span class="tag">${paso.tag}</span>
-            <h3>${paso.title}</h3>
-            <div>${paso.html}</div>
-        </div>
-    `;
-}
-
-// Iniciar render por defecto
-render();
-</script>
-</body>
-</html>
 <script>
 const DATA = {
     offline: {
@@ -581,3 +482,7 @@ function irAPaso(i) {
 
       
  
+ 
+              
+                 
+              
