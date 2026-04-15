@@ -227,21 +227,21 @@ const DATA = {
                 html: `
                     <div class="item">•Solicitar test de velocidad en red 5G usando el servidor de SOMOS (https://www.speedtest.net/)</div>
                     <div class="item">• Validar que el servidor sea "Somos Internet" (con IP visible).</div>
-                    <div class="item">• Validar resultados en varios dispositivos</div>
-                    <div class="item">• Solicitar captura completa donde se evidencie el tipo de conexión (WiFi o LAN).</div>
-                    <div class="item">• Preferir test por cable (LAN) conectado al router principal</div>
                     <div class="item">• Confirmar que NO tenga VPN activa</div>
-                    <div class="item">• Separar redes 2.4 GHz y 5 GHz (si no están separadas)</div>
-                    <div class="item">• Validar cantidad de equipos conectados</div>
-                    <div class="item">• Evaluar condiciones del entorno (muros, interferencias)</div>
-                    <div class="item">• Validar distancia del dispositivo al router</div>
-                    <div class="item">• Verificar que el firmware este actualizado (Firmware Upgrade)</div>
-                    <div class="nota-box"><b>Nota:</b> dispositivos de domótica consumen poca velocidad</div>
-                    <div class="item">• Realizar test por cable (LAN) desde el router principal</div>
+                    <div class="item">• Validar resultados en varios dispositivos para descartar falla de un equipo único</div>
+                    <div class="item">• Solicitar test de velocidad, priorizando conexión por cable (LAN) directo al router principal</div>
+                    <div class="item">• Solicitar captura completa del Speedtest (debe verse la barra de tareas para confirmar si la conexión es por WiFi o LAN).</div>
                     <div class="item">• Si la velocidad no supera 100 Mbps, revisar la tarjeta de red del equipo del usuario</div>
                     <div class="item">• Validar la categoría del cable de red (confirmar si fue instalado por el técnico; en caso contrario, verificar que sea categoría 5e o superior) </div>
+                    <div class="item">• Evaluar condiciones del entorno (muros, interferencias) y distancia del dispositivo al router)</div>
+                    <div class="item">• Separar redes 2.4 GHz y 5 GHz (si no están separadas)</div>
+                    <div class="item">• Validar cantidad de equipos conectados</div> 
+                    <div class="nota-box"><b>Nota:</b> dispositivos de domótica consumen poca velocidad</div>
+                    <div class="item">• Verificar que el firmware este actualizado (Firmware Upgrade)</div>                
                    <div class="nota-box"><b>💡 Condicional:</b> Solo si se detecta saturación, solicitar cambio de canales por el grupo de Soporte Calidad.</div>` 
-            },    
+            },                    
+                                      
+              
            { 
                 pill: "Resultado", 
                 title: "📉 Bajas Velocidades", 
