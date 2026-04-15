@@ -270,43 +270,31 @@ const DATA = {
             }
         ]
     },
-   "piloto-fx": [
-    { 
-        pill: "Guía FX", 
-        title: "🚀 Piloto Fiber X (Vera T4)", 
-        tag: "Nueva Tecnología", 
-        html: `
-            <div class="alert-pago" style="background:#f0f9ff; border-color:#0ea5e9; color:#0c4a6e; margin-bottom:15px; padding:10px; border-radius:8px;">
-                <b>⚠️ SOLO PILOTO (10 USUARIOS):</b> Identificar por etiqueta "Fiber X" en sistema. El site puede verse INACTIVO, es un comportamiento esperado.
-            </div>
-
-            <div class="item"><b>🔌 Conexión Física:</b> Fibra directa al apartamento → Media Converter → Cable UTP → Router Phantom.</div>
-
-            <div class="item"><b>🚦 Estado de LEDs (Media Converter):</b></div>
-            <div style="display: flex; gap: 10px; margin: 10px 0;">
-                <div style="flex: 1; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #bbf7d0;">
-                    <small><b>Lado Izquierdo (Fibra)</b></small><br>
-                    • FX: ON (Verde)<br>
-                    • TX: ON (Verde)<br>
-                    • RX: ON (Verde)<br>
-                    <span style="color:#166534; font-weight:bold;">✔ OK</span>
+    "piloto-fx": [
+        { 
+            pill: "Guía FX", 
+            title: "🚀 Piloto Fiber X (Vera T4)", 
+            tag: "Nueva Tecnología", 
+            html: `
+                <div class="alert-pago" style="background:#f0f9ff; border-color:#0ea5e9; color:#0c4a6e; margin-bottom:15px; padding:10px; border-radius:8px;">
+                    <b>⚠️ SOLO PILOTO (10 USUARIOS):</b> Identificar por etiqueta "Fiber X" en sistema. El site puede verse INACTIVO, es normal.
                 </div>
-                <div style="flex: 1; background: #fff1f2; padding: 10px; border-radius: 8px; border: 1px solid #fecaca;">
-                    <small><b>Lado Derecho (UTP)</b></small><br>
-                    • LINK/ACT: Parpadeo<br>
-                    • <b>LED 100: APAGADO</b><br>
-                    <span style="color:#991b1b; font-weight:bold;">✖ Si enciende: 100Mb</span>
-                </div>
-            </div>
-
-            <div class="nota-box" style="margin-top:15px; background:#fffbeb; border-color:#f59e0b;">
-                <b>💡 Resumen para el agente:</b><br>
-                1. 3 LEDs izquierda encendidos = Fibra OK.<br>
-                2. LED 100 apagado = Negociación correcta a 1G.<br>
-                3. Si el LED 100 está prendido, la velocidad estará limitada a 100Mbps.
-            </div>` 
-    }
-],
+                <div class="item"><b>🔌 Conexión Física:</b> Fibra directa al apto → Media Converter → Cable UTP → Router.</div>
+                <div class="item"><b>🚦 Estado de LEDs (Media Converter):</b></div>
+                <div style="display: flex; gap: 10px; margin: 10px 0;">
+                    <div style="flex: 1; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #bbf7d0;">
+                        <small><b>Lado Izquierdo (Fibra)</b></small><br>
+                        • FX/TX/RX: ON (Verde)<br>
+                        <span style="color:#166534; font-weight:bold;">✔ OK</span>
+                    </div>
+                    <div style="flex: 1; background: #fff1f2; padding: 10px; border-radius: 8px; border: 1px solid #fecaca;">
+                        <small><b>Lado Derecho (UTP)</b></small><br>
+                        • <b>LED 100: APAGADO</b><br>
+                        <span style="color:#991b1b; font-weight:bold;">✖ Si enciende: 100Mb</span>
+                    </div>
+                </div>` 
+        }
+    ],
 
     n2: {
         phantom: [
