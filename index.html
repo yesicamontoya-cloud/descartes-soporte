@@ -277,55 +277,74 @@ const DATA = {
             title: "🚀 Piloto Fiber X (Vera T4)", 
             tag: "Nueva Tecnología", 
             html: `
-                <div class="alert-falla" style="background:#eff6ff; border-left:4px solid #3b82f6; color:#1e40af; margin-bottom:20px;">
-                    <b>🔍 IDENTIFICACIÓN:</b> Solo 10 usuarios con etiqueta <b>"Fiber X"</b>. 
-                    <br><small>El site puede aparecer INACTIVO (Comportamiento normal en piloto).</small>
+                <div style="background:linear-gradient(135deg, #eff6ff 0%, #dbebff 100%); border-left:5px solid #3b82f6; color:#1e40af; padding:15px; border-radius:12px; margin-bottom:20px; box-shadow:0 4px 12px rgba(59,130,246,0.15);">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-info-circle style="font-size:20px;"></i>
+                        <b style="font-size:14px;">PASO 1: Identificación del Cliente</b>
+                    </div>
+                    <div class="item" style="margin-top:8px; color:#1e40af; font-size:12px;">Validar etiqueta <b>"Fiber X"</b> en Inventory/Radius. <br>Es NORMAL si el site aparece <b>INACTIVO</b>. No escalar por esto.</div>
                 </div>
 
-                <div class="item" style="margin-bottom:15px"><b>📸 Referencia de Instalación en Sitio:</b></div>
-                <div style="background:#f8fafc; padding:10px; border-radius:15px; border:1px solid #e2e8f0; text-align:center; margin-bottom:20px;">
-                    <img src="https://i.ibb.co/v4m0YvS/IMG-2749.jpg" style="width:100%; border-radius:10px; max-height:250px; object-fit:cover;">
-                    <p style="font-size:11px; color:#64748b; margin-top:8px;">Fibra → Media Converter → Router Phantom</p>
-                </div>
-
-                <div class="item"><b>🚦 Diagnóstico por LEDs (Media Converter):</b></div>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;">
-                    <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:15px; border-radius:16px;">
-                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-                            <div style="width:12px; height:12px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e;"></div>
-                            <b style="color:#166534; font-size:12px;">LADO FIBRA (Izquierda)</b>
+                <div class="item" style="margin-bottom:15px; font-weight:800; color:#0f172a; font-size:14px; letter-spacing:-0.5px;">PASO 2: Diagnóstico Visual de LEDs (Media Converter)</div>
+                
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:20px;">
+                    
+                    <div style="border:2px solid #22c55e; border-radius:16px; overflow:hidden; background:#f0fdf4; box-shadow:0 10px 15px -3px rgba(34,197,94,0.1);">
+                        <div style="position:relative;">
+                            <img src="https://i.ibb.co/VtxS8N6/iz.png" style="width:100%; height:160px; object-fit:cover;">
+                            <div style="position:absolute; top:10px; left:10px; background:#22c55e; color:white; padding:4px 10px; border-radius:99px; font-size:10px; font-weight:800;">FOTO REFERENCIA</div>
                         </div>
-                        <div class="item" style="font-size:11px;">• <b>FX / TX / RX:</b> ENCENDIDOS</div>
-                        <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:10px; text-align:center;">
-                            <span style="color:#166534; font-weight:800; font-size:12px;">✔ FIBRA OK</span>
+                        <div style="padding:15px;">
+                            <b style="color:#166534; font-size:13px; display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                                <i class="fas fa-arrow-left"></i> LADO FFX (Fibra)
+                            </b>
+                            <div style="font-size:12px; line-height:1.5; color:#166534; background:white; padding:10px; border-radius:8px; border:1px solid #bbf7d0;">
+                                • FX: 🟢 <b>ON</b> (Verde)<br>
+                                • TX: 🟢 <b>ON</b> (Verde)<br>
+                                • RX: 🟢 <b>ON</b> (Verde)
+                            </div>
+                            <div style="margin-top:10px; background:#22c55e; color:white; font-size:11px; text-align:center; padding:6px; border-radius:8px; font-weight:800;">
+                                <i class="fas fa-check-circle"></i> LOS 3 DEBEN ESTAR PRENDIDOS
+                            </div>
                         </div>
                     </div>
 
-                    <div style="background:#fff1f2; border:1px solid #fecaca; padding:15px; border-radius:16px;">
-                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-                            <div style="width:12px; height:12px; background:#ef4444; border-radius:50%; box-shadow:0 0 8px #ef4444;"></div>
-                            <b style="color:#991b1b; font-size:12px;">LADO UTP (Derecha)</b>
+                    <div style="border:2px solid #ef4444; border-radius:16px; overflow:hidden; background:#fff1f2; box-shadow:0 10px 15px -3px rgba(239,68,68,0.1);">
+                        <div style="position:relative;">
+                            <img src="https://i.ibb.co/8bN95N6/dr.png" style="width:100%; height:160px; object-fit:cover;">
+                            <div style="position:absolute; top:10px; right:10px; background:#ef4444; color:white; padding:4px 10px; border-radius:99px; font-size:10px; font-weight:800;">FOTO REFERENCIA</div>
                         </div>
-                        <div class="item" style="font-size:11px;">• <b>LED 100:</b> <span style="background:#000; color:#fff; padding:2px 6px; border-radius:4px;">DEBE ESTAR APAGADO</span></div>
-                        <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:10px; text-align:center;">
-                            <span style="color:#991b1b; font-weight:800; font-size:10px;">✖ SI ENCIENDE = ERROR 100Mb</span>
+                        <div style="padding:15px;">
+                            <b style="color:#991b1b; font-size:13px; display:flex; align-items:center; gap:6px; margin-bottom:8px; justify-content:flex-end;">
+                                LADO UTP (100) <i class="fas fa-arrow-right"></i>
+                            </b>
+                            <div style="font-size:12px; line-height:1.5; color:#991b1b; background:white; padding:10px; border-radius:8px; border:1px solid #fecaca;">
+                                • LINK/ACT: 🟢 Parpadeo<br>
+                                • <b>LED 100: ⚫ APAGADO</b>
+                            </div>
+                            <div style="margin-top:10px; background:#ef4444; color:white; font-size:11px; text-align:center; padding:6px; border-radius:8px; font-weight:800;">
+                                <i class="fas fa-exclamation-triangle"></i> SI EL "100" PRENDE, HAY FALLA
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-                <div class="item" style="margin-top:20px;"><b>💡 Vista Detallada de LEDs Correctos:</b></div>
-                <div style="margin-top:10px; border-radius:15px; overflow:hidden; border:1px solid #e2e8f0;">
-                    <img src="https://i.ibb.co/m0fXmP0/IMG-4983.jpg" style="width:100%;">
-                </div>
-
-                <div class="nota-box" style="margin-top:20px;">
-                    <b>⚠️ IMPORTANTE:</b> Si el LED 100 está encendido, el Media Converter negoció a 100Mbps. Validar cable UTP categoría 5E o superior.
+                <div class=" nota-box" style="margin-top:20px; border-left:4px solid #0f172a; background:#f1f5f9; color:#0f172a; padding:15px; border-radius:12px;">
+                    <b style="font-size:13px; display:flex; align-items:center; gap:8px;">
+                        <i class="fas fa-clipboard-check text-blue-500"></i> RESUMEN CLAVE PARA ESCALAR (N2):
+                    </b>
+                    <ul style="margin-top:8px; padding-left:18px; font-size:12px; line-height:1.6;">
+                        <li>El único LED que <b>DEBE estar APAGADO</b> es el '100'.</li>
+                        <li>Si el <b>LED 100 está encendido (Verde)</b>, el Media Converter negoció mal a 100Mbps. El cliente reportará lentitud.</li>
+                        <li>Antes de escalar por lentitud con LEDs OK, validar categoría del cable UTP (mínimo 5E).</li>
+                    </ul>
                 </div>
             ` 
         }
     ],
     vilo: [
-        { pill: "Guía FX", title: "🚀 Piloto Fiber X (Vera T4)", tag: "Nueva Tecnología", html: `<div class="item">Validación idéntica al Phantom. Verificar que el cable del Media Converter entre al puerto WAN del Vilo.</div>` }
+        { pill: "Guía FX", title: "🚀 Piloto Fiber X (Vera T4)", tag: "Nueva Tecnología", html: `<div class="item">La validación visual de LEDs en el Media Converter es IDÉNTICA. Asegurar que el cable UTP del converter llegue al puerto WAN del Vilo.</div>` }
     ]
 },
     n2: {
