@@ -274,59 +274,59 @@ const DATA = {
     phantom: [
         { 
             pill: "Guía FX", 
-            title: "🚀 Implementación Piloto FX – Site: Distrito Vera Torre 4", 
+            title: "🚀 Piloto Fiber X (Vera T4)", 
             tag: "Nueva Tecnología", 
             html: `
-                <div class="alert-pago" style="background:#f0f9ff; border-left:4px solid #0ea5e9; color:#0c4a6e; margin-bottom:20px;">
-                    <b>⚠️ IDENTIFICACIÓN:</b> Aplica solo para 10 usuarios (Con Etiqueta "Fiber X"). 
-                    El site puede verse <b>INACTIVO</b>, es normal en este piloto.
+                <div class="alert-pago" style="background:#f0f9ff; border-left:4px solid #0ea5e9; color:#0c4a6e; margin-bottom:20px; padding:15px; border-radius:12px;">
+                    <b>⚠️ IDENTIFICACIÓN:</b> Solo 10 usuarios. Etiqueta <b>"Fiber X"</b> en sistema. 
+                    El site puede verse <b>INACTIVO</b>, es un comportamiento esperado.
                 </div>
-
-                <div class="item" style="margin-bottom:15px; font-weight:800;">🔍 Diagnóstico por Media Converter:</div>
 
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
                     
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden;">
-                        <img src="https://i.ibb.co/VtxS8N6/iz.png" style="width:100%; height:180px; object-fit:cover;">
-                        <div style="padding:12px;">
+                    <div style="background:#f8fafc; border:2px solid #22c55e; border-radius:12px; overflow:hidden; display:flex; flex-direction:column;">
+                        <img src="https://i.postimg.cc/x8m3kP8J/IMG-2749-1.jpg" style="width:100%; height:180px; object-fit:cover;">
+                        <div style="padding:12px; flex-grow:1;">
                             <b style="color:#166534; font-size:13px; display:block; margin-bottom:5px;">⬅️ LADO IZQ (Puerto FX)</b>
                             <p style="font-size:12px; color:#475569; line-height:1.4;">
-                                Corresponde al puerto de <b>fibra óptica</b>. Los 3 LEDs deben estar encendidos:
+                                Corresponde al puerto de <b>fibra óptica</b>. Los tres LEDs deben permanecer encendidos:
                             </p>
-                            <div style="margin-top:8px; background:#f0fdf4; border:1px solid #bbf7d0; padding:8px; border-radius:6px; color:#166534; font-weight:700; font-size:11px;">
-                                FX: 🟢 ON | TX: 🟢 ON | RX: 🟢 ON
+                            <div style="margin-top:8px; background:#f0fdf4; border:1px solid #bbf7d0; padding:8px; border-radius:6px; color:#166534; font-weight:700; font-size:11px; text-align:center;">
+                                FX: 🟢 | TX: 🟢 | RX: 🟢
                             </div>
                         </div>
                     </div>
 
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden;">
-                        <img src="https://i.ibb.co/8bN95N6/dr.png" style="width:100%; height:180px; object-fit:cover;">
-                        <div style="padding:12px;">
-                            <b style="color:#991b1b; font-size:13px; display:block; margin-bottom:5px;">➡️ LADO DER (Puerto UTP)</b>
+                    <div style="background:#f8fafc; border:2px solid #64748b; border-radius:12px; overflow:hidden; display:flex; flex-direction:column;">
+                        <img src="https://i.postimg.cc/WzZwD7zk/IMG-4983-2.jpg" style="width:100%; height:180px; object-fit:cover;">
+                        <div style="padding:12px; flex-grow:1;">
+                            <b style="color:#1e293b; font-size:13px; display:block; margin-bottom:5px;">➡️ LADO DER (Puerto UTP)</b>
                             <p style="font-size:12px; color:#475569; line-height:1.4;">
-                                Conexión al router. El LED <b>"100"</b> indica mala negociación:
+                                Indica la negociación con el router. El LED <b>TX 100</b> es la clave del diagnóstico:
                             </p>
-                            <div style="margin-top:8px; background:#fff1f2; border:1px solid #fecaca; padding:8px; border-radius:6px; color:#991b1b; font-weight:700; font-size:11px;">
-                                LINK/ACT: 🟢 Parpadeo<br>
-                                LED 100: ⚫ APAGADO (Correcto)
+                            <div style="margin-top:8px; background:#f1f5f9; border:1px solid #cbd5e1; padding:8px; border-radius:6px; color:#0f172a; font-weight:700; font-size:11px;">
+                                • LINK/ACT: 🟢 Parpadeo<br>
+                                • <b>TX 100: ⚫ APAGADO (Correcto)</b>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="nota-box" style="margin-top:20px; background:#fffbeb; border-color:#f59e0b;">
-                    <b>💡 Resumen Crítico para el Agente:</b><br>
-                    1. <b>Lado Fibra (FX):</b> Los 3 LEDs deben estar siempre 🟢 <b>Encendidos</b>.<br>
-                    2. <b>Lado UTP:</b> El LED 100 es el único que debe estar ⚫ <b>Apagado</b>.<br>
-                    <div style="margin-top:8px; color:#b45309; font-size:11px;">
-                        ⚠️ <i>Si el LED "100" enciende, el puerto está limitando la velocidad a 100 Megas.</i>
-                    </div>
+                <div class="nota-box" style="margin-top:20px; background:#fff1f2; border-left:4px solid #ef4444; color:#991b1b; padding:15px;">
+                    <b>🚨 ANÁLISIS DE LENTITUD:</b><br>
+                    Si el LED <b>TX 100</b> está encendido, el puerto está negociando a <b>100 Megas</b>.<br><br>
+                    Normalmente debe estar <b>APAGADO</b> y es el único que debe permanecer en ese estado para garantizar la velocidad del Plan.
                 </div>
             ` 
         }
     ],
     vilo: [
-        { pill: "Guía FX", title: "🚀 Piloto Fiber X (Vera T4)", tag: "Nueva Tecnología", html: `<div class="item">Mismo procedimiento. Asegurar que el cable UTP del Media Converter entre al puerto WAN del Vilo.</div>` }
+        { 
+            pill: "Guía FX", 
+            title: "🚀 Piloto Fiber X", 
+            tag: "Vilo", 
+            html: `<div class="item">La validación de LEDs es idéntica. Confirmar que el cable UTP proveniente del Media Converter esté conectado al puerto WAN del router Vilo.</div>` 
+        }
     ]
 },
     n2: {
