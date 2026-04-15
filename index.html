@@ -270,37 +270,64 @@ const DATA = {
             }
         ]
     },
-   "piloto-fx": {
-        phantom: [
-            { 
-                pill: "Guía FX", 
-                title: "🚀 Piloto Fiber X (Vera T4)", 
-                tag: "Nueva Tecnología", 
-                html: `
-                    <div class="alert-pago" style="background:#f0f9ff; border-color:#0ea5e9; color:#0c4a6e; margin-bottom:15px; padding:10px; border-radius:8px;">
-                        <b>⚠️ SOLO PILOTO (10 USUARIOS):</b> Identificar por etiqueta "Fiber X". El site puede verse INACTIVO, es normal.
-                    </div>
-                    <div class="item"><b>🔌 Conexión:</b> Fibra directa → Media Converter → Router Phantom.</div>
-                    <div style="display: flex; gap: 10px; margin: 10px 0;">
-                        <div style="flex: 1; background: #f0fdf4; padding: 10px; border: 1px solid #bbf7d0; border-radius: 8px;">
-                            <small><b>Lado Fibra</b></small><br>FX/TX/RX: 🟢 ON
-                        </div>
-                        <div style="flex: 1; background: #fff1f2; padding: 10px; border: 1px solid #fecaca; border-radius: 8px;">
-                            <small><b>Lado UTP</b></small><br>LED 100: ⚫ OFF
-                        </div>
-                    </div>` 
-            }
-        ],
-        vilo: [
-            { 
-                pill: "Guía FX", 
-                title: "🚀 Piloto Fiber X (Vera T4)", 
-                tag: "Nueva Tecnología", 
-                html: `<div class="item">Misma validación: Revisar Media Converter. El router Vilo debe recibir el internet por el puerto WAN.</div>` 
-            }
-        ]
-    }, // Asegúrate de que esta coma final exista si hay más procesos abajo (como n2)
+  "piloto-fx": {
+    phantom: [
+        { 
+            pill: "Guía FX", 
+            title: "🚀 Piloto Fiber X (Vera T4)", 
+            tag: "Nueva Tecnología", 
+            html: `
+                <div class="alert-falla" style="background:#eff6ff; border-left:4px solid #3b82f6; color:#1e40af; margin-bottom:20px;">
+                    <b>🔍 IDENTIFICACIÓN:</b> Solo 10 usuarios con etiqueta <b>"Fiber X"</b>. 
+                    <br><small>El site puede aparecer INACTIVO (Comportamiento normal en piloto).</small>
+                </div>
 
+                <div class="item" style="margin-bottom:15px"><b>📸 Referencia de Instalación en Sitio:</b></div>
+                <div style="background:#f8fafc; padding:10px; border-radius:15px; border:1px solid #e2e8f0; text-align:center; margin-bottom:20px;">
+                    <img src="https://i.ibb.co/v4m0YvS/IMG-2749.jpg" style="width:100%; border-radius:10px; max-height:250px; object-fit:cover;">
+                    <p style="font-size:11px; color:#64748b; margin-top:8px;">Fibra → Media Converter → Router Phantom</p>
+                </div>
+
+                <div class="item"><b>🚦 Diagnóstico por LEDs (Media Converter):</b></div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;">
+                    <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:15px; border-radius:16px;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                            <div style="width:12px; height:12px; background:#22c55e; border-radius:50%; box-shadow:0 0 8px #22c55e;"></div>
+                            <b style="color:#166534; font-size:12px;">LADO FIBRA (Izquierda)</b>
+                        </div>
+                        <div class="item" style="font-size:11px;">• <b>FX / TX / RX:</b> ENCENDIDOS</div>
+                        <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:10px; text-align:center;">
+                            <span style="color:#166534; font-weight:800; font-size:12px;">✔ FIBRA OK</span>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff1f2; border:1px solid #fecaca; padding:15px; border-radius:16px;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                            <div style="width:12px; height:12px; background:#ef4444; border-radius:50%; box-shadow:0 0 8px #ef4444;"></div>
+                            <b style="color:#991b1b; font-size:12px;">LADO UTP (Derecha)</b>
+                        </div>
+                        <div class="item" style="font-size:11px;">• <b>LED 100:</b> <span style="background:#000; color:#fff; padding:2px 6px; border-radius:4px;">DEBE ESTAR APAGADO</span></div>
+                        <div style="background:#ffffff; padding:8px; border-radius:8px; margin-top:10px; text-align:center;">
+                            <span style="color:#991b1b; font-weight:800; font-size:10px;">✖ SI ENCIENDE = ERROR 100Mb</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item" style="margin-top:20px;"><b>💡 Vista Detallada de LEDs Correctos:</b></div>
+                <div style="margin-top:10px; border-radius:15px; overflow:hidden; border:1px solid #e2e8f0;">
+                    <img src="https://i.ibb.co/m0fXmP0/IMG-4983.jpg" style="width:100%;">
+                </div>
+
+                <div class="nota-box" style="margin-top:20px;">
+                    <b>⚠️ IMPORTANTE:</b> Si el LED 100 está encendido, el Media Converter negoció a 100Mbps. Validar cable UTP categoría 5E o superior.
+                </div>
+            ` 
+        }
+    ],
+    vilo: [
+        { pill: "Guía FX", title: "🚀 Piloto Fiber X (Vera T4)", tag: "Nueva Tecnología", html: `<div class="item">Validación idéntica al Phantom. Verificar que el cable del Media Converter entre al puerto WAN del Vilo.</div>` }
+    ]
+},
     n2: {
         phantom: [
             { 
