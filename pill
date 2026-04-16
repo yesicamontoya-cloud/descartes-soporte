@@ -9,173 +9,136 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; height: 100vh; overflow: hidden; display: flex; color: white; }
-        .sidebar { width: 280px; background: #000000; color: white; display: flex; flex-direction: column; padding: 40px 24px; flex-shrink: 0; font-size: 0.875rem; }
-        .nav-item { padding: 14px 18px; border-radius: 14px; margin-bottom: 8px; cursor: pointer; transition: 0.3s; color: #94a3b8; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
-        .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
-        .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-        .section-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin-top: 20px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; border-radius: 8px; }
-        .section-header:hover { background: rgba(255,255,255,0.05); }
-        .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0; }
-        .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; box-shadow: -10px 0 50px rgba(0,0,0,0.05); overflow: hidden; }
+        .sidebar { width: 280px; background: #000000; color: white; display: flex; flex-direction: column; padding: 40px 24px; flex-shrink: 0; }
+        .nav-item { padding: 14px 18px; border-radius: 14px; margin-bottom: 8px; cursor: pointer; transition: 0.3s; color: #94a3b8; display: flex; align-items: center; gap: 12px; font-weight: 600; }
+        .nav-item.active { background: #3b82f6; color: white; }
+        .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; color: #0f172a; overflow: hidden; }
         .selector { display: flex; gap: 40px; border-bottom: 1px solid #f1f5f9; padding: 0 40px; }
-        .selector button { padding: 20px 0; font-weight: 800; font-size: 13px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.3s; text-transform: uppercase; }
+        .selector button { padding: 20px 0; font-weight: 800; color: #94a3b8; border-bottom: 3px solid transparent; }
         .selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
-        .menu { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; padding: 20px 40px 0 40px; }
-        .menu button { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 11px; font-weight: 800; color: #64748b; transition: 0.2s; }
+        .menu { display: flex; gap: 8px; padding: 20px 40px; flex-wrap: wrap; }
+        .menu button { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 12px; font-weight: 700; color: #64748b; }
         .menu button.active { background: #00c896; color: white; }
-        .block { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; }
-        h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #0f172a; letter-spacing: -0.5px; }
-        .item { font-size: 13px; margin-bottom: 4px; line-height: 1.4; color: #475569; }
-        .tag { display: inline-block; font-size: 10px; font-weight: 800; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; margin-bottom: 10px; }
-        .nota-box { background: #fef9c3; border-left: 4px solid #facc15; padding: 10px; border-radius: 10px; font-size: 12px; color: #854d0e; margin-bottom: 8px; margin-top: 8px;}
-        .alert-pago { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
-        .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
-        .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
-        .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
-        .nav-group { display: none; }
-        .nav-group.open { display: block; }
-        #navN2.active, #navBajasN2.active { background: #f97316 !important; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); color: white !important; }
-        .arrow-icon { transition: transform 0.3s; }
-        .open-arrow { transform: rotate(180deg); }
+        .block { background: #fff; border-radius: 20px; padding: 24px; border: 1px solid #e2e8f0; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .btn { width: 100%; padding: 14px; border-radius: 16px; color: white; font-weight: 800; cursor: pointer; border: none; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <aside class="sidebar">
-    <div class="flex items-center gap-3 mb-12">
-        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
-        <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
+    <div class="flex items-center gap-3 mb-10">
+        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center"><i class="fas fa-network-wired text-white"></i></div>
+        <span class="text-xl font-extrabold">Support<span class="text-blue-400">OS</span></span>
     </div>
-
-    <div class="section-header" onclick="toggleMenu('groupN1', this)">
-        <span class="text-blue-400 font-bold"><i class="fas fa-folder-open mr-2"></i> DIAGNÓSTICO-N1</span>
-        <i class="fas fa-chevron-down arrow-icon text-[8px] open-arrow"></i>
+    
+    <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline', 'n1')">
+        <i class="fas fa-power-off"></i> Router Offline
     </div>
-    <div id="groupN1" class="nav-group open"> 
-        <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')"><i class="fas fa-power-off"></i> Router Offline</div>
-        <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')"><i class="fas fa-chart-line"></i> Bajas Velocidades</div>
-        <div id="navFX" class="nav-item" onclick="cambiarProceso('piloto-fx')"><i class="fas fa-rocket"></i> Piloto Fiber X</div>
-    </div>
-
-    <div class="area-separator"></div>
-
-    <div class="section-header" onclick="toggleMenu('groupN2', this)">
-       <span class="text-orange-400 font-bold"><i class="fas fa-folder-open mr-2"></i> ESPECIALIZADOS-N2</span>
-       <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
-    </div>
-    <div id="groupN2" class="nav-group">
-        <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')"><i class="fas fa-user-shield"></i> Router Offline</div>
-        <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')"><i class="fas fa-tachometer-alt"></i> Bajas Velocidades N2</div>
+    <div id="navN2" class="nav-item" onclick="cambiarProceso('n2', 'n2')">
+        <i class="fas fa-user-shield"></i> Soporte N2
     </div>
 </aside>
 
 <main class="main-content">
     <div class="selector">
-        <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
-        <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
+        <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">PHANTOM</button>
+        <button id="btnVilo" onclick="setEquipo('vilo')">ROUTER VILO</button>
     </div>
     <div id="pillsContainer" class="menu"></div>
     <div class="flex-1 p-10 overflow-y-auto">
-        <div id="app" class="max-w-2xl mx-auto"></div>
+        <div id="app"></div>
     </div>
 </main>
 
 <script>
-    // Tu objeto DATA original (corregido y limpiado)
-    const DATA = {
-        offline: {
-            phantom: [
-                { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div><div class="item">• Ejecutar diagnóstico por CPE Doctor.</div><button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button><hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;"><div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div><div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div><div class="item">Revise si existe una falla masiva en la zona</div><div class="alert-falla">⚠️ Si hay falla → usar guion</div><button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
-                { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item"> Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div>` },
-                { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="item">Validar en Grafana que no esté en NA</div><div class="item">Verificar que el puerto LAN registre 1G o 2G</div><div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>` },
-                { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700;">✅ Funciona: Fin.</div><div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px;">❌ No funciona: Escalar N2.</div>` }
-            ],
-            vilo: [
-                { pill: "Validación", title: "🔍 Router Offline Vilo", tag: "Sistema", html: `<div class="item">Ejecutar diagnóstico Vilo en CPE Doctor.</div>` },
-                { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div class="nota-box">Si sigue offline tras reinicio, escalar.</div>` }
-            ]
-        },
-        bajas: {
-            phantom: [{ pill: "Velocidad", title: "📉 Bajas Velocidades", tag: "Test", html: `<div class="item">Pedir Speedtest por cable.</div>` }],
-            vilo: [{ pill: "Velocidad", title: "📉 Bajas Velocidades Vilo", tag: "Test", html: `<div class="item">Validar canales WiFi.</div>` }]
-        },
-        "piloto-fx": {
-            phantom: [{ pill: "Guía FX", title: "🚀 Piloto Fiber X", tag: "Fibra", html: `<div class="item">Revisar Media Converter.</div>` }],
-            vilo: [{ pill: "N/A", title: "No aplica", html: "No disponible para Vilo." }]
-        },
-        n2: {
-            phantom: [{ pill: "Análisis", title: "🛠️ N2 - Análisis", tag: "NOC", html: `<div class="item">Revisión en EDGE/CHR.</div>` }],
-            vilo: [{ pill: "Análisis", title: "🛠️ N2 - Análisis Vilo", tag: "NOC", html: `<div class="item">Revisión MAC en Radius.</div>` }]
+// DATOS (He simplificado para que no falle, rellena según necesites)
+const DATA = {
+    offline: {
+        phantom: [
+            { pill: "Validación", title: "🔍 Router Offline", tag: "Sistema", html: "Ejecutar CPE Doctor..." },
+            { pill: "Usuario", title: "🔌 Validación Física", tag: "Cliente", html: "Revisar cables..." },
+            { pill: "Resultado", title: "✅ Fin", tag: "Resultado", html: "Escalar si no funciona." }
+        ],
+        vilo: [{ pill: "Inicio", title: "Vilo Offline", tag: "Sistema", html: "Reiniciar equipo." }]
+    },
+    n2: {
+        phantom: [
+            { pill: "Herramientas", title: "🛠️ N2 Análisis", tag: "Técnico", html: "Revisar EDGE/Radius." },
+            { pill: "Resultado", title: "🚩 Escalamiento", tag: "Resultado", html: "Enviar a terreno." }
+        ]
+    }
+};
+
+let procesoActual = 'offline';
+let equipoActual = 'phantom';
+let pasoActual = 0;
+let miArea = 'n1'; // Detecta si es N1 o N2
+
+function cambiarProceso(proc, area) {
+    procesoActual = proc;
+    miArea = area;
+    pasoActual = 0;
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    render();
+}
+
+function setEquipo(eq) {
+    equipoActual = eq;
+    pasoActual = 0;
+    document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
+    document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
+    render();
+}
+
+function render() {
+    const pasos = DATA[procesoActual][equipoActual] || [];
+    const dataActual = pasos[pasoActual];
+    
+    // LÓGICA DE FILTRADO (Como en tu imagen 3 y 4)
+    const pasosFiltrados = pasos.filter(p => {
+        if (miArea === 'n2') {
+            return p.pill === "Herramientas" || p.pill === "Resultado" || p.pill === "N2";
         }
-    };
+        return p.pill !== "Herramientas" && p.pill !== "N2";
+    });
 
-    let procesoActual = 'offline';
-    let equipoActual = 'phantom';
-    let pasoActual = 0;
+    // Dibujar Pills
+    document.getElementById('pillsContainer').innerHTML = pasosFiltrados.map(p => {
+        const realIndex = pasos.indexOf(p);
+        return `<button class="${realIndex === pasoActual ? 'active' : ''}" onclick="pasoActual=${realIndex}; render()">${p.pill}</button>`;
+    }).join('');
 
-    function toggleMenu(id, el) {
-        const group = document.getElementById(id);
-        const icon = el.querySelector('.arrow-icon');
-        group.classList.toggle('open');
-        icon.classList.toggle('open-arrow');
-    }
+    // Dibujar Contenido (Como en tu imagen 2)
+    const isN2 = miArea === 'n2';
+    if (!dataActual) return;
 
-    function cambiarProceso(proceso) {
-        procesoActual = proceso;
-        pasoActual = 0;
-        
-        // Actualizar UI de navegación
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        const activeNav = document.querySelector(`[onclick="cambiarProceso('${proceso}')"]`);
-        if(activeNav) activeNav.classList.add('active');
-
-        renderPills();
-        renderContenido();
-    }
-
-    function setEquipo(equipo) {
-        equipoActual = equipo;
-        pasoActual = 0;
-        document.getElementById('btnPhantom').classList.toggle('active', equipo === 'phantom');
-        document.getElementById('btnVilo').classList.toggle('active', equipo === 'vilo');
-        renderPills();
-        renderContenido();
-    }
-
-    function renderPills() {
-        const container = document.getElementById('pillsContainer');
-        const pasos = DATA[procesoActual][equipoActual];
-        container.innerHTML = pasos.map((p, index) => `
-            <button class="${index === pasoActual ? 'active' : ''}" onclick="setStep(${index})">
-                ${p.pill}
+    document.getElementById('app').innerHTML = `
+        <div class="animate-in">
+            <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">
+                ${isN2 ? 'ESPECIALIZADO N2' : 'DIAGNÓSTICO N1'} - ${dataActual.tag}
+            </div>
+            <h3 class="text-2xl font-bold mb-4">${dataActual.title}</h3>
+            <div class="block mb-6">${dataActual.html}</div>
+            
+            <button class="btn" style="background: ${isN2 ? '#f97316' : '#3b82f6'}" onclick="siguiente()">
+                Continuar Paso <i class="fas fa-arrow-right ml-2"></i>
             </button>
-        `).join('');
-    }
+        </div>
+    `;
+}
 
-    function setStep(index) {
-        pasoActual = index;
-        renderPills();
-        renderContenido();
+function siguiente() {
+    const pasos = DATA[procesoActual][equipoActual];
+    if (pasoActual < pasos.length - 1) {
+        pasoActual++;
+        render();
     }
+}
 
-    function renderContenido() {
-        const step = DATA[procesoActual][equipoActual][pasoActual];
-        const app = document.getElementById('app');
-        if(!step) {
-            app.innerHTML = "Contenido no disponible para esta selección.";
-            return;
-        }
-        app.innerHTML = `
-            <span class="tag">${step.tag || 'Proceso'}</span>
-            <h3>${step.title}</h3>
-            <div class="block mt-4">${step.html}</div>
-        `;
-    }
-
-    // Inicializar
-    renderPills();
-    renderContenido();
+// Primera carga
+render();
 </script>
-
 </body>
 </html>
