@@ -277,6 +277,21 @@ const DATA = {
             title: "🚀 Piloto Fiber X (Vera T4)", 
             tag: "Nueva Tecnología", 
             html: `
+                <div style="background:#f0f9ff; border-left:4px solid #0ea5e9; padding:15px; border-radius:12px; margin-bottom:20px;">
+                    <b style="color:#0c4a6e; font-size:14px; display:block; margin-bottom:8px;">📢 Implementación Piloto FX – Distrito Vera Torre 4</b>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:11px; color:#0c4a6e;">
+                        <div style="background:rgba(255,255,255,0.5); padding:8px; border-radius:8px;">
+                            <b style="color:#ef4444;">ANTES:</b> Conexión UTP Cat 5E hasta el apto.
+                        </div>
+                        <div style="background:rgba(255,255,255,0.5); padding:8px; border-radius:8px;">
+                            <b style="color:#22c55e;">AHORA:</b> Fibra Óptica directa al apto.
+                        </div>
+                    </div>
+                    <p style="font-size:11px; margin-top:10px; color:#334155; line-height:1.4;">
+                        <b>Flujo:</b> Fibra → Media Converter → UTP → Router Phantom (Puerto WAN).
+                    </p>
+                </div>
+
                 <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">1. Diagnóstico de LEDs (Media Converter)</div>
                 
                 <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:12px; background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:12px; margin-bottom:20px; align-items: center;">
@@ -302,10 +317,9 @@ const DATA = {
                 
                 <div style="background:#f8fafc; border:1px solid #3b82f6; border-radius:12px; overflow:hidden; margin-bottom:20px;">
                     <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; height:auto; display:block;">
-                    <div style="padding:12px;">
-                        <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4;">
-                            Asegurar que el cable UTP proveniente del convertidor ingrese al puerto <b>WAN</b>. 
-                            En el Phantom, validar que el puerto esté negociando correctamente a 1000Mbps.
+                    <div style="padding:10px; background:#eff6ff;">
+                        <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4; text-align:center;">
+                            El cable UTP debe ingresar al puerto <b>WAN</b>. Validar negociación a 1000Mbps.
                         </p>
                     </div>
                 </div>
@@ -315,7 +329,7 @@ const DATA = {
                     <ul style="margin:5px 0 0 0; padding-left:15px; font-size:11px; color:#334155; line-height:1.4;">
                         <li><b>Identificación:</b> Solo 10 usuarios (Etiqueta "Fiber X").</li>
                         <li><b>Estado Site:</b> Puede verse <b>INACTIVO</b> (Comportamiento normal).</li>
-                        <li><b>Dato Clave:</b> El LED 100 es el único que debe estar apagado.</li>
+                        <li><b>Dato Clave:</b> Si el LED 100 prende, el puerto negocia mal (causa de lentitud).</li>
                     </ul>
                 </div>
             ` 
