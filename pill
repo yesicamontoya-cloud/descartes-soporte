@@ -113,6 +113,8 @@
 </main>
 
 <script>
+   const urlParams = new URLSearchParams(window.location.search);
+const miArea = urlParams.get('modo') || 'n1';
 const DATA = {
     offline: {
   phantom: [
@@ -579,9 +581,31 @@ function render() {
     const data = pasos[pasoActual];
     let pillsHtml = '';
     
-    pasos.forEach((p, index) => {
-        pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
-    });
+ // Filtramos los pasos según el área antes de crear los botones
+const pasosFiltrados = pasos.filter(p => {
+    if (miArea === 'n2') {
+        // N2 verá estas 5 pestañas específicas
+        return p.pill === "Herramientas" || 
+               p.pill === "Tecnología" || 
+               p.pill === "Usuario" || 
+               p.pill === "Escalamiento" || 
+               p.pill === "Resultado";
+    } else {
+        // N1 verá todo lo que NO sea de N2
+        return p.pill !== "Herramientas" && 
+               p.pill !== "Tecnología" && 
+               p.pill !== "Escalamiento" && 
+               p.pill !== "N2";
+    }
+
+});
+
+// Ahora dibujamos los botones usando la lista filtrada
+pasosFiltrados.forEach((p, index) => {
+  // Buscamos el índice real dentro de la lista original 'pasos'
+const realIndex = pasos.indexOf(p);
+pillsHtml += `<button class="${realIndex === pasoActual ? 'active' : ''}" onclick="iraPaso(${realIndex})">${p.pill}</button>`;
+});
 
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
