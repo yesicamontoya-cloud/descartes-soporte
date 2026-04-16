@@ -277,63 +277,46 @@ const DATA = {
             title: "🚀 Piloto Fiber X (Vera T4)", 
             tag: "Nueva Tecnología", 
             html: `
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:15px; margin-bottom:20px;">
-                    <div style="display:flex; gap:15px; align-items:center;">
-                        <img src="https://i.postimg.cc/x8m3kP8J/IMG-2749-1.jpg" style="width:130px; border-radius:10px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);">
-                        <div>
-                            <b style="font-size:14px; color:#0f172a;">Media Converter (ONT)</b>
-                            <p style="font-size:12px; color:#475569; margin-top:4px; line-height:1.4;">
-                                Equipo de recepción de <b>Fibra Óptica</b> directa. El cable UTP sale de aquí hacia el puerto WAN del router.
-                            </p>
+                <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">1. Diagnóstico de LEDs (Media Converter)</div>
+                
+                <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:12px; background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:12px; margin-bottom:20px; align-items: center;">
+                    <div style="text-align:center;">
+                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="border-left:3px solid #22c55e; padding-left:10px;">
+                            <b style="font-size:11px; color:#166534; display:block;">IZQUIERDA (FX)</b>
+                            <span style="font-size:10px; color:#475569;">FX, TX, RX:</span><br>
+                            <b style="font-size:10px; color:#166534;">🟢 DEBEN ESTAR PRENDIDOS</b>
+                        </div>
+                        <div style="border-left:3px solid #ef4444; padding-left:10px;">
+                            <b style="font-size:11px; color:#991b1b; display:block;">DERECHA (UTP)</b>
+                            <span style="font-size:10px; color:#475569;">LED 100:</span><br>
+                            <b style="font-size:10px; color:#ef4444;">⚫ DEBE ESTAR APAGADO</b>
                         </div>
                     </div>
                 </div>
 
-                <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:10px; margin-bottom:20px; text-align:center;">
-                    <b style="font-size:12px; color:#475569; display:block; margin-bottom:8px;">🔍 Mapa de LEDs de Referencia:</b>
-                    <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="max-width:100%; height:auto; border-radius:8px; border:1px solid #e2e8f0;">
-                </div>
-
-                <div class="item" style="font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
-                    <span style="background:#3b82f6; color:white; width:20px; height:20px; display:flex; justify-content:center; align-items:center; border-radius:50%; font-size:10px;">2</span>
-                    Identificación de Puertos y LEDs
-                </div>
-
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:20px;">
-                    
-                    <div style="background:#f0fdf4; border:2px solid #22c55e; padding:12px; border-radius:12px; display:flex; flex-direction:column; justify-content:space-between;">
-                        <div>
-                            <b style="color:#166534; font-size:12px; display:block; margin-bottom:5px;">⬅️ LADO FX (Fibra)</b>
-                            <p style="font-size:11px; color:#166534; margin:0;">LEDs: <b>FX, TX, RX</b></p>
-                        </div>
-                        <div style="margin-top:10px; background:#ffffff; color:#166534; text-align:center; border-radius:6px; padding:6px; font-weight:800; font-size:10px; border:1px solid #22c55e;">
-                            LOS 3 ENCENDIDOS
-                        </div>
-                    </div>
-
-                    <div style="background:#fff1f2; border:2px solid #ef4444; padding:12px; border-radius:12px; display:flex; flex-direction:column; justify-content:space-between;">
-                        <div>
-                            <b style="color:#991b1b; font-size:12px; display:block; margin-bottom:5px;">➡️ LADO UTP (Ethernet)</b>
-                            <p style="font-size:11px; color:#991b1b; margin:0;">LED: <b>100</b></p>
-                        </div>
-                        <div style="margin-top:10px; background:#ffffff; color:#ef4444; text-align:center; border-radius:6px; padding:6px; font-weight:800; font-size:10px; border:1px solid #ef4444;">
-                            DEBE ESTAR APAGADO
-                        </div>
+                <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">2. Conexión y Estado del Router</div>
+                
+                <div style="background:#f8fafc; border:1px solid #3b82f6; border-radius:12px; overflow:hidden; margin-bottom:20px;">
+                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; height:auto; display:block;">
+                    <div style="padding:12px;">
+                        <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4;">
+                            Asegurar que el cable UTP proveniente del convertidor ingrese al puerto <b>WAN</b>. 
+                            En el Phantom, validar que el puerto esté negociando correctamente a 1000Mbps.
+                        </p>
                     </div>
                 </div>
 
-                <div style="background:#f1f5f9; padding:15px; border-radius:12px; border-left:4px solid #0f172a;">
-                    <b style="font-size:13px; color:#0f172a;">📝 Resumen del Piloto Fiber X:</b>
-                    <ul style="margin:10px 0 0 0; padding-left:18px; font-size:12px; color:#334155; line-height:1.6;">
-                        <li><b>Usuarios:</b> Solo 10 (Distrito Vera Torre 4).</li>
-                        <li><b>Identificación:</b> Etiqueta <b>"Fiber X"</b> en sistema.</li>
-                        <li><b>Estado Site:</b> Puede verse <b>INACTIVO</b> (No escalar).</li>
-                        <li><b>Falla 100Mb:</b> Si el LED "100" enciende, el puerto negocia mal.</li>
+                <div style="background:#f1f5f9; padding:12px; border-radius:12px; border-left:4px solid #0f172a;">
+                    <b style="font-size:12px; color:#0f172a;">📝 Resumen Fiber X:</b>
+                    <ul style="margin:5px 0 0 0; padding-left:15px; font-size:11px; color:#334155; line-height:1.4;">
+                        <li><b>Identificación:</b> Solo 10 usuarios (Etiqueta "Fiber X").</li>
+                        <li><b>Estado Site:</b> Puede verse <b>INACTIVO</b> (Comportamiento normal).</li>
+                        <li><b>Dato Clave:</b> El LED 100 es el único que debe estar apagado.</li>
                     </ul>
-                </div>
-
-                <div style="margin-top:15px; text-align:center; font-size:11px; color:#64748b; font-style:italic;">
-                    "El LED 100 es el único que debe permanecer apagado."
                 </div>
             ` 
         }
