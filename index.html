@@ -115,21 +115,21 @@
 <script>
 const DATA = {
     offline: {
-        phantom: [
+  phantom: [
             { 
-  pill: "Validación", 
-  title: "🔍 Router Offline", 
-  tag: "Sistema", 
-  html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-         <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-         <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-         <hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-         <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-         <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-         <div class="item">Revise si existe una falla masiva en la zona</div>
-         <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-         <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` 
-},
+                pill: "Validación", 
+                title: "🔍 Router Offline", 
+                tag: "Sistema", 
+                html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
+                         <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
+                         <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
+                         <hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
+                         <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
+                         <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+                         <div class="item">Revise si existe una falla masiva en la zona</div>
+                         <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
+                         <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` 
+            },
             
             { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item"> Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div><div class="ref-img"><img src="https://i.imgur.com/f0ERrPo.png"><div class="caption">No toma IP = no carga información en Radius</div></div>` },
             { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="item">Validar en Grafana que no esté en NA</div><div class="item">Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</div><div class="nota-box">Nota: Si es equipo de domótica → no validar velocidad del puerto.</div><div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>` },
