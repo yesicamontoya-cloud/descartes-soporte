@@ -113,8 +113,6 @@
 </main>
 
 <script>
-   const urlParams = new URLSearchParams(window.location.search);
-const miArea = urlParams.get('modo') || 'n1';
 const DATA = {
     offline: {
   phantom: [
@@ -383,20 +381,16 @@ const DATA = {
                 pill: "Herramientas", 
                 title: "🛠️ N2 - Validación en Red", 
                 tag: "Análisis Técnico", 
-              html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-<div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-<button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-<hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-
-<div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-<div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
-<div class="item"><b>Análisis por Volumen:</b></div>
-<div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-    👤 < 2 usuarios: Caso individual → Posible visita técnica.
-</div>
-<div class="alert-falla">
-    👥 ≥ 2 usuarios: Escalar al NOC (Incidente de red).
-</div>`
+                html: `
+                    <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
+                    <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
+                    <div class="item"><b>Análisis por Volumen:</b></div>
+                    <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
+                        👤 < 2 usuarios: Caso individual → Posible visita técnica.
+                    </div>
+                    <div class="alert-falla">
+                        👥 ≥ 2 usuarios: Escalar al NOC (Incidente de red).
+                    </div>` 
             },
             { 
                 pill: "Tecnología", 
@@ -444,20 +438,16 @@ const DATA = {
                 pill: "Herramientas", 
                 title: "🛠️ N2 - Validación en Red (Vilo)", 
                 tag: "Análisis Técnico", 
-             html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-<div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-<button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-<hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-
-<div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-<div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
-<div class="item"><b>Análisis por Volumen:</b></div>
-<div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-    👤 < 2 usuarios: Caso individual → Visita técnica.
-</div>
-<div class="alert-falla">
-    👥 ≥ 2 usuarios: Escalar al NOC (Ticket de red).
-</div>` 
+                html: `
+                    <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
+                    <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
+                    <div class="item"><b>Análisis por Volumen:</b></div>
+                    <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
+                        👤 < 2 usuarios: Caso individual → Visita técnica.
+                    </div>
+                    <div class="alert-falla">
+                        👥 ≥ 2 usuarios: Escalar al NOC (Ticket de red).
+                    </div>` 
             },
             { 
                 pill: "Tecnología", 
@@ -494,15 +484,10 @@ const DATA = {
                 pill: "Herramientas", 
                 title: "🛠️ Descartes con Herramientas", 
                 tag: "Análisis de Red", 
-               html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-<div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-<button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-<hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-
-<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-<div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-<div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-<div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>`
+                html: `<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                       <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                       <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                       <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>` 
             },
             { 
                 pill: "Usuario", 
@@ -523,15 +508,10 @@ const DATA = {
                 pill: "Herramientas", 
                 title: "🛠️ Descartes con Herramientas", 
                 tag: "Análisis de Red", 
-               html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-<div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-<button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-<hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-
-<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-<div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-<div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-<div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>` 
+                html: `<div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                       <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                       <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                       <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>` 
             },
             { 
                 pill: "Usuario", 
@@ -581,31 +561,9 @@ function render() {
     const data = pasos[pasoActual];
     let pillsHtml = '';
     
- // Filtramos los pasos según el área antes de crear los botones
-const pasosFiltrados = pasos.filter(p => {
-    if (miArea === 'n2') {
-        // N2 verá estas 5 pestañas específicas
-        return p.pill === "Herramientas" || 
-               p.pill === "Tecnología" || 
-               p.pill === "Usuario" || 
-               p.pill === "Escalamiento" || 
-               p.pill === "Resultado";
-    } else {
-        // N1 verá todo lo que NO sea de N2
-        return p.pill !== "Herramientas" && 
-               p.pill !== "Tecnología" && 
-               p.pill !== "Escalamiento" && 
-               p.pill !== "N2";
-    }
-
-});
-
-// Ahora dibujamos los botones usando la lista filtrada
-pasosFiltrados.forEach((p, index) => {
-  // Buscamos el índice real dentro de la lista original 'pasos'
-const realIndex = pasos.indexOf(p);
-pillsHtml += `<button class="${realIndex === pasoActual ? 'active' : ''}" onclick="iraPaso(${realIndex})">${p.pill}</button>`;
-});
+    pasos.forEach((p, index) => {
+        pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
+    });
 
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
@@ -682,13 +640,3 @@ document.addEventListener('DOMContentLoaded', inicializarSeguridad);
 </script>
 </body>
 </html>
-
-
-
-
-      
- 
- 
-              
-                 
-              
