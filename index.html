@@ -118,7 +118,7 @@ const DATA = {
   phantom: [
             { 
                 pill: "Validación", 
-                title: "🔍 Router Offline", 
+                title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
                 tag: "Sistema", 
                 html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
                          <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
@@ -200,27 +200,54 @@ const DATA = {
     ` 
 },
       ],
- vilo: [
+ vilo: [    
+      { 
+    pill: "Validación", 
+    title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
+    tag: "Sistema", 
+    html: `
+        <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
+        <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
+        
+        <button class="btn" style="background:#a855f7; margin-bottom:8px;" onclick="window.open('URL_AQUI')">🚀 Ejecutar CPE Doctor</button>
+
+        <div class="alert-falla" style="background:#e0f2fe; border-color:#0ea5e9; color:#0369a1; margin-bottom:10px; padding:8px; font-size:11px;">
+            ℹ️ <b>Nota Desarrollo:</b> La integración automática con CPE Doctor para este flujo está en proceso de gestión.
+        </div>
+
+        <hr style="border:0; border-top:1px solid #eee; margin-bottom:8px;">
+        
+        <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
+        <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+    ` 
+},
     { 
-        pill: "Validación", 
-        title: "🔍 Router Offline", 
-        tag: "Sistema", 
-        html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-               <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-               <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-               <hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-               <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-               <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-               <div class="item">Revise si existe una falla masiva en la zona</div>
-               <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-               <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` 
-    },
-    { 
-        pill: "Principal", 
-        title: "🖥 Router principal", 
-        tag: "Herramienta", 
-        html: `<div class="item">Validar que la MAC esté asociada y autenticada en Radius (estado activo)</div><div class="action">Si no está activo → escalar backoffice</div><div class="item">Verificar que el router tome IP</div><div class="action">Si no toma IP → escalar a N2</div>` 
-    },
+    pill: "Principal", 
+    title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
+    tag: "Herramienta", 
+    html: `
+        <div class="item" style="margin-bottom: 0px;">Validar que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
+        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
+
+        <div class="item" style="margin-top: 5px; margin-bottom: 0px;">Verificar que el router principal tome IP y esté en segmentos Somos (100.x, 38.x, 206.x)</div>
+        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:8px; padding:8px; font-size:12px;">
+            <strong>⚠️ Nota IP Incorrecta:</strong><br>
+            1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
+            2. Aplicar <b>reinicio en cascada</b> (30s OFF -> Principal -> 30s -> Secundario).<br>
+            3. Si persiste → <b>Escalar a N2</b>.
+        </div>
+
+        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
+            <strong>🚀 Tip de Agilidad:</strong> Si los descartes quedan OK, finaliza el chat. Si el problema continúa, <b>actualiza la herramienta ISP</b> antes de seguir con los descartes.
+        </div>
+
+        <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
+            ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
+        </div>
+    ` 
+},
     { 
         pill: "Física", 
         title: "🔌 Validación física", 
