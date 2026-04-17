@@ -368,42 +368,47 @@ const DATA = {
             ` 
         },
             
-         { 
+        { 
             pill: "Usuario", 
-            title: "<span style='font-size: 16px;'>👤 Validación de Velocidad</span>", 
+            title: "<span style='font-size: 16px; color: #1e293b;'>👤 Validación de Velocidad</span>", 
             tag: "Cliente", 
             html: `
-                <div style="font-size: 11px; line-height: 1.4; color: #000000;">
-                    <div style="margin-bottom: 8px;">
-                        • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo conectado a la red <b>5G</b> usando el servidor de <b>SOMOS</b> a través de (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">https://www.speedtest.net/</a>).<br>
-                        • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
-                    </div>
+                <div style="color: #475569 !important; font-family: sans-serif;">
+                    <div style="font-size: 11px; line-height: 1.4;">
+                        
+                        <div style="margin-bottom: 8px;">
+                            • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo conectado a la red <b>5G</b> usando el servidor de <b>SOMOS</b> a través de (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
+                            • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
+                        </div>
 
-                    <div style="background: #f1f5f9; padding: 6px; border-radius: 4px; margin-bottom: 8px;">
-                        <b>🛠️ Descartes Técnicos:</b><br>
-                        • Confirmar que <b>NO tenga VPN</b> activa.<br>
-                        • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b> del equipo.<br>
-                        • Validar resultados en <b>varios dispositivos</b> (en red 5G) para descartar falla de un equipo único.<br>
-                        • Validar <b>categoría del cable</b> (Si no es de Somos, verificar que sea <b>Cat 5e o superior</b> y sin adaptadores).<br>
-                        • Evaluar entorno y distancia (muros, interferencias).
-                    </div>
+                        <div style="background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 8px;">
+                            <b style="color: #334155;">🛠️ Descartes Técnicos:</b><br>
+                            • Confirmar que <b>NO tenga VPN</b> activa.<br>
+                            • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b>.<br>
+                            • Validar resultados en <b>varios dispositivos</b> (red 5G) para descartar falla única.<br>
+                            • Validar <b>categoría del cable</b> (mínimo <b>Cat 5e</b> y sin adaptadores).<br>
+                            • Evaluar entorno y distancia (muros, interferencias).
+                        </div>
 
-                    <div style="font-style: italic; margin-bottom: 8px;">
-                        📌 <b>Nota:</b> Dispositivos de domótica consumen poca velocidad.
-                    </div>
+                        <div style="margin-bottom: 8px;">
+                            📌 <b>Nota:</b> Dispositivos de domótica consumen poca velocidad.<br>
+                            • Verificar firmware actualizado (Firmware Upgrade).
+                        </div>
 
-                    <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; padding:6px; font-size:10px; border-left: 4px solid #f59e0b;">
-                        💡 <b>Condicional:</b> Solo si se detecta saturación (no siempre aplica), solicitar cambio de canales por el grupo de <b>Soporte Calidad</b>.
+                        <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 8px; font-size: 10px; border-radius: 4px;">
+                            💡 <b>Condicional:</b> Solo si se detecta saturación, solicitar cambio de canales por el grupo de <b>Soporte Calidad</b>.
+                        </div>
+
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 5px; margin-top: 8px;">
-                    <button class="btn" style="background:#10b981; flex: 1; padding: 6px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://www.speedtest.net/')">
+                <div style="display: flex; gap: 5px; margin-top: 10px;">
+                    <button class="btn" style="background: #10b981; flex: 1; padding: 8px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://www.speedtest.net/')">
                         🌐 Abrir Speedtest
                     </button>
                 </div>
             ` 
-        },          
+        },
             { 
             pill: "Resultado", 
             title: "📉 Bajas Velocidades", 
