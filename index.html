@@ -130,7 +130,7 @@ const DATA = {
                          <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
                          <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
                       
-            { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `
+            { pill: "Principal", title: "<span style='font-size: 16px;'>📑 Router principal</span>", tag: "Herramienta", html: `
 <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
 <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
@@ -152,7 +152,7 @@ const DATA = {
     ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
 </div>
 ` },
-           { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `
+           { pill: "title: "<span style='font-size: 16px;'>🔀 Router secundario</span>", tag: "Red", html: `
 <div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
 <div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
            <div class="item" style="margin-bottom:2px;">Validar en Grafana que no esté en N/A</div>
@@ -169,7 +169,7 @@ const DATA = {
             <div class="action" style="margin-top:5px; padding:5px;">
     Si hay inconsistencia o el problema persiste → <b>Escalar al Área de Especialidad (N2)</b>
 </div>` },
-            { pill: "Usuario", title: "🔌 Validación física", tag: "Cliente", html: `
+            { pill: "Usuario", title: "<span style='font-size: 16px;'>🔌 Validación física</span>", tag: "Cliente", html: `
 <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:8px; padding:8px; font-size:12px;">
     ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
 </div>
