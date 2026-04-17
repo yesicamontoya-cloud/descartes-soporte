@@ -182,22 +182,22 @@ const DATA = {
                 <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
                     ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
                 </div>
-                <div class="item" style="margin-bottom:2px;">Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
-                
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:11px;">
+
+                <div class="item" style="margin-bottom:2px;">• Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
+                <div class="item" style="margin-bottom:5px;">• Confirmar conexiones correctas (revisar nota de principal o secundario).</div>
+
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
                     <b>Nota Secundario:</b> El puerto WAN debe estar <b>VACÍO</b>.
                 </div>
 
-                <div class="item" style="margin-top:5px;">Reiniciar equipo (30s OFF).</div>
-                <div class="action" style="margin-bottom:4px; padding:5px; font-size:11px;">
-                    Esperar 2-3 min y actualizar <b>CPE Doctor (filtro 30 min)</b>.
-                </div>
-                <div class="action" style="background:#f1f5f9; color:#475569; border:none; font-size:11px; padding:4px;">
-                    🔵 No chuzar el equipo           
+                <div class="item" style="margin-bottom:2px;">• Reiniciar equipo (30s desconectado del tomacorriente).</div>
+                
+                <div class="action" style="margin-top:5px; margin-bottom:5px; padding:6px; font-size:11px; line-height:1.3;">
+                    ⏱️ Al confirmar reinicio → esperar <b>2 a 3 minutos</b> y actualizar <b>CPE Doctor (filtro 30 min)</b> para verificar servicio.
                 </div>
 
-                <div class="alert-falla" style="background:#fef2f2; border-color:#f87171; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
-                    🚨 <b>Nota Crítica:</b> Si principal o secundario siguen <b>OFF</b> tras validaciones → <b>Escalar a N2</b>.
+                <div class="action" style="background:#f1f5f9; color:#475569; border:none; font-size:11px; padding:4px;">
+                    🔵 No chuzar el equipo
                 </div>
             ` 
         },
@@ -206,8 +206,20 @@ const DATA = {
             title: "<span style='font-size: 16px;'>✅ Resultado</span>", 
             tag: "Finalización", 
             html: `
-                <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-top:10px; border: 1px solid #007A5E;">
-                    🎯 Gestión Finalizada: Verifique la navegación con el cliente y proceda al cierre del caso si todo está OK.
+                <div style="background:#E6FBF5; color:#007A5E; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #007A5E; margin-bottom:8px;">
+                    ✅ Funciona: Dar por finalizado el chat.
+                </div>
+
+                <div style="background:#fee2e2; color:#991b1b; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #ef4444;">
+                    ❌ No funciona: Escalar a N2
+                </div>
+
+                <div style="margin-top:8px; font-size:11px; color:#4b5563;">
+                    <b>Antes de escalar validar:</b><br>
+                    • Router principal validado<br>
+                    • Router secundario validado<br>
+                    • Conexiones correctas<br>
+                    • Energía OK
                 </div>
             ` 
         }
