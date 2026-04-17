@@ -429,41 +429,37 @@ const DATA = {
         },
         ],
        vilo: [
-            { 
+           { 
             pill: "Validación", 
             title: "<span style='color: #1e293b;'>📉 Bajas Velocidades</span>", 
             tag: "Sistema", 
             html: `
-                <div style="font-size: 11px; line-height: 1.4; color: #475569 !important;">
-                    <div style="margin-bottom: 8px;">Verifique que <b>NO</b> exista falla masiva en la zona.</div>
+                <div style="font-size: 11px; line-height: 1.3; color: #475569 !important;">
                     
-                    <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 6px; border-radius: 4px; margin-bottom: 8px;">
-                        ⚠️ Si hay falla → usar guion de falla masiva.
+                    <div style="margin-bottom: 5px;">
+                        • Verificar falla masiva. 
+                        <button class="btn" style="background:#3b82f6; padding: 2px 8px; font-size: 10px; cursor:pointer; border:none; border-radius:3px; color:white;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Ver Guion</button>
                     </div>
                     
-                    <button class="btn" style="background:#3b82f6; width:100%; margin-bottom:12px; cursor:pointer;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
-                        Abrir guion falla masiva
-                    </button>
-
-                    <div style="margin-bottom: 4px;"><b>🩺 Diagnóstico Automático:</b></div>
-                    <div style="margin-bottom: 8px;">• Ejecutar diagnóstico por <b>CPE Doctor</b>.</div>
-                    
-                    <button class="btn" style="background:#a855f7; width:100%; margin-bottom:8px; cursor:pointer;">🚀 Ejecutar CPE Doctor</button>
-                    
-                    <div style="font-size: 10px; font-style: italic; margin-bottom: 12px; color: #64748b;">
-                        ℹ️ <b>Nota Desarrollo:</b> La integración automática para este flujo está en proceso de gestión.
+                    <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 4px 6px; border-radius: 4px; margin-bottom: 6px; font-size: 10px;">
+                        ⚠️ Si hay falla → usar guion de masiva.
                     </div>
 
-                    <div style="background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
-                        • Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
-                        • Validar que los routers <b>NO tengan la misma IP</b>.<br>
-                        • Realizar test de velocidad desde sistema.<br>
-                        • Revisar linkeo y <b>Firmware Upgrade</b>.
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                        <b>🩺 CPE Doctor:</b>
+                        <button class="btn" style="background:#a855f7; padding: 2px 8px; font-size: 10px; cursor:pointer; border:none; border-radius:3px; color:white;">🚀 Ejecutar</button>
+                    </div>
+                    
+                    <div style="font-size: 9px; font-style: italic; margin-bottom: 8px; color: #94a3b8; line-height: 1;">
+                        ℹ️ Integración automática en proceso de gestión.
                     </div>
 
-                    <button class="btn" style="background:#3b82f6; width:100%; margin-top:10px; cursor:pointer;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
-                        📥 Identificar IP (Guía Somos)
-                    </button>
+                    <div style="background: #f8fafc; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10.5px;">
+                        • Validar plan y tecnología (RE, FO, FX).<br>
+                        • Routers <b>NO misma IP</b>. 
+                        <button class="btn" style="background:#3b82f6; padding: 1px 6px; font-size: 9px; cursor:pointer; border:none; border-radius:3px; color:white;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">Identificar IP</button><br>
+                        • Test desde sistema y Firmware Upgrade.
+                    </div>
                 </div>
             ` 
         },
