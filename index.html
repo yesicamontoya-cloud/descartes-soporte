@@ -343,9 +343,7 @@ const DATA = {
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
                     ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold; text-decoration:none;">usar guion de falla masiva (Pág. 4)</a>
                 </div>
-
-                <div class="item" style="font-size:11px; margin-bottom:5px;">📋 <b>Revisiones del Sistema:</b></div>
-                
+                               
                 <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
                     • <b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
                     • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
@@ -432,25 +430,43 @@ const DATA = {
         ],
        vilo: [
             { 
-                pill: "Validación", 
-                title: "📉 Bajas Velocidades", 
-                tag: "Sistema", 
-                html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div>
-                       <div class="nota-box">Si hay falla → usar guion de falla masiva.</div>
-                       <button class="btn" style="background:#3b82f6; margin-bottom:15px" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva</button>
-                       
-                       <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-                       <button class="btn" style="background:#a855f7; margin-bottom:15px">🚀 Ejecutar CPE Doctor</button>
+            pill: "Validación", 
+            title: "<span style='color: #1e293b;'>📉 Bajas Velocidades</span>", 
+            tag: "Sistema", 
+            html: `
+                <div style="font-size: 11px; line-height: 1.4; color: #475569 !important;">
+                    <div style="margin-bottom: 8px;">Verifique que <b>NO</b> exista falla masiva en la zona.</div>
+                    
+                    <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 6px; border-radius: 4px; margin-bottom: 8px;">
+                        ⚠️ Si hay falla → usar guion de falla masiva.
+                    </div>
+                    
+                    <button class="btn" style="background:#3b82f6; width:100%; margin-bottom:12px; cursor:pointer;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
+                        Abrir guion falla masiva
+                    </button>
 
-                       <div class="item"><b>Revisiones del Sistema:</b></div>
-                       <div class="item">• Validar plan contratado.</div>
-                       <div class="item">• Validar que los routers NO tengan la misma IP.s.</div>
-                       <div class="item">• Realizar test de velocidad desde sistema.</div>
-                       <div class="item">• Revisar linkeo  y Firmware Upgrade.</div>
-                       
-                       <button class="btn" style="background:#3b82f6; margin-top:10px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">📥 Identificar IP (Guía Somos)</button>` 
-            },             
+                    <div style="margin-bottom: 4px;"><b>🩺 Diagnóstico Automático:</b></div>
+                    <div style="margin-bottom: 8px;">• Ejecutar diagnóstico por <b>CPE Doctor</b>.</div>
+                    
+                    <button class="btn" style="background:#a855f7; width:100%; margin-bottom:8px; cursor:pointer;">🚀 Ejecutar CPE Doctor</button>
+                    
+                    <div style="font-size: 10px; font-style: italic; margin-bottom: 12px; color: #64748b;">
+                        ℹ️ <b>Nota Desarrollo:</b> La integración automática para este flujo está en proceso de gestión.
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px;">
+                        • Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
+                        • Validar que los routers <b>NO tengan la misma IP</b>.<br>
+                        • Realizar test de velocidad desde sistema.<br>
+                        • Revisar linkeo y <b>Firmware Upgrade</b>.
+                    </div>
+
+                    <button class="btn" style="background:#3b82f6; width:100%; margin-top:10px; cursor:pointer;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
+                        📥 Identificar IP (Guía Somos)
+                    </button>
+                </div>
+            ` 
+        },
            { 
             pill: "Usuario", 
             title: "<span style='font-size: 16px; color: #1e293b;'>👤 Validación de Velocidad</span>", 
