@@ -333,27 +333,38 @@ const DATA = {
         ]
     },
     bajas: {
-       phantom: [
-            { 
-                pill: "Validación", 
-                title: "📉 Bajas Velocidades", 
-                tag: "Sistema", 
-                html: `<div class="item">Verifique que NO exista falla masiva en la zona.</div>
-                       <div class="nota-box">Si hay falla → usar guion de falla masiva.</div>
-                       <button class="btn" style="background:#3b82f6; margin-bottom:15px" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva</button>
-                       
-                       <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-                       <button class="btn" style="background:#a855f7; margin-bottom:15px">🚀 Ejecutar CPE Doctor</button>
+       phantom: [            
+          { 
+            pill: "Validación", 
+            title: "<span style='font-size: 16px;'>📉 Bajas Velocidades</span>", 
+            tag: "Sistema", 
+            html: `
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
+                    ⚠️ Si hay falla masiva → usar guion correspondiente (Pág. 4).
+                </div>
 
-                       <div class="item"><b>Revisiones del Sistema:</b></div>
-                       <div class="item">• Validar plan contratado.</div>
-                       <div class="item">• Validar que los routers NO tengan la misma IP.s.</div>
-                       <div class="item">• Realizar test de velocidad desde sistema.</div>
-                       <div class="item">• Revisar linkeo (1G) y Firmware Upgrade.</div>
-                       
-                       <button class="btn" style="background:#3b82f6; margin-top:10px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">📥 Identificar IP (Guía Somos)</button>` 
-            },  
+                <div class="item" style="font-size:11px; margin-bottom:5px;"><b>📋 Revisiones del Sistema:</b></div>
+                <div style="font-size:11px; line-height:1.3; margin-left:5px;">
+                    • <b>Plan:</b> Validar plan y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
+                    • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
+                    • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
+                    • <b>Linkeo:</b> Revisar puerto WAN (según tipo de plan).
+                </div>
+
+                <div style="display: flex; gap: 5px; margin-top: 10px;">
+                    <button class="btn" style="background:#3b82f6; flex: 1; padding: 6px; font-size: 11px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
+                        🔍 Identificar IP
+                    </button>
+                    <button class="btn" style="background:#a855f7; flex: 1; padding: 6px; font-size: 11px;" onclick="window.open('https://cpedoctor.somosfiber.com/')">
+                        🚀 CPE Doctor
+                    </button>
+                </div>
+
+                <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+                
+                <div class="item" style="font-size:11px;"><b>⚠️ Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.</div>
+            ` 
+        }, 
                         { 
             pill: "Usuario", 
             title: "📉 Bajas Velocidades", 
