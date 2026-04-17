@@ -144,8 +144,25 @@ const DATA = {
         3. Si persiste → <b>Escalar a N2</b>.
     </div>
 ` },
-            { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `<div class="item">Confirmar que no tenga la misma IP que el principal</div><div class="item">Validar en Grafana que no esté en NA</div><div class="item">Verificar que el puerto LAN registre 1G o 2G (Según sea el plan)</div><div class="nota-box">Nota: Si es equipo de domótica → no validar velocidad del puerto.</div><div class="action">Si hay inconsistencia y el router secundario está OFF → escalar a N2</div>` },
-            { pill: "Usuario", title: "🔌 Validación física", tag: "Cliente", html: `<div class="item">Revisar conexiones físicas y energía</div><div class="item">Confirmar que no haya cables en el puerto WAN</div><div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorriente y volver a conectar)</div><div class="action">No chuzar el equipo</div>` },
+           { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `
+<div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
+<div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
+           <div class="item" style="margin-bottom:2px;">Validar en Grafana que no esté en N/A</div>
+<div class="action" style="margin-bottom:6px; padding:5px;">
+    Si está en N/A → Validar que puerto WAN del secundario esté vacío y aplicar <b>reinicio en cascada</b>
+</div>
+
+<div class="alert-falla" style="background:#e0f2fe; border-color:#0ea5e9; color:#0369a1; margin-top:5px; padding:8px; font-size:11px;">
+    ℹ️ <b>Nota Desarrollo:</b> Pendiente gestión por parte de desarrollo para PRO y CPE Doctor.
+</div>            
+            <div class="nota-box" style="margin-top:5px; padding:6px; font-size:12px; background:#f3f4f6; border-left:4px solid #9ca3af;">
+    Nota: Si es equipo de domótica → no validar velocidad del puerto.
+</div>
+            <div class="action" style="margin-top:5px; padding:5px;">
+    Si hay inconsistencia o el problema persiste → <b>Escalar al Área de Especialidad (N2)</b>
+</div>` },
+            { pill: "Usuario", title: "🔌 Validación física", tag: "Cliente", html: `<div class="item">Revisar conexiones físicas y energía</div>
+            <div class="item">Confirmar que no haya cables en el puerto WAN</div><div class="item">Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item">Reiniciar el equipo (30 segundos desconectado del tomacorriente y volver a conectar)</div><div class="action">No chuzar el equipo</div>` },
             { pill: "Resultado", title: "✅ Resultado", tag: "Resultado", html: `<div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona</div><div class="nota-box">Dar por finalizado el chat.</div><div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona</div><div class="nota-box">Escalar a N2. <br><br><b>Antes de escalar validar:</b><br>• Router principal validado<br>• Router secundario validado<br>• Conexiones correctas<br>• Energía OK</div>` 
         }
       ],
