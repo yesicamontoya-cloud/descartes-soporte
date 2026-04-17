@@ -335,36 +335,38 @@ const DATA = {
     bajas: {
        phantom: [            
           { 
+            { 
             pill: "Validación", 
             title: "<span style='font-size: 16px;'>📉 Bajas Velocidades</span>", 
             tag: "Sistema", 
             html: `
+                <div class="item" style="margin-bottom: 5px;">Verifique que NO exista falla masiva en la zona.</div>
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
-                    ⚠️ Si hay falla masiva → usar guion correspondiente (Pág. 4).
+                    ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold;">usar guion de falla masiva (Pág. 4)</a>
                 </div>
 
                 <div class="item" style="font-size:11px; margin-bottom:5px;"><b>📋 Revisiones del Sistema:</b></div>
-                <div style="font-size:11px; line-height:1.3; margin-left:5px;">
-                    • <b>Plan:</b> Validar plan y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
+                <div style="font-size:11px; line-height:1.4; margin-left:5px; margin-bottom:10px;">
+                    • <b>Plan:</b> Validar plan contratado y tipo de tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
                     • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
                     • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
-                    • <b>Linkeo:</b> Revisar puerto WAN (según tipo de plan).
+                    • <b>Linkeo:</b> Revisar linkeo del puerto WAN (tener en cuenta el tipo de plan).
                 </div>
 
-                <div style="display: flex; gap: 5px; margin-top: 10px;">
-                    <button class="btn" style="background:#3b82f6; flex: 1; padding: 6px; font-size: 11px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
+                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+                    <button class="btn" style="background:#3b82f6; flex: 1; padding: 8px; font-size: 11px;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
                         🔍 Identificar IP
                     </button>
-                    <button class="btn" style="background:#a855f7; flex: 1; padding: 6px; font-size: 11px;" onclick="window.open('https://cpedoctor.somosfiber.com/')">
+                    <button class="btn" style="background:#a855f7; flex: 1; padding: 8px; font-size: 11px;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
                         🚀 CPE Doctor
                     </button>
                 </div>
 
-                <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-                
-                <div class="item" style="font-size:11px;"><b>⚠️ Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.</div>
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; padding:8px; font-size:11px;">
+                    ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
+                </div>
             ` 
-        }, 
+        },
                         { 
             pill: "Usuario", 
             title: "📉 Bajas Velocidades", 
