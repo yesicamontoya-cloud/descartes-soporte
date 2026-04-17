@@ -122,8 +122,8 @@ const DATA = {
                 tag: "Sistema", 
                 html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
                          <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-                         <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-                         <hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
+                         <button class="btn" style="background:#a855f7; margin-bottom:8px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
+                         <hr style="border:0; border-top:1px solid #eee; margin-bottom:0px;">
                          <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
                          <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
                          <div class="item">Revise si existe una falla masiva en la zona</div>
@@ -131,13 +131,13 @@ const DATA = {
                          <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
                       
             { pill: "Principal", title: "🖥 Router principal", tag: "Herramienta", html: `
-    <div class="item">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
-    <div class="action">Si no está activo → escalar backoffice</div>
+<div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
+<div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
-    <div class="item">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-    <div class="action">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+    <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
+    <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
 
-    <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:10px;">
+    <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
         <strong>⚠️ Nota IP Incorrecta:</strong><br>
         1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
         2. Aplicar <b>reinicio en cascada</b> (Desconectar ambos 30s -> Conectar principal -> 30s después conectar secundario).<br>
