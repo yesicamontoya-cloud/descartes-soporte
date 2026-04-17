@@ -179,32 +179,21 @@ const DATA = {
             title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
             tag: "Cliente", 
             html: `
-                <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-bottom:5px; padding:8px; font-size:11px;">
-                    <strong>Naranja:</strong> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.
-                </div>
-
                 <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
-                    <strong>Rojo:</strong> Solicitar fotos: LEDs y conexiones (solo si aplica). <b>Si ya las envió, NO volver a solicitarlas.</b>
+                    ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
                 </div>
-
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
-                    <strong>Estados de luz del router:</strong> Blanco (WiFi 6) / Azul (WiFi 5) funcionando correctamente.
-                </div>
-
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
-                    <strong>WAN:</strong> Principal (con cable en WAN) / Secundario (puerto WAN <b>VACÍO</b>).
-                </div>
-
-                <div class="item" style="margin-bottom:2px;">• Revisar conexiones físicas y energía.</div>
-                <div class="item" style="margin-bottom:2px;">• Asegurarse de que el cable de red esté bien ajustado.</div>
-                <div class="item" style="margin-bottom:2px;">• Reiniciar el equipo (30 segundos desconectado del tomacorriente).</div>
+                <div class="item" style="margin-bottom:2px;">Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
                 
-                <div class="action" style="margin-top:5px; margin-bottom:5px; padding:5px; font-size:11px;">
-                    Esperar 2-3 min y actualizar <b>CPE Doctor (filtro 30 min)</b> para verificar servicio.
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:11px;">
+                    <b>Nota Secundario:</b> El puerto WAN debe estar <b>VACÍO</b>.
                 </div>
 
+                <div class="item" style="margin-top:5px;">Reiniciar equipo (30s OFF).</div>
+                <div class="action" style="margin-bottom:4px; padding:5px; font-size:11px;">
+                    Esperar 2-3 min y actualizar <b>CPE Doctor (filtro 30 min)</b>.
+                </div>
                 <div class="action" style="background:#f1f5f9; color:#475569; border:none; font-size:11px; padding:4px;">
-                    🔵 No chuzar el equipo
+                    🔵 No chuzar el equipo           
                 </div>
 
                 <div class="alert-falla" style="background:#fef2f2; border-color:#f87171; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
