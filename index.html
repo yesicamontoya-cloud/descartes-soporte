@@ -249,12 +249,31 @@ const DATA = {
     ` 
 },
     { 
-        pill: "Física", 
-        title: "🔌 Validación física", 
-        tag: "Cliente", 
-        html: `<div class="nota-box"><b style="color:#F59E0B">Naranja:</b> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.</div><div class="nota-box"><b style="color:#EF4444">Rojo:</b> Solicitar fotos: LEDs y conexiones (solo si aplica)</div><div class="item" style="margin-top:12px">• Validar que las conexiones estén correctas</div><div class="item">• Asegurarse de que el cable de red esté bien ajustado</div><div class="item">• Reiniciar router (30 segundos del tomacorriente y volver a conectar)</div><div class="nota-box"><b>WAN:</b><br>• Router principal → debe tener el cable de red en el puerto WAN<br>• Router secundario → NO debe tener cable en el puerto WAN</div><div class="nota-box"><b>Estados de luz del router:</b> Blanco → WiFi 6 (funcionando correctamente) <br> Azul → WiFi 5 (funcionando correctamente)</div>` 
-    },
+    pill: "Usuario", 
+    title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
+    tag: "Cliente", 
+    html: `
+        <div class="alert-falla" style="background:#f0f9ff; border-color:#0ea5e9; color:#0369a1; margin-bottom:8px; padding:8px; font-size:11px;">
+            <strong>💡 Estados de luz del router:</strong><br>
+            • Blanco → WiFi 6 (Funcionando OK)<br>
+            • Azul → WiFi 5 (Funcionando OK)
+        </div>
 
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
+            <strong>🔌 WAN:</strong><br>
+            • Router principal → debe tener el cable de red en el puerto WAN<br>
+            • Router secundario → <b>NO</b> debe tener cable en el puerto WAN
+        </div>
+
+        <div class="item" style="margin-bottom:2px;">• Validar que las conexiones estén correctas</div>
+        <div class="item" style="margin-bottom:2px;">• Asegurarse de que el cable de red esté bien ajustado</div>
+        <div class="item" style="margin-bottom:5px;">• Reiniciar router (30s desconectado)</div>
+
+        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
+            ⚠️ <b>Nota Crítica:</b> Si el router (Principal o Secundario) persiste en <b>OFF</b> tras estas validaciones → <b>Escalar a N2</b>.
+        </div>
+    ` 
+},
             { 
     pill: "Resultado", 
     title: "✅ Resultado", 
