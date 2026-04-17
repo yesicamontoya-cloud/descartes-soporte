@@ -130,29 +130,34 @@ const DATA = {
                          <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
                          <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
                       
-            { pill: "Principal", title: "<span style='font-size: 16px;'>📑 Router principal</span>", tag: "Herramienta", html: `
-<div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
-<div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
+{ 
+            pill: "Principal", 
+            title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
+            tag: "Herramienta", 
+            html: `
+                <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
+                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
-<div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-<div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+                <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
+                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
 
-<div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
-    <strong>⚠️ Nota IP Incorrecta:</strong><br>
-    1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
-    2. Aplicar <b>reinicio en cascada</b> (30s OFF -> Principal -> 30s -> Secundario).<br>
-    3. Si persiste → <b>Escalar a N2</b>.
-</div>
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
+                    <strong>⚠️ Nota IP Incorrecta:</strong><br>
+                    1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
+                    2. Aplicar <b>reinicio en cascada</b> (30s OFF -> Principal -> 30s -> Secundario).<br>
+                    3. Si persiste → <b>Escalar a N2</b>.
+                </div>
 
-<div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
-    <strong>🚀 Tip de Agilidad:</strong> Si los descartes quedan OK, finaliza el chat. <b>Actualiza la herramienta</b> antes de continuar. En CPE Doctor usa la opción <b>"30 min"</b> y atajos para confirmar si subió.
-</div>
+                <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
+                    <strong>🚀 Tip de Agilidad:</strong> Si los descartes quedan OK, finaliza el chat. <b>Actualiza la herramienta</b> antes de continuar. En CPE Doctor usa la opción <b>"30 min"</b> y atajos.
+                </div>
 
-<div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
-    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
-</div>
-` },
-           { pill: "title: "<span style='font-size: 16px;'>🔀 Router secundario</span>", tag: "Red", html: `
+                <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
+                    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
+                </div>
+            ` 
+        },
+           { pill: "Secundario", title: "<span style='font-size: 16px;'>🔀 Router secundario</span>", tag: "Red", html: `
 <div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
 <div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
            <div class="item" style="margin-bottom:2px;">Validar en Grafana que no esté en N/A</div>
@@ -169,25 +174,31 @@ const DATA = {
             <div class="action" style="margin-top:5px; padding:5px;">
     Si hay inconsistencia o el problema persiste → <b>Escalar al Área de Especialidad (N2)</b>
 </div>` },
-            { pill: "Usuario", title: "<span style='font-size: 16px;'>🔌 Validación física</span>", tag: "Cliente", html: `
-<div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:8px; padding:8px; font-size:12px;">
-    ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
-</div>
+           { 
+    pill: "Usuario", 
+    title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
+    tag: "Cliente", 
+    html: `
+        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:12px;">
+            ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
+        </div>
 
-<div class="item" style="margin-bottom:2px;">Si no ha enviado fotos → solicitar fotos de LEDs y de las conexiones (solo si aplica)</div>
-<div class="item" style="margin-bottom:2px;">Confirmar que las conexiones estén correctas (revisar notas de Principal/Secundario según el caso)</div>
+        <div class="item" style="margin-bottom:2px;">Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
+        
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:11px;">
+            <b>Nota Secundario:</b> El puerto WAN debe estar <b>VACÍO</b>.
+        </div>
 
-<div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:11px;">
-    <b>Nota Secundario:</b> Es vital que el puerto WAN esté <b>VACÍO</b>.
-</div>
-
-<div class="item" style="margin-top:8px; margin-bottom:2px;">Reiniciar el equipo (30s desconectado del tomacorriente)</div>
-<div class="action" style="margin-bottom:4px; padding:5px; line-height:1.3;">
-    Al confirmar reinicio → esperar 2-3 min y actualizar CPE Doctor (filtro 30 min) para verificar servicio.
-</div>
-
-<div class="action" style="margin-top:5px; padding:4px; background:#f1f5f9; color:#475569; border:none;">
-    🔵 No chuzar el equipo </div>` },
+        <div class="item" style="margin-top:5px;">Reiniciar equipo (30s OFF).</div>
+        <div class="action" style="margin-bottom:4px; padding:5px; font-size:11px;">
+            Esperar 2-3 min y actualizar CPE Doctor (filtro 30 min).
+        </div>
+        
+        <div class="action" style="margin-top:5px; padding:4px; background:#f1f5f9; color:#475569; border:none; font-size:11px;">
+            🔵 No chuzar el equipo
+        </div>
+    ` 
+},
       ],
  vilo: [
     { 
