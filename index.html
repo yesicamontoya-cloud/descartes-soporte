@@ -134,15 +134,23 @@ const DATA = {
 <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
 <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
-    <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-    <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+<div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
+<div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
 
-    <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
-        <strong>⚠️ Nota IP Incorrecta:</strong><br>
-        1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
-        2. Aplicar <b>reinicio en cascada</b> (Desconectar ambos 30s -> Conectar principal -> 30s después conectar secundario).<br>
-        3. Si persiste → <b>Escalar a N2</b>.
-    </div>
+<div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
+    <strong>⚠️ Nota IP Incorrecta:</strong><br>
+    1. Validar que el router secundario <b>no tenga cables en puerto WAN</b>.<br>
+    2. Aplicar <b>reinicio en cascada</b> (30s OFF -> Principal -> 30s -> Secundario).<br>
+    3. Si persiste → <b>Escalar a N2</b>.
+</div>
+
+<div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
+    <strong>🚀 Tip de Agilidad:</strong> Si los descartes quedan OK, finaliza el chat. <b>Actualiza la herramienta</b> antes de continuar. En CPE Doctor usa la opción <b>"30 min"</b> y atajos para confirmar si subió.
+</div>
+
+<div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
+    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
+</div>
 ` },
            { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `
 <div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
