@@ -200,8 +200,8 @@ const DATA = {
     ` 
 },
       ],
- vilo: [    
-      { 
+ vilo: [       
+   { 
     pill: "Validación", 
     title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
     tag: "Sistema", 
@@ -209,7 +209,7 @@ const DATA = {
         <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
         <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
         
-        <button class="btn" style="background:#a855f7; margin-bottom:8px;" onclick="window.open('URL_AQUI')">🚀 Ejecutar CPE Doctor</button>
+        <button class="btn" style="background:#a855f7; margin-bottom:8px;" onclick="window.open('https://cpedoctor.somosfiber.com/')">🚀 Ejecutar CPE Doctor</button>
 
         <div class="alert-falla" style="background:#e0f2fe; border-color:#0ea5e9; color:#0369a1; margin-bottom:10px; padding:8px; font-size:11px;">
             ℹ️ <b>Nota Desarrollo:</b> La integración automática con CPE Doctor para este flujo está en proceso de gestión.
@@ -218,7 +218,12 @@ const DATA = {
         <hr style="border:0; border-top:1px solid #eee; margin-bottom:8px;">
         
         <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-        <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+        <div class="alert-pago" style="margin-bottom:8px;">🚫 Si está suspendido → enviar link de pago</div>
+
+        <div class="item">Revise si existe una falla masiva en la zona</div>
+        <div class="alert-falla" style="margin-bottom:8px;">⚠️ Si hay falla → usar guion</div>
+
+        <button class="btn" style="background:#3b82f6;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4')">Abrir guion falla masiva (Pág. 4)</button>
     ` 
 },
     { 
@@ -248,29 +253,41 @@ const DATA = {
         </div>
     ` 
 },
-    { 
+   { 
     pill: "Usuario", 
     title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
     tag: "Cliente", 
     html: `
-        <div class="alert-falla" style="background:#f0f9ff; border-color:#0ea5e9; color:#0369a1; margin-bottom:8px; padding:8px; font-size:11px;">
-            <strong>💡 Estados de luz del router:</strong><br>
-            • Blanco → WiFi 6 (Funcionando OK)<br>
-            • Azul → WiFi 5 (Funcionando OK)
+        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Naranja:</strong> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.
         </div>
 
-        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
-            <strong>🔌 WAN:</strong><br>
+        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Rojo:</strong> Solicitar fotos: LEDs y conexiones (solo si aplica). <b>Si ya las envió, NO volver a solicitarlas.</b>
+        </div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Estados de luz del router:</strong><br>
+            • Blanco → WiFi 6 (funcionando correctamente)<br>
+            • Azul → WiFi 5 (funcionando correctamente)
+        </div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>WAN:</strong><br>
             • Router principal → debe tener el cable de red en el puerto WAN<br>
-            • Router secundario → <b>NO</b> debe tener cable en el puerto WAN
+            • Router secundario → NO debe tener cable en el puerto WAN
         </div>
 
         <div class="item" style="margin-bottom:2px;">• Validar que las conexiones estén correctas</div>
         <div class="item" style="margin-bottom:2px;">• Asegurarse de que el cable de red esté bien ajustado</div>
-        <div class="item" style="margin-bottom:5px;">• Reiniciar router (30s desconectado)</div>
+        <div class="item" style="margin-bottom:2px;">• Reiniciar router (30 segundos del tomacorriente y volver a conectar)</div>
 
-        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
-            ⚠️ <b>Nota Crítica:</b> Si el router (Principal o Secundario) persiste en <b>OFF</b> tras estas validaciones → <b>Escalar a N2</b>.
+        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px;">
+            🚀 <b>Tip de Agilidad:</b> Si los descartes quedan OK, finaliza el chat. De lo contrario, actualiza la herramienta antes de seguir.
+        </div>
+
+        <div class="alert-falla" style="background:#fef2f2; border-color:#f87171; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
+            🚨 <b>Nota:</b> Si principal o secundario siguen <b>OFF</b> → <b>Escalar a N2</b>.
         </div>
     ` 
 },
