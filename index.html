@@ -684,35 +684,40 @@ const DATA = {
   intermitencia: {
         phantom: [
     { 
-        pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red</span>", 
-        tag: "Sistemas", 
-        html: `
-            <div class="alert-falla" style="margin-bottom:10px;">
-            <div class="item"><b>• Verifique que NO exista falla masiva en la zona</div>  <button class="btn" style="flex:1; background:#0ea5e9;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">CPE Doctor</button>
-                ⚠️ <b>Falla Masiva:</b>  Si hay falla → usar guion de falla masiva (Pág. 4).   </div>
-            <div class="item"><b>• IP LAN:</b> Revisar en CPE Doctor que los routers no tengan la misma IP.</div>
-            <div class="item"><b>• Segmento:</b> Validar IP (100.x, 38.x, 206.x). Si es incorrecta realilizar reinicio en cascada:</div>
-            
-            <button onclick="abrirModal()" class="btn" style="width:100%; margin: 5px 0 10px 0; background:#f59e0b; color:white; font-size:11px;">
-                🔌 IP Incorrecta: Ver Reinicio en Cascada
+    pill: "Validación", 
+    title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red</span>", 
+    tag: "Sistemas", 
+    html: `
+        <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
+            Verifique que NO exista falla masiva en la zona.
+            <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal;" 
+                onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
+                🚀 Abrir Guion Falla Masiva
             </button>
+            <small style="display:block; margin-top:5px;">Si hay falla → usar guion (Pág. 4)</small>
+        </div>
 
-            <div class="nota-box" style="margin-bottom:10px;">
-                🚀 <b>Tip:</b> Actualiza CPE-ISP. Si funciona, finaliza; si no, sigue con los descartes.
-            </div>
+        <div class="item">• IP LAN: Revisar en CPE Doctor que los routers no tengan la misma IP.</div>
+        <div class="item">• Segmento: Validar IP (100.x, 38.x, 206.x). Si es incorrecta:</div>
 
-            <div class="item"><b>• Desde CPE Doctor:</b> Identificar cantidad de intermitencias y cambios de estado.</div>
-            <div class="item"><b>• Ping Test:</b> Realizar prueba de ping desde el cmd (mínimo 10 min) para detectar pérdida de paquetes. (ping ipadress -t + enter).</div>
-            <div class="item"><b>• Historial:</b> Desde Grafana, verificar si hay más usuarios afectados dentro del mismo site con los mismos cortes.</div>
-                                                  Desde CPE Doctor, validar si existen otras suscripciones afectadas en el mismo EDGE.</div>
+        <button onclick="abrirModal()" class="btn" style="width:100%; margin: 8px 0; background:#f59e0b; color:white; font-weight:normal; font-size:12px;">
+            🔌 IP Incorrecta: Ver Reinicio en Cascada
+        </button>
 
-            <div style="display:flex; gap:5px; margin-top:10px;">
-                <button class="btn" style="flex:1; background:#0ea5e9;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">CPE Doctor</button>
-                <button class="btn" style="flex:1; background:#8b5cf6;" onclick="window.open('https://reports.somosinternet.com:3000/dashboards/f/ee1oah2rc7rpcb/sac')">Grafana</button>
-            </div>
-        ` 
-    },
+        <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-top:10px; font-size:11px;">
+            🚀 Tip: Actualiza herramientas (CPE-ISP) y verifica. Si funciona finaliza, si no, sigue.
+        </div>
+
+        <div class="item" style="margin-top:10px;">• Desde CPE Doctor: Identificar cantidad de intermitencias.</div>
+        <div class="item">• Ping Test: Realizar prueba desde CMD (mínimo 10 min).</div>
+        <div class="item">• Historial: Verificar si hay tickets previos por la misma novedad.</div>
+
+        <div style="display:flex; gap:10px; margin-top:15px;">
+            <button class="btn" style="flex:1; background:#0ea5e9; font-weight:normal;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">CPE Doctor</button>
+            <button class="btn" style="flex:1; background:#8b5cf6; font-weight:normal;" onclick="window.open('URL_GRAFANA')">Grafana</button>
+        </div>
+    ` 
+},
     { 
         pill: "Usuario", 
         title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
