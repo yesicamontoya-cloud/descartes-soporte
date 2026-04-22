@@ -84,6 +84,18 @@
        <div id="navFX" class="nav-item" onclick="cambiarProceso('piloto-fx')">
     <i class="fas fa-rocket"></i> Piloto Fiber X
 </div>
+       <div id="navIntermitencia" class="nav-item" onclick="cambiarProceso('intermitencia')">
+            <i class="fas fa-wifi"></i> Intermitencia
+        </div>
+        <div id="navNoNavega" class="nav-item" onclick="cambiarProceso('no_navega')">
+            <i class="fas fa-globe-americas"></i> Conecta no navega
+        </div>
+        <div id="navCobertura" class="nav-item" onclick="cambiarProceso('cobertura')">
+            <i class="fas fa-signal"></i> Cobertura WiFi
+        </div>
+        <div id="navGaming" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
+            <i class="fas fa-gamepad"></i> Streaming / Gaming
+        </div>
     </div>
 
     <div class="area-separator"></div>
@@ -590,7 +602,7 @@ const DATA = {
                         <li><b>Etiqueta:</b> Identificar en sistema como "Fiber X".</li>
                         <li><b>Estado Site:</b> Puede verse <b>INACTIVO</b> (Es normal).</li>
                         <li><b>Dato Clave:</b> Si el LED 100 prende, está linqueando a 100Mbps (Lentitud).</li>
-                    </ul>
+                    </ul>Offline
                 </div>
             ` 
         }
@@ -599,6 +611,22 @@ const DATA = {
         { pill: "Sin Info", title: "No disponible", html: "Esta tecnología no aplica para Router Vilo." }
     ]
 },
+  intermitencia: {
+        phantom: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }],
+        vilo: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }]
+    },
+    no_navega: {
+        phantom: [{ pill: "Inicio", title: "No Navega", tag: "Pendiente", html: `<div class="action">Contenido de Conecta no navega en construcción.</div>` }],
+        vilo: [{ pill: "Inicio", title: "No Navega", tag: "Pendiente", html: `<div class="action">Contenido de Conecta no navega en construcción.</div>` }]
+    },
+    cobertura: {
+        phantom: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }],
+        vilo: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }]
+    },
+    vpn_gaming: {
+        phantom: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }],
+        vilo: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }]
+    },
     n2: {
         phantom: [
             { 
