@@ -682,7 +682,72 @@ const DATA = {
     ]
 },
   intermitencia: {
-        phantom: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }],
+        phantom: [
+    { 
+        pill: "Validación", 
+        title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red</span>", 
+        tag: "Sistemas", 
+        html: `
+            <div class="alert-falla" style="margin-bottom:10px;">
+                ⚠️ <b>Falla Masiva:</b> Antes de seguir, verifica Grafana/EDGE. Si hay falla, usa el guion de Masivas.
+            </div>
+            <div class="item"><b>• IP LAN:</b> Revisar en CPE Doctor que los routers no tengan la misma IP.</div>
+            <div class="item"><b>• Segmento:</b> Validar IP (100.x, 38.x, 206.x). Si es incorrecta:</div>
+            
+            <button onclick="abrirModal()" class="btn" style="width:100%; margin: 5px 0 10px 0; background:#f59e0b; color:white; font-size:11px;">
+                🔌 IP Incorrecta: Ver Reinicio en Cascada
+            </button>
+
+            <div class="nota-box" style="margin-bottom:10px;">
+                🚀 <b>Tip:</b> Actualiza CPE-ISP. Si funciona, finaliza; si no, sigue.
+            </div>
+
+            <div class="item"><b>• Flapping:</b> Revisar cambios de estado en CPE Doctor.</div>
+            <div class="item"><b>• Ping Test:</b> Realizar ping desde sistema (10 min).</div>
+            <div class="item"><b>• Historial:</b> ¿Hay tickets previos por la misma novedad?</div>
+
+            <div style="display:flex; gap:5px; margin-top:10px;">
+                <button class="btn" style="flex:1; background:#0ea5e9;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">CPE Doctor</button>
+                <button class="btn" style="flex:1; background:#8b5cf6;" onclick="window.open('URL_GRAFANA')">Grafana</button>
+            </div>
+        ` 
+    },
+    { 
+        pill: "Usuario", 
+        title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
+        tag: "Entorno", 
+        html: `
+            <div class="item"><b>• VPN:</b> Confirmar que no tenga ninguna activa.</div>
+            <div class="item"><b>• Medio:</b> ¿Falla por cable o únicamente WiFi?</div>
+            <div class="item"><b>• Distancia:</b> ¿A qué distancia está? ¿Cuántos muros hay?</div>
+            <div class="item"><b>• Conexión:</b> Cable principal en puerto WAN del secundario (LAN a LAN).</div>
+            <div class="item"><b>• Prueba de Oro:</b> Pedir <code>ping -t 8.8.8.8</code> desde CMD.</div>
+            
+            <div class="alert-pago" style="margin-top:10px; background:#eff6ff; border-color:#3b82f6; color:#1e40af;">
+                🕒 <b>Horarios:</b> ¿La falla es constante o en horas específicas?
+            </div>
+        ` 
+    },
+    { 
+        pill: "Resultado", 
+        title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
+        tag: "Final", 
+        html: `
+            <div class="item">✅ <b>Funciona:</b> Dar por finalizado el chat.</div>
+            <div class="item">❌ <b>No funciona:</b> Escalar a <b>N2</b>.</div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:8px; margin-top:10px; font-size:11px;">
+                <b>Antes de escalar validar:</b><br>
+                • Routers validados (Ppal/Sec)<br>
+                • Conexiones y Energía OK
+            </div>
+
+            <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca;">
+                🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.
+            </div>
+        ` 
+    }
+],
         vilo: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }]
     },
     no_navega: {
