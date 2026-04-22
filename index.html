@@ -689,26 +689,27 @@ const DATA = {
         tag: "Sistemas", 
         html: `
             <div class="alert-falla" style="margin-bottom:10px;">
-                ⚠️ <b>Falla Masiva:</b> Antes de seguir, verifica Grafana/EDGE. Si hay falla, usa el guion de Masivas.
-            </div>
+            <div class="item"><b>• Verifique que NO exista falla masiva en la zona</div>  <button class="btn" style="flex:1; background:#0ea5e9;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">CPE Doctor</button>
+                ⚠️ <b>Falla Masiva:</b>  Si hay falla → usar guion de falla masiva (Pág. 4).   </div>
             <div class="item"><b>• IP LAN:</b> Revisar en CPE Doctor que los routers no tengan la misma IP.</div>
-            <div class="item"><b>• Segmento:</b> Validar IP (100.x, 38.x, 206.x). Si es incorrecta:</div>
+            <div class="item"><b>• Segmento:</b> Validar IP (100.x, 38.x, 206.x). Si es incorrecta realilizar reinicio en cascada:</div>
             
             <button onclick="abrirModal()" class="btn" style="width:100%; margin: 5px 0 10px 0; background:#f59e0b; color:white; font-size:11px;">
                 🔌 IP Incorrecta: Ver Reinicio en Cascada
             </button>
 
             <div class="nota-box" style="margin-bottom:10px;">
-                🚀 <b>Tip:</b> Actualiza CPE-ISP. Si funciona, finaliza; si no, sigue.
+                🚀 <b>Tip:</b> Actualiza CPE-ISP. Si funciona, finaliza; si no, sigue con los descartes.
             </div>
 
-            <div class="item"><b>• Flapping:</b> Revisar cambios de estado en CPE Doctor.</div>
-            <div class="item"><b>• Ping Test:</b> Realizar ping desde sistema (10 min).</div>
-            <div class="item"><b>• Historial:</b> ¿Hay tickets previos por la misma novedad?</div>
+            <div class="item"><b>• Desde CPE Doctor:</b> Identificar cantidad de intermitencias y cambios de estado.</div>
+            <div class="item"><b>• Ping Test:</b> Realizar prueba de ping desde el cmd (mínimo 10 min) para detectar pérdida de paquetes. (ping ipadress -t + enter).</div>
+            <div class="item"><b>• Historial:</b> Desde Grafana, verificar si hay más usuarios afectados dentro del mismo site con los mismos cortes.</div>
+                                                  Desde CPE Doctor, validar si existen otras suscripciones afectadas en el mismo EDGE.</div>
 
             <div style="display:flex; gap:5px; margin-top:10px;">
                 <button class="btn" style="flex:1; background:#0ea5e9;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">CPE Doctor</button>
-                <button class="btn" style="flex:1; background:#8b5cf6;" onclick="window.open('URL_GRAFANA')">Grafana</button>
+                <button class="btn" style="flex:1; background:#8b5cf6;" onclick="window.open('https://reports.somosinternet.com:3000/dashboards/f/ee1oah2rc7rpcb/sac')">Grafana</button>
             </div>
         ` 
     },
@@ -719,34 +720,37 @@ const DATA = {
         html: `
             <div class="item"><b>• VPN:</b> Confirmar que no tenga ninguna activa.</div>
             <div class="item"><b>• Medio:</b> ¿Falla por cable o únicamente WiFi?</div>
-            <div class="item"><b>• Distancia:</b> ¿A qué distancia está? ¿Cuántos muros hay?</div>
-            <div class="item"><b>• Conexión:</b> Cable principal en puerto WAN del secundario (LAN a LAN).</div>
-            <div class="item"><b>• Prueba de Oro:</b> Pedir <code>ping -t 8.8.8.8</code> desde CMD.</div>
+            <div class="item"><b>• Distancia:</b> ¿Cuántos muros u obstáculos hay entre el dispositivo y el equipo?</div>
+            <div class="item"><b>• Conexión:</b> Validar que el cable de red esté conectado desde el router principal al router secundario en puertos LAN (no en WAN)..</div>
+            <div class="item"><b>• Ping :</b>  Solicitar al cliente un ping -t 8.8.8.8 desde el CMD de su computadora para evidenciar pérdidas en tiempo real.</div>
             
             <div class="alert-pago" style="margin-top:10px; background:#eff6ff; border-color:#3b82f6; color:#1e40af;">
-                🕒 <b>Horarios:</b> ¿La falla es constante o en horas específicas?
+                🕒 <b>Horarios:</b> Validar con el cliente si la falla es constante o se presenta en horarios específicos.
             </div>
         ` 
     },
     { 
-        pill: "Resultado", 
-        title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
-        tag: "Final", 
-        html: `
-            <div class="item">✅ <b>Funciona:</b> Dar por finalizado el chat.</div>
-            <div class="item">❌ <b>No funciona:</b> Escalar a <b>N2</b>.</div>
+    pill: "Resultado",
+    title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>",
+    tag: "Final",
+    html: `
+        <div class="item">✅ <b>Funciona:</b> Dar por finalizado el chat.</div>
+        <div class="item">❌ <b>No funciona:</b> Escalar a <b>especializados (N2)</b>.</div>
 
-            <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:8px; margin-top:10px; font-size:11px;">
-                <b>Antes de escalar validar:</b><br>
-                • Routers validados (Ppal/Sec)<br>
-                • Conexiones y Energía OK
-            </div>
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:8px; margin-top:10px; font-size:11px;">
+            <b>Antes de escalar validar:</b><br>
+            • Routers validados (Ppal/Sec)<br>
+            • Conexiones OK
+        </div>
 
-            <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca;">
-                🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.
-            </div>
-        ` 
-    }
+        <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding: 10px; border-radius: 8px;">
+            🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
+            <b>Nota:</b><br>
+            Esta condición debe estar correctamente validada y documentada. 
+            No se deben agendar visitas sin cumplir este criterio, para evitar pérdida de disponibilidad y visitas innecesarias.
+        </div>
+    `
+}
 ],
         vilo: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }]
     },
