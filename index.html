@@ -725,10 +725,10 @@ const DATA = {
             <div class="item">• ¿Los cortes ocurren por cable de red o únicamente por WiFi?</div>
             <div class="item">• ¿A qué distancia se encuentra del router?</div>
             
-            <div style="margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-                <p style="font-size: 10px; background: #f8fafc; padding: 5px; margin: 0; text-align: center; color: #64748b;">Tabla de Referencia: Calidad de Señal (dBm)</p>
-                <https://i.postimg.cc/pdSwxGkF/image-(9).png" style="width:100%; display:block;" alt="Tabla decibeles">
-            </div>
+        <div style="margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+    <p style="font-size: 10px; background: #f8fafc; padding: 5px; margin: 0; text-align: center; color: #64748b;">Tabla de Referencia: Calidad de Señal (dBm)</p>
+    <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; display:block;" alt="Tabla decibeles">
+</div>
 
             <div class="item">• ¿Cuántos muros u obstáculos hay entre el dispositivo y el equipo?</div>
             <div class="item">• Validar que el cable esté conectado desde el router principal al router secundario en puertos LAN (no en WAN).</div>
@@ -736,28 +736,28 @@ const DATA = {
             <div class="item">• Preguntar si la falla es constante o ocurre en horarios específicos.</div>
         ` 
     },
-    { 
-        pill: "Resultado", 
-        title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
-        tag: "Final", 
-        html: `
-            <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
-            <div class="item">❌ No funciona: Escalar a especializados (N2).</div>
+   {
+    pill: "Resultado",
+    title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>",
+    tag: "Final",
+    html: `
+        <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
+        <div class="item">❌ No funciona: Escalar a especializados (N2).</div>
 
-           <div style="background:#f0f7ff; border:1px solid #e2e8f0; padding:10px; border-radius:8px; margin-top:10px; font-size:11px;">
-    Antes de escalar validar:<br>
-    • Prueba de Ping -t realizada (evidencia de pérdida de paquetes).<br>
-    • Descarte de VPN y Saturación (horarios) realizado.<br>
-    • Conexión física validada (LAN a WAN entre routers).<br>
-    • Router principal y secundario con IPs diferentes.
-</div>>
+       <div style="background:#f1f5f9; border:1px solid #cbd5e1; padding:12px; border-radius:8px; margin-top:10px;">
+    <b style="color:#1e293b; display:block; margin-bottom:8px; font-size:12px;">Antes de escalar validar:</b>
+    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de Ping -t realizada (evidencia de pérdida de paquetes).</div>
+    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Descarte de VPN y Saturación (horarios) realizado.</div>
+    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Conexión física validada (LAN a WAN entre routers).</div>
+    <div style="color:#334155; font-size:11px;">• Router principal y secundario con IPs diferentes.</div>
+</div>
 
-            div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding:12px; border-radius:8px;">
-                🚨 Visita Técnica: Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
-                Nota: Esta condición debe estar correctamente validada y documentada. No se deben agendar visitas sin cumplir este criterio.
-            </div>
-        ` 
-    }
+        <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding:12px; border-radius:8px;">
+            🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
+            <span style="font-size:11px;">Nota: Esta condición debe estar correctamente validada y documentada. No se deben agendar visitas sin cumplir este criterio.</span>
+        </div>
+    `
+}
 ],
         vilo: [{ pill: "Inicio", title: "Intermitencia", tag: "Pendiente", html: `<div class="action">Contenido de Intermitencia en construcción.</div>` }]
     },
