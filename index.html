@@ -67,7 +67,27 @@
 .section-header:hover { background: rgba(255,255,255,0.05); }
 </style>
 </head>
-
+<div id="modalCascada" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center; font-family:sans-serif;">
+    <div style="background:white; width:90%; max-width:400px; border-radius:16px; overflow:hidden; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
+        <div style="background:#1e293b; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:bold;">🔌 Proceso de Reinicio</span>
+            <button onclick="cerrarModal()" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
+        </div>
+        <div style="padding:20px;">
+            <div style="background:#f0f9ff; border-left:4px solid #0ea5e9; padding:15px; border-radius:4px; margin-bottom:15px;">
+                <p style="margin:0; font-size:13px; color:#0369a1; line-height:1.6;">
+                    1. <b>Desconecta al mismo tiempo</b> del tomacorriente ambos equipos.<br><br>
+                    2. A los <b>30 segundos</b>, conectar primero el <b>router principal</b>.<br><br>
+                    3. Esperar <b>30 segundos adicionales</b> y luego conectar el <b>secundario</b>.
+                </p>
+            </div>
+            <div style="background:#fff7ed; border:1px solid #fdba74; padding:10px; border-radius:8px; font-size:11px; color:#9a3412;">
+                ⚠️ <b>Importante:</b> Verifica que los cables estén bien conectados antes de encender.
+            </div>
+            <button onclick="cerrarModal()" style="width:100%; margin-top:20px; background:#1e293b; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Entendido, cerrar</button>
+        </div>
+    </div>
+</div>
 <body>
 
 <aside class="sidebar">
@@ -140,8 +160,15 @@
         <div id="app" class="max-w-2xl mx-auto"></div>
     </div>
 </main>
-
 <script>
+function abrirModal() {
+    document.getElementById('modalCascada').style.display = 'flex';
+}
+
+function cerrarModal() {
+    document.getElementById('modalCascada').style.display = 'none';
+}
+
 const DATA = {
     offline: {
   phantom: [
@@ -170,11 +197,14 @@ const DATA = {
                 <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
                 <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
 
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
-                    <strong>⚠️ Nota IP Incorrecta:</strong><br>
-                    1. Validar que los router esten bien conectados </b>.<br>
-                    2. Aplicar <b>reinicio en cascada</b>  Ambos OFF 30s ➜ Conectar Principal (esperar 60s) ➜ Conectar Secundario.<br>
-                    3. Si persiste → <b>Escalar a N2</b>.
+           <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
+    <strong>⚠️ Nota IP Incorrecta:</strong><br>
+    Si detectas desincronía o IP fuera de rango, solicita el reinicio físico:
+    
+    <button onclick="abrirModal()" class="btn" style="width:100%; margin-top:10px; background:#1e293b; color:white; font-weight:bold;">
+        🔌 Ver Reinicio en Cascada
+    </button>
+</div>
                 </div>
 
                 <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
