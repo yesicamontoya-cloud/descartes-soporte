@@ -1124,12 +1124,12 @@ function render() {
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
     // Esta variable detecta si estamos en N2 para cambiar los colores
-    const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
+    const isN2 = procesoActual.includes('N2') || procesoActual === 'bajasN2';
 
     document.getElementById("app").innerHTML = `
         <div class="animate-in">
             <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">
-                ${isN2 ? 'ESPECIALIZADO N2' : 'DIAGNÓSTICO N1'} - ${data.tag}
+                ${data.tag}
             </div>
             
             <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
@@ -1139,59 +1139,62 @@ function render() {
                 ${pasoActual < pasos.length - 1 ? 
                     `<button class="btn" style="background: ${isN2 ? '#f97316' : '#0f172a'}" onclick="siguiente()">
                         Continuar Paso <i class="fas fa-arrow-right ml-2"></i>
-                    </button>` : ''}
-                
-                
+                    </button>` : 
+                    `<button class="btn-reset" onclick="reset()">
+                        <i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso
+                    </button>`
+                }
+            </div>
+        </div>`;
+}
 
+// --- FUNCIONES DE NAVEGACIÓN ---
 function irAPaso(i) { 
-        pasoActual = i; 
-        render(); 
-    }
+    pasoActual = i; 
+    render(); 
+}
 
-    function siguiente() { 
-        pasoActual++; 
-        render(); 
-    }
+function siguiente() { 
+    pasoActual++; 
+    render(); 
+}
 
-    function reset() { 
-        pasoActual = 0; 
-        render(); 
-    }
+function reset() { 
+    pasoActual = 0; 
+    render(); 
+}
 
-    window.onload = render;
-   // --- LÓGICA DE ADMINISTRADORA ABSOLUTA ---
-
+// --- LÓGICA DE SEGURIDAD ---
 function inicializarSeguridad() {
-    // 1. Leemos la URL buscando el parámetro ?area=
     const parametros = new URLSearchParams(window.location.search);
     const miArea = parametros.get('area');
 
-    // 2. Referencias a los elementos de N2
-    // Ajusta estos IDs si en tu HTML tienen nombres distintos
     const grupoN2 = document.getElementById('groupN2');
     const headerN2 = grupoN2?.previousElementSibling; 
     const navN2 = document.getElementById('navN2');
     const navBajasN2 = document.getElementById('navBajasN2');
+    const navIntermitenciaN2 = document.getElementById('navIntermitenciaN2');
 
-    // 3. RESTRICCIÓN: Si no es N2, ocultamos todo lo avanzado
     if (miArea !== 'n2') {
         if(grupoN2) grupoN2.style.display = 'none';
         if(headerN2) headerN2.style.display = 'none';
         if(navN2) navN2.style.display = 'none';
         if(navBajasN2) navBajasN2.style.display = 'none';
-        
-        console.log("🔒 Modo SAC (N1) Activo: Funciones de N2 restringidas.");
+        if(navIntermitenciaN2) navIntermitenciaN2.style.display = 'none';
+        console.log("🔒 Modo SAC (N1) Activo.");
     } else {
-        console.log("🔓 Modo Administradora Activo: Acceso total concedido.");
+        console.log("🔓 Modo Administradora Activo.");
     }
 }
 
-// Ejecutamos la seguridad apenas cargue la página
-document.addEventListener('DOMContentLoaded', inicializarSeguridad);
+// Ejecución inicial
+window.onload = () => {
+    render();
+    inicializarSeguridad();
+};
 </script>
 </body>
 </html>
-
 
 
 
