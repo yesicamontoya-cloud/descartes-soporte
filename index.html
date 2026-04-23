@@ -159,9 +159,8 @@
     <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')">
         <i class="fas fa-tachometer-alt"></i> Bajas Velocidades N2
     </div>
-    <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitenciaN2')">
-    <i class="fas fa-wifi"></i> Intermitencia N2
-</div>
+     <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitencia')">
+            <i class="fas fa-wifi"></i> Intermitencia N2
         </div>
         <div id="navNoNavegaN2" class="nav-item" onclick="cambiarProceso('no_navega')">
             <i class="fas fa-globe-americas"></i> No Navega N2
@@ -1030,61 +1029,8 @@ const DATA = {
                        <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
             }
         ]
-    },
-   "intermitenciaN2": {
-        "phantom": [
-            {
-                pill: "Descartes Herramientas",
-                tag: "ESPECIALIZADO N2 - SISTEMA", // <-- Cambiado a tu solicitud
-                title: "🔍 Validación de Herramientas",
-                html: `
-                    <div class="content-area">
-                        <ul class="list-bullet">
-                            <li><b>Verificar masividad:</b> Si hay más de 1 afectado en la zona, escalar al NOC.</li>
-                            <li><b>Validar errores EDGE:</b> Revisar según puerto (Radio: WinBox / Fibra: s600 o 610).</li>
-                            <li><b>Escalamiento:</b> Si hay errores acumulados, escalar vía ticket tarea o Noc_acceso.</li>
-                        </ul>
-                        <div class="nota-box" style="margin-top:10px; background:#fff3cd; padding:8px; border-left:4px solid #ffc107; color: #856404;">
-                            🚩 <b>Visita técnica:</b> Solo si es caso único.
-                        </div>
-                    </div>
-                `
-            },
-            {
-                pill: "Descartes Preguntas",
-                tag: "ESPECIALIZADO N2 - SISTEMA",
-                title: "❓ Confirmación con Usuario",
-                html: `
-                    <div class="content-area">
-                        <p>Confirmar funcionamiento tras reinicio de puerto por el NOC.</p>
-                    </div>
-                `
-            }
-        ],
-        "vilo": [
-            {
-                pill: "Descartes Herramientas",
-                tag: "ESPECIALIZADO N2 - SISTEMA",
-                title: "🔍 Validación (Vilo)",
-                html: `
-                    <div class="content-area">
-                        <p>Validar errores EDGE y masividad. Escalar al NOC si persiste.</p>
-                    </div>
-                `
-            },
-            {
-                pill: "Descartes Preguntas",
-                tag: "ESPECIALIZADO N2 - SISTEMA",
-                title: "❓ Confirmación",
-                html: `
-                    <div class="content-area">
-                        <p>Confirmar servicio tras gestión de red.</p>
-                    </div>
-                `
-            }
-        ]
+    }
     };
-    
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
@@ -1121,15 +1067,15 @@ function render() {
         pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
     });
 
-   document.getElementById('pillsContainer').innerHTML = pillsHtml;
+    document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
-    // Detectar si es un proceso de N2
-    const isN2 = procesoActual.toLowerCase().includes('n2');
+    // Esta variable detecta si estamos en N2 para cambiar los colores
+    const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
 
     document.getElementById("app").innerHTML = `
         <div class="animate-in">
             <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">
-                ${data.tag}
+                ${isN2 ? 'ESPECIALIZADO N2' : 'DIAGNÓSTICO N1'} - ${data.tag}
             </div>
             
             <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
@@ -1139,70 +1085,61 @@ function render() {
                 ${pasoActual < pasos.length - 1 ? 
                     `<button class="btn" style="background: ${isN2 ? '#f97316' : '#0f172a'}" onclick="siguiente()">
                         Continuar Paso <i class="fas fa-arrow-right ml-2"></i>
-                    </button>` : 
-                    `<button class="btn-reset" onclick="reset()">
-                        <i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso
-                    </button>`
-                }
+                    </button>` : ''}
+                
+                <button class="btn-reset" onclick="reset()">
+                    <i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso
+                </button>
             </div>
         </div>`;
 }
 
-// --- FUNCIONES DE NAVEGACIÓN ---
-function irAPaso(i) { pasoActual = i; render(); }
-function siguiente() { pasoActual++; render(); }
-function reset() { pasoActual = 0; render(); }
+function irAPaso(i) { 
+        pasoActual = i; 
+        render(); 
+    }
 
-function cambiarProceso(id) {
-    procesoActual = id;
-    pasoActual = 0;
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-    // Intentamos activar el botón (manejando mayúsculas/minúsculas del ID)
-    const btnId = 'nav' + id.charAt(0).toUpperCase() + id.slice(1);
-    const btn = document.getElementById(btnId);
-    if (btn) btn.classList.add('active');
-    render();
-}
+    function siguiente() { 
+        pasoActual++; 
+        render(); 
+    }
 
-// --- RESTAURACIÓN DE BOTONES N2 ---
+    function reset() { 
+        pasoActual = 0; 
+        render(); 
+    }
+
+    window.onload = render;
+   // --- LÓGICA DE ADMINISTRADORA ABSOLUTA ---
+
 function inicializarSeguridad() {
+    // 1. Leemos la URL buscando el parámetro ?area=
     const parametros = new URLSearchParams(window.location.search);
     const miArea = parametros.get('area');
 
-    // Lista Maestra de IDs de N2
-    const idsN2 = [
-        'groupN2', 
-        'navRouterOfflineN2', 
-        'navBajasVelocidadesN2', 
-        'navIntermitenciaN2', 
-        'navNoNavegaN2', 
-        'navCoberturaAvanzada', 
-        'navVpnGaming'
-    ];
+    // 2. Referencias a los elementos de N2
+    // Ajusta estos IDs si en tu HTML tienen nombres distintos
+    const grupoN2 = document.getElementById('groupN2');
+    const headerN2 = grupoN2?.previousElementSibling; 
+    const navN2 = document.getElementById('navN2');
+    const navBajasN2 = document.getElementById('navBajasN2');
 
+    // 3. RESTRICCIÓN: Si no es N2, ocultamos todo lo avanzado
     if (miArea !== 'n2') {
-        // Si NO es N2, ocultamos todo
-        idsN2.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = 'none';
-        });
-        const headerN2 = document.getElementById('groupN2')?.previousElementSibling;
-        if (headerN2) headerN2.style.display = 'none';
-        console.log("🔒 Modo N1 Activo");
+        if(grupoN2) grupoN2.style.display = 'none';
+        if(headerN2) headerN2.style.display = 'none';
+        if(navN2) navN2.style.display = 'none';
+        if(navBajasN2) navBajasN2.style.display = 'none';
+        
+        console.log("🔒 Modo SAC (N1) Activo: Funciones de N2 restringidas.");
     } else {
-        // Si ES N2, nos aseguramos de que TODO se vea
-        idsN2.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = 'flex'; 
-        });
-        console.log("🔓 Modo N2 Activo: Todos los botones restaurados");
+        console.log("🔓 Modo Administradora Activo: Acceso total concedido.");
     }
 }
 
-window.onload = () => {
-    render();
-    inicializarSeguridad();
-};
+// Ejecutamos la seguridad apenas cargue la página
+document.addEventListener('DOMContentLoaded', inicializarSeguridad);
 </script>
 </body>
 </html>
+      
