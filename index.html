@@ -759,46 +759,44 @@ const DATA = {
     `
 }
 ],
-    vilo: [
-        { 
-            pill: "Validación", 
-            title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red Vilo</span>", 
-            tag: "Sistemas", 
-            html: `
-                <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border:1px solid #f59e0b; color:#92400e; padding:10px; border-radius:8px;">
-                    Verifique que NO exista falla masiva en la zona.
-                    <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal; color:white; border:none; padding:8px; border-radius:5px;" 
-                        onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
-                        🚀 Abrir Guion Falla Masiva
-                    </button>
-                    <small style="display:block; margin-top:5px;">Si hay falla → usar guion de falla masiva (Pág. 4)</small>
-                </div>
+   { 
+    pill: "Validación", 
+    title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red Vilo</span>", 
+    tag: "Sistemas", 
+    html: `
+        <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border:1px solid #f59e0b; color:#92400e; padding:10px; border-radius:8px;">
+            Verifique que NO exista falla masiva en la zona.
+            <button class="btn" style="width:100%; background:#3b82f6; color:white; font-weight:normal;" 
+                onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
+                🚀 Abrir Guion Falla Masiva
+            </button>
+            <small style="display:block; margin-top:5px;">Si hay falla → usar guion de falla masiva (Pág. 4)</small>
+        </div>
 
-                <div style="color:#334155;">
-                    <div class="item">• Desde la ISP de Vilo revisar que no tomen la misma IP los dos router.</div>
-                    <div class="item">• El router principal debe tomar IP en los segmentos de Somos (100.x, 38.x, 206.x).</div>
-                    <div class="item">• Si la IP no pertenece a los segmentos → aplicar reinicio en cascada.</div>
-                </div>
+        <div style="color:#334155;">
+            <div class="item">• Desde la ISP de vilo revisar que no tomen la misma IP los dos router.</div>
+            <div class="item">• El router principal debe tomar IP en los segmentos de Somos (100.x, 38.x, 206.x).</div>
+            <div class="item">• Si la IP no pertenece a los segmentos → aplicar reinicio en cascada.</div>
+        </div>
 
-                <button onclick="abrirModal()" class="btn" style="width:100%; margin: 10px 0; background:#1e293b; color:white; font-weight:normal; border:none; padding:10px; border-radius:5px;">
-                    🔌 IP Incorrecta: Ver Reinicio en cascada
-                </button>
+        <button onclick="abrirModal()" class="btn" style="width:100%; margin: 10px 0; background:#1e293b; color:white; font-weight:normal;">
+            🔌 IP Incorrecta: Ver Reinicio en cascada
+        </button>
 
-                <div class="alert-falla" style="background:#f0f9ff; border:1px solid #bae6fd; color:#0369a1; padding:10px; border-radius:8px; margin-bottom:12px; font-size:11px;">
-                    <b>Tip de Agilidad:</b> Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza; si no, sigue.
-                </div>
+        <div class="alert-falla" style="background:#f0f9ff; border:1px solid #bae6fd; color:#0369a1; padding:10px; border-radius:8px; margin-bottom:12px; font-size:11px;">
+            Tip de Agilidad: Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
+        </div>
 
-                <div style="color:#334155;">
-                    <div class="item">• Identificar cantidad de intermitencias desde la herramienta de gestión (ISP).</div>
-                    <div class="item">• Verificar actualización del firmware desde la herramienta de gestión (ISP).</div>
-                    <div class="item">• Realizar prueba de ping desde el cmd (ping -t) mínimo 10 min.</div>
-                    <div class="item">• Verificar si hay más usuarios afectados dentro del mismo site.</div>
-                    <div class="item">• En CPE doctor ver si tenemos más suscripciones afectadas desde el mismo EDGE.</div>
-                    <div class="item">• Verificar el último ticket relacionado a la misma novedad.</div>
-                    <div class="item" style="color:#0369a1; font-weight:bold; margin-top:5px;">• Si es necesario separa redes (2.4 y 5G).</div>
-                </div>
-            ` 
-        },
+        <div style="color:#334155;">
+            <div class="item">• Identificar cantidad de intermitencias desde la herramienta de gestión (isp).</div>
+            <div class="item">• Verificar actualización del firmware desde la herramienta de gestión (isp).</div>
+            <div class="item">• Realizar prueba de ping desde el cmd (ping ipadress -t + enter) mínimo 10 min para detectar pérdida de paquetes.</div>
+            <div class="item">• Verificar si hay más usuarios afectados en el mismo site con los mismos cortes.</div>
+            <div class="item">• Verificar el último ticket relacionado a la misma novedad.</div>
+            <div class="item" style="color:#0369a1; font-weight:bold; margin-top:8px;">• Si es necesario separa redes (2.4 y 5g).</div>
+        </div>
+    ` 
+},
     { 
         pill: "Usuario", 
         title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
