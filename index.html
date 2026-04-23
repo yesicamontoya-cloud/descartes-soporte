@@ -1121,10 +1121,10 @@ function render() {
         pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
     });
 
-    document.getElementById('pillsContainer').innerHTML = pillsHtml;
+   document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
-    // Esta variable detecta si estamos en N2 para cambiar los colores
-    const isN2 = procesoActual.includes('N2') || procesoActual === 'bajasN2';
+    // Detectar si es un proceso de N2
+    const isN2 = procesoActual.toLowerCase().includes('n2');
 
     document.getElementById("app").innerHTML = `
         <div class="animate-in">
@@ -1149,45 +1149,56 @@ function render() {
 }
 
 // --- FUNCIONES DE NAVEGACIÓN ---
-function irAPaso(i) { 
-    pasoActual = i; 
-    render(); 
+function irAPaso(i) { pasoActual = i; render(); }
+function siguiente() { pasoActual++; render(); }
+function reset() { pasoActual = 0; render(); }
+
+function cambiarProceso(id) {
+    procesoActual = id;
+    pasoActual = 0;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    // Intentamos activar el botón (manejando mayúsculas/minúsculas del ID)
+    const btnId = 'nav' + id.charAt(0).toUpperCase() + id.slice(1);
+    const btn = document.getElementById(btnId);
+    if (btn) btn.classList.add('active');
+    render();
 }
 
-function siguiente() { 
-    pasoActual++; 
-    render(); 
-}
-
-function reset() { 
-    pasoActual = 0; 
-    render(); 
-}
-
-// --- LÓGICA DE SEGURIDAD ---
+// --- RESTAURACIÓN DE BOTONES N2 ---
 function inicializarSeguridad() {
     const parametros = new URLSearchParams(window.location.search);
     const miArea = parametros.get('area');
 
-    const grupoN2 = document.getElementById('groupN2');
-    const headerN2 = grupoN2?.previousElementSibling; 
-    const navN2 = document.getElementById('navN2');
-    const navBajasN2 = document.getElementById('navBajasN2');
-    const navIntermitenciaN2 = document.getElementById('navIntermitenciaN2');
+    // Lista Maestra de IDs de N2
+    const idsN2 = [
+        'groupN2', 
+        'navRouterOfflineN2', 
+        'navBajasVelocidadesN2', 
+        'navIntermitenciaN2', 
+        'navNoNavegaN2', 
+        'navCoberturaAvanzada', 
+        'navVpnGaming'
+    ];
 
     if (miArea !== 'n2') {
-        if(grupoN2) grupoN2.style.display = 'none';
-        if(headerN2) headerN2.style.display = 'none';
-        if(navN2) navN2.style.display = 'none';
-        if(navBajasN2) navBajasN2.style.display = 'none';
-        if(navIntermitenciaN2) navIntermitenciaN2.style.display = 'none';
-        console.log("🔒 Modo SAC (N1) Activo.");
+        // Si NO es N2, ocultamos todo
+        idsN2.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+        const headerN2 = document.getElementById('groupN2')?.previousElementSibling;
+        if (headerN2) headerN2.style.display = 'none';
+        console.log("🔒 Modo N1 Activo");
     } else {
-        console.log("🔓 Modo Administradora Activo.");
+        // Si ES N2, nos aseguramos de que TODO se vea
+        idsN2.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'flex'; 
+        });
+        console.log("🔓 Modo N2 Activo: Todos los botones restaurados");
     }
 }
 
-// Ejecución inicial
 window.onload = () => {
     render();
     inicializarSeguridad();
@@ -1195,6 +1206,3 @@ window.onload = () => {
 </script>
 </body>
 </html>
-
-
-
