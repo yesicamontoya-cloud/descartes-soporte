@@ -156,21 +156,26 @@
     <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
         <i class="fas fa-user-shield"></i> Router Offline
     </div>
+
     <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')">
         <i class="fas fa-tachometer-alt"></i> Bajas Velocidades N2
     </div>
-     <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitencia')">
-            <i class="fas fa-wifi"></i> Intermitencia N2
-        </div>
-        <div id="navNoNavegaN2" class="nav-item" onclick="cambiarProceso('no_navega')">
-            <i class="fas fa-globe-americas"></i> No Navega N2
-        </div>
-        <div id="navCoberturaN2" class="nav-item" onclick="cambiarProceso('cobertura')">
-            <i class="fas fa-signal"></i> Cobertura Avanzada
-        </div>
-        <div id="navGamingN2" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
-            <i class="fas fa-gamepad"></i> VPN / Gaming / URLs
-        </div>
+
+    <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitenciaN2')">
+        <i class="fas fa-wifi"></i> Intermitencia N2
+    </div>
+
+    <div id="navNoNavegaN2" class="nav-item" onclick="cambiarProceso('no_navega_n2')">
+        <i class="fas fa-globe-americas"></i> no Navega N2
+    </div>
+
+    <div id="navCoberturaN2" class="nav-item" onclick="cambiarProceso('coberturaN2')">
+        <i class="fas fa-signal"></i> Cobertura Avanzada
+    </div>
+
+    <div id="navGamingN2" class="nav-item" onclick="cambiarProceso('vpn_gaming_n2')">
+        <i class="fas fa-gamepad"></i> VPN / Gaming / URLs
+    </div>
 </div>
 </aside>
 <main class="main-content">
@@ -1213,27 +1218,21 @@ function cambiarProceso(proc) {
 };
 
 function inicializarSeguridad() {
-    // 1. Leemos la URL buscando el parámetro ?area=
     const parametros = new URLSearchParams(window.location.search);
     const miArea = parametros.get('area');
-
-    // 2. Referencias a los elementos de N2
-    // Ajusta estos IDs si en tu HTML tienen nombres distintos
     const grupoN2 = document.getElementById('groupN2');
-    const headerN2 = grupoN2?.previousElementSibling; 
-    const navN2 = document.getElementById('navN2');
-    const navBajasN2 = document.getElementById('navBajasN2');
 
-    // 3. RESTRICCIÓN: Si no es N2, ocultamos todo lo avanzado
     if (miArea !== 'n2') {
+        // En lugar de ocultar uno por uno, ocultamos el CONTENEDOR completo
         if(grupoN2) grupoN2.style.display = 'none';
-        if(headerN2) headerN2.style.display = 'none';
-        if(navN2) navN2.style.display = 'none';
-        if(navBajasN2) navBajasN2.style.display = 'none';
         
-        console.log("🔒 Modo SAC (N1) Activo: Funciones de N2 restringidas.");
+        // Si tienes un título arriba del grupo (ej: "Procesos N2"), ocultamos el anterior
+        const headerN2 = grupoN2?.previousElementSibling;
+        if(headerN2) headerN2.style.display = 'none';
+
+        console.log("🔒 Modo SAC (N1) Activo.");
     } else {
-        console.log("🔓 Modo Administradora Activo: Acceso total concedido.");
+        console.log("🔓 Modo Especialista Activo.");
     }
 }
 
