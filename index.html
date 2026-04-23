@@ -16,7 +16,6 @@
     .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
     .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
 
-    /* Estos son los títulos de las carpetas N1 y N2 */
     .section-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin-top: 20px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; }
     .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0; }
 
@@ -26,8 +25,8 @@
     .selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
 
     .menu { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; padding: 20px 40px 0 40px; }
-    .menu button { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 11px; font-weight: 800; color: #64748b; transition: 0.2s; }
-    .menu button.active { background: #00c896; color: white; }
+    .pill { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 11px; font-weight: 800; color: #64748b; transition: 0.2s; cursor: pointer; }
+    .pill.active { background: #00c896; color: white; }
 
     .block { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; }
     h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #0f172a; letter-spacing: -0.5px; }
@@ -39,15 +38,12 @@
     .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
     .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
 
-    .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
+    .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
     .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
-   /* Oculta el contenido de las carpetas por defecto */
     .nav-group { display: none; }
-    /* Clase para mostrar el contenido cuando se hace clic */
     .nav-group.open { display: block; }
-    /* Animación para la flechita */
     .rotate { transform: rotate(180deg); transition: 0.3s; }
-   /* Color para N2 cuando está seleccionado */
+
 #navN2.active, 
 #navBajasN2.active, 
 #navIntermitenciaN2.active, 
@@ -58,15 +54,10 @@
     box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
     color: white !important;
 }
-
-/* Estilo para los títulos de carpeta para que resalten más */
-.section-header {
-    border-radius: 8px;
-    transition: 0.2s;
-}
-.section-header:hover { background: rgba(255,255,255,0.05); }
 </style>
 </head>
+
+<body>
 <div id="modalCascada" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center; font-family:sans-serif;">
     <div style="background:white; width:90%; max-width:400px; border-radius:16px; overflow:hidden; box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);">
         <div style="background:#1e293b; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
@@ -81,37 +72,10 @@
                     3. Esperar <b>30 segundos adicionales</b> y luego conectar el <b>secundario</b>.
                 </p>
             </div>
-            <div style="background:#fff7ed; border:1px solid #fdba74; padding:10px; border-radius:8px; font-size:11px; color:#9a3412;">
-                ⚠️ <b>Importante:</b> Verifica que los cables estén bien conectados al router.
-            </div>
-           <div id="modalIPIntermitencia" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10001; justify-content:center; align-items:center; font-family:sans-serif;">
-    <div style="background:white; width:90%; max-width:600px; border-radius:16px; overflow:hidden; position:relative;">
-        <div style="background:#d32f2f; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-weight:bold;">⚠️ Protocolo: IP Incorrecta</span>
-            <button onclick="document.getElementById('modalIPIntermitencia').style.display='none'" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
-        </div>
-        <div style="padding:10px;">
-            <img src="https://i.postimg.cc/pdSwxGkF/image-(9).png" style="width:100%; border-radius:8px;">
-        </div>
-    </div>
-</div>
-
-<div id="modalDbm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10001; justify-content:center; align-items:center; font-family:sans-serif;">
-    <div style="background:white; width:90%; max-width:550px; border-radius:16px; overflow:hidden; position:relative;">
-        <div style="background:#0369a1; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-weight:bold;">📊 Niveles de Señal WiFi (dBm)</span>
-            <button onclick="document.getElementById('modalDbm').style.display='none'" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
-        </div>
-        <div style="padding:10px;">
-            <img src="URL_DE_TU_IMAGEN_DBM" style="width:100%; border-radius:8px;">
-        </div>
-    </div>
-</div>
             <button onclick="cerrarModal()" style="width:100%; margin-top:20px; background:#1e293b; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Entendido, cerrar</button>
         </div>
     </div>
 </div>
-<body>
 
 <aside class="sidebar">
     <div class="flex items-center gap-3 mb-12">
@@ -123,27 +87,10 @@
         <span class="text-blue-400 font-bold"><i class="fas fa-folder-open mr-2"></i> DIAGNÓSTICO-N1</span>
         <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
     </div>
-    <div id="groupN1" class="nav-group open"> <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')">
-            <i class="fas fa-power-off"></i> Router Offline
-        </div>
-        <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')">
-            <i class="fas fa-chart-line"></i> Bajas Velocidades
-        </div>
-       <div id="navFX" class="nav-item" onclick="cambiarProceso('piloto-fx')">
-    <i class="fas fa-rocket"></i> Piloto Fiber X
-</div>
-       <div id="navIntermitencia" class="nav-item" onclick="cambiarProceso('intermitencia')">
-            <i class="fas fa-wifi"></i> Intermitencia
-        </div>
-        <div id="navNoNavega" class="nav-item" onclick="cambiarProceso('no_navega')">
-            <i class="fas fa-globe-americas"></i> Conecta no navega
-        </div>
-        <div id="navCobertura" class="nav-item" onclick="cambiarProceso('cobertura')">
-            <i class="fas fa-signal"></i> Cobertura WiFi
-        </div>
-        <div id="navGaming" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
-            <i class="fas fa-gamepad"></i> Streaming / Gaming
-        </div>
+    <div id="groupN1" class="nav-group open">
+        <div id="navOffline" class="nav-item active" onclick="cambiarProceso('offline')"><i class="fas fa-power-off"></i> Router Offline</div>
+        <div id="navBajas" class="nav-item" onclick="cambiarProceso('bajas')"><i class="fas fa-chart-line"></i> Bajas Velocidades</div>
+        <div id="navIntermitencia" class="nav-item" onclick="cambiarProceso('intermitencia')"><i class="fas fa-wifi"></i> Intermitencia</div>
     </div>
 
     <div class="area-separator"></div>
@@ -152,27 +99,13 @@
        <span class="text-orange-400 font-bold"><i class="fas fa-folder-open mr-2"></i> ESPECIALIZADOS-N2</span>
         <i class="fas fa-chevron-down arrow-icon text-[8px]"></i>
     </div>
-  <div id="groupN2" class="nav-group">
-    <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')">
-        <i class="fas fa-user-shield"></i> Router Offline
+    <div id="groupN2" class="nav-group">
+        <div id="navN2" class="nav-item" onclick="cambiarProceso('n2')"><i class="fas fa-user-shield"></i> Router Offline N2</div>
+        <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')"><i class="fas fa-tachometer-alt"></i> Bajas Velocidades N2</div>
+        <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitenciaN2')"><i class="fas fa-wifi"></i> Intermitencia N2</div>
     </div>
-    <div id="navBajasN2" class="nav-item" onclick="cambiarProceso('bajasN2')">
-        <i class="fas fa-tachometer-alt"></i> Bajas Velocidades N2
-    </div>
-     <div id="navIntermitenciaN2" class="nav-item" onclick="cambiarProceso('intermitencia')">
-            <i class="fas fa-wifi"></i> Intermitencia N2
-        </div>
-        <div id="navNoNavegaN2" class="nav-item" onclick="cambiarProceso('no_navega')">
-            <i class="fas fa-globe-americas"></i> No Navega N2
-        </div>
-        <div id="navCoberturaN2" class="nav-item" onclick="cambiarProceso('cobertura')">
-            <i class="fas fa-signal"></i> Cobertura Avanzada
-        </div>
-        <div id="navGamingN2" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
-            <i class="fas fa-gamepad"></i> VPN / Gaming / URLs
-        </div>
-</div>
 </aside>
+
 <main class="main-content">
     <div class="selector">
         <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
@@ -183,963 +116,131 @@
         <div id="app" class="max-w-2xl mx-auto"></div>
     </div>
 </main>
+
 <script>
-function abrirModal() {
-    document.getElementById('modalCascada').style.display = 'flex';
-}
-
-function cerrarModal() {
-    document.getElementById('modalCascada').style.display = 'none';
-}
-
-const DATA = {
-    offline: {
-  phantom: [
-            { 
-                pill: "Validación", 
-                title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
-                tag: "Sistema", 
-                html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                         <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-                         <button class="btn" style="background:#a855f7; margin-bottom:8px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-                         <hr style="border:0; border-top:1px solid #eee; margin-bottom:0px;">
-                         <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-                         <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-                         <div class="item">Revise si existe una falla masiva en la zona</div>
-                         <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-                         <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
-                      
-{ 
-            pill: "Principal", 
-            title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
-            tag: "Herramienta", 
-            html: `
-                <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
-                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
-
-                <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
-
-           <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
-    <strong>⚠️ Nota IP Incorrecta:</strong><br>
-    Si detectas desincronía o IP fuera de rango, solicita el reinicio físico:
-    
-    <button onclick="abrirModal()" class="btn" style="width:100%; margin-top:10px; background:#1e293b; color:white; font-weight:bold;">
-        🔌 Ver Reinicio en Cascada
-    </button>
-</div>
-                </div>
-
-                <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
-                    <strong>🚀 Tip de Agilidad:</strong>  Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
-                </div>
-
-                <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
-                    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
-                </div>
-            ` 
-        },
-           { pill: "Secundario", title: "<span style='font-size: 16px;'>🔀 Router secundario</span>", tag: "Red", html: `
-<div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
-<div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
-           <div class="item" style="margin-bottom:2px;">Validar en Grafana que no esté en N/A</div>
-<div class="action" style="margin-bottom:6px; padding:5px;">
-    Si está en N/A → Validar que puerto WAN del secundario esté vacío y aplicar <b>reinicio en cascada</b>       
-</div>
-            <div class="action" style="margin-top:5px; padding:5px;">
-    Si hay inconsistencia o el problema persiste → <b>Escalar al Área de Especialidad (N2)</b>
-</div>` },
-         { 
-            pill: "Usuario", 
-            title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
-            tag: "Cliente", 
-            html: `
-                <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
-                    ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
-                </div>
-
-                <div class="item" style="margin-bottom:2px;">• Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
-                <div class="item" style="margin-bottom:5px;">• Confirmar conexiones correctas (revisar nota de principal o secundario).</div>
-
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
-                    <b>Nota Secundario:</b> El puerto WAN debe estar <b>VACÍO</b>.
-                </div>
-
-                <div class="item" style="margin-bottom:2px;">• Reiniciar equipo (30s desconectado del tomacorriente).</div>
-                
-                <div class="action" style="margin-top:5px; margin-bottom:5px; padding:6px; font-size:11px; line-height:1.3;">
-                    ⏱️ Al confirmar reinicio → esperar <b>2 a 3 minutos</b> y actualizar <b>CPE Doctor (filtro 30 min)</b> para verificar servicio.
-                </div>
-
-                <div class="action" style="background:#f1f5f9; color:#475569; border:none; font-size:11px; padding:4px;">
-                    🔵 No chuzar el equipo
-                </div>
-            ` 
-        },
-        { 
-            pill: "Resultado", 
-            title: "<span style='font-size: 16px;'>✅ Resultado</span>", 
-            tag: "Finalización", 
-            html: `
-                <div style="background:#E6FBF5; color:#007A5E; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #007A5E; margin-bottom:8px;">
-                    ✅ Funciona: Dar por finalizado el chat.
-                </div>
-
-                <div style="background:#fee2e2; color:#991b1b; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #ef4444;">
-                    ❌ No funciona: Escalar a N2
-                </div>
-
-                <div style="margin-top:8px; font-size:11px; color:#4b5563;">
-                    <b>Antes de escalar validar:</b><br>
-                    • Router principal validado<br>
-                    • Router secundario validado<br>
-                    • Conexiones correctas<br>
-                    • Energía OK
-                </div>
-            ` 
-        }
-      ],
- vilo: [       
-   { 
-    pill: "Validación", 
-    title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
-    tag: "Sistema", 
-    html: `
-        <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-        <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-        
-        <button class="btn" style="background:#a855f7; margin-bottom:8px;" onclick="window.open('https://cpedoctor.somosfiber.com/')">🚀 Ejecutar CPE Doctor</button>
-
-        <div class="alert-falla" style="background:#e0f2fe; border-color:#0ea5e9; color:#0369a1; margin-bottom:10px; padding:8px; font-size:11px;">
-            ℹ️ <b>Nota Desarrollo:</b> La integración automática con CPE Doctor para este flujo está en proceso de gestión.
-        </div>
-
-        <hr style="border:0; border-top:1px solid #eee; margin-bottom:8px;">
-        
-        <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
-        <div class="alert-pago" style="margin-bottom:8px;">🚫 Si está suspendido → enviar link de pago</div>
-
-        <div class="item">Revise si existe una falla masiva en la zona</div>
-        <div class="alert-falla" style="margin-bottom:8px;">⚠️ Si hay falla → usar guion</div>
-
-        <button class="btn" style="background:#3b82f6;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4')">Abrir guion falla masiva (Pág. 4)</button>
-    ` 
-},
-    { 
-    pill: "Principal", 
-    title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
-    tag: "Herramienta", 
-    html: `
-        <div class="item" style="margin-bottom: 0px;">Validar que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
-        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
-
-        <div class="item" style="margin-top: 5px; margin-bottom: 0px;">Verificar que el router principal tome IP y esté en segmentos Somos (100.x, 38.x, 206.x)</div>
-        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
-
-        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:8px; padding:8px; font-size:12px;">
-            <strong>⚠️ Nota IP Incorrecta:</strong><br>
-            1. Validar que los router esten bien conectados <b><br>
-            2. Aplicar <b>reinicio en cascada</b> Ambos OFF 30s ➜ Conectar Principal (esperar 60s) ➜ Conectar Secundario.<br>
-            3. Si persiste → <b>Escalar a N2</b>.
-        </div>
-
-        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
-            <strong>🚀 Tips :</strong> Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
-        </div>
-
-        <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
-            ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
-        </div>
-    ` 
-},
-   { 
-    pill: "Usuario", 
-    title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
-    tag: "Cliente", 
-    html: `
-        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-bottom:5px; padding:8px; font-size:11px;">
-            <strong>Naranja:</strong> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.
-        </div>
-
-        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
-            <strong>Rojo:</strong> Solicitar fotos: LEDs y conexiones (solo si aplica). <b>Si ya las envió, NO volver a solicitarlas.</b>
-        </div>
-
-        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
-            <strong>Estados de luz del router:</strong><br>
-            • Blanco → WiFi 6 (funcionando correctamente)<br>
-            • Azul → WiFi 5 (funcionando correctamente)
-        </div>
-
-        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
-            <strong>WAN:</strong><br>
-            • Router principal → debe tener el cable de red en el puerto WAN<br>
-            • Router secundario → NO debe tener cable en el puerto WAN
-        </div>
-
-        <div class="item" style="margin-bottom:2px;">• Validar que las conexiones estén correctas</div>
-        <div class="item" style="margin-bottom:2px;">• Asegurarse de que el cable de red esté bien ajustado</div>
-        <div class="item" style="margin-bottom:2px;">• Reiniciar router (30 segundos del tomacorriente y volver a conectar)</div>
-
-        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px;">
-            🚀 <b>Tip de Agilidad:</b> Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
-        </div>
-
-        <div class="alert-falla" style="background:#fef2f2; border-color:#f87171; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
-            🚨 <b>Nota:</b> Si principal o secundario siguen <b>OFF</b> → <b>Escalar a N2</b>.
-        </div>
-    ` 
-},
-            { 
-    pill: "Resultado", 
-    title: "✅ Resultado", 
-    tag: "Resultado", 
-    html: `
-        <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona: Dar por finalizado el chat.</div>
-        <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona: Escalar a N2</div>
-        <div class="nota-box">
-            <b>Antes de escalar validar:</b><br>
-            • Router principal validado<br>
-            • Router secundario validado<br>
-            • Conexiones correctas<br>
-            • Energía OK
-        </div>` 
-           }
-        ]
-    },
-    bajas: {
-       phantom: [          
-         { 
-            pill: "Validación", 
-            title: "<span style='font-size: 16px;'>📉 Bajas Velocidades</span>", 
-            tag: "Sistema", 
-            html: `
-                <div class="item" style="margin-bottom: 5px;">Verifique que NO exista falla masiva en la zona.</div>
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
-                    ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold; text-decoration:none;">usar guion de falla masiva (Pág. 4)</a>
-                </div>
-                  div style="margin-bottom: 10px;">
-        <button class="btn" style="width: 100%; background:#3b82f6; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;" 
-        onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/present')">
-            🚀 Abrir Guion 
-        </button>
-    </div>             
-                <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
-                    • <b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
-                    • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
-                    • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
-                    • <b>Linkeo:</b> Revisar linkeo del puerto WAN (según tipo de plan).
-                </div>
-
-                <div style="display: flex; gap: 5px; margin-bottom: 10px;">
-                    <button class="btn" style="background:#3b82f6; flex: 1; padding: 8px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
-                        🔍 Identificar IP
-                    </button>
-                    <button class="btn" style="background:#a855f7; flex: 1; padding: 8px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-                        🚀 CPE Doctor
-                    </button>
-                </div>
-
-                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; padding:8px; font-size:11px;">
-                    ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
-                </div>
-            ` 
-        },
-            
-        { 
-            pill: "Usuario", 
-            title: "<span style='font-size: 16px; color: #1e293b;'>👤 Validación de Velocidad</span>", 
-            tag: "Cliente", 
-            html: `
-                <div style="color: #475569 !important; font-family: sans-serif;">
-                    <div style="font-size: 11px; line-height: 1.4;">
-                        
-                        <div style="margin-bottom: 8px;">
-                            • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo conectado a la red <b>5G</b> usando el servidor de <b>SOMOS</b> a través de (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
-                            • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
-                        </div>
-
-                        <div style="background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 8px;">
-                            
-                            • Confirmar que <b>NO tenga VPN</b> activa.<br>
-                            • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b>.<br>
-                            • Validar resultados en <b>varios dispositivos</b> (red 5G) para descartar falla única.<br>
-                            • Validar <b>categoría del cable</b> (mínimo <b>Cat 5e</b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
-                            • Evaluar entorno y distancia (muros, interferencias).
-                        </div>
-
-                        <div style="margin-bottom: 8px;">
-                            📌 <b>Nota:</b> Dispositivos de domótica consumen poca velocidad.<br>
-                            • Verificar firmware actualizado (Firmware Upgrade).
-                        </div>
-
-                        <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 8px; font-size: 10px; border-radius: 4px;">
-                            💡 <b>Condicional:</b> Solo si se detecta saturación, solicitar cambio de canales por el grupo de <b>Soporte Calidad</b>.
-                        </div>
-
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 5px; margin-top: 10px;">
-                    <button class="btn" style="background: #10b981; flex: 1; padding: 8px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://www.speedtest.net/')">
-                        🌐 Abrir Speedtest
-                    </button>
-                </div>
-            ` 
-        },
-            { 
-            pill: "Resultado", 
-            title: "📉 Bajas Velocidades", 
-            tag: "Resultado", 
-            html: `
-                <div class="item">• Si la velocidad es correcta por cable → el problema es la cobertura o interferencia WiFi.</div>
-                <div class="item">• Si la velocidad es asimétrica → el problema se debe a una falla en la red o a la mala configuración del equipo del usuario.</div>
-                <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o configuración del equipo.</div>
-                
-                <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
-                    ❌ Si no se soluciona → Escalar al área especializada (N2)
-                </div>
-                
-                <div class="nota-box">
-                    <b>Antes de escalar, confirmar:</b><br>
-                    • ✔ Se realizó cambio de canal WiFi<br>
-                    • ✔ La velocidad sigue baja por cable (LAN)<br>
-                    • ✔ Todas las validaciones fueron completadas
-                </div>` 
-        },
-        ],
-       vilo: [
-           { 
-            pill: "Validación", 
-            title: "<span style='color: #1e293b;'>📉 Bajas Velocidades</span>", 
-            tag: "Sistema", 
-            html: `
-                <div style="font-size: 11px; line-height: 1.4; color: #475569 !important; font-family: sans-serif;">
-                    
-                    <div style="margin-bottom: 8px;">Verifique que <b>NO</b> exista falla masiva en la zona.</div>
-
-                    <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 6px 10px; border-radius: 4px; margin-bottom: 10px; color: #92400e;">
-                        ⚠️ <b>Si hay falla → usar guion de falla masiva (Pág. 4)</b>
-                    </div>
-
-                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; margin-bottom: 12px;">
-                        <ul style="margin: 0; padding-left: 15px;">
-                            <li style="margin-bottom: 4px;"><b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).</li>
-                            <li style="margin-bottom: 4px;"><b>IP:</b> Validar que los routers <b>NO tengan la misma IP</b>.</li>
-                            <li style="margin-bottom: 4px;"><b>Test:</b> Realizar test de velocidad desde el sistema.</li>
-                            <li style="margin-bottom: 0;"><b>Linkeo:</b> Revisar linkeo del puerto WAN y <b>Firmware Upgrade</b>.</li>
-                        </ul>
-                    </div>
-
-                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                        <button class="btn" style="flex: 1; background:#3b82f6; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;" onclick="window.open('https://sites.google.com/somosinternet.co/formacion/soporte/ip-fija-ip-p%C3%BAblica/ips-en-soporte-cpe?authuser=0')">
-                            🔍 Identificar IP
-                        </button>
-                        <button class="btn" style="flex: 1; background:#a855f7; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">
-                            🚀 CPE Doctor
-                        </button>
-                    </div>
-
-                    <div style="font-size: 9px; color: #64748b; font-style: italic; margin-bottom: 8px; text-align: center;">
-                        ℹ️ Integración automática de CPE Doctor en proceso de gestión.
-                    </div>
-
-                    <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 6px 10px; border-radius: 4px; color: #92400e; font-size: 10px;">
-                        ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
-                    </div>
-
-                </div>
-            ` 
-        },
-           { 
-            pill: "Usuario", 
-            title: "<span style='font-size: 16px; color: #1e293b;'>👤 Validación de Velocidad</span>", 
-            tag: "Cliente", 
-            html: `
-                <div style="font-size: 11px; line-height: 1.4; color: #475569 !important;">
-                    <div style="margin-bottom: 8px;">
-                        • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo en red <b>5G</b> usando el servidor de <b>SOMOS</b> (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
-                        • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
-                    </div>
-
-                    <div style="background: #f8fafc; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 8px;">
-                     
-                        • Confirmar que <b>NO tenga VPN</b> activa.<br>
-                        • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b> del equipo.<br>
-                        • Validar en <b>varios dispositivos</b> (red 5G) para descartar falla única.<br>
-                        • Separar redes 2.4 GHz y 5 GHz (si no están separadas).<br>
-                        • Verificar que el firmware esté actualizado (<b>Firmware Upgrade</b>).<br>
-                        •  Validar <b>categoría del cable</b> (mínimo <b>Cat 5e</b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
-                        • Evaluar entorno y distancia (muros, interferencias).
-                    </div>
-
-                    <div style="margin-bottom: 8px;">
-                        📌 <b>Nota Asimetría:</b> Si la velocidad es asimétrica, el problema se debe a la red o a la configuración del equipo del usuario.<br>
-                        <span style="font-style: italic;">• Dispositivos de domótica consumen poca velocidad. <br> 📌 Nota: Dispositivos de domótica consumen poca velocidad.</span>
-                       
-                    </div>
-
-                    <div style="background:#fffbeb; border: 1px solid #fef3c7; color:#92400e; padding:6px; font-size:10px; border-radius: 4px;">
-                        💡 <b>Condicional:</b> Solo si se detecta saturación (no siempre aplica), solicitar cambio de canales por el grupo de <b>Soporte Calidad</b>.
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 5px; margin-top: 8px;">
-                    <button class="btn" style="background:#10b981; flex: 1; padding: 6px; font-size: 11px; border:none; border-radius:4px; color:white; font-weight:bold; cursor:pointer;" onclick="window.open('https://www.speedtest.net/')">
-                        🌐 Abrir Speedtest
-                    </button>
-                </div>
-            ` 
-        },                                     
-              
-           { 
-                pill: "Resultado", 
-                title: "📉 Bajas Velocidades", 
-                tag: "Resultado", 
-                html: `
-                    <div class="item">• Si la velocidad es correcta por cable → el problema es WiFi.</div>
-                    <div class="item">• Si la velocidad es asimétrica → el problema se debe a una falla en la red o a la mala configuración del equipo del usuario.</div>
-                    <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o hardware.</div>
-                    
-                    <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
-                        ❌ Si no se soluciona → Escalar al área especializada (N2)
-                    </div>
-                    
-                    <div class="nota-box">
-                        <b>Antes de escalar, confirmar:</b><br>
-                        • ✔ Se realizó cambio de canal WiFi / Firmware ok<br>
-                        • ✔ La velocidad sigue baja por cable (LAN)<br>
-                        • ✔ Todas las validaciones fueron completadas
-                    </div>` 
-            }
-        ]
-    },
-"piloto-fx": {
-    phantom: [
-        { 
-            pill: "Guía FX", 
-            title: "🚀 Piloto Fiber X (Vera T4)", 
-            tag: "Nueva Tecnología", 
-            html: `
-                <div style="background:#f0f9ff; border-left:4px solid #0ea5e9; padding:15px; border-radius:12px; margin-bottom:20px;">
-                    <b style="color:#0c4a6e; font-size:14px; display:block; margin-bottom:8px;">📢 Implementación Piloto FX – Distrito Vera Torre 4</b>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:11px; color:#0c4a6e;">
-                        <div style="background:rgba(255,255,255,0.5); padding:8px; border-radius:8px;">
-                            <b style="color:#ef4444;">ANTES:</b> Conexión UTP Cat 5E.
-                        </div>
-                        <div style="background:rgba(255,255,255,0.5); padding:8px; border-radius:8px;">
-                            <b style="color:#22c55e;">AHORA:</b> Fibra Óptica directa.
-                        </div>
-                    </div>
-                    <p style="font-size:11px; margin-top:10px; color:#334155; line-height:1.4;">
-                        <b>Flujo:</b> Fibra → Media Converter → UTP → Router Phantom (Puerto WAN).
-                    </p>
-                </div>
-
-                <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">1. Diagnóstico de LEDs (Media Converter)</div>
-                <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:12px; background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:12px; margin-bottom:20px; align-items: center;">
-                    <div style="text-align:center;">
-                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
-                    </div>
-                    <div style="display:flex; flex-direction:column; gap:10px;">
-                        <div style="border-left:3px solid #22c55e; padding-left:10px;">
-                            <b style="font-size:11px; color:#166534; display:block;">IZQUIERDA (FX)</b>
-                            <span style="font-size:10px; color:#475569;">FX, TX, RX:</span><br>
-                            <b style="font-size:10px; color:#166534;">🟢 DEBEN ESTAR PRENDIDOS</b>
-                        </div>
-                        <div style="border-left:3px solid #ef4444; padding-left:10px;">
-                            <b style="font-size:11px; color:#991b1b; display:block;">DERECHA (UTP)</b>
-                            <span style="font-size:10px; color:#475569;">LED 100:</span><br>
-                            <b style="font-size:10px; color:#ef4444;">⚫ DEBE ESTAR APAGADO</b>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">2. Conexión y Estado del Router</div>
-                <div style="background:#f8fafc; border:1px solid #3b82f6; border-radius:12px; overflow:hidden; margin-bottom:20px;">
-                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; height:auto; display:block;">
-                    <div style="padding:10px; background:#eff6ff;">
-                        <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4; text-align:center;">
-                            El cable UTP debe ingresar al puerto <b>WAN</b>. Confirma que el linqueo NO sea de 100Mbps.
-                        </p>
-                    </div>
-                </div>
-
-                <div style="background:#f1f5f9; padding:12px; border-radius:12px; border-left:4px solid #0f172a;">
-                    <b style="font-size:12px; color:#0f172a;">📝 Resumen Fiber X:</b>
-                    <ul style="margin:5px 0 0 0; padding-left:15px; font-size:11px; color:#334155; line-height:1.4;">
-                        <li><b>Identificación:</b> Solo 10 usuarios (Piloto Vera T4).</li>
-                        <li><b>Etiqueta:</b> Identificar en sistema como "Fiber X".</li>
-                        <li><b>Estado Site:</b> Puede verse <b>INACTIVO</b> (Es normal).</li>
-                        <li><b>Dato Clave:</b> Si el LED 100 prende, está linqueando a 100Mbps (Lentitud).</li>
-                    </ul>Offline
-                </div>
-            ` 
-        }
-    ],
-    vilo: [
-        { pill: "Sin Info", title: "No disponible", html: "Esta tecnología no aplica para Router Vilo." }
-    ]
-},
-  intermitencia: {
-      phantom: [
-    { 
-        pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red</span>", 
-        tag: "Sistemas", 
-        html: `
-            <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
-                Verifique que NO exista falla masiva en la zona.
-                <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal;" 
-                    onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
-                    🚀 Abrir Guion Falla Masiva
-                </button>
-                <small style="display:block; margin-top:5px;">Si hay falla → usar guion de falla masiva (Pág. 4)</small>
-            </div>
-
-            <div class="item">• Desde CPE Doctor revisar que no tomen la misma IP los dos router.</div>
-            <div class="item">• El router principal debe tomar IP en los segmentos de Somos (100.x, 38.x, 206.x).</div>
-            <div class="item">• Si la IP no pertenece a los segmentos → aplicar reinicio en cascada.</div>
-
-            <button onclick="abrirModal()" class="btn" style="width:100%; margin: 10px 0; background:#f59e0b; color:white; font-weight:normal;">
-                🔌 Nota IP Incorrecta: Ver Reinicio
-            </button>
-
-            <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-bottom:12px; font-size:11px;">
-                Tip de Agilidad: Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
-            </div>
-
-            <div class="item">• CPE Doctor: Identificar cantidad de intermitencias y cambios de estado.</div>
-            <div class="item">• Realizar prueba de ping desde el cmd (ping ipadress -t + enter (mínimo 10 min) para detectar pérdida de paquetes.</div>
-            <div class="item">• Grafana: Verificar si hay más usuarios afectados dentro del mismo site con los mismos cortes.</div>
-            <div class="item">• En CPE doctor ver si tenemos más suscripciones afectadas desde el mismo EDGE.</div>
-            <div class="item">• Verificar el último ticket relacionado a la misma novedad.</div>
-        ` 
-    },
-    { 
-        pill: "Usuario", 
-        title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
-        tag: "Entorno", 
-        html: `
-            <div class="item">• Confirmar que no tenga VPN activa.</div>
-            <div class="item">• ¿Los cortes ocurren por cable de red o únicamente por WiFi?</div>
-            <div class="item">• ¿A qué distancia se encuentra del router?</div>
-            
-        <div style="margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-    <p style="font-size: 10px; background: #f8fafc; padding: 5px; margin: 0; text-align: center; color: #64748b;">Tabla de Referencia: Calidad de Señal (dBm)</p>
-    <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; display:block;" alt="Tabla decibeles">
-</div>
-
-            <div class="item">• ¿Cuántos muros u obstáculos hay entre el dispositivo y el equipo?</div>
-            <div class="item">• Validar que el cable esté conectado desde el router principal al router secundario en puertos LAN (no en WAN).</div>
-            <div class="item">• Solicitar al cliente un ping -t 8.8.8.8 desde el CMD para evidenciar pérdidas.</div>
-            <div class="item">• Preguntar si la falla es constante o ocurre en horarios específicos.</div>
-        ` 
-    },
-   {
-    pill: "Resultado",
-    title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>",
-    tag: "Final",
-    html: `
-        <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
-        <div class="item">❌ No funciona: Escalar a especializados (N2).</div>
-
-       <div style="background:#f1f5f9; border:1px solid #cbd5e1; padding:12px; border-radius:8px; margin-top:10px;">
-    <b style="color:#1e293b; display:block; margin-bottom:8px; font-size:12px;">Antes de escalar validar:</b>
-    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de Ping -t realizada (evidencia de pérdida de paquetes).</div>
-    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Descarte de VPN y Saturación (horarios) realizado.</div>
-    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Conexión física validada (LAN a WAN entre routers).</div>
-    <div style="color:#334155; font-size:11px;">• Router principal y secundario con IPs diferentes.</div>
-</div>
-
-        <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding:12px; border-radius:8px;">
-            🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
-            <span style="font-size:11px;">Nota: Esta condición debe estar correctamente validada y documentada. No se deben agendar visitas sin cumplir este criterio.</span>
-        </div>
-    `
-}
-],
-      vilo: [
-    { 
-        pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico Vilo</span>", 
-        tag: "Sistemas", 
-        html: `
-            <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
-                Verifique que NO exista falla masiva en la zona.
-                <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal;" 
-                    onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
-                    🚀 Abrir Guion Falla Masiva
-                </button>
-            </div>
-
-            <div class="item">• Revisar que no tomen la misma IP los dos modem (conflicto de IP).</div>
-            <div class="item">• Verificar actualización del FIRMWARE desde la herramienta de gestión (ISP).</div>
-            <div class="item">• Revisar historial de intermitencias en el log del equipo.</div>
-            <div class="item">• Validar si otros usuarios en el mismo site presentan cortes similares.</div>
-            <div class="item">• Intentar separación de redes (2.4GHz y 5GHz) si el equipo lo permite.</div>
-
-            <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-top:10px; font-size:11px;">
-                Tip: Si el firmware está desactualizado, procede con la actualización antes de seguir con los descartes físicos.
-            </div>
-        ` 
-    },
-    { 
-        pill: "Usuario", 
-        title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
-        tag: "Entorno", 
-        html: `
-            <div class="item">• Confirmar que no tenga VPN activa.</div>
-            <div class="item">• ¿La falla persiste conectando el equipo por cable o solo por WiFi?</div>
-            <div class="item">• Validar distancia y cantidad de obstáculos (muros) entre el dispositivo y el Vilo.</div>
-
-            <div style="text-align:center; margin: 15px 0;">
-                <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
-                <p style="font-size: 10px; color: #64748b; margin-top: 5px;">Referencia: Calidad de Señal vs Distancia</p>
-            </div>
-
-            <div class="item">• Verificar conexiones físicas del equipo secundario (puertos LAN/WAN).</div>
-            <div class="item">• Realizar ping extendido desde el CMD a una IP externa (ej. 8.8.8.8).</div>
-            <div class="item">• ¿La falla ocurre en un horario específico o es constante?</div>
-            <div class="item">• ¿El LED del Vilo cambia de color al momento de presentarse la novedad?</div>
-        ` 
-    },
-    { 
-        pill: "Resultado", 
-        title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
-        tag: "Final", 
-        html: `
-            <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
-            <div class="item">❌ No funciona: Escalar a especializados (N2) para continuar validaciones.</div>
-
-            <div style="background:#f1f5f9; border:1px solid #cbd5e1; padding:12px; border-radius:8px; margin-top:10px;">
-                <b style="color:#1e293b; display:block; margin-bottom:8px; font-size:12px;">Antes de escalar validar:</b>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Firmware verificado/actualizado.</div>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de ping extendido realizada con evidencia de pérdida.</div>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Descarte de cables y puertos en el equipo secundario.</div>
-                <div style="color:#334155; font-size:11px;">• Revisión de saturación por cantidad de equipos conectados.</div>
-            </div>
-
-            <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding: 12px; border-radius: 8px;">
-                🚨 Visita Técnica: Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
-                <span style="font-size:11px;">Nota: No se deben agendar visitas sin cumplir este criterio para evitar pérdida de disponibilidad.</span>
-            </div>
-        ` 
-    }
-],
-    },
-    no_navega: {
-        phantom: [{ pill: "Inicio", title: "No Navega", tag: "Pendiente", html: `<div class="action">Contenido de Conecta no navega en construcción.</div>` }],
-        vilo: [{ pill: "Inicio", title: "No Navega", tag: "Pendiente", html: `<div class="action">Contenido de Conecta no navega en construcción.</div>` }]
-    },
-    cobertura: {
-        phantom: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }],
-        vilo: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }]
-    },
-    vpn_gaming: {
-        phantom: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }],
-        vilo: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }]
-    },
-    n2: {
-        phantom: [
-            { 
-                pill: "Herramientas", 
-                title: "🛠️ N2 - Validación en Red", 
-                tag: "Análisis Técnico", 
-               html: `
-    <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-    <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-    <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-    <hr style="border:0; border-top:1px solid #eee; margin-bottom:15px;">
-
-    <div class="nota-box">¿La MAC sube a la red? <br> • ❌ No sube → Falla física confirmada.</div>
-    <div class="item"><b>Análisis por Volumen:</b></div>
-    <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-        👤 < 2 usuarios: Caso individual → Posible visita técnica.
-    </div>
-    <div class="alert-falla">
-        👥 ≥ 2 usuarios: Escalar al NOC (Incidente de red).
-    </div>
-`
-            },
-            { 
-                pill: "Tecnología", 
-                title: "📡 Análisis por Tecnología", 
-                tag: "Radio / Fibra", 
-                html: `
-                    <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
-                    <div class="alert-falla">⚠️ Si no responde o presenta error → ESCALAR Al NOC.</div>
-                    <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
-                    <div class="action">Validar que el equipo tome IP.</div>
-                    <div class="nota-box">
-                        • No toma IP o está errada → Escalar a NOC.<br>
-                        • Toma IP correcta → Continuar diagnóstico.
-                    </div>` 
-            },
-            { 
-                pill: "Usuario", 
-                title: "🔌 Descartes Lado Usuario", 
-                tag: "Validación Final", 
-                html: `
-                    <div class="item"><b>Acción Física:</b> Reset de equipo secundario (Chuzar equipo).</div>
-                    <div class="alert-pago" style="background:#fef9c3; border-color:#facc15; color:#854d0e">
-                        💡 REGLA DE ORO: Verifique las pruebas enviadas por el cliente ANTES de pedir fotos o realizar pasos innecesarios.
-                    </div>` 
-            },
-            { 
-                pill: "Escalamiento", 
-                title: "🚩 Reglas de Escalamiento", 
-                tag: "Sin Interpretación", 
-                html: `
-                    <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
-                        <b>ESCALAR A NOC SI:</b><br>
-                        • MAC no visible (≥2 usuarios)<br>
-                        • No toma IP / IP incorrecta<br>
-                        • Error en EDGE / CHR
-                    </div>
-                    <div class="action" style="margin-top:10px">
-                        <b>ESCALAR A TERRENO SI:</b><br>
-                        • Falla física confirmada (1 usuario individual)
-                    </div>` 
-            }
-        ],      
-       vilo: [
-            { 
-                pill: "Herramientas", 
-                title: "🛠️ N2 - Validación en Red (Vilo)", 
-                tag: "Análisis Técnico", 
-               html: `
-    <div class="item"><b>Revisión EDGE (Web / Winbox):</b> Validar topología y estado de la MAC.</div>
-    <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>    
-    <button class="btn" style="background:#a855f7; margin: 15px 0;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-
-    <div class="nota-box">
-        ¿La MAC sube a la red? <br> 
-        • ❌ No sube → <b>Falla física confirmada.</b>
-    </div>
-
-    <div class="item"><b>Análisis por Volumen:</b></div>
-
-    <div class="alert-pago" style="background:#eff6ff; border-color:#3b82f6; color:#1e40af">
-        👤 < 2 usuarios: Caso individual → <b>Visita técnica.</b>
-    </div>
-
-    <div class="alert-falla">
-        👥 ≥ 2 usuarios: Escalar al NOC (<b>Ticket de red</b>).
-    </div>
-` 
-            },
-            { 
-                pill: "Tecnología", 
-                title: "📡 Análisis por Tecnología", 
-                tag: "Radio / Fibra", 
-                html: `
-                    <div class="item"><b>RADIO ENLACE:</b> Revisar IP desde EDGE.</div>
-                    <div class="alert-falla">⚠️ Si presenta error o no responde → ESCALAR AL NOC.</div>
-                    <div class="item" style="margin-top:10px"><b>FIBRA (CHR):</b> Filtrar por site y buscar MAC.</div>
-                    <div class="action">Validar que el equipo tome IP correcta.</div>
-                    <div class="nota-box">
-                        • No toma IP / IP errada → Escalar a NOC.<br>
-                        • Toma IP correcta → Continuar a descartes físicos.
-                    </div>` 
-            },
-            { 
-                pill: "Usuario", 
-                title: "🔌 Descartes Físicos", 
-                tag: "Validación Final", 
-                html: `
-                    <div class="item"><b>Acción obligatoria en Vilo:</b></div>
-                    <div class="action" style="background:#fef2f2; border-color:#ef4444; color:#991b1b">
-                        ⚠️ Realizar Reset de equipo secundario (Chuzar equipo).
-                    </div>
-                    <div class="nota-box" style="margin-top:10px">
-                        <b>Nota:</b> Si tras el reset y reconfiguración el equipo no levanta y es un solo usuario, proceder con la visita.
-                    </div>` 
-            }
-        ]
-    },
-   bajasN2: {
-        phantom: [
-            { 
-                pill: "Herramientas", 
-                title: "🛠️ Descartes con Herramientas", 
-                tag: "Análisis de Red", 
-               html: `
-               <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-    <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-
-    <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-    <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-    <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-    <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>
-` 
-            },
-            { 
-                pill: "Usuario", 
-                title: "❓ Descartes por Preguntas", 
-                tag: "Acciones", 
-               html: `<div class="item">• Solicitar al usuario <b>reinicio</b> del equipo.</div>`                     
-            },
-            { 
-                pill: "Resolución", 
-                title: "🚩 Criterio de Resolución", 
-                tag: "Resultado", 
-                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
-                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
-            }
-        ],
-        vilo: [
-            { 
-                pill: "Herramientas", 
-                title: "🛠️ Descartes con Herramientas", 
-                tag: "Análisis de Red", 
-               html: `
-               <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-    <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-
-    <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-    <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-    <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-    <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>
-`
-            },
-            { 
-                pill: "Usuario", 
-                title: "❓ Descartes por Preguntas", 
-                tag: "Acciones", 
-                html: `<div class="item">• Solicitar al usuario <b>reinicio forzado</b> del equipo.</div>`                     
-            },
-            { 
-                pill: "Resolución", 
-                title: "🚩 Criterio de Resolución", 
-                tag: "Resultado", 
-                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
-                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
-            }
-        ]
-    }
-    };
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
-function toggleMenu(groupId, headerElement) {
-    const group = document.getElementById(groupId);
-    const arrow = headerElement.querySelector('.arrow-icon');
-    
-    group.classList.toggle('open');
-    arrow.classList.toggle('rotate');
-}
-function cambiarProceso(proc) {
-    procesoActual = proc; pasoActual = 0;
-    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
-    document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
-    document.getElementById('navN2').classList.toggle('active', proc === 'n2');
-    const navBajasN2 = document.getElementById('navBajasN2');
-    if(navBajasN2) navBajasN2.classList.toggle('active', proc === 'bajasN2');
-    render(); 
-}
 
-function setEquipo(eq) {
-    equipoActual = eq; pasoActual = 0;
-    document.getElementById('btnPhantom').classList.toggle('active', eq === 'phantom');
-    document.getElementById('btnVilo').classList.toggle('active', eq === 'vilo');
-    render();
-}
+const DATA = {
+    offline: {
+        phantom: [
+            { pill: "Validación", tag: "Sistema", title: "🔍 Router Offline", html: `<div class="item">Validar estado en CPE Doctor.</div>` }
+        ],
+        vilo: [
+            { pill: "Validación", tag: "Sistema", title: "🔍 Router Offline Vilo", html: `<div class="item">Validar MAC en Radius.</div>` }
+        ]
+    },
+    intermitencia: {
+        phantom: [
+            { pill: "Validación", tag: "Sistema", title: "🔍 Intermitencia N1", html: `<div class="item">Revisar historial de señal.</div>` }
+        ],
+        vilo: [
+            { pill: "Validación", tag: "Sistema", title: "🔍 Intermitencia N1 Vilo", html: `<div class="item">Revisar canales WiFi.</div>` }
+        ]
+    },
+    // --- NUEVO PROCESO SOLICITADO INTERMITENCIA N2 ---
+    intermitenciaN2: {
+        phantom: [
+            {
+                pill: "Descartes",
+                tag: "ESPECIALIZADO N2 - SISTEMA",
+                title: "🔍 Validación de Herramientas",
+                html: `<div class="item">• Verificar masividad en zona.<br>• Validar errores EDGE (WinBox).</div>`
+            }
+        ],
+        vilo: [
+            {
+                pill: "Descartes",
+                tag: "ESPECIALIZADO N2 - SISTEMA",
+                title: "🔍 Validación Vilo N2",
+                html: `<div class="item">• Validar logs en ISP Admin.<br>• Revisar interferencia en Grafana.</div>`
+            }
+        ]
+    },
+    n2: {
+        phantom: [{ pill: "Inicio", tag: "N2", title: "Offline N2", html: "Validaciones avanzadas." }],
+        vilo: [{ pill: "Inicio", tag: "N2", title: "Offline N2 Vilo", html: "Validaciones avanzadas." }]
+    },
+    bajasN2: {
+        phantom: [{ pill: "Inicio", tag: "N2", title: "Bajas N2", html: "Validar linkeo." }],
+        vilo: [{ pill: "Inicio", tag: "N2", title: "Bajas N2 Vilo", html: "Validar linkeo." }]
+    }
+};
 
 function render() {
     const pasos = DATA[procesoActual][equipoActual];
     const data = pasos[pasoActual];
+    const isN2 = procesoActual.toLowerCase().includes('n2') || procesoActual === 'bajasN2';
+
     let pillsHtml = '';
-    
-    pasos.forEach((p, index) => {
-        pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
+    pasos.forEach((p, i) => {
+        pillsHtml += `<div class="pill ${i === pasoActual ? 'active' : ''}" onclick="irAPaso(${i})">${p.pill}</div>`;
     });
-
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
-
-    // Esta variable detecta si estamos en N2 para cambiar los colores
-    const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
 
     document.getElementById("app").innerHTML = `
         <div class="animate-in">
-            <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">
-                ${isN2 ? 'ESPECIALIZADO N2' : 'DIAGNÓSTICO N1'} - ${data.tag}
-            </div>
-            
+            <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">${data.tag}</div>
             <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
             <div class="block mb-6">${data.html}</div>
-
             <div class="flex flex-col gap-3">
                 ${pasoActual < pasos.length - 1 ? 
-                    `<button class="btn" style="background: ${isN2 ? '#f97316' : '#0f172a'}" onclick="siguiente()">
-                        Continuar Paso <i class="fas fa-arrow-right ml-2"></i>
-                    </button>` : ''}
-                
-                <button class="btn-reset" onclick="reset()">
-                    <i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso
-                </button>
+                    `<button class="btn" style="background: ${isN2 ? '#f97316' : '#0f172a'}" onclick="siguiente()">Continuar Paso</button>` : 
+                    `<button class="btn-reset" onclick="reset()">Reiniciar Proceso</button>`}
             </div>
         </div>`;
 }
 
-function irAPaso(i) { 
-        pasoActual = i; 
-        render(); 
-    }
+function cambiarProceso(id) {
+    procesoActual = id;
+    pasoActual = 0;
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const btn = document.getElementById('nav' + id.charAt(0).toUpperCase() + id.slice(1));
+    if(btn) btn.classList.add('active');
+    render();
+}
 
-    function siguiente() { 
-        pasoActual++; 
-        render(); 
-    }
+function setEquipo(e) {
+    equipoActual = e;
+    pasoActual = 0;
+    document.getElementById('btnPhantom').classList.toggle('active', e === 'phantom');
+    document.getElementById('btnVilo').classList.toggle('active', e === 'vilo');
+    render();
+}
 
-    function reset() { 
-        pasoActual = 0; 
-        render(); 
-    }
+function toggleMenu(id, el) {
+    document.getElementById(id).classList.toggle('open');
+    el.querySelector('.arrow-icon').classList.toggle('rotate');
+}
 
-    window.onload = render;
-   // --- LÓGICA DE ADMINISTRADORA ABSOLUTA ---
+function irAPaso(i) { pasoActual = i; render(); }
+function siguiente() { pasoActual++; render(); }
+function reset() { pasoActual = 0; render(); }
 
+function abrirModal() { document.getElementById('modalCascada').style.display = 'flex'; }
+function cerrarModal() { document.getElementById('modalCascada').style.display = 'none'; }
+
+// SEGURIDAD N2
 function inicializarSeguridad() {
-    // 1. Leemos la URL buscando el parámetro ?area=
     const parametros = new URLSearchParams(window.location.search);
-    const miArea = parametros.get('area');
-
-    // 2. Referencias a los elementos de N2
-    // Ajusta estos IDs si en tu HTML tienen nombres distintos
-    const grupoN2 = document.getElementById('groupN2');
-    const headerN2 = grupoN2?.previousElementSibling; 
-    const navN2 = document.getElementById('navN2');
-    const navBajasN2 = document.getElementById('navBajasN2');
-
-    // 3. RESTRICCIÓN: Si no es N2, ocultamos todo lo avanzado
-    if (miArea !== 'n2') {
-        if(grupoN2) grupoN2.style.display = 'none';
-        if(headerN2) headerN2.style.display = 'none';
-        if(navN2) navN2.style.display = 'none';
-        if(navBajasN2) navBajasN2.style.display = 'none';
-        
-        console.log("🔒 Modo SAC (N1) Activo: Funciones de N2 restringidas.");
-    } else {
-        console.log("🔓 Modo Administradora Activo: Acceso total concedido.");
+    if (parametros.get('area') !== 'n2') {
+        const grupoN2 = document.getElementById('groupN2');
+        if(grupoN2) {
+            grupoN2.style.display = 'none';
+            grupoN2.previousElementSibling.style.display = 'none';
+        }
     }
 }
 
-// Ejecutamos la seguridad apenas cargue la página
-document.addEventListener('DOMContentLoaded', inicializarSeguridad);
+window.onload = () => {
+    render();
+    inicializarSeguridad();
+};
 </script>
 </body>
 </html>
-      
+ 
+       
+
+             
