@@ -1035,7 +1035,7 @@ const DATA = {
         "phantom": [
             {
                 pill: "Descartes Herramientas",
-                tag: "PHANTOM - N2",
+                tag: "ESPECIALIZADO N2 - SISTEMA", // <-- Cambiado a tu solicitud
                 title: "🔍 Validación de Herramientas",
                 html: `
                     <div class="content-area">
@@ -1044,33 +1044,46 @@ const DATA = {
                             <li><b>Validar errores EDGE:</b> Revisar según puerto (Radio: WinBox / Fibra: s600 o 610).</li>
                             <li><b>Escalamiento:</b> Si hay errores acumulados, escalar vía ticket tarea o Noc_acceso.</li>
                         </ul>
-                        <div class="nota-box">🚩 Visita técnica: Solo si es caso único.</div>
+                        <div class="nota-box" style="margin-top:10px; background:#fff3cd; padding:8px; border-left:4px solid #ffc107; color: #856404;">
+                            🚩 <b>Visita técnica:</b> Solo si es caso único.
+                        </div>
                     </div>
                 `
             },
             {
                 pill: "Descartes Preguntas",
-                tag: "PHANTOM - N2",
+                tag: "ESPECIALIZADO N2 - SISTEMA",
                 title: "❓ Confirmación con Usuario",
-                html: `<p>Confirmar funcionamiento tras reinicio de puerto por el NOC.</p>`
+                html: `
+                    <div class="content-area">
+                        <p>Confirmar funcionamiento tras reinicio de puerto por el NOC.</p>
+                    </div>
+                `
             }
         ],
         "vilo": [
             {
                 pill: "Descartes Herramientas",
-                tag: "VILO - N2",
+                tag: "ESPECIALIZADO N2 - SISTEMA",
                 title: "🔍 Validación (Vilo)",
-                html: `<p>Validar errores EDGE y masividad. Escalar al NOC si persiste.</p>`
+                html: `
+                    <div class="content-area">
+                        <p>Validar errores EDGE y masividad. Escalar al NOC si persiste.</p>
+                    </div>
+                `
             },
             {
                 pill: "Descartes Preguntas",
-                tag: "VILO - N2",
+                tag: "ESPECIALIZADO N2 - SISTEMA",
                 title: "❓ Confirmación",
-                html: `<p>Confirmar servicio tras gestión de red.</p>`
+                html: `
+                    <div class="content-area">
+                        <p>Confirmar servicio tras gestión de red.</p>
+                    </div>
+                `
             }
         ]
     },
-   };
     
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
