@@ -759,6 +759,7 @@ const DATA = {
     `
 }
 ],
+     vilo: [
    { 
     pill: "Validación", 
     title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red Vilo</span>", 
@@ -797,24 +798,28 @@ const DATA = {
         </div>
     ` 
 },
-    { 
+   { 
         pill: "Usuario", 
         title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
         tag: "Entorno", 
         html: `
-            <div class="item">• Confirmar que no tenga VPN activa.</div>
-            <div class="item">• ¿La falla persiste conectando el equipo por cable o solo por WiFi?</div>
-            <div class="item">• Validar distancia y cantidad de obstáculos (muros) entre el dispositivo y el Vilo.</div>
+            <div style="color:#334155;">
+                <div class="item">• Confirmar que no tenga VPN activa.</div>
+                <div class="item">• ¿Los cortes ocurren por cable de red o únicamente por WiFi?</div>
+                <div class="item">• Validar distancia a la cual se conecta (WIFI) (Ver tabla de referencia dBm).</div>
+                
+                <div style="text-align:center; margin: 15px 0;">
+                    <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
+                    <p style="font-size: 10px; color: #64748b; margin-top: 5px;">Referencia: Calidad de Señal vs Distancia</p>
+                </div>
 
-            <div style="text-align:center; margin: 15px 0;">
-                <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
-                <p style="font-size: 10px; color: #64748b; margin-top: 5px;">Referencia: Calidad de Señal vs Distancia</p>
+                <div class="item">• ¿Cuántos muros u obstáculos hay entre el dispositivo y el equipo?</div>
+                <div class="item">• Validar desde la ISP cantidad de equipos conectados.</div>
+                <div class="item">• Validar conexiones físicas del equipo secundario (en el puerto WAN del secundario NO debe ir nada conectado).</div>
+                <div class="item">• Solicitar al cliente un ping -t 8.8.8.8 desde el CMD para evidenciar pérdidas de paquetes.</div>
+                <div class="item">• Preguntar si la falla es constante o ocurre en horarios específicos (posible saturación).</div>
+                <div class="item">• ¿El LED del Vilo cambia de color o parpadea cuando ocurre la falla?</div>
             </div>
-
-            <div class="item">• Verificar conexiones físicas del equipo secundario (puertos LAN/WAN).</div>
-            <div class="item">• Realizar ping extendido desde el CMD a una IP externa (ej. 8.8.8.8).</div>
-            <div class="item">• ¿La falla ocurre en un horario específico o es constante?</div>
-            <div class="item">• ¿El LED del Vilo cambia de color al momento de presentarse la novedad?</div>
         ` 
     },
     { 
@@ -822,20 +827,22 @@ const DATA = {
         title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
         tag: "Final", 
         html: `
-            <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
-            <div class="item">❌ No funciona: Escalar a especializados (N2) para continuar validaciones.</div>
+            <div style="color:#334155;">
+                <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
+                <div class="item">❌ No funciona: Escalar a especializados (N2).</div>
+            </div>
 
             <div style="background:#f1f5f9; border:1px solid #cbd5e1; padding:12px; border-radius:8px; margin-top:10px;">
                 <b style="color:#1e293b; display:block; margin-bottom:8px; font-size:12px;">Antes de escalar validar:</b>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Firmware verificado/actualizado.</div>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de ping extendido realizada con evidencia de pérdida.</div>
-                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Descarte de cables y puertos en el equipo secundario.</div>
-                <div style="color:#334155; font-size:11px;">• Revisión de saturación por cantidad de equipos conectados.</div>
+                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Firmware verificado y actualizado.</div>
+                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de Ping -t realizada (evidencia de cortes).</div>
+                <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Conexión física validada (LAN a LAN).</div>
+                <div style="color:#334155; font-size:11px;">• Router principal y secundario con IPs diferentes.</div>
             </div>
 
             <div class="action" style="margin-top:15px; background:#fee2e2; color:#991b1b; border: 1px solid #fecaca; padding: 12px; border-radius: 8px;">
-                🚨 Visita Técnica: Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
-                <span style="font-size:11px;">Nota: No se deben agendar visitas sin cumplir este criterio para evitar pérdida de disponibilidad.</span>
+                🚨 <b>Visita Técnica:</b> Agendar solo si hay 3 o más contactos reiterativos por lo mismo.<br><br>
+                <span style="font-size:11px;">Nota: Esta condición debe estar correctamente validada y documentada.</span>
             </div>
         ` 
     }
