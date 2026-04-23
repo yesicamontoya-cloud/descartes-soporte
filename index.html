@@ -759,31 +759,41 @@ const DATA = {
     `
 }
 ],
-      vilo: [
-    { 
-        pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico Vilo</span>", 
-        tag: "Sistemas", 
-        html: `
-            <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
-                Verifique que NO exista falla masiva en la zona.
-                <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal;" 
-                    onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
-                    🚀 Abrir Guion Falla Masiva
-                </button>
-            </div>
+   { 
+    pill: "Validación", 
+    title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red Vilo</span>", 
+    tag: "Sistemas", 
+    html: `
+        <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
+            Verifique que NO exista falla masiva en la zona.
+            <button class="btn" style="width:100%; background:#3b82f6; margin-top:8px; font-weight:normal;" 
+                onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">
+                🚀 Abrir Guion Falla Masiva
+            </button>
+            <small style="display:block; margin-top:5px;">Si hay falla → usar guion de falla masiva (Pág. 4)</small>
+        </div>
 
-            <div class="item">• Revisar que no tomen la misma IP los dos modem (conflicto de IP).</div>
-            <div class="item">• Verificar actualización del FIRMWARE desde la herramienta de gestión (ISP).</div>
-            <div class="item">• Revisar historial de intermitencias en el log del equipo.</div>
-            <div class="item">• Validar si otros usuarios en el mismo site presentan cortes similares.</div>
-            <div class="item">• Intentar separación de redes (2.4GHz y 5GHz) si el equipo lo permite.</div>
+        <div class="item">• Desde la ISP de Vilo revisar que no tomen la misma IP los dos router.</div>
+        <div class="item">• El router principal debe tomar IP en los segmentos de Somos (100.x, 38.x, 206.x).</div>
+        <div class="item">• Si la IP no pertenece a los segmentos → aplicar reinicio en cascada.</div>
 
-            <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-top:10px; font-size:11px;">
-                Tip: Si el firmware está desactualizado, procede con la actualización antes de seguir con los descartes físicos.
-            </div>
-        ` 
-    },
+        <button onclick="abrirModal()" class="btn" style="width:100%; margin: 10px 0; background:#1e293b; color:white; font-weight:normal;">
+            🔌 IP Incorrecta: Ver Reinicio en cascada
+        </button>
+
+        <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-bottom:12px; font-size:11px;">
+            Tip de Agilidad: Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
+        </div>
+
+        <div class="item">• Identificar cantidad de intermitencias desde la herramienta de gestión (ISP).</div>
+        <div class="item">• Verificar actualización del firmware desde la herramienta de gestión (ISP).</div>
+        <div class="item">• Realizar prueba de ping desde el cmd (ping ipadress -t) mínimo 10 min para detectar pérdida de paquetes.</div>
+        <div class="item">• Verificar si hay más usuarios afectados dentro del mismo site con los mismos cortes.</div>
+        <div class="item">• En CPE doctor ver si tenemos más suscripciones afectadas desde el mismo EDGE.</div>
+        <div class="item">• Verificar el último ticket relacionado a la misma novedad.</div>
+        <div class="item">• Si es necesario separa redes (2.4 y 5G).</div>
+    ` 
+},
     { 
         pill: "Usuario", 
         title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
