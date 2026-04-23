@@ -168,7 +168,7 @@
         <div id="navCoberturaN2" class="nav-item" onclick="cambiarProceso('cobertura')">
             <i class="fas fa-signal"></i> Cobertura Avanzada
         </div>
-        <div id="navGamingN2" class="nav-item" onclick="cambiarProceso('vpn_gaming'')">
+        <div id="navGamingN2" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
             <i class="fas fa-gamepad"></i> VPN / Gaming / URLs
         </div>
 </div>
@@ -859,7 +859,8 @@ const DATA = {
     vpn_gaming: {
         phantom: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }],
         vilo: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }]
-    },
+    }
+   },
     n2: {
         phantom: [
             { 
@@ -1184,9 +1185,32 @@ function irAPaso(i) {
         pasoActual = 0; 
         render(); 
     }
+// --- FUNCIÓN PARA CAMBIAR ENTRE PROCESOS (N1 y N2) ---
+function cambiarProceso(proc) {
+    procesoActual = proc;
+    pasoActual = 0; // Reiniciamos siempre al primer paso
 
-    window.onload = render;
-   // --- LÓGICA DE ADMINISTRADORA ABSOLUTA ---
+    // 1. Quitamos la clase 'active' de todos los botones para que se apaguen
+    document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    // 2. Buscamos el ID del botón que activamos. 
+    // Ejemplo: si proc es 'n2', el ID buscado es 'navN2'
+    const idBoton = 'nav' + proc.charAt(0).toUpperCase() + proc.slice(1);
+    const btn = document.getElementById(idBoton);
+    
+    if (btn) {
+        btn.classList.add('active'); // Encendemos el botón en naranja
+    }
+
+    // 3. Refrescamos la pantalla con los nuevos datos
+    render();
+}
+    window.onload = () => {
+    inicializarSeguridad();
+    render();
+};
 
 function inicializarSeguridad() {
     // 1. Leemos la URL buscando el parámetro ?area=
