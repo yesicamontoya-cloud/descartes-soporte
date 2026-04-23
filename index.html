@@ -1048,9 +1048,65 @@ const DATA = {
                 html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
                        <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
             }
+        ],
+    },
+  n2: {
+        phantom: [
+            { 
+                pill: "Validación N2", 
+                title: "<span style='font-size: 16px;'>🔬 Análisis Especializado Phantom</span>", 
+                tag: "NOC / N2", 
+                html: `
+                    <div style="color:#334155;">
+                        <div class="item">• <b>Verificar Masiva:</b> Confirmar si hay más afectados en la zona (Si hay más, escalar directamente al NOC).</div>
+                        <div class="item">• <b>Validar errores EDGE:</b> Según el puerto por el que sube el cliente:</div>
+                        <div style="background:#f8fafc; border-left:4px solid #f97316; padding:10px; margin:10px 0; font-size:11px;">
+                            - 📡 <b>Radio:</b> Validar desde WinBox.<br>
+                            - 🔌 <b>Fibra:</b> Revisar desde el s600 o el 610.<br>
+                            - 🩺 <b>CPE Doctor:</b> Revisar en "Problemas Activos del Edge".
+                        </div>
+                        <div class="item">• <b>Escalamiento:</b> Si acumula errores, escalar al NOC (Ticket tarea o canales: Noc_acceso / Noc_intrasite).</div>
+                        <div class="item">• <b>Gestión:</b> Revisar con el NOC tiempo de respuesta para decidir acción con el usuario.</div>
+                    </div>
+                ` 
+            },
+            { 
+                pill: "Seguimiento", 
+                title: "<span style='font-size: 16px;'>📞 Gestión y Cierre</span>", 
+                tag: "Final N2", 
+                html: `
+                    <div style="color:#334155;">
+                        <div class="item">• Confirmar funcionamiento tras reinicio de puerto por parte del NOC.</div>
+                        <div class="alert-pago" style="background:#f1f5f9; border-color:#cbd5e1; color:#475569; padding:10px; font-size:11px;">
+                            <b>Nota:</b> No hay proceso adicional en especializado; si persiste, revisar migración a Ticket.
+                        </div>
+                        <div class="item" style="margin-top:10px;">• 👤 <b>Caso único:</b> Si tras descartes persiste → Proceder con <b>Visita Técnica</b>.</div>
+                        <div class="item">• 👥 <b>Varios usuarios:</b> Escalar al NOC como incidente.</div>
+                    </div>
+                ` 
+            }
+        ],
+        vilo: [
+            { 
+                pill: "Herramientas", 
+                title: "<span style='font-size: 16px;'>🛠️ N2 - Validación en Red (Vilo)</span>", 
+                tag: "Técnico", 
+                html: `
+                    <div style="color:#334155;">
+                        <div class="item">• <b>Revisión EDGE:</b> Validar puerto, topología y estado de la MAC.</div>
+                        <div class="item">• <b>🩺 Diagnóstico:</b> Ejecutar CPE Doctor y ver "Problemas Activos".</div>
+                        <button class="btn" style="background:#a855f7; margin:10px 0" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
+                            🚀 Abrir CPE Doctor
+                        </button>
+                        <div class="item">• <b>Prueba Vecinos:</b> Test de velocidad a usuarios del mismo switch.</div>
+                        <div class="item">• <b>Validación IP:</b> Confirmar que no sea un DHCP Intruso (Router secundario mal conectado).</div>
+                        <div class="item">• <b>Saturación:</b> Revisar si la falla ocurre en horarios pico.</div>
+                    </div>
+                ` 
+            }
         ]
     }
-    };
+   
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
