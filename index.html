@@ -1029,8 +1029,47 @@ const DATA = {
                        <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
             }
         ]
-    }
-    };
+    },
+   "intermitencia": {
+        "phantom": [
+            {
+                pill: "Descartes Herramientas",
+                tag: "PHANTOM - N2",
+                title: "🔍 Validación de Herramientas",
+                html: `
+                    <div class="content-area">
+                        <ul class="list-bullet">
+                            <li><b>Verificar masividad:</b> Si hay más de 1 afectado en la zona, escalar al NOC.</li>
+                            <li><b>Validar errores EDGE:</b> Revisar según puerto (Radio: WinBox / Fibra: s600 o 610).</li>
+                            <li><b>Escalamiento:</b> Si hay errores acumulados, escalar vía ticket tarea o Noc_acceso.</li>
+                        </ul>
+                        <div class="nota-box">🚩 Visita técnica: Solo si es caso único.</div>
+                    </div>
+                `
+            },
+            {
+                pill: "Descartes Preguntas",
+                tag: "PHANTOM - N2",
+                title: "❓ Confirmación con Usuario",
+                html: `<p>Confirmar funcionamiento tras reinicio de puerto por el NOC.</p>`
+            }
+        ],
+        "vilo": [
+            {
+                pill: "Descartes Herramientas",
+                tag: "VILO - N2",
+                title: "🔍 Validación (Vilo)",
+                html: `<p>Validar errores EDGE y masividad. Escalar al NOC si persiste.</p>`
+            },
+            {
+                pill: "Descartes Preguntas",
+                tag: "VILO - N2",
+                title: "❓ Confirmación",
+                html: `<p>Confirmar servicio tras gestión de red.</p>`
+            }
+        ]
+    },
+    
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
