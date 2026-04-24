@@ -837,8 +837,67 @@ const DATA = {
         vilo: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }]
     },
     vpn_gaming: {
-        phantom: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }],
-        vilo: [{ pill: "Inicio", title: "Gaming/VPN", tag: "Pendiente", html: `<div class="action">Contenido de Gaming/VPN en construcción.</div>` }]
+      vpn: {
+            phantom: [
+                { 
+                    pill: "Filtro", 
+                    title: "🛡️ Validación de Red", 
+                    tag: "VPN", 
+                    html: `<div class="item">Revise si existe una falla masiva en la zona.<br><br>⚠️ <b>Si hay falla → usar guion:</b><br>"Verificar si hay una falla masiva reportada en la zona."</div>` 
+                },
+                { 
+                    pill: "Usuario", 
+                    title: "❓ Preguntas al Usuario", 
+                    tag: "Diagnóstico", 
+                    html: `<div class="item">
+                            • ¿Cuál es el nombre de la VPN que utiliza?<br>
+                            • ¿Qué error específico le aparece al intentar conectar?<br>
+                            • ¿Anteriormente ha funcionado con normalidad o es la primera vez que la usa con Somos?<br>
+                            • ¿Con otras redes le funciona? (Probar con datos del celular).<br><br>
+                            <b>Nota de velocidad:</b> Si expresa lentitud con VPN activa, explicar que la velocidad no se garantiza por el cifrado de la empresa.<br><br>
+                            <b>Reinicio:</b> Realizar un reinicio eléctrico del router.
+                           </div>` 
+                },
+                { 
+                    pill: "Validación", 
+                    title: "📶 Prueba de Conectividad", 
+                    tag: "Resultado", 
+                    html: `<div class="item">Si con datos del celular o con otro operador <b>SÍ</b> le funciona, transferir a N2.</div>` 
+                },
+                { 
+                    pill: "Escalado", 
+                    title: "🚩 Requisitos para N2", 
+                    tag: "Transferencia", 
+                    html: `<div class="item">
+                            <b>Condición:</b> Escalar solo si con otro operador/datos SÍ funciona.<br><br>
+                            <b>Notas obligatorias:</b><br>
+                            • Nombre de la VPN.<br>
+                            • Error exacto.<br>
+                            • ¿Tiene IP fija? (Sí/No).<br>
+                            • Confirmar que ya se probó con otra red y funcionó.
+                           </div>` 
+                }
+            ],
+            vilo: [
+                { 
+                    pill: "Filtro", 
+                    title: "🛡️ Validación de Red", 
+                    tag: "VPN", 
+                    html: `<div class="item">Revise si existe una falla masiva en la zona.</div>` 
+                },
+                { 
+                    pill: "Usuario", 
+                    title: "❓ Preguntas al Usuario", 
+                    tag: "Diagnóstico", 
+                    html: `<div class="item">• Nombre de VPN y error.<br>• Probar con datos móviles.</div>` 
+                },
+                { 
+                    pill: "Escalado", 
+                    title: "🚩 Requisitos para N2", 
+                    tag: "Transferencia", 
+                    html: `<div class="item">Escalar si con otra red funciona. Incluir nombre de VPN, error e IP fija.</div>` 
+                }
+            ]   
     },
     n2: {
         phantom: [
