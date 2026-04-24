@@ -1099,12 +1099,26 @@ function toggleMenu(groupId, headerElement) {
 }
 function cambiarProceso(proc) {
     procesoActual = proc; pasoActual = 0;
-    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
+    
+    // --- ESTO CAMBIA LOS NOMBRES DE LAS PESTAÑAS ---
+    const tabPhantom = document.querySelector('.tab-btn:nth-child(1)');
+    const tabVilo = document.querySelector('.tab-btn:nth-child(2)');
+
+    if (proc === 'vpn') {
+        if(tabPhantom) tabPhantom.innerText = 'VPN';
+        if(tabVilo) tabVilo.innerText = 'IP';
+    } else {
+        if(tabPhantom) tabPhantom.innerText = 'PHANTOM';
+        if(tabVilo) tabVilo.innerText = 'ROUTER VILO';
+    }
+     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
     document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
     document.getElementById('navN2').classList.toggle('active', proc === 'n2');
+    
     const navBajasN2 = document.getElementById('navBajasN2');
     if(navBajasN2) navBajasN2.classList.toggle('active', proc === 'bajasN2');
-    render(); 
+    
+    render();
 }
 
 function setEquipo(eq) {
