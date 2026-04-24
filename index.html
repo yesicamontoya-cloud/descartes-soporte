@@ -965,28 +965,42 @@ const DATA = {
         ]
     },
  const DATA = {
-    // Aquí puedes dejar tus datos de N1 (offline y bajas normales)...
-
-    n2: { // --- PROCESO: ROUTER OFFLINE N2 ---
+    offline: {
+        phantom: [
+            { pill: "Validación", title: "Validación Inicial Phantom", tag: "Conectividad", html: `<div class="item">• Revisar estado de cuenta.<br>• Validar falla masiva en la zona.</div>` }
+        ],
+        vilo: [
+            { pill: "Validación", title: "Validación Inicial Vilo", tag: "Conectividad", html: `<div class="item">• Verificar conexión física del nodo principal.</div>` }
+        ]
+    },
+    bajas: {
+        phantom: [
+            { pill: "Velocidad", title: "Test de Velocidad N1", tag: "Rendimiento", html: `<div class="item">• Realizar test por cable CAT6.<br>• Validar dispositivos conectados.</div>` }
+        ],
+        vilo: [
+            { pill: "Velocidad", title: "Test de Velocidad Vilo N1", tag: "Rendimiento", html: `<div class="item">• Validar distancia entre nodos Mesh.</div>` }
+        ]
+    },
+    // --- SECCIÓN N2 CORREGIDA ---
+    n2: { // Contenido para Router Offline N2
         phantom: [
             { 
-                pill: "Nivel 2", 
+                pill: "Análisis N2", 
                 title: "🔬 Soporte Especializado N2 - Offline", 
                 tag: "Especialista", 
-                html: `<div class="item">Siga los protocolos de validación de potencia y Radius para Router Offline.</div>` 
+                html: `<div class="item">• Validar histórico de potencia en OLT.<br>• Revisar logs de Radius.</div>` 
             }
         ],
         vilo: [
             { 
-                pill: "Nivel 2", 
+                pill: "Análisis N2", 
                 title: "🔬 Diagnóstico Vilo N2", 
                 tag: "Especialista", 
-                html: `<div class="item">Revisar sincronía en controlador Cloud Vilo.</div>` 
+                html: `<div class="item">• Revisar logs de desincronía en el controlador Cloud de Vilo.</div>` 
             }
         ]
-    }, // <--- CERRAMOS OFFLINE N2
-
-    bajasN2: { // --- PROCESO: BAJAS VELOCIDADES N2 ---
+    }, 
+    bajasN2: { // Contenido para Bajas Velocidades N2 (AHORA INDEPENDIENTE)
         phantom: [
             { 
                 pill: "Herramientas", 
@@ -1028,10 +1042,8 @@ const DATA = {
                 <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
                     🚀 Ejecutar CPE Doctor
                 </button>
-                <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-                <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-                <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-                <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>`
+                <div class="item">• Validar errores en el puerto del <b>EDGE</b>.</div>
+                <div class="item">• Realizar test directamente al <b>EDGE</b>.</div>`
             },
             { 
                 pill: "Usuario", 
@@ -1043,12 +1055,12 @@ const DATA = {
                 pill: "Resolución", 
                 title: "🚩 Criterio de Resolución", 
                 tag: "Resultado", 
-                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Si persiste el problema y se evidencia en otros usuarios (Falla masiva).</div>
-                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Si la falla es individual (posible cableado UTP exterior o daño en puerto).</div>` 
+                html: `<div class="alert-falla">⚠️ <b>Escalar a NOC:</b> Falla masiva detectada.</div>
+                       <div class="action" style="margin-top:10px; background:#eff6ff; color:#1e40af; border-left: 4px solid #3b82f6;">👤 <b>Visita Técnica:</b> Daño en puerto o cableado.</div>` 
             }
         ]
     }
-}; 
+}; // Fin del objeto DATA
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
