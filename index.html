@@ -418,7 +418,7 @@ const DATA = {
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
                     ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold; text-decoration:none;">usar guion de falla masiva (Pág. 4)</a>
                 </div>
-                  div style="margin-bottom: 10px;">
+                  <div style="margin-bottom: 10px;">
         <button class="btn" style="width: 100%; background:#3b82f6; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;" 
         onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/present')">
             🚀 Abrir Guion 
@@ -964,30 +964,50 @@ const DATA = {
             }
         ]
     },
-   bajasN2: {
+ const DATA = {
+    // Aquí puedes dejar tus datos de N1 (offline y bajas normales)...
+
+    n2: { // --- PROCESO: ROUTER OFFLINE N2 ---
+        phantom: [
+            { 
+                pill: "Nivel 2", 
+                title: "🔬 Soporte Especializado N2 - Offline", 
+                tag: "Especialista", 
+                html: `<div class="item">Siga los protocolos de validación de potencia y Radius para Router Offline.</div>` 
+            }
+        ],
+        vilo: [
+            { 
+                pill: "Nivel 2", 
+                title: "🔬 Diagnóstico Vilo N2", 
+                tag: "Especialista", 
+                html: `<div class="item">Revisar sincronía en controlador Cloud Vilo.</div>` 
+            }
+        ]
+    }, // <--- CERRAMOS OFFLINE N2
+
+    bajasN2: { // --- PROCESO: BAJAS VELOCIDADES N2 ---
         phantom: [
             { 
                 pill: "Herramientas", 
                 title: "🛠️ Descartes con Herramientas", 
                 tag: "Análisis de Red", 
-               html: `
-               <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-    <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-
-    <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-    <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-    <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-    <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>
-` 
+                html: `
+                <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
+                <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
+                <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
+                    🚀 Ejecutar CPE Doctor
+                </button>
+                <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>` 
             },
             { 
                 pill: "Usuario", 
                 title: "❓ Descartes por Preguntas", 
                 tag: "Acciones", 
-               html: `<div class="item">• Solicitar al usuario <b>reinicio</b> del equipo.</div>`                     
+                html: `<div class="item">• Solicitar al usuario <b>reinicio</b> del equipo.</div>`                      
             },
             { 
                 pill: "Resolución", 
@@ -1002,24 +1022,22 @@ const DATA = {
                 pill: "Herramientas", 
                 title: "🛠️ Descartes con Herramientas", 
                 tag: "Análisis de Red", 
-               html: `
-               <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                       <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-    <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
-        🚀 Ejecutar CPE Doctor
-    </button>
-
-    <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
-    <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
-    <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
-    <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>
-`
+                html: `
+                <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
+                <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
+                <button class="btn" style="background:#a855f7; margin-bottom:15px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">
+                    🚀 Ejecutar CPE Doctor
+                </button>
+                <div class="item">• Validar errores directamente en el puerto del <b>EDGE</b> por el cual sube el cliente.</div>
+                <div class="item">• <b>Pruebas Vecinos:</b> Realizar tests de velocidad a usuarios del mismo switch.</div>
+                <div class="item">• <b>Validación de IP:</b> Confirmar que no sea un DHCP Intruso.</div>
+                <div class="item">• Realizar test directamente al <b>EDGE</b> por el cual sube el cliente.</div>`
             },
             { 
                 pill: "Usuario", 
                 title: "❓ Descartes por Preguntas", 
                 tag: "Acciones", 
-                html: `<div class="item">• Solicitar al usuario <b>reinicio forzado</b> del equipo.</div>`                     
+                html: `<div class="item">• Solicitar al usuario <b>reinicio forzado</b> del equipo.</div>`                      
             },
             { 
                 pill: "Resolución", 
@@ -1030,7 +1048,7 @@ const DATA = {
             }
         ]
     }
-    };
+}; 
 let procesoActual = 'offline';
 let equipoActual = 'phantom';
 let pasoActual = 0;
