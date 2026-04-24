@@ -141,9 +141,9 @@
         <div id="navCobertura" class="nav-item" onclick="cambiarProceso('cobertura')">
             <i class="fas fa-signal"></i> Cobertura WiFi
         </div>
-        <div id="navGaming" class="nav-item" onclick="cambiarProceso('vpn_gaming')">
-            <i class="fas fa-gamepad"></i> Streaming / Gaming
-        </div>
+        <div id="navGaming" class="nav-item" onclick="cambiarProceso('vpn')">
+    <i class="fas fa-gamepad"></i> VPN / Conectividad
+</div>
     </div>
 
     <div class="area-separator"></div>
@@ -836,8 +836,7 @@ const DATA = {
         phantom: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }],
         vilo: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }]
     },
-    vpn_gaming: {
-      vpn: {
+    vpn: {
             phantom: [
                 { 
                     pill: "Filtro", 
@@ -897,8 +896,8 @@ const DATA = {
                     tag: "Transferencia", 
                     html: `<div class="item">Escalar si con otra red funciona. Incluir nombre de VPN, error e IP fija.</div>` 
                 }
-            ]   
-    },
+            ]
+        },
     n2: {
         phantom: [
             { 
