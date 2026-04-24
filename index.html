@@ -1098,26 +1098,33 @@ function toggleMenu(groupId, headerElement) {
     arrow.classList.toggle('rotate');
 }
 function cambiarProceso(proc) {
-    procesoActual = proc; pasoActual = 0;
-    
-    // --- ESTO CAMBIA LOS NOMBRES DE LAS PESTAÑAS ---
-    const tabPhantom = document.querySelector('.tab-btn:nth-child(1)');
-    const tabVilo = document.querySelector('.tab-btn:nth-child(2)');
+    procesoActual = proc; 
+    pasoActual = 0;
 
-    if (proc === 'vpn') {
-        if(tabPhantom) tabPhantom.innerText = 'VPN';
-        if(tabVilo) tabVilo.innerText = 'IP';
-    } else {
-        if(tabPhantom) tabPhantom.innerText = 'PHANTOM';
-        if(tabVilo) tabVilo.innerText = 'ROUTER VILO';
-    }
-     document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
+    // --- NUEVA LÓGICA DE BÚSQUEDA ---
+    // Buscamos todos los botones de la parte superior
+    const botonesPestaña = document.querySelectorAll('button, div.tab-btn, .tab-btn'); 
+    
+    botonesPestaña.forEach(boton => {
+        // Si el botón dice algo de Phantom o VPN, es la pestaña 1
+        if (boton.innerText.includes('PHANTOM') || boton.innerText.includes('VPN')) {
+            boton.innerText = (proc === 'vpn') ? 'VPN' : 'PHANTOM';
+        }
+        // Si el botón dice algo de Vilo o IP, es la pestaña 2
+        if (boton.innerText.includes('VILO') || boton.innerText.includes('IP')) {
+            boton.innerText = (proc === 'vpn') ? 'IP' : 'ROUTER VILO';
+        }
+    });
+  
+    // El resto de tus lineas de active...
+    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
     document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
     document.getElementById('navN2').classList.toggle('active', proc === 'n2');
     
-    const navBajasN2 = document.getElementById('navBajasN2');
-    if(navBajasN2) navBajasN2.classList.toggle('active', proc === 'bajasN2');
-    
+    if(document.getElementById('navGaming')) {
+        document.getElementById('navGaming').classList.toggle('active', proc === 'vpn');
+    }
+
     render();
 }
 
