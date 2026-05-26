@@ -839,22 +839,62 @@ cobertura: {
         title: "Cobertura",
         tag: "Pendiente",
         html: `
-          <div style="padding: 20px; border: 2px solid red; background: white; text-align: center;">
-            <h2 style="color: red; font-weight: bold;">🚨 PRUEBA DE CONTROL DE COBERTURA 🚨</h2>
-            <p style="color: black; margin-top: 10px;">Si estás viendo este recuadro con borde rojo, la estructura de JavaScript está PERFECTA.</p>
+          <div class="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-5 font-sans">
+            
+            <div class="flex flex-col gap-1 pb-3 border-b border-gray-100 mb-4">
+              <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider self-start">DIAGNÓSTICO N1 - SISTEMAS</span>
+              <div class="flex items-center space-x-2 mt-1">
+                <span class="text-lg">🔍</span>
+                <h2 class="text-base font-bold text-gray-800">Diagnóstico de Red: Cobertura WiFi</h2>
+              </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4 text-center">
+              <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wide mb-2">Verifique que NO exista falla masiva en la zona.</p>
+              <button class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-semibold py-2 px-4 rounded-lg transition-colors inline-flex items-center justify-center space-x-2 shadow-sm">
+                <span>🧯</span>
+                <span>Abrir Guión Falla Masiva</span>
+              </button>
+              <p class="text-[10px] text-amber-700 font-medium mt-1.5">Si hay falla — usar guión de falla masiva (Pág. 4)</p>
+            </div>
+
+            <div class="space-y-3 mb-4">
+              <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-100">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">❓ Descartes por Preguntas (Indagación)</p>
+                <ul class="space-y-1.5 text-[11px] text-gray-600 font-medium">
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Validar cantidad de equipos conectados (<span class="font-bold text-gray-800">MUROS</span>) si es por WiFi.</li>
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Validar distancia a la cuál se conecta el usuario (<span class="font-bold text-gray-800">WiFi</span>).</li>
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Identificar si en realidad es cobertura (la señal se va en ciertos puntos) o si es intermitencia general.</li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-100">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">🛠️ Descartes Herramientas (Validación Técnica)</p>
+                <ul class="space-y-1.5 text-[11px] text-gray-600 font-medium">
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">Grafana (Devices):</span> Verificar la señal. Si al estar más lejos se nota más la intermitencia.</li>
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">CPE Doctor:</span> Revisar cantidad de intermitencias e identificar cambios de estado.</li>
+                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">Artemis:</span> Validar tamaño del apartamento, tipo de paredes (vaciadas/ladrillo) y routers activos.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-orange-500 text-white rounded-xl p-3 text-center font-semibold text-[11px] shadow-sm mb-4">
+              📌 Si cumple todas las condiciones enviar visita para cambiar ubicación de router, añadir router extra o por falla física.
+            </div>
+
+            <div class="flex flex-col items-center justify-center pt-2 border-t border-gray-100 gap-2">
+              <button class="w-full bg-[#0d1424] hover:bg-gray-800 text-white text-[11px] font-bold py-2.5 px-6 rounded-xl transition-colors flex items-center justify-center space-x-2 tracking-wide uppercase">
+                <span>Continuar Paso</span>
+                <span>→</span>
+              </button>
+              <button class="text-[10px] text-gray-400 hover:text-gray-600 font-bold tracking-wide uppercase transition-colors">
+                🔄 Reiniciar Proceso
+              </button>
+            </div>
           </div>
         `
       }
     ],
-    vilo: [
-      { 
-        pill: "Inicio", 
-        title: "Cobertura", 
-        tag: "Pendiente", 
-        html: `<div>Vilo Prueba</div>` 
-      }
-    ]
-  },
     vilo: [
       { 
         pill: "Inicio", 
