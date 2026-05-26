@@ -833,7 +833,90 @@ const DATA = {
         vilo: [{ pill: "Inicio", title: "No Navega", tag: "Pendiente", html: `<div class="action">Contenido de Conecta no navega en construcción.</div>` }]
     },
     cobertura: {
-        phantom: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }],
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 p-6 my-4 font-sans">
+  
+  <div class="flex items-center space-x-2 pb-4 border-b border-gray-100 mb-4">
+    <span class="text-2xl">📊</span>
+    <h2 class="text-xl font-bold text-gray-800">Paso: Cobertura WiFi (Phantom N1)</h2>
+  </div>
+
+  <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div class="flex items-start space-x-3">
+      <span class="text-xl mt-0.5">⚠️</span>
+      <div>
+        <p class="text-sm font-semibold text-amber-800">Verificación Inicial Obigatoria</p>
+        <p class="text-xs text-amber-700 mt-0.5">Valide que NO exista una falla masiva activa en la zona antes de continuar.</p>
+      </div>
+    </div>
+    <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded transition duration-200 shadow-sm whitespace-nowrap self-end sm:self-center">
+      👉 Abrir Guión Falla Masiva
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    
+    <div class="bg-gray-50 rounded-lg p-4 border border-gray-100">
+      <div class="flex items-center space-x-2 mb-3">
+        <span class="text-lg">❓</span>
+        <h3 class="font-bold text-gray-700 text-sm uppercase tracking-wider">Descartes por Preguntas</h3>
+      </div>
+      <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span>Validar la <strong>cantidad de equipos</strong> conectados y la presencia de obstáculos físicos (<strong class="text-gray-800">MUROS</strong>).</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span>Validar la <strong>distancia</strong> exacta a la cual se conecta el usuario vía WiFi.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span>Identificar si la señal se pierde solo en ciertos puntos (<strong class="text-gray-800">Cobertura</strong>) o si es una <strong class="text-gray-800">Intermitencia general</strong> en toda la casa.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bg-gray-50 rounded-lg p-4 border border-gray-100">
+      <div class="flex items-center space-x-2 mb-3">
+        <span class="text-lg">🛠️</span>
+        <h3 class="font-bold text-gray-700 text-sm uppercase tracking-wider">Descartes con Herramientas</h3>
+      </div>
+      <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span><strong class="text-gray-800">Grafana (Devices):</strong> Verificar la señal de los equipos. Identificar si la intermitencia aumenta a mayor distancia.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span><strong class="text-gray-800">CPE Doctor:</strong> Revisar el historial, cantidad de intermitencias y cambios de estado del equipo.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-blue-500 mr-2">•</span>
+          <span><strong class="text-gray-800">Artemis:</strong> Validar el tamaño del apartamento, tipo de paredes (vaciadas o ladrillo) y routers activos.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="bg-orange-600 text-white p-4 rounded-lg shadow-sm mb-6 flex items-start space-x-3">
+    <span class="text-xl mt-0.5">🚨</span>
+    <div>
+      <h4 class="font-bold text-sm uppercase tracking-wider">Regla de Acción Crítica</h4>
+      <p class="text-xs text-orange-100 mt-1">
+        Si el entorno o la distancia es el problema, la solución es la <strong>reubicación del router</strong> o la oferta de un <strong>router adicional</strong>. <span class="underline decoration-wavy font-semibold">Prohibido agendar visita técnica</span> sin realizar el descarte completo en herramientas.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex justify-end pt-2 border-t border-gray-100">
+    <button class="bg-gray-900 hover:bg-gray-800 text-white text-sm font-bold py-2.5 px-6 rounded-lg transition duration-200 shadow flex items-center space-x-2">
+      <span>Continuar Paso</span>
+      <span>👉</span>
+    </button>
+  </div>
+
+</div>
         vilo: [{ pill: "Inicio", title: "Cobertura", tag: "Pendiente", html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` }]
     },
     vpn: {
