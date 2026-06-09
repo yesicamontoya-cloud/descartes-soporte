@@ -658,7 +658,7 @@ const DATA = {
                 <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">1. Diagnóstico de LEDs (Media Converter)</div>
                 <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:12px; background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:12px; margin-bottom:20px; align-items: center;">
                     <div style="text-align:center;">
-                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:100%; max-width:280px; border-radius:8px; border:1px solid #e2e8f0; display:block; margin:0 auto;">
+                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:180px; border-radius:8px; border:1px solid #e2e8f0; display:block; margin:0 auto;">
                     </div>
                     <div style="display:flex; flex-direction:column; gap:10px;">
                         <div style="border-left:3px solid #22c55e; padding-left:10px;">
@@ -676,7 +676,7 @@ const DATA = {
 
                 <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">2. Conexión y Estado del Router</div>
                 <div style="background:#f8fafc; border:1px solid #3b82f6; border-radius:12px; overflow:hidden; margin-bottom:20px;">
-                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; max-width:320px; height:auto; display:block; margin:0 auto; border-radius:6px;">
+                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:220px; height:auto; display:block; margin:0 auto; border-radius:6px;">
                     <div style="padding:10px; background:#eff6ff;">
                         <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4; text-align:center;">
                             El cable UTP debe ingresar al puerto <b>WAN</b>. Confirma que el linqueo NO sea de 100Mbps.
@@ -1203,12 +1203,16 @@ function cambiarProceso(proc) {
     });
   
     // El resto de tus lineas de active...
-    document.getElementById('navOffline').classList.toggle('active', proc === 'offline');
-    document.getElementById('navBajas').classList.toggle('active', proc === 'bajas');
-    document.getElementById('navN2').classList.toggle('active', proc === 'n2');
-    
-    if(document.getElementById('navGaming')) {
-        document.getElementById('navGaming').classList.toggle('active', proc === 'vpn');
+    const navMap = {
+        'offline': 'navOffline', 'bajas': 'navBajas', 'piloto-fx': 'navFX',
+        'intermitencia': 'navIntermitencia', 'no_navega': 'navNoNavega',
+        'cobertura': 'navCobertura', 'vpn': 'navGaming',
+        'n2': 'navN2', 'bajasN2': 'navBajasN2'
+    };
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    if (navMap[proc]) {
+        const el = document.getElementById(navMap[proc]);
+        if (el) el.classList.add('active');
     }
 
     render();
