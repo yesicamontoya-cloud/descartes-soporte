@@ -73,6 +73,9 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 /* N2 colors */
 #navN2.active,#navBajasN2.active,#navIntermitenciaN2.active,#navNoNavegaN2.active,#navCoberturaN2.active,#navGamingN2.active { background: #f97316 !important; box-shadow: 0 4px 12px rgba(249,115,22,0.3); color: white !important; }
 
+.tec { border-bottom: 1px dashed #94a3b8; cursor: help; position: relative; display: inline; }
+.tec .tt { display: none; position: absolute; bottom: 125%; left: 0; background: #1e293b; color: #f1f5f9; padding: 8px 10px; border-radius: 8px; font-size: 11px; font-weight: 400; width: 220px; z-index: 999; line-height: 1.4; white-space: normal; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.tec:hover .tt { display: block; }
 /* Scrollbar custom */
 .col-main::-webkit-scrollbar, .col-side::-webkit-scrollbar { width: 4px; }
 .col-main::-webkit-scrollbar-track, .col-side::-webkit-scrollbar-track { background: transparent; }
@@ -209,168 +212,222 @@ function cerrarModal() {
 
 const DATA = {
     offline: {
-    phantom: [
-        { pill: "Revisar", title: "\ud83d\udd0d Router Offline", tag: "Interno",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Revisar antes de escribirle al cliente</b><br><br>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">1</span>
-                  <span><b>CPE Doctor</b> \u2014 ejecutar diagn\u00f3stico. \u00bfEl router sube? \u00bfToma IP de Somos? (100.x / 38.x / 206.x)</span>
+  phantom: [
+            { 
+                pill: "Validación", 
+                title: "🔍 Router Offline", 
+                tag: "Sistema", 
+                html: `<div style="display:flex;flex-direction:column;gap:8px;">
+                         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:11px;color:#334155;">
+                           <b style="color:#0f172a;">🩺 Paso 1 — Diagnóstico automático</b><br>
+                           Ejecutar diagnóstico por <span class="tec">CPE Doctor<span class="tt">CPE Doctor = herramienta interna de Somos para diagnosticar el estado del router del cliente. Muestra si el equipo está online, qué IP tiene y el historial de conexión.</span></span>. Verificar que el servicio no esté suspendido por pago o congelado.
+                         </div>
+                         <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
+                         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:11px;color:#334155;">
+                           <b style="color:#0f172a;">⚠️ Paso 2 — Verificar falla masiva</b><br>
+                           Revisar si hay falla reportada en la zona antes de continuar con descartes.
+                         </div>
+                         </div>` },
+                      
+{ 
+            pill: "Principal", 
+            title: "📑 Router principal", 
+            tag: "Herramienta", 
+            html: `
+                <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en <span class="tec">Radius (Estado Activo)<span class="tt">Radius = sistema que autentica al router en la red de Somos. Estado Activo significa que el equipo está autorizado y puede recibir internet.</span></span></div>
+                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar <span class="tec">backoffice<span class="tt">Backoffice = área interna de Somos que gestiona activaciones, configuraciones y problemas de cuenta que el analista N1 no puede resolver directamente.</span></span></div>
+
+                <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
+                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → <b>primero verifica que los cables estén bien conectados</b>, luego aplicar <span class="tec">reinicio en cascada<span class="tt">Reinicio en cascada = desconectar ambos routers del toma al mismo tiempo, esperar 30 segundos, conectar primero el principal y esperar 1 minuto antes de conectar el secundario.</span></span></div>
+
+           <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
+    <strong>⚠️ Nota IP Incorrecta:</strong><br>
+    Si detectas desincronía o IP fuera de rango, solicita el reinicio físico:
+    
+    <button onclick="abrirModal()" class="btn" style="width:100%; margin-top:10px; background:#1e293b; color:white; font-weight:bold;">
+        🔌 Ver Reinicio en Cascada
+    </button>
+</div>
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">2</span>
-                  <span><b>Suscripci\u00f3n</b> \u2014 \u00bfest\u00e1 suspendida o congelada?</span>
+
+
+
+                <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
+                    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">3</span>
-                  <span><b>Falla masiva</b> \u2014 \u00bfhay otros usuarios afectados en la zona?</span>
+            ` 
+        },
+           { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `
+<div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
+<div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
+           <div class="item" style="margin-bottom:2px;">Validar en <span class="tec">Grafana<span class="tt">Grafana = herramienta de monitoreo que muestra el estado en tiempo real de los routers y si hay más usuarios afectados en la misma zona o EDGE.</span></span> que no esté en <span class="tec">N/A<span class="tt">N/A en Grafana = el router secundario no está siendo detectado correctamente. Puede indicar que el puerto WAN del secundario tiene un cable conectado cuando debería estar vacío.</span></span></div>
+<div class="action" style="margin-bottom:6px; padding:5px;">
+    Si está en N/A → Validar que puerto WAN del secundario esté vacío. <b>Antes de reiniciar: solicitar fotos de LEDs y conexiones</b>, luego aplicar <b>reinicio en cascada</b>       
+</div>
+            <div class="action" style="margin-top:5px; padding:5px;">
+    Si hay inconsistencia o el problema persiste → <b>Escalar al Área de Especialidad (N2)</b>
+</div>` },
+         { 
+            pill: "Usuario", 
+            title: "🔌 Validación física", 
+            tag: "Cliente", 
+            html: `
+                <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
+                    ⚠️ <b>IMPORTANTE:</b> Si el cliente ya envió fotos, <b>NO volver a solicitarlas</b>.
                 </div>
-              </div>
-            </div>
-            <div class="alert-pago">\ud83d\udeab <b>Suspendida o congelada</b> \u2192 enviar link de pago. No continuar descartes.</div>
-            <div class="alert-falla">\u26a0\ufe0f <b>Falla masiva</b> \u2192 usar guion de falla masiva. No continuar descartes.</div>
-            <div class="action">\u2705 Todo OK \u2192 continuar al siguiente paso.</div>
-          </div>` },
-        { pill: "Fotos", title: "\ud83d\udcf8 Pedir fotos al cliente", tag: "Cliente",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Pedirle al cliente 2 fotos:</b><br><br>
-              \u2022 Las <b>luces del router</b> (frente del equipo)<br>
-              \u2022 Los <b>cables conectados atr\u00e1s</b> del router
-            </div>
-            <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:10px;font-size:12px;color:#0369a1;">
-              <b>\ud83d\udcac Mensaje al cliente:</b><br><br>
-              "Para revisarte necesito que me env\u00edes dos fotos: una de las luces de tu router y otra de c\u00f3mo est\u00e1n conectados los cables atr\u00e1s."
-            </div>
-            <div class="alert-falla">\u26a0\ufe0f Si ya envi\u00f3 fotos antes \u2014 <b>NO volver a pedirlas.</b></div>
-          </div>` },
-        { pill: "Conexiones", title: "\ud83d\udd0c Revisar fotos", tag: "Validaci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Qu\u00e9 revisar en las fotos:</b><br><br>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#3b82f6;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">WAN</span>
-                  <span>Cable con <b>capuch\u00f3n rojo o pin de seguridad</b> en el puerto WAN del principal. Puerto WAN del secundario <b>vac\u00edo</b>.</span>
+
+                <div class="item" style="margin-bottom:2px;">• Si no ha enviado fotos → solicitar fotos de LEDs y conexiones.</div>
+                <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:6px;">
+                  <b>💬 Mensaje al cliente:</b><br>
+                  "Para ayudarte necesito que me envíes dos fotos: una de las luces de tu router y otra de cómo están conectados los cables atrás."
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#3b82f6;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">LUZ</span>
-                  <span>SYS verde = OK. SYS rojo = falla grave, escalar. WiFi apagada = revisar configuraci\u00f3n.</span>
+                <div class="item" style="margin-bottom:5px;">• Confirmar conexiones correctas (revisar nota de principal o secundario).</div>
+
+                <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
+                    <b>Nota Secundario:</b> El puerto WAN debe estar <b>VACÍO</b>.
                 </div>
-              </div>
-            </div>
-            <div class="alert-falla">\u274c Conexi\u00f3n incorrecta \u2192 pedirle al cliente que la corrija antes de reiniciar.</div>
-            <div class="action">\u2705 Conexiones OK \u2192 continuar al reinicio.</div>
-          </div>` },
-        { pill: "Reinicio", title: "\ud83d\udd04 Reinicio", tag: "Acci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:10px;font-size:12px;color:#0369a1;">
-              <b>\ud83d\udcac Mensaje al cliente:</b><br><br>
-              "Voy a pedirte que desconectes los dos routers del toma al mismo tiempo. A los 30 segundos conecta primero el principal, espera 1 minuto y luego conecta el secundario."
-            </div>
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b>Mientras espera:</b> actualizar CPE Doctor (filtro 30 min) para verificar si el servicio sube.
-            </div>
-            <div class="alert-falla">\u26a0\ufe0f No reiniciar si el router est\u00e1 en <b>failover activo</b>.</div>
-          </div>` },
-        { pill: "Resultado", title: "\u2705 Resultado", tag: "Finalizaci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px;font-size:12px;color:#166534;font-weight:700;">
-              \u2705 <b>Funciona</b> \u2192 confirmar con el cliente y cerrar el chat.
-            </div>
-            <div class="alert-pago">
-              \u274c <b>No funciona</b> \u2192 escalar a N2.<br><br>
-              <span style="font-weight:400;">Antes de escalar confirmar:<br>
-              \u2022 CPE Doctor revisado<br>
-              \u2022 Suscripci\u00f3n activa<br>
-              \u2022 Conexiones correctas<br>
-              \u2022 Reinicio realizado</span>
-            </div>
-          </div>` }
-    ],
-    vilo: [
-        { pill: "Revisar", title: "\ud83d\udd0d Router Offline", tag: "Interno",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Revisar antes de escribirle al cliente</b><br><br>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">1</span>
-                  <span><b>CPE Doctor</b> \u2014 ejecutar diagn\u00f3stico. \u00bfEl router sube? \u00bfToma IP de Somos? (100.x / 38.x / 206.x)</span>
+
+                <div class="item" style="margin-bottom:2px;">• Reiniciar equipo (30s desconectado del tomacorriente).</div>
+                <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:6px;">
+                  <b>💬 Mensaje al cliente:</b><br>
+                  "Voy a pedirte que desconectes el router del toma. A los 30 segundos vuelves a conectarlo y me avisas."
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">2</span>
-                  <span><b>Suscripci\u00f3n</b> \u2014 \u00bfest\u00e1 suspendida o congelada?</span>
+                
+                <div class="action" style="margin-top:5px; margin-bottom:5px; padding:6px; font-size:11px; line-height:1.3;">
+                    ⏱️ Al confirmar reinicio → esperar <b>2 a 3 minutos</b> y actualizar <b>CPE Doctor (filtro 30 min)</b> para verificar servicio.
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#a855f7;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">3</span>
-                  <span><b>Falla masiva</b> \u2014 \u00bfhay otros usuarios afectados en la zona?</span>
+
+                <div class="action" style="background:#f1f5f9; color:#475569; border:none; font-size:11px; padding:4px;">
+                    🔵 No chuzar el equipo
                 </div>
-              </div>
-            </div>
-            <div class="alert-pago">\ud83d\udeab <b>Suspendida o congelada</b> \u2192 enviar link de pago. No continuar descartes.</div>
-            <div class="alert-falla">\u26a0\ufe0f <b>Falla masiva</b> \u2192 usar guion de falla masiva. No continuar descartes.</div>
-            <div class="action">\u2705 Todo OK \u2192 continuar al siguiente paso.</div>
-          </div>` },
-        { pill: "Fotos", title: "\ud83d\udcf8 Pedir fotos al cliente", tag: "Cliente",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Pedirle al cliente 2 fotos:</b><br><br>
-              \u2022 Las <b>luces del router</b> (frente del equipo)<br>
-              \u2022 Los <b>cables conectados atr\u00e1s</b> del router
-            </div>
-            <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:10px;font-size:12px;color:#0369a1;">
-              <b>\ud83d\udcac Mensaje al cliente:</b><br><br>
-              "Para revisarte necesito que me env\u00edes dos fotos: una de las luces de tu router y otra de c\u00f3mo est\u00e1n conectados los cables atr\u00e1s."
-            </div>
-            <div class="alert-falla">\u26a0\ufe0f Si ya envi\u00f3 fotos antes \u2014 <b>NO volver a pedirlas.</b></div>
-          </div>` },
-        { pill: "Conexiones", title: "\ud83d\udd0c Revisar fotos", tag: "Validaci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Qu\u00e9 revisar en las fotos (Vilo):</b><br><br>
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#3b82f6;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">WAN</span>
-                  <span>Principal: cable en puerto WAN. Secundario: puerto WAN <b>vac\u00edo</b>.</span>
+            ` 
+        },
+        { 
+            pill: "Resultado", 
+            title: "✅ Resultado", 
+            tag: "Finalización", 
+            html: `
+                <div style="background:#E6FBF5; color:#007A5E; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #007A5E; margin-bottom:8px;">
+                    ✅ Funciona: Dar por finalizado el chat.
                 </div>
-                <div style="display:flex;align-items:flex-start;gap:8px;">
-                  <span style="background:#3b82f6;color:white;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;flex-shrink:0;">LUZ</span>
-                  <span>Blanco = WiFi 6 OK. Azul = WiFi 5 OK. Otro color = problema.</span>
+
+                <div style="background:#fee2e2; color:#991b1b; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #ef4444;">
+                    ❌ No funciona: Escalar a N2
                 </div>
-              </div>
-            </div>
-            <div class="alert-falla">\u274c Naranja: configurar en ISP desde Inventory. Si no sube: chuzar y reconfigurar.</div>
-            <div class="action">\u2705 Conexiones OK \u2192 continuar al reinicio.</div>
-          </div>` },
-        { pill: "Reinicio", title: "\ud83d\udd04 Reinicio", tag: "Acci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:10px;font-size:12px;color:#0369a1;">
-              <b>\ud83d\udcac Mensaje al cliente:</b><br><br>
-              "Voy a pedirte que desconectes los dos routers del toma al mismo tiempo. A los 30 segundos conecta primero el principal, espera 1 minuto y luego conecta el secundario."
-            </div>
-            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b>Mientras espera:</b> actualizar CPE Doctor (filtro 30 min) para verificar si el servicio sube.
-            </div>
-          </div>` },
-        { pill: "Resultado", title: "\u2705 Resultado", tag: "Finalizaci\u00f3n",
-          html: `<div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px;font-size:12px;color:#166534;font-weight:700;">
-              \u2705 <b>Funciona</b> \u2192 confirmar con el cliente y cerrar el chat.
-            </div>
-            <div class="alert-pago">
-              \u274c <b>No funciona</b> \u2192 escalar a N2.<br><br>
-              <span style="font-weight:400;">Antes de escalar confirmar:<br>
-              \u2022 CPE Doctor revisado<br>
-              \u2022 Suscripci\u00f3n activa<br>
-              \u2022 Conexiones correctas<br>
-              \u2022 Reinicio realizado</span>
-            </div>
-          </div>` }
-    ]
+
+                <div style="margin-top:8px; font-size:11px; color:#4b5563;">
+                    <b>Antes de escalar validar:</b><br>
+                    • Router principal validado<br>
+                    • Router secundario validado<br>
+                    • Conexiones correctas<br>
+                    • Energía OK
+                </div>
+            ` 
+        }
+      ],
+ vilo: [       
+   { 
+    pill: "Validación", 
+    title: "🔍 Router Offline", 
+    tag: "Sistema", 
+    html: `
+        <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
+        <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
+        
+        <div class="alert-falla" style="background:#e0f2fe; border-color:#0ea5e9; color:#0369a1; margin-bottom:10px; padding:8px; font-size:11px;">
+            ℹ️ <b>Nota Desarrollo:</b> La integración automática con CPE Doctor para este flujo está en proceso de gestión.
+        </div>
+
+        <hr style="border:0; border-top:1px solid #eee; margin-bottom:8px;">
+        
+        <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
+        <div class="alert-pago" style="margin-bottom:8px;">🚫 Si está suspendido → enviar link de pago</div>
+
+        <div class="item">Revise si existe una falla masiva en la zona</div>
+        <div class="alert-falla" style="margin-bottom:8px;">⚠️ Si hay falla → usar guion</div>
+
+        ` 
 },
+    { 
+    pill: "Principal", 
+    title: "📑 Router principal", 
+    tag: "Herramienta", 
+    html: `
+        <div class="item" style="margin-bottom: 0px;">Validar que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
+        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
+
+        <div class="item" style="margin-top: 5px; margin-bottom: 0px;">Verificar que el router principal tome IP y esté en segmentos Somos (100.x, 38.x, 206.x)</div>
+        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → <b>primero verifica que los cables estén bien conectados</b>, luego aplicar reinicio en cascada</div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:8px; padding:8px; font-size:12px;">
+            <strong>⚠️ Nota IP Incorrecta:</strong><br>
+            1. Validar que los router esten bien conectados <b><br>
+            2. Aplicar <b>reinicio en cascada</b> Ambos OFF 30s ➜ Conectar Principal (esperar 60s) ➜ Conectar Secundario.<br>
+            3. Si persiste → <b>Escalar a N2</b>.
+        </div>
+
+        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-top:5px; padding:8px; font-size:11px; line-height:1.3;">
+            <strong>🚀 Tips :</strong> Actualiza herramientas (CPE-ISP) y verifica: si el servicio funciona, finaliza el chat; si no, sigue con los descartes.
+        </div>
+
+        <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
+            ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
+        </div>
+    ` 
+},
+   { 
+    pill: "Usuario", 
+    title: "🔌 Validación física", 
+    tag: "Cliente", 
+    html: `
+        <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Naranja:</strong> Configurar router en ISP desde Inventory. Si no sube: Chuzar y re-configurar.
+        </div>
+
+        <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Rojo:</strong> Solicitar fotos: LEDs y conexiones (solo si aplica). <b>Si ya las envió, NO volver a solicitarlas.</b>
+        </div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>Estados de luz del router:</strong><br>
+            • Blanco → WiFi 6 (funcionando correctamente)<br>
+            • Azul → WiFi 5 (funcionando correctamente)
+        </div>
+
+        <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:5px; padding:8px; font-size:11px;">
+            <strong>WAN:</strong><br>
+            • Router principal → debe tener el cable de red en el puerto WAN<br>
+            • Router secundario → NO debe tener cable en el puerto WAN
+        </div>
+
+        <div class="item" style="margin-bottom:2px;">• Validar que las conexiones estén correctas</div>
+        <div class="item" style="margin-bottom:2px;">• Asegurarse de que el cable de red esté bien ajustado</div>
+        <div class="item" style="margin-bottom:2px;">• Reiniciar router (30 segundos del tomacorriente y volver a conectar)</div>
+
+        
+
+        <div class="alert-falla" style="background:#fef2f2; border-color:#f87171; color:#991b1b; margin-top:5px; padding:8px; font-size:11px;">
+            🚨 <b>Nota:</b> Si principal o secundario siguen <b>OFF</b> → <b>Escalar a N2</b>.
+        </div>
+    ` 
+},
+            { 
+    pill: "Resultado", 
+    title: "✅ Resultado", 
+    tag: "Resultado", 
+    html: `
+        <div style="background:#E6FBF5; color:#007A5E; padding:15px; border-radius:12px; font-weight:700; margin-bottom:10px;">✅ Funciona: Dar por finalizado el chat.</div>
+        <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">❌ No funciona: Escalar a N2</div>
+        <div class="nota-box">
+            <b>Antes de escalar validar:</b><br>
+            • Router principal validado<br>
+            • Router secundario validado<br>
+            • Conexiones correctas<br>
+            • Energía OK
+        </div>` 
+           }
+        ]
+    },
     bajas: {
        phantom: [          
          { 
