@@ -86,15 +86,15 @@ h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
             <button onclick="cerrarModal()" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
         </div>
         <div style="padding:20px;">
+            <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:10px; border-radius:8px; font-size:12px; color:#991b1b; margin-bottom:12px; font-weight:700;">
+                ✅ <b>Antes de reiniciar:</b> Verifica que los cables estén bien conectados al router (WAN con capuchón rojo o pin de seguridad).
+            </div>
             <div style="background:#f0f9ff; border-left:4px solid #0ea5e9; padding:15px; border-radius:4px; margin-bottom:15px;">
                 <p style="margin:0; font-size:13px; color:#0369a1; line-height:1.6;">
                     1. <b>Desconecta al mismo tiempo</b> del tomacorriente ambos equipos.<br><br>
                     2. A los <b>30 segundos</b>, conectar primero el <b>router principal</b>.<br><br>
                     3. Esperar <b>30 segundos adicionales</b> y luego conectar el <b>secundario</b>.
                 </p>
-            </div>
-            <div style="background:#fff7ed; border:1px solid #fdba74; padding:10px; border-radius:8px; font-size:11px; color:#9a3412;">
-                ⚠️ <b>Importante:</b> Verifica que los cables estén bien conectados al router.
             </div>
            <div id="modalIPIntermitencia" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10001; justify-content:center; align-items:center; font-family:sans-serif;">
     <div style="background:white; width:90%; max-width:600px; border-radius:16px; overflow:hidden; position:relative;">
@@ -212,28 +212,32 @@ const DATA = {
   phantom: [
             { 
                 pill: "Validación", 
-                title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
+                title: "🔍 Router Offline", 
                 tag: "Sistema", 
-                html: `<div class="item"><b>🩺 Diagnóstico Automático:</b></div>
-                         <div class="item">• Ejecutar diagnóstico por CPE Doctor.</div>
-                         <button class="btn" style="background:#a855f7; margin-bottom:8px" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
-                         <hr style="border:0; border-top:1px solid #eee; margin-bottom:0px;">
-                         <div class="item">Verifique que el servicio no esté suspendido por falta de pago o congelado</div>
+                html: `<div style="display:flex;flex-direction:column;gap:8px;">
+                         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:11px;color:#334155;">
+                           <b style="color:#0f172a;">🩺 Paso 1 — Diagnóstico automático</b><br>
+                           Ejecutar diagnóstico por CPE Doctor. Verificar que el servicio no esté suspendido por pago o congelado.
+                         </div>
+                         <button class="btn" style="background:#a855f7;" onclick="window.open('https://admin.somosinternet.com/cpe_doctor/')">🚀 Ejecutar CPE Doctor</button>
                          <div class="alert-pago">🚫 Si está suspendido → enviar link de pago</div>
-                         <div class="item">Revise si existe una falla masiva en la zona</div>
-                         <div class="alert-falla">⚠️ Si hay falla → usar guion</div>
-                         <button class="btn" style="background:#3b82f6" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">Abrir guion falla masiva (Ver pág. 4.)</button>` },
+                         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:11px;color:#334155;">
+                           <b style="color:#0f172a;">⚠️ Paso 2 — Verificar falla masiva</b><br>
+                           Revisar si hay falla reportada en la zona antes de continuar con descartes.
+                         </div>
+                         <button class="btn" style="background:#3b82f6;" onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing')">📄 Guion falla masiva (Pág. 4)</button>
+                       </div>` },
                       
 { 
             pill: "Principal", 
-            title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
+            title: "📑 Router principal", 
             tag: "Herramienta", 
             html: `
                 <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
                 <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
                 <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → <b>primero verifica que los cables estén bien conectados</b>, luego aplicar reinicio en cascada</div>
 
            <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
     <strong>⚠️ Nota IP Incorrecta:</strong><br>
@@ -254,7 +258,7 @@ const DATA = {
                 </div>
             ` 
         },
-           { pill: "Secundario", title: "<span style='font-size: 16px;'>🔀 Router secundario</span>", tag: "Red", html: `
+           { pill: "Secundario", title: "🔀 Router secundario", tag: "Red", html: `
 <div class="item" style="margin-bottom:2px;">Confirmar que no tenga la misma IP que el principal</div>
 <div class="action" style="margin-bottom:6px; padding:5px;">Si tiene la misma IP → aplicar <b>reinicio en cascada</b></div>
            <div class="item" style="margin-bottom:2px;">Validar en Grafana que no esté en N/A</div>
@@ -266,7 +270,7 @@ const DATA = {
 </div>` },
          { 
             pill: "Usuario", 
-            title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
+            title: "🔌 Validación física", 
             tag: "Cliente", 
             html: `
                 <div class="alert-falla" style="background:#fee2e2; border-color:#ef4444; color:#991b1b; margin-bottom:5px; padding:8px; font-size:11px;">
@@ -293,7 +297,7 @@ const DATA = {
         },
         { 
             pill: "Resultado", 
-            title: "<span style='font-size: 16px;'>✅ Resultado</span>", 
+            title: "✅ Resultado", 
             tag: "Finalización", 
             html: `
                 <div style="background:#E6FBF5; color:#007A5E; padding:12px; border-radius:8px; font-weight:700; border: 1px solid #007A5E; margin-bottom:8px;">
@@ -317,7 +321,7 @@ const DATA = {
  vilo: [       
    { 
     pill: "Validación", 
-    title: "<span style='font-size: 16px;'>🔍 Router Offline</span>", 
+    title: "🔍 Router Offline", 
     tag: "Sistema", 
     html: `
         <div class="item"><b>🩺 Diagnóstico Automático:</b></div>
@@ -342,14 +346,14 @@ const DATA = {
 },
     { 
     pill: "Principal", 
-    title: "<span style='font-size: 16px;'>📑 Router principal</span>", 
+    title: "📑 Router principal", 
     tag: "Herramienta", 
     html: `
         <div class="item" style="margin-bottom: 0px;">Validar que la MAC esté asociada y autenticada en Radius (Estado Activo)</div>
         <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar backoffice</div>
 
         <div class="item" style="margin-top: 5px; margin-bottom: 0px;">Verificar que el router principal tome IP y esté en segmentos Somos (100.x, 38.x, 206.x)</div>
-        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → aplicar reinicio en cascada</div>
+        <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → <b>primero verifica que los cables estén bien conectados</b>, luego aplicar reinicio en cascada</div>
 
         <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:8px; padding:8px; font-size:12px;">
             <strong>⚠️ Nota IP Incorrecta:</strong><br>
@@ -369,7 +373,7 @@ const DATA = {
 },
    { 
     pill: "Usuario", 
-    title: "<span style='font-size: 16px;'>🔌 Validación física</span>", 
+    title: "🔌 Validación física", 
     tag: "Cliente", 
     html: `
         <div class="alert-falla" style="background:#fff7ed; border-color:#fb923c; color:#9a3412; margin-bottom:5px; padding:8px; font-size:11px;">
@@ -426,7 +430,7 @@ const DATA = {
        phantom: [          
          { 
             pill: "Validación", 
-            title: "<span style='font-size: 16px;'>📉 Bajas Velocidades</span>", 
+            title: "📉 Bajas Velocidades", 
             tag: "Sistema", 
             html: `
                 <div class="item" style="margin-bottom: 5px;">Verifique que NO exista falla masiva en la zona.</div>
@@ -654,7 +658,7 @@ const DATA = {
                 <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">1. Diagnóstico de LEDs (Media Converter)</div>
                 <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap:12px; background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:12px; margin-bottom:20px; align-items: center;">
                     <div style="text-align:center;">
-                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
+                        <img src="https://i.postimg.cc/9XgQkYrX/Captura-de-pantalla-2026-04-16-080211.jpg" style="width:100%; max-width:280px; border-radius:8px; border:1px solid #e2e8f0; display:block; margin:0 auto;">
                     </div>
                     <div style="display:flex; flex-direction:column; gap:10px;">
                         <div style="border-left:3px solid #22c55e; padding-left:10px;">
@@ -672,7 +676,7 @@ const DATA = {
 
                 <div class="item" style="font-weight:800; margin-bottom:10px; color:#0f172a;">2. Conexión y Estado del Router</div>
                 <div style="background:#f8fafc; border:1px solid #3b82f6; border-radius:12px; overflow:hidden; margin-bottom:20px;">
-                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; height:auto; display:block;">
+                    <img src="https://i.postimg.cc/X77w63cL/Captura-de-pantalla-2026-04-15-163358.jpg" style="width:100%; max-width:320px; height:auto; display:block; margin:0 auto; border-radius:6px;">
                     <div style="padding:10px; background:#eff6ff;">
                         <p style="font-size:11px; color:#1e40af; margin:0; line-height:1.4; text-align:center;">
                             El cable UTP debe ingresar al puerto <b>WAN</b>. Confirma que el linqueo NO sea de 100Mbps.
@@ -700,7 +704,7 @@ const DATA = {
       phantom: [
     { 
         pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico de Red</span>", 
+        title: "🔍 Diagnóstico de Red", 
         tag: "Sistemas", 
         html: `
             <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
@@ -733,7 +737,7 @@ const DATA = {
     },
     { 
         pill: "Usuario", 
-        title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
+        title: "👤 Validación con el Cliente", 
         tag: "Entorno", 
         html: `
             <div class="item">• Confirmar que no tenga VPN activa.</div>
@@ -753,7 +757,7 @@ const DATA = {
     },
    {
     pill: "Resultado",
-    title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>",
+    title: "🚩 Acción y Escalamiento",
     tag: "Final",
     html: `
         <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
@@ -777,7 +781,7 @@ const DATA = {
       vilo: [
     { 
         pill: "Validación", 
-        title: "<span style='font-size: 16px;'>🔍 Diagnóstico Vilo</span>", 
+        title: "🔍 Diagnóstico Vilo", 
         tag: "Sistemas", 
         html: `
             <div class="alert-falla" style="margin-bottom:12px; background:#fefce8; border-color:#f59e0b; color:#92400e;">
@@ -801,7 +805,7 @@ const DATA = {
     },
     { 
         pill: "Usuario", 
-        title: "<span style='font-size: 16px;'>👤 Validación con el Cliente</span>", 
+        title: "👤 Validación con el Cliente", 
         tag: "Entorno", 
         html: `
             <div class="item">• Confirmar que no tenga VPN activa.</div>
@@ -821,7 +825,7 @@ const DATA = {
     },
     { 
         pill: "Resultado", 
-        title: "<span style='font-size: 16px;'>🚩 Acción y Escalamiento</span>", 
+        title: "🚩 Acción y Escalamiento", 
         tag: "Final", 
         html: `
             <div class="item">✅ Funciona: Dar por finalizado el chat.</div>
