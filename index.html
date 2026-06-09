@@ -76,6 +76,11 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 .tec { border-bottom: 1px dashed #94a3b8; cursor: help; position: relative; display: inline; }
 .tec .tt { display: none; position: absolute; bottom: 125%; left: 0; background: #1e293b; color: #f1f5f9; padding: 8px 10px; border-radius: 8px; font-size: 11px; font-weight: 400; width: 220px; z-index: 999; line-height: 1.4; white-space: normal; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .tec:hover .tt { display: block; }
+/* Panel lateral colapsable */
+.side-card details summary { user-select:none; }
+.side-card details summary::after { content:" +"; font-weight:900; font-size:13px; color:#3b82f6; margin-left:auto; }
+.side-card details[open] summary::after { content:" −"; }
+.side-card details summary:hover { color:#0f172a; }
 /* Scrollbar custom */
 .col-main::-webkit-scrollbar, .col-side::-webkit-scrollbar { width: 4px; }
 .col-main::-webkit-scrollbar-track, .col-side::-webkit-scrollbar-track { background: transparent; }
@@ -1252,7 +1257,7 @@ function render() {
         '</div>' +
         '<div class="side-card">' +
         '<details open>' +
-        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-bolt" style="color:#f59e0b;"></i> Accesos rápidos</summary>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-bolt" style="color:#f59e0b;"></i> Accesos rápidos</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
         '<button class="btn" style="background:#a855f7;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
         '<button class="btn" style="background:#3b82f6;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
@@ -1262,7 +1267,7 @@ function render() {
         '</details>' +
         '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
         '<details>' +
-        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-tools" style="color:#3b82f6;"></i> Herramientas</summary>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-tools" style="color:#3b82f6;"></i> Herramientas</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
         '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
         '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
@@ -1270,7 +1275,7 @@ function render() {
         '</details>' +
         '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
         '<details>' +
-        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-clipboard-list" style="color:#8b5cf6;"></i> Recursos</summary>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-clipboard-list" style="color:#8b5cf6;"></i> Recursos</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
         '<button class="btn" style="background:#475569;" onclick="window.open(\'https://docs.google.com/presentation/d/1EHmF3r2-8ZDkPyIwXk2AkKHBOihDUOfilHO_SdO5sK8/edit?usp=sharing\')"><i class="fas fa-tachometer-alt"></i> Revisar tarjeta de red</button>' +
         '</div>' +
