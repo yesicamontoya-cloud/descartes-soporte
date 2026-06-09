@@ -439,19 +439,17 @@ const DATA = {
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
                     ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold; text-decoration:none;">usar guion de falla masiva (Pág. 4)</a>
                 </div>
-                  div style="margin-bottom: 10px;">
-        </div>             
                 <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
-                    • <b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
-                    • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
+                    • <b>Plan:</b> Validar plan contratado y tecnología (<span class="tec">RE<span class="tt">RE = Radio Enlace. Conexión de internet por antena de radio, sin fibra óptica.</span></span>, <span class="tec">FO 1.0<span class="tt">FO 1.0 = Fibra Óptica con velocidad de hasta 1 Gbps.</span></span>, <span class="tec">FO 2.5<span class="tt">FO 2.5 = Fibra Óptica con velocidad de hasta 2.5 Gbps.</span></span> o <span class="tec">FX<span class="tt">FX = Fiber X. La tecnología más nueva de Somos, con fibra óptica directa al router usando un Media Converter.</span></span>).<br>
+                    • <b><span class="tec">IP<span class="tt">IP = dirección que identifica a cada router en la red. Si el principal y el secundario tienen la misma IP, se genera un conflicto y ninguno funciona bien.</span></span>:</b> Validar que el router principal y el secundario tengan IPs diferentes.<br>
                     • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
-                    • <b>Linkeo:</b> Revisar linkeo del puerto WAN (según tipo de plan).
+                    • <b><span class="tec">Linkeo<span class="tt">Linkeo = velocidad a la que está negociando el puerto WAN del router. Si es 100 Mbps cuando debería ser 1 Gbps, hay un cuello de botella en el cable o el puerto.</span></span>:</b> Revisar que el puerto WAN esté negociando a la velocidad correcta según el plan.
                 </div>
 
                 
 
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; padding:8px; font-size:11px;">
-                    ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
+                    ⚠️ <b>Nota <span class="tec">Linkeo<span class="tt">Linkeo bajo = el puerto WAN está negociando a 100 Mbps en lugar de 1 Gbps. Puede ser por un cable dañado, de baja categoría o por el puerto del router.</span></span>:</b> Si el linkeo es bajo, revisar el cable y los puertos antes de escalar.
                 </div>
             ` 
         },
@@ -465,26 +463,27 @@ const DATA = {
                     <div style="font-size: 11px; line-height: 1.4;">
                         
                         <div style="margin-bottom: 8px;">
-                            • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo conectado a la red <b>5G</b> usando el servidor de <b>SOMOS</b> a través de (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
-                            • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
+                            • Solicitar test de velocidad por cable directo al router. Si no puede, hacerlo en WiFi 5G con el servidor de Somos en <a href="https://www.speedtest.net/" target="_blank" style="color:#3b82f6;font-weight:bold;">www.speedtest.net</a>.<br>
+                            • Pedir captura completa donde se vea la barra de tareas y la IP.<br>
+                            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:6px;"><b>💬 Mensaje al cliente:</b><br>"Necesito que hagas un test de velocidad en <b>www.speedtest.net</b>, seleccionando el servidor de Somos. Si puedes conectarte por cable al router es mejor. Cuando termine envíame una captura de pantalla completa donde se vea el resultado y la barra de tareas."</div>
                         </div>
 
                         <div style="background: #f8fafc; padding: 8px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 8px;">
                             
-                            • Confirmar que <b>NO tenga VPN</b> activa.<br>
-                            • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b>.<br>
+                            • Confirmar que <b>NO tenga <span class="tec">VPN<span class="tt">VPN = Red Privada Virtual. Una VPN encripta el tráfico de internet y lo redirige por servidores externos, lo que reduce considerablemente la velocidad real. Si el cliente tiene VPN activa, los resultados del test no son confiables.</span></span></b> activa.<br>
+                            • Si por cable no supera 100 Mbps → Revisar <b><span class="tec">tarjeta de red<span class="tt">Tarjeta de red = componente del computador que gestiona la conexión a internet. Si está limitada a 100 Mbps, el cliente nunca verá más velocidad aunque el plan sea mayor. Se revisa en el Administrador de dispositivos de Windows.</span></span></b> del equipo.<br>
                             • Validar resultados en <b>varios dispositivos</b> (red 5G) para descartar falla única.<br>
-                            • Validar <b>categoría del cable</b> (mínimo <b>Cat 5e</b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
+                            • Validar <b>categoría del cable</b> (mínimo <b><span class="tec">Cat 5e<span class="tt">Cat 5e = categoría mínima recomendada del cable de red para soportar velocidades de 1 Gbps. Cables más viejos (Cat 5 o menos) limitan la velocidad. Preguntar al cliente si el cable fue dejado por el técnico de instalación.</span></span></b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
                             • Evaluar entorno y distancia (muros, interferencias).
                         </div>
 
                         <div style="margin-bottom: 8px;">
-                            📌 <b>Nota:</b> Dispositivos de domótica consumen poca velocidad.<br>
-                            • Verificar firmware actualizado (Firmware Upgrade).
+                            📌 <b>Nota:</b> <span class="tec">Dispositivos de domótica<span class="tt">Domótica = dispositivos inteligentes del hogar como cámaras, bombillas smart, alarmas, etc. Aunque consumen poca velocidad individualmente, muchos conectados pueden saturar la red WiFi.</span></span> consumen poca velocidad — no son la causa de velocidades bajas en el plan.<br>
+                            • Verificar que el router tenga el <span class="tec">firmware<span class="tt">Firmware = software interno del router. Mantenerlo actualizado mejora el rendimiento y la estabilidad. Se actualiza desde la herramienta de gestión del router (ISP/Inventory).</span></span> actualizado.
                         </div>
 
                         <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 8px; font-size: 10px; border-radius: 4px;">
-                            💡 <b>Condicional:</b> Si se detecta saturación de canales, usar **CPE Doctor**: ir a la sección *"Optimización de canales WiFi"* y hacer clic en *"Optimizar canales"*</b>.
+                            💡 <b>Condicional:</b> Si se detecta saturación de canales, usar CPE Doctor: ir a la sección <b>"Optimización de canales WiFi"</b> y hacer clic en <b>"Optimizar canales"</b>.
                         </div>
 
                     </div>
@@ -503,7 +502,7 @@ const DATA = {
             tag: "Resultado", 
             html: `
                 <div class="item">• Si la velocidad es correcta por cable → el problema es la cobertura o interferencia WiFi.</div>
-                <div class="item">• Si la velocidad es asimétrica → el problema se debe a una falla en la red o a la mala configuración del equipo del usuario.</div>
+                <div class="item">• Si la velocidad es <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → el problema puede ser de red o configuración del equipo del cliente.</div>
                 <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o configuración del equipo.</div>
                 
                 <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
@@ -534,10 +533,10 @@ const DATA = {
 
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; margin-bottom: 12px;">
                         <ul style="margin: 0; padding-left: 15px;">
-                            <li style="margin-bottom: 4px;"><b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).</li>
+                            <li style="margin-bottom: 4px;"><b>Plan:</b> Validar plan contratado y tecnología (<span class="tec">RE<span class="tt">RE = Radio Enlace. Conexión de internet por antena de radio, sin fibra óptica.</span></span>, <span class="tec">FO 1.0<span class="tt">FO 1.0 = Fibra Óptica con velocidad de hasta 1 Gbps.</span></span>, <span class="tec">FO 2.5<span class="tt">FO 2.5 = Fibra Óptica con velocidad de hasta 2.5 Gbps.</span></span> o <span class="tec">FX<span class="tt">FX = Fiber X. La tecnología más nueva de Somos, con fibra óptica directa al router usando un Media Converter.</span></span>).</li>
                             <li style="margin-bottom: 4px;"><b>IP:</b> Validar que los routers <b>NO tengan la misma IP</b>.</li>
                             <li style="margin-bottom: 4px;"><b>Test:</b> Realizar test de velocidad desde el sistema.</li>
-                            <li style="margin-bottom: 0;"><b>Linkeo:</b> Revisar linkeo del puerto WAN y <b>Firmware Upgrade</b>.</li>
+                            <li style="margin-bottom: 0;"><b><span class="tec">Linkeo<span class="tt">Linkeo = velocidad a la que está negociando el puerto WAN del router. Si es 100 Mbps cuando debería ser 1 Gbps, hay un cuello de botella en el cable o el puerto.</span></span>:</b> Revisar que el puerto WAN esté negociando a la velocidad correcta. <span class="tec">Firmware Upgrade<span class="tt">Firmware Upgrade = actualización del software interno del router. Un firmware desactualizado puede causar inestabilidad o bajo rendimiento.</span></span> = verificar que el router tenga la versión más reciente.</li>
                         </ul>
                     </div>
 
@@ -552,7 +551,7 @@ const DATA = {
                     </div>
 
                     <div style="background: #fffbeb; border-left: 4px solid #f59e0b; padding: 6px 10px; border-radius: 4px; color: #92400e; font-size: 10px;">
-                        ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
+                        ⚠️ <b>Nota <span class="tec">Linkeo<span class="tt">Linkeo bajo = el puerto WAN está negociando a 100 Mbps en lugar de 1 Gbps. Puede ser por un cable dañado, de baja categoría o por el puerto del router.</span></span>:</b> Si el linkeo es bajo, revisar el cable y los puertos antes de escalar.
                     </div>
 
                 </div>
@@ -565,29 +564,29 @@ const DATA = {
             html: `
                 <div style="font-size: 11px; line-height: 1.4; color: #475569 !important;">
                     <div style="margin-bottom: 8px;">
-                        • Solicitar test de velocidad, priorizando conexión por cable (<b>LAN</b>) directo al router principal; en caso de que no se pueda, revisarlo en red <b>5G</b> usando el servidor de <b>SOMOS</b> (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
+                        • Solicitar test de velocidad, priorizando conexión por cable (<b><span class="tec">LAN<span class="tt">LAN = cable de red directo al router. Es la forma más confiable de hacer el test porque elimina variables del WiFi.</span></span></b>) directo al router principal; en caso de que no se pueda, revisarlo en red <b>5G</b> usando el servidor de <b>SOMOS</b> (<a href="https://www.speedtest.net/" target="_blank" style="color: #3b82f6; font-weight: bold; text-decoration: none;">www.speedtest.net</a>).<br>
                         • Solicitar <b>captura completa</b> del Speedtest (donde se vea la barra de tareas e IP visible).
                     </div>
 
                     <div style="background: #f8fafc; padding: 6px; border: 1px solid #e2e8f0; border-radius: 4px; margin-bottom: 8px;">
                      
-                        • Confirmar que <b>NO tenga VPN</b> activa.<br>
+                        • Confirmar que <b>NO tenga <span class="tec">VPN<span class="tt">VPN = Red Privada Virtual. Una VPN encripta el tráfico de internet y lo redirige por servidores externos, lo que reduce considerablemente la velocidad real. Si el cliente tiene VPN activa, los resultados del test no son confiables.</span></span></b> activa.<br>
                         • Si por cable no supera 100 Mbps → Revisar <b>tarjeta de red</b> del equipo.<br>
                         • Validar en <b>varios dispositivos</b> (red 5G) para descartar falla única.<br>
                         • Separar redes 2.4 GHz y 5 GHz (si no están separadas).<br>
-                        • Verificar que el firmware esté actualizado (<b>Firmware Upgrade</b>).<br>
-                        •  Validar <b>categoría del cable</b> (mínimo <b>Cat 5e</b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
+                        • Verificar que el router tenga el <span class="tec">firmware<span class="tt">Firmware = software interno del router. Mantenerlo actualizado mejora el rendimiento y la estabilidad. Se actualiza desde la herramienta de gestión del router (ISP/Inventory).</span></span> actualizado.<br>
+                        •  Validar <b>categoría del cable</b> (mínimo <b><span class="tec">Cat 5e<span class="tt">Cat 5e = categoría mínima recomendada del cable de red para soportar velocidades de 1 Gbps. Cables más viejos (Cat 5 o menos) limitan la velocidad. Preguntar al cliente si el cable fue dejado por el técnico de instalación.</span></span></b> y sin adaptadores).( Nota: Preguntar al cliente si el cable de red fue dejado por el técnico.)<br>
                         • Evaluar entorno y distancia (muros, interferencias).
                     </div>
 
                     <div style="margin-bottom: 8px;">
                         📌 <b>Nota Asimetría:</b> Si la velocidad es asimétrica, el problema se debe a la red o a la configuración del equipo del usuario.<br>
-                        <span style="font-style: italic;">• Dispositivos de domótica consumen poca velocidad. <br> 📌 Nota: Dispositivos de domótica consumen poca velocidad.</span>
+                        <span style="font-style: italic;">• <span class="tec">Dispositivos de domótica<span class="tt">Domótica = dispositivos inteligentes del hogar como cámaras, bombillas smart, alarmas, etc. Aunque consumen poca velocidad, si hay muchos conectados pueden saturar la red WiFi.</span></span> consumen poca velocidad — no son la causa de velocidades bajas en el plan.</span>
                        
                     </div>
 
                     <div style="background:#fffbeb; border: 1px solid #fef3c7; color:#92400e; padding:6px; font-size:10px; border-radius: 4px;">
-                        💡 <b>Condicional:</b>  Si se detecta saturación de canales, usar **CPE Doctor**: ir a la sección *"Optimización de canales WiFi"* y hacer clic en *"Optimizar canales"*</b>.
+                        💡 <b>Condicional:</b>  Si se detecta saturación de canales, usar CPE Doctor: ir a la sección <b>"Optimización de canales WiFi"</b> y hacer clic en <b>"Optimizar canales"</b>.
                     </div>
                 </div>
 
@@ -601,7 +600,7 @@ const DATA = {
                 tag: "Resultado", 
                 html: `
                     <div class="item">• Si la velocidad es correcta por cable → el problema es WiFi.</div>
-                    <div class="item">• Si la velocidad es asimétrica → el problema se debe a una falla en la red o a la mala configuración del equipo del usuario.</div>
+                    <div class="item">• Si la velocidad es <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → el problema puede ser de red o configuración del equipo del cliente.</div>
                     <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o hardware.</div>
                     
                     <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
