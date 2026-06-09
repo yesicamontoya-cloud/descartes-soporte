@@ -479,11 +479,11 @@ const DATA = {
 
                         <div style="margin-bottom: 8px;">
                             📌 <b>Nota:</b> <span class="tec">Dispositivos de domótica<span class="tt">Domótica = dispositivos inteligentes del hogar como cámaras, bombillas smart, alarmas, etc. Aunque consumen poca velocidad individualmente, muchos conectados pueden saturar la red WiFi.</span></span> consumen poca velocidad — no son la causa de velocidades bajas en el plan.<br>
-                            • Verificar que el router tenga el <span class="tec">firmware<span class="tt">Firmware = software interno del router. Mantenerlo actualizado mejora el rendimiento y la estabilidad. Se actualiza desde la herramienta de gestión del router (ISP/Inventory).</span></span> actualizado.
+                            
                         </div>
 
                         <div style="background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 8px; font-size: 10px; border-radius: 4px;">
-                            💡 <b>Condicional:</b> Si se detecta saturación de canales, usar CPE Doctor: ir a la sección <b>"Optimización de canales WiFi"</b> y hacer clic en <b>"Optimizar canales"</b>.
+                            💡 Si hay <span class="tec">saturación de canales WiFi<span class="tt">Saturación de canales = varios routers cercanos usando el mismo canal WiFi, lo que genera interferencia y baja la velocidad. CPE Doctor puede detectarlo y optimizarlo automáticamente.</span></span> → en CPE Doctor ir a <b>"Optimización de canales WiFi"</b> y clic en <b>"Optimizar canales"</b>.
                         </div>
 
                     </div>
@@ -501,9 +501,9 @@ const DATA = {
             title: "📉 Bajas Velocidades", 
             tag: "Resultado", 
             html: `
-                <div class="item">• Si la velocidad es correcta por cable → el problema es la cobertura o interferencia WiFi.</div>
-                <div class="item">• Si la velocidad es <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → el problema puede ser de red o configuración del equipo del cliente.</div>
-                <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o configuración del equipo.</div>
+                <div class="item">• Velocidad OK por cable → el problema es WiFi. Revisar cobertura e interferencias.</div>
+                <div class="item">• Velocidad <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → escalar a N2, puede ser falla de red.</div>
+                <div class="item">• Velocidad sigue baja por cable → escalar a N2.</div>
                 
                 <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
                     ❌ Si no se soluciona → Escalar al área especializada (N2)
@@ -599,9 +599,9 @@ const DATA = {
                 title: "📉 Bajas Velocidades", 
                 tag: "Resultado", 
                 html: `
-                    <div class="item">• Si la velocidad es correcta por cable → el problema es WiFi.</div>
-                    <div class="item">• Si la velocidad es <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → el problema puede ser de red o configuración del equipo del cliente.</div>
-                    <div class="item">• Si la velocidad sigue baja por cable → el problema es de red o hardware.</div>
+                    <div class="item">• Velocidad OK por cable → el problema es WiFi. Revisar cobertura e interferencias.</div>
+                    <div class="item">• Velocidad <span class="tec">asimétrica<span class="tt">Velocidad asimétrica = cuando la velocidad de bajada (download) y la de subida (upload) son muy diferentes o no corresponden al plan. Puede indicar problema en la red o configuración incorrecta del equipo del cliente.</span></span> → escalar a N2, puede ser falla de red.</div>
+                    <div class="item">• Velocidad sigue baja por cable → escalar a N2.</div>
                     
                     <div style="background:#FFF0F0; color:#A83030; padding:15px; border-radius:12px; font-weight:700; margin-top:12px; margin-bottom:10px;">
                         ❌ Si no se soluciona → Escalar al área especializada (N2)
