@@ -242,26 +242,15 @@ const DATA = {
             title: "📑 Router principal", 
             tag: "Herramienta", 
             html: `
-                <div class="item" style="margin-bottom: 0px;">Validar desde CPE Doctor que la MAC esté asociada y autenticada en <span class="tec">Radius (Estado Activo)<span class="tt">Radius = sistema que autentica al router en la red de Somos. Estado Activo significa que el equipo está autorizado y puede recibir internet.</span></span></div>
-                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si no está activo → escalar <span class="tec">backoffice<span class="tt">Backoffice = área interna de Somos que gestiona activaciones, configuraciones y problemas de cuenta que el analista N1 no puede resolver directamente.</span></span></div>
-
-                <div class="item" style="margin-bottom: 0px;">Verificar desde CPE Doctor que el router principal tome IP y se encuentre en uno de los segmentos de Somos (100.x, 38.x, 206.x)</div>
-                <div class="action" style="margin-bottom: 0px; padding: 4px;">Si la IP no pertenece a los segmentos → <b>primero verifica que los cables estén bien conectados</b>, luego aplicar <span class="tec">reinicio en cascada<span class="tt">Reinicio en cascada = desconectar ambos routers del toma al mismo tiempo, esperar 30 segundos, conectar primero el principal y esperar 1 minuto antes de conectar el secundario.</span></span></div>
-
-           <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-top:5px; padding:8px; font-size:12px;">
-    <strong>⚠️ Nota IP Incorrecta:</strong><br>
-    Si detectas desincronía o IP fuera de rango, solicita el reinicio físico:
-    
-    <button onclick="abrirModal()" class="btn" style="width:100%; margin-top:10px; background:#1e293b; color:white; font-weight:bold;">
-        🔌 Ver Reinicio en Cascada
-    </button>
-</div>
-                </div>
-
-
-
-                <div class="item" style="margin-top:5px; color:#dc2626; font-weight:bold; font-size:11px;">
-                    ⚠️ IMPORTANTE: Conexiones del principal siempre correctas (WAN con capuchón rojo o pin de seguridad).
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+                    <b style="color:#0f172a;">Verificar en CPE Doctor:</b><br><br>
+                    <b>1.</b> Buscar el cliente y revisar que la <span class="tec">MAC<span class="tt">MAC = código único que identifica al router. En CPE Doctor aparece junto al nombre del cliente. Si no aparece o dice Inactivo, el router no está autorizado en la red de Somos.</span></span> aparezca con estado <b>Activo</b> en <span class="tec">Radius<span class="tt">Radius = sistema que autoriza al router a conectarse a la red de Somos. Estado Activo = el router tiene permiso para recibir internet. Inactivo = no tiene permiso, hay que escalar a backoffice.</span></span>.<br><br>
+                    <b>2.</b> Verificar que el router tenga una IP dentro de los segmentos de Somos:<br>
+                    <code style="background:#e2e8f0;padding:2px 6px;border-radius:4px;font-size:11px;">100.x.x.x &nbsp;·&nbsp; 38.x.x.x &nbsp;·&nbsp; 206.x.x.x</code>
+                  </div>
+                  <div class="alert-pago">🚫 <b>MAC Inactiva</b> → escalar a <span class="tec">backoffice<span class="tt">Backoffice = área interna de Somos que activa o corrige problemas de cuenta. El analista N1 no puede activar MACs directamente.</span></span>.</div>
+                  <div class="alert-falla">⚠️ <b>IP fuera de segmentos</b> → revisar que el cable <span class="tec">WAN<span class="tt">WAN = cable que llega desde la red de Somos al router. Debe estar bien conectado en el puerto WAN del router principal. Tiene un capuchón rojo o pin de seguridad para evitar que se desconecte accidentalmente.</span></span> esté bien conectado y aplicar reinicio en cascada desde Accesos rápidos.</div>
                 </div>
             ` 
         },
