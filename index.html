@@ -1251,21 +1251,30 @@ function render() {
         '<div style="font-size:11px;color:#78350f;line-height:1.5;">Actualiza herramientas <b>(CPE-ISP)</b> y verifica: si funciona, finaliza el chat. Si no, sigue con los descartes.</div>' +
         '</div>' +
         '<div class="side-card">' +
-        '<div class="side-card-title"><i class="fas fa-bolt mr-1"></i> Accesos r\u00e1pidos</div>' +
+        '<details open>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-bolt" style="color:#f59e0b;"></i> Accesos rápidos</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
         '<button class="btn" style="background:#a855f7;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
-        '<button class="btn" style="background:#3b82f6;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Gu\u00edon Falla Masiva</button>' +
+        '<button class="btn" style="background:#3b82f6;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
         '<button class="btn" style="background:#10b981;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
         '<button class="btn" style="background:#1e293b;" onclick="abrirModal()"><i class="fas fa-plug"></i> Reinicio Cascada</button>' +
+        '</div>' +
+        '</details>' +
+        '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
+        '<details>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-tools" style="color:#3b82f6;"></i> Herramientas</summary>' +
+        '<div style="display:flex;flex-direction:column;gap:6px;">' +
+        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
+        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
+        '</div>' +
+        '</details>' +
+        '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
+        '<details>' +
+        '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#94a3b8;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;"><i class="fas fa-clipboard-list" style="color:#8b5cf6;"></i> Recursos</summary>' +
+        '<div style="display:flex;flex-direction:column;gap:6px;">' +
         '<button class="btn" style="background:#475569;" onclick="window.open(\'https://docs.google.com/presentation/d/1EHmF3r2-8ZDkPyIwXk2AkKHBOihDUOfilHO_SdO5sK8/edit?usp=sharing\')"><i class="fas fa-tachometer-alt"></i> Revisar tarjeta de red</button>' +
         '</div>' +
-        '</div>' +
-        '<div class="side-card">' +
-        '<div class="side-card-title"><i class="fas fa-book-open mr-1"></i> Guías de herramientas</div>' +
-        '<div style="display:flex;flex-direction:column;gap:6px;">' +
-        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
-        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
-        '</div>' +
+        '</details>' +
         '</div>';
 }
 
