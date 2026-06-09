@@ -8,63 +8,75 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 <style>
-   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; height: 100vh; overflow: hidden; display: flex; color: white; }
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
-   .sidebar { width: 280px; background: #000000; color: white; display: flex; flex-direction: column; padding: 40px 24px; flex-shrink: 0; font-size: 0.875rem; }
-    .nav-item { padding: 14px 18px; border-radius: 14px; margin-bottom: 8px; cursor: pointer; transition: 0.3s; color: #94a3b8; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
-    .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
-    .nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000; height: 100vh; overflow: hidden; display: flex; color: white; }
 
-    /* Estos son los títulos de las carpetas N1 y N2 */
-    .section-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; margin-top: 20px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; }
-    .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 15px 0; }
-
-   .main-content { flex: 1; display: flex; flex-direction: column; background: white; border-radius: 32px 0 0 32px; box-shadow: -10px 0 50px rgba(0,0,0,0.05); overflow: hidden; }
-    .selector { display: flex; gap: 40px; border-bottom: 1px solid #f1f5f9; padding: 0 40px; }
-    .selector button { padding: 20px 0; font-weight: 800; font-size: 13px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.3s; text-transform: uppercase; }
-    .selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
-
-    .menu { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; padding: 20px 40px 0 40px; }
-    .menu button { padding: 10px 16px; border-radius: 12px; background: #f1f5f9; font-size: 11px; font-weight: 800; color: #64748b; transition: 0.2s; }
-    .menu button.active { background: #00c896; color: white; }
-
-    .block { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; }
-    h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #0f172a; letter-spacing: -0.5px; }
-    .item { font-size: 13px; margin-bottom: 4px; line-height: 1.4; color: #475569; }
-    .tag { display: inline-block; font-size: 10px; font-weight: 800; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; margin-bottom: 10px; }
-    
-    .nota-box { background: #fef9c3; border-left: 4px solid #facc15; padding: 10px; border-radius: 10px; font-size: 12px; color: #854d0e; margin-bottom: 8px; margin-top: 8px;}
-    .alert-pago { background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
-    .alert-falla { background: #fff7ed; border-left: 4px solid #f97316; color: #9a3412; padding: 15px; border-radius: 12px; font-weight: 700; margin-top: 10px; font-size: 12px; }
-    .action { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 12px; margin-top: 10px; font-size: 13px; font-weight: 600; color: #1e40af; }
-
-    .btn { margin-top: 20px; width: 100%; padding: 12px; border-radius: 16px; background: #0f172a; color: white; font-weight: 800; font-size: 14px; transition: 0.3s; cursor: pointer; border: none; }
-    .btn-reset { background: transparent; color: #94a3b8; font-size: 11px; text-transform: uppercase; border: none; margin-top: 20px; font-weight: 800; cursor: pointer; width: 100%; }
-   /* Oculta el contenido de las carpetas por defecto */
-    .nav-group { display: none; }
-    /* Clase para mostrar el contenido cuando se hace clic */
-    .nav-group.open { display: block; }
-    /* Animación para la flechita */
-    .rotate { transform: rotate(180deg); transition: 0.3s; }
-   /* Color para N2 cuando está seleccionado */
-#navN2.active, 
-#navBajasN2.active, 
-#navIntermitenciaN2.active, 
-#navNoNavegaN2.active, 
-#navCoberturaN2.active, 
-#navGamingN2.active {
-    background: #f97316 !important; 
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-    color: white !important;
-}
-
-/* Estilo para los títulos de carpeta para que resalten más */
-.section-header {
-    border-radius: 8px;
-    transition: 0.2s;
-}
+/* SIDEBAR */
+.sidebar { width: 230px; background: #000; color: white; display: flex; flex-direction: column; padding: 24px 16px; flex-shrink: 0; font-size: 0.875rem; overflow-y: auto; }
+.nav-item { padding: 9px 14px; border-radius: 12px; margin-bottom: 4px; cursor: pointer; transition: 0.2s; color: #94a3b8; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; }
+.nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+.section-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin-top: 14px; color: #64748b; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; border-radius: 8px; transition: 0.2s; cursor: pointer; }
 .section-header:hover { background: rgba(255,255,255,0.05); }
+.area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 10px 0; }
+.nav-group { display: none; }
+.nav-group.open { display: block; }
+
+/* MAIN */
+.main-content { flex: 1; display: flex; flex-direction: column; background: #f8fafc; border-radius: 28px 0 0 28px; overflow: hidden; }
+
+/* TOPBAR: selector equipo + pills en misma fila */
+.topbar { display: flex; align-items: center; gap: 0; background: white; border-bottom: 1px solid #e8edf2; padding: 0 24px; flex-shrink: 0; }
+.selector { display: flex; gap: 0; border-right: 1px solid #e8edf2; margin-right: 16px; }
+.selector button { padding: 14px 20px; font-weight: 800; font-size: 12px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.2s; text-transform: uppercase; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; white-space: nowrap; }
+.selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+.menu { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; }
+.menu button { padding: 6px 14px; border-radius: 20px; background: #f1f5f9; font-size: 11px; font-weight: 700; color: #64748b; transition: 0.2s; border: 1px solid transparent; cursor: pointer; }
+.menu button:hover { background: #e2e8f0; }
+.menu button.active { background: #00c896; color: white; border-color: #00b085; }
+
+/* CONTENT AREA: 2 columnas */
+.content-area { flex: 1; overflow: hidden; display: grid; grid-template-columns: 1fr 260px; gap: 0; }
+.col-main { overflow-y: auto; padding: 18px 20px; }
+.col-side { overflow-y: auto; padding: 18px 16px 18px 0; display: flex; flex-direction: column; gap: 10px; }
+
+/* CARDS de contenido */
+.block { background: white; border-radius: 14px; padding: 14px 16px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
+.block:last-child { margin-bottom: 0; }
+.tag { display: inline-flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 800; padding: 3px 10px; border-radius: 99px; text-transform: uppercase; margin-bottom: 8px; }
+h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; color: #0f172a; letter-spacing: -0.3px; line-height: 1.3; }
+.item { font-size: 12px; margin-bottom: 4px; line-height: 1.5; color: #475569; }
+
+/* ALERTAS compactas */
+.nota-box { background: #fef9c3; border-left: 3px solid #facc15; padding: 8px 10px; border-radius: 8px; font-size: 11px; color: #854d0e; margin-bottom: 6px; margin-top: 6px; line-height: 1.4; }
+.alert-pago { background: #fef2f2; border-left: 3px solid #ef4444; color: #991b1b; padding: 8px 10px; border-radius: 8px; font-weight: 700; margin-top: 6px; font-size: 11px; line-height: 1.4; }
+.alert-falla { background: #fff7ed; border-left: 3px solid #f97316; color: #9a3412; padding: 8px 10px; border-radius: 8px; font-weight: 700; margin-top: 6px; font-size: 11px; line-height: 1.4; }
+.action { background: #eff6ff; border-left: 3px solid #3b82f6; padding: 8px 10px; border-radius: 8px; margin-top: 6px; font-size: 11px; font-weight: 600; color: #1e40af; line-height: 1.4; }
+
+/* BOTONES compactos en columna derecha */
+.btn { width: 100%; padding: 9px 14px; border-radius: 10px; background: #0f172a; color: white; font-weight: 700; font-size: 12px; transition: 0.2s; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 7px; }
+.btn:hover { opacity: 0.88; }
+.btn-reset { background: transparent; color: #94a3b8; font-size: 11px; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px; font-weight: 700; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 0; }
+.btn-reset:hover { background: #f1f5f9; color: #64748b; }
+
+/* Columna derecha: card de acciones */
+.side-card { background: white; border-radius: 14px; padding: 14px; border: 1px solid #e2e8f0; }
+.side-card-title { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.6px; margin-bottom: 10px; }
+
+/* Progreso de pasos */
+.step-progress { display: flex; align-items: center; gap: 4px; margin-bottom: 0; }
+.step-dot { width: 8px; height: 8px; border-radius: 50%; background: #e2e8f0; flex-shrink: 0; cursor: pointer; transition: 0.2s; }
+.step-dot.done { background: #00c896; }
+.step-dot.current { background: #3b82f6; width: 20px; border-radius: 4px; }
+
+/* N2 colors */
+#navN2.active,#navBajasN2.active,#navIntermitenciaN2.active,#navNoNavegaN2.active,#navCoberturaN2.active,#navGamingN2.active { background: #f97316 !important; box-shadow: 0 4px 12px rgba(249,115,22,0.3); color: white !important; }
+
+/* Scrollbar custom */
+.col-main::-webkit-scrollbar, .col-side::-webkit-scrollbar { width: 4px; }
+.col-main::-webkit-scrollbar-track, .col-side::-webkit-scrollbar-track { background: transparent; }
+.col-main::-webkit-scrollbar-thumb, .col-side::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 </style>
 </head>
 <div id="modalCascada" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center; font-family:sans-serif;">
@@ -114,7 +126,7 @@
 <body>
 
 <aside class="sidebar">
-    <div class="flex items-center gap-3 mb-12">
+    <div class="flex items-center gap-3 mb-8">
         <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
         <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
     </div>
@@ -174,13 +186,16 @@
 </div>
 </aside>
 <main class="main-content">
-    <div class="selector">
-        <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
-        <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
+    <div class="topbar">
+        <div class="selector">
+            <button id="btnPhantom" class="active" onclick="setEquipo('phantom')">Phantom</button>
+            <button id="btnVilo" onclick="setEquipo('vilo')">Router Vilo</button>
+        </div>
+        <div id="pillsContainer" class="menu"></div>
     </div>
-    <div id="pillsContainer" class="menu"></div>
-    <div class="flex-1 p-10 overflow-y-auto">
-        <div id="app" class="max-w-2xl mx-auto"></div>
+    <div class="content-area">
+        <div class="col-main" id="app"></div>
+        <div class="col-side" id="side-panel"></div>
     </div>
 </main>
 <script>
@@ -1205,38 +1220,58 @@ function setEquipo(eq) {
 function render() {
     const pasos = DATA[procesoActual][equipoActual];
     const data = pasos[pasoActual];
-    let pillsHtml = '';
-    
-    pasos.forEach((p, index) => {
-        pillsHtml += `<button class="${index === pasoActual ? 'active' : ''}" onclick="irAPaso(${index})">${p.pill}</button>`;
-    });
+    const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
+    const accentColor = isN2 ? '#f97316' : '#3b82f6';
+    const accentBg = isN2 ? '#fff7ed' : '#eff6ff';
+    const accentText = isN2 ? '#9a3412' : '#1e40af';
 
+    let pillsHtml = '';
+    pasos.forEach((p, index) => {
+        pillsHtml += '<button class="' + (index === pasoActual ? 'active' : '') + '" onclick="irAPaso(' + index + ')">' + p.pill + '</button>';
+    });
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
 
-    // Esta variable detecta si estamos en N2 para cambiar los colores
-    const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
+    let dotsHtml = pasos.map(function(p, i) {
+        var cls = i < pasoActual ? 'done' : i === pasoActual ? 'current' : '';
+        return '<div class="step-dot ' + cls + '" onclick="irAPaso(' + i + ')" title="' + p.pill + '"></div>';
+    }).join('<div style="flex:1;height:1px;background:#e2e8f0;margin:0 2px;"></div>');
 
-    document.getElementById("app").innerHTML = `
-        <div class="animate-in">
-            <div class="tag ${isN2 ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}">
-                ${isN2 ? 'ESPECIALIZADO N2' : 'DIAGNÓSTICO N1'} - ${data.tag}
-            </div>
-            
-            <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
-            <div class="block mb-6">${data.html}</div>
+    document.getElementById('app').innerHTML =
+        '<div>' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
+        '<span class="tag" style="background:' + accentBg + ';color:' + accentText + ';">' +
+        (isN2 ? '<i class="fas fa-user-shield"></i> N2' : '<i class="fas fa-stethoscope"></i> N1') +
+        ' &middot; ' + data.tag + '</span>' +
+        '<div style="flex:1"></div>' +
+        '<span style="font-size:10px;color:#94a3b8;font-weight:700;">' + (pasoActual + 1) + ' / ' + pasos.length + '</span>' +
+        '</div>' +
+        '<h3>' + data.title + '</h3>' +
+        '<div class="block">' + data.html + '</div>' +
+        '</div>';
 
-            <div class="flex flex-col gap-3">
-                ${pasoActual < pasos.length - 1 ? 
-                    `<button class="btn" style="background: ${isN2 ? '#f97316' : '#0f172a'}" onclick="siguiente()">
-                        Continuar Paso <i class="fas fa-arrow-right ml-2"></i>
-                    </button>` : ''}
-                
-                <button class="btn-reset" onclick="reset()">
-                    <i class="fas fa-redo-alt mr-2"></i> Reiniciar Proceso
-                </button>
-            </div>
-        </div>`;
+    var nextBtn = pasoActual < pasos.length - 1
+        ? '<button class="btn" style="background:' + (isN2 ? '#f97316' : '#0f172a') + ';margin-bottom:8px;" onclick="siguiente()"><i class="fas fa-arrow-right"></i> Siguiente paso</button>'
+        : '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:10px;text-align:center;margin-bottom:8px;"><div style="font-size:18px;margin-bottom:2px;">&#10003;</div><div style="font-size:11px;font-weight:800;color:#166534;">Proceso completado</div></div>';
+
+    document.getElementById('side-panel').innerHTML =
+        '<div class="side-card">' +
+        '<div class="side-card-title"><i class="fas fa-map-signs mr-1"></i> Progreso</div>' +
+        '<div class="step-progress" style="margin-bottom:10px;">' + dotsHtml + '</div>' +
+        '<div style="font-size:11px;color:#64748b;margin-bottom:12px;"><b style="color:#0f172a;">' + data.pill + '</b> &mdash; paso ' + (pasoActual + 1) + ' de ' + pasos.length + '</div>' +
+        nextBtn +
+        '<button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt"></i> Reiniciar proceso</button>' +
+        '</div>' +
+        '<div class="side-card">' +
+        '<div class="side-card-title"><i class="fas fa-bolt mr-1"></i> Accesos r\u00e1pidos</div>' +
+        '<div style="display:flex;flex-direction:column;gap:6px;">' +
+        '<button class="btn" style="background:#a855f7;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
+        '<button class="btn" style="background:#3b82f6;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Gu\u00edon Falla Masiva</button>' +
+        '<button class="btn" style="background:#10b981;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
+        '<button class="btn" style="background:#1e293b;" onclick="abrirModal()"><i class="fas fa-plug"></i> Reinicio Cascada</button>' +
+        '</div>' +
+        '</div>';
 }
+
 
 function irAPaso(i) { 
         pasoActual = i; 
