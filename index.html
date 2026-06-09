@@ -16,7 +16,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000; hei
 .sidebar { width: 230px; background: #000; color: white; display: flex; flex-direction: column; padding: 24px 16px; flex-shrink: 0; font-size: 0.875rem; overflow-y: auto; }
 .nav-item { padding: 9px 14px; border-radius: 12px; margin-bottom: 4px; cursor: pointer; transition: 0.2s; color: #94a3b8; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; }
 .nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
-.nav-item.active { background: #FFD600; color: #000 !important; box-shadow: 0 4px 12px rgba(255,214,0,0.4); }
+.nav-item.active { background: #ca8a04; color: white !important; box-shadow: 0 4px 12px rgba(202,138,4,0.4); }
 .section-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin-top: 14px; color: #64748b; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; border-radius: 8px; transition: 0.2s; cursor: pointer; }
 .section-header:hover { background: rgba(255,255,255,0.05); }
 .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 10px 0; }
@@ -30,11 +30,11 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000; hei
 .topbar { display: flex; align-items: center; gap: 0; background: white; border-bottom: 1px solid #e8edf2; padding: 0 24px; flex-shrink: 0; }
 .selector { display: flex; gap: 0; border-right: 1px solid #e8edf2; margin-right: 16px; }
 .selector button { padding: 14px 20px; font-weight: 800; font-size: 12px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.2s; text-transform: uppercase; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; white-space: nowrap; }
-.selector button.active { color: #FFD600; border-bottom-color: #FFD600; }
+.selector button.active { color: #ca8a04; border-bottom-color: #ca8a04; }
 .menu { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; }
 .menu button { padding: 6px 14px; border-radius: 20px; background: #f1f5f9; font-size: 11px; font-weight: 700; color: #64748b; transition: 0.2s; border: 1px solid transparent; cursor: pointer; }
 .menu button:hover { background: #e2e8f0; }
-.menu button.active { background: #FFD600; color: #000; border-color: #e6c000; }
+.menu button.active { background: #ca8a04; color: white; border-color: #a16207; }
 
 /* CONTENT AREA: 2 columnas */
 .content-area { flex: 1; overflow: hidden; display: grid; grid-template-columns: 1fr 260px; gap: 0; }
@@ -68,7 +68,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 .step-progress { display: flex; align-items: center; gap: 4px; margin-bottom: 0; }
 .step-dot { width: 8px; height: 8px; border-radius: 50%; background: #e2e8f0; flex-shrink: 0; cursor: pointer; transition: 0.2s; }
 .step-dot.done { background: #00c896; }
-.step-dot.current { background: #FFD600; width: 20px; border-radius: 4px; }
+.step-dot.current { background: #ca8a04; width: 20px; border-radius: 4px; }
 
 /* N2 colors */
 #navN2.active,#navBajasN2.active,#navIntermitenciaN2.active,#navNoNavegaN2.active,#navCoberturaN2.active,#navGamingN2.active { background: #f97316 !important; box-shadow: 0 4px 12px rgba(249,115,22,0.3); color: white !important; }
@@ -78,7 +78,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 .tec:hover .tt { display: block; }
 /* Panel lateral colapsable */
 .side-card details summary { user-select:none; }
-.side-card details summary::after { content:" +"; font-weight:900; font-size:13px; color:#3b82f6; margin-left:auto; }
+.side-card details summary::after { content:" +"; font-weight:900; font-size:13px; color:#ca8a04; margin-left:auto; }
 .side-card details[open] summary::after { content:" −"; }
 .side-card details summary:hover { color:#0f172a; }
 /* Scrollbar custom */
@@ -118,7 +118,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 
 <div id="modalDbm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10001; justify-content:center; align-items:center; font-family:sans-serif;">
     <div style="background:white; width:90%; max-width:550px; border-radius:16px; overflow:hidden; position:relative;">
-        <div style="background:#FFD600;color:#000 !important; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="background:#1e293b; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
             <span style="font-weight:bold;">📊 Niveles de Señal WiFi (dBm)</span>
             <button onclick="document.getElementById('modalDbm').style.display='none'" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
         </div>
@@ -549,7 +549,7 @@ const DATA = {
                     </div>
 
                     <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                        <button class="btn" style="flex: 1; background:#FFD600;color:#000 !important; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">
+                        <button class="btn" style="flex: 1; background:#1e293b; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">
                             🚀 CPE Doctor
                         </button>
                     </div>
@@ -1408,9 +1408,9 @@ function render() {
         '<details open>' +
         '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-bolt" style="color:#f59e0b;"></i> Accesos rápidos</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
-        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
-        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
-        '<button class="btn" style="background:#FF2D55;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
+        '<button class="btn" style="background:#1e293b;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
+        '<button class="btn" style="background:#1e293b;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
+        '<button class="btn" style="background:#dc2626;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
         '<button class="btn" style="background:#1e293b;" onclick="abrirModal()"><i class="fas fa-plug"></i> Reinicio Cascada</button>' +
         '</div>' +
         '</details>' +
@@ -1418,8 +1418,8 @@ function render() {
         '<details>' +
         '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-tools" style="color:#3b82f6;"></i> Herramientas</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
-        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
-        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
+        '<button class="btn" style="background:#1e293b;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
+        '<button class="btn" style="background:#1e293b;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
         '</div>' +
         '</details>' +
         '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
