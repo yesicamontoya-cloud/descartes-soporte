@@ -1299,6 +1299,7 @@ function toggleMenu(groupId, headerElement) {
 function cambiarProceso(proc) {
     procesoActual = proc; 
     pasoActual = 0;
+    if (proc === 'gaming') { equipoActual = 'phantom'; }
 
     // --- NUEVA LÓGICA DE BÚSQUEDA ---
     // Buscamos todos los botones de la parte superior
@@ -1352,6 +1353,20 @@ function render() {
         pillsHtml += '<button class="' + (index === pasoActual ? 'active' : '') + '" onclick="irAPaso(' + index + ')">' + p.pill + '</button>';
     });
     document.getElementById('pillsContainer').innerHTML = pillsHtml;
+
+    // Manejar visibilidad de tabs según el proceso
+    var pBtn = document.getElementById('btnPhantom');
+    var vBtn = document.getElementById('btnVilo');
+    if (procesoActual === 'piloto-fx') {
+        if (vBtn) vBtn.style.display = 'none';
+        if (pBtn) pBtn.style.display = '';
+    } else if (procesoActual === 'gaming') {
+        if (pBtn) pBtn.style.display = 'none';
+        if (vBtn) vBtn.style.display = 'none';
+    } else {
+        if (pBtn) pBtn.style.display = '';
+        if (vBtn) vBtn.style.display = '';
+    }
 
     let dotsHtml = pasos.map(function(p, i) {
         var cls = i < pasoActual ? 'done' : i === pasoActual ? 'current' : '';
