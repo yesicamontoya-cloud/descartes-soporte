@@ -1352,14 +1352,14 @@ function render() {
     var pBtn = document.getElementById('btnPhantom');
     var vBtn = document.getElementById('btnVilo');
     if (procesoActual === 'piloto-fx') {
+        if (pBtn) { pBtn.style.display = ''; pBtn.textContent = 'Phantom'; }
         if (vBtn) vBtn.style.display = 'none';
-        if (pBtn) pBtn.style.display = '';
     } else if (procesoActual === 'gaming') {
-        if (pBtn) pBtn.style.display = 'none';
-        if (vBtn) vBtn.style.display = 'none';
+        if (pBtn) { pBtn.style.display = ''; pBtn.textContent = '🎮 Gaming'; }
+        if (vBtn) { vBtn.style.display = ''; vBtn.textContent = '📺 Streaming'; }
     } else {
-        if (pBtn) pBtn.style.display = '';
-        if (vBtn) vBtn.style.display = '';
+        if (pBtn) { pBtn.style.display = ''; pBtn.textContent = 'Phantom'; }
+        if (vBtn) { vBtn.style.display = ''; vBtn.textContent = 'Router Vilo'; }
     }
 
     let dotsHtml = pasos.map(function(p, i) {
