@@ -164,6 +164,9 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
         <div id="navGaming" class="nav-item" onclick="cambiarProceso('vpn')">
     <i class="fas fa-gamepad"></i> VPN / Ip
 </div>
+<div id="navGamingStream" class="nav-item" onclick="cambiarProceso('gaming')">
+    <i class="fas fa-headset"></i> Gaming y Streaming
+</div>
     </div>
 
     <div class="area-separator"></div>
@@ -979,6 +982,144 @@ cobertura: {
                 }
             ]
          },
+    gaming: {
+    phantom: [
+        { pill: "Escenario", title: "🎮 Gaming y Streaming", tag: "Identificar",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Paso 1 — Identificar el escenario</b><br><br>
+              Preguntar al cliente:<br>
+              • ¿En qué dispositivo? (PC / Consola / Celular / Tablet)<br>
+              • ¿Nombre del juego o software de streaming?<br>
+              • ¿Qué problema presenta?<br>
+              &nbsp;&nbsp;— <span class="tec">Lag<span class="tt">Lag = retraso entre la acción del jugador y la respuesta del juego. Se siente como si el juego fuera lento o con tirones.</span></span><br>
+              &nbsp;&nbsp;— <span class="tec">Ping alto<span class="tt">Ping = tiempo que tarda un dato en ir y volver entre el equipo del cliente y el servidor del juego. Se mide en milisegundos (ms). Menos de 50ms es excelente, más de 100ms se siente como lag.</span></span><br>
+              &nbsp;&nbsp;— Desconexiones / Pérdida de paquetes / No conecta a servidores
+            </div>
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;">
+              <b>💬 Mensaje al cliente:</b><br>
+              "¿En qué dispositivo juegas y cuál es el juego? ¿Qué problema te aparece — lag, ping alto, desconexiones?"
+            </div>
+            <div class="alert-falla">📹 Solicitar video de la falla como evidencia.</div>
+          </div>` },
+        { pill: "Conexión", title: "🔌 Validar conexión", tag: "Cliente",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Paso 2 — ¿Cómo está conectado?</b><br><br>
+              • ¿Por cable <span class="tec">LAN<span class="tt">LAN = cable de red directo al router. Es la conexión más estable para gaming y streaming. Elimina interferencias de WiFi y reduce el ping.</span></span> o por WiFi?<br><br>
+              Si está por WiFi validar:<br>
+              • ¿Está en red <b>5 GHz</b>?<br>
+              • ¿Qué distancia hay del router?<br>
+              • ¿Cuántas paredes hay entre el dispositivo y el router?
+            </div>
+            <div class="action">💡 Para gaming y streaming siempre recomendar <b>cable LAN</b>. Si usa WiFi, red <b>5 GHz</b> lo más cerca del router posible.</div>
+          </div>` },
+        { pill: "Latencia", title: "📡 Validar latencia", tag: "Ping",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Paso 3 — ¿Cuál es el ping del juego?</b><br><br>
+              Pedir al cliente que revise el ping que muestra el juego y lo informe.
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;">
+              <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;">
+                <b style="color:#166534;">0 – 50 ms</b><br><span style="color:#15803d;">Excelente</span>
+              </div>
+              <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;">
+                <b style="color:#166534;">51 – 80 ms</b><br><span style="color:#15803d;">Bueno</span>
+              </div>
+              <div style="background:#fefce8;border:1px solid #fde047;border-radius:8px;padding:8px;text-align:center;">
+                <b style="color:#854d0e;">81 – 100 ms</b><br><span style="color:#92400e;">Aceptable</span>
+              </div>
+              <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px;text-align:center;">
+                <b style="color:#991b1b;">+100 ms</b><br><span style="color:#b91c1c;">Alto ⚠️</span>
+              </div>
+            </div>
+            <div class="action">✅ Ping menor a 100 ms → se considera estable para N1.</div>
+          </div>` },
+        { pill: "Horario", title: "🕐 Horario y alcance", tag: "Diagnóstico",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Paso 4 — ¿Cuándo ocurre?</b><br><br>
+              • ¿Todo el tiempo o solo en horarios específicos? (noche, fines de semana)<br><br>
+              <b style="color:#0f172a;">Paso 5 — ¿Afecta un juego o varios?</b><br><br>
+              • <b>Un solo juego</b> → probable problema del servidor del juego o región del servidor.<br>
+              • <b>Varios juegos</b> → probable problema de conectividad, <span class="tec">latencia<span class="tt">Latencia = tiempo de respuesta de la red. Alta latencia = el juego se siente lento o con lag aunque la velocidad de internet sea alta.</span></span> o ruta internacional.
+            </div>
+            <div class="alert-falla">📝 Registrar horario y cantidad de juegos afectados — es evidencia obligatoria para N2.</div>
+          </div>` },
+        { pill: "Streaming", title: "📺 Validar Streaming", tag: "OBS",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Si el cliente hace streaming — preguntar:</b><br><br>
+              • ¿Qué software usa? (<span class="tec">OBS<span class="tt">OBS Studio / Streamlabs = software gratuito para transmitir en vivo a plataformas como Twitch, YouTube o Facebook. Muestra estadísticas de fotogramas perdidos que ayudan a diagnosticar problemas de subida.</span></span> / Streamlabs / Twitch Studio / Otro)<br>
+              • ¿Cuántos <span class="tec">fotogramas perdidos<span class="tt">Fotogramas perdidos = frames que OBS no pudo enviar al servidor de streaming. Si supera el 5%, la transmisión se verá cortada o pixelada para los espectadores.</span></span> muestra el software?<br>
+              • ¿A qué servidor apunta? (Bogotá / Miami / São Paulo / Automático)<br>
+              • Solicitar test de velocidad completo (descarga, subida y ping).
+            </div>
+            <div class="action">💡 Para streaming siempre recomendar <b>cable LAN</b>. La subida es clave — un plan con baja velocidad de subida no permite transmitir bien.</div>
+          </div>` },
+        { pill: "Resultado", title: "🚩 Escalamiento N2", tag: "Finalización",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#fef9c3;border-left:3px solid #facc15;padding:10px;border-radius:8px;font-size:11px;color:#854d0e;">
+              <b>📎 Evidencias obligatorias antes de escalar:</b><br>
+              Gaming: Video · Nombre del juego · Ping · Dispositivo · Tipo conexión · Horario<br>
+              Streaming: Captura OBS · Fotogramas perdidos · Speedtest · Servidor configurado · Tipo conexión
+            </div>
+            <div class="alert-pago">
+              <b>Escalar a N2 cuando:</b><br>
+              • Se hicieron todos los descartes.<br>
+              • Ping alto o pérdida de paquetes con evidencia.<br>
+              • El problema afecta múltiples juegos.<br>
+              • El problema ocurre incluso por cable LAN.<br>
+              • Transmisión inestable con subida afectada por LAN.
+            </div>
+          </div>` }
+    ],
+    vilo: [
+        { pill: "Escenario", title: "🎮 Gaming y Streaming", tag: "Identificar",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Paso 1 — Identificar el escenario</b><br><br>
+              • ¿En qué dispositivo? (PC / Consola / Celular / Tablet)<br>
+              • ¿Nombre del juego o software de streaming?<br>
+              • ¿Qué problema presenta? (<span class="tec">Lag<span class="tt">Lag = retraso entre la acción del jugador y la respuesta del juego.</span></span> / Ping alto / Desconexiones)
+            </div>
+            <div class="alert-falla">📹 Solicitar video de la falla como evidencia.</div>
+          </div>` },
+        { pill: "Conexión", title: "🔌 Validar conexión", tag: "Cliente",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">¿Cómo está conectado?</b><br><br>
+              • ¿Por cable LAN o por WiFi?<br>
+              • Si es WiFi: ¿red 5 GHz? ¿Distancia del router? ¿Paredes?
+            </div>
+            <div class="action">💡 Recomendar siempre <b>cable LAN</b> para gaming y streaming.</div>
+          </div>` },
+        { pill: "Latencia", title: "📡 Validar latencia", tag: "Ping",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;">
+              <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;"><b style="color:#166534;">0–50 ms</b><br><span style="color:#15803d;">Excelente</span></div>
+              <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;"><b style="color:#166534;">51–80 ms</b><br><span style="color:#15803d;">Bueno</span></div>
+              <div style="background:#fefce8;border:1px solid #fde047;border-radius:8px;padding:8px;text-align:center;"><b style="color:#854d0e;">81–100 ms</b><br><span style="color:#92400e;">Aceptable</span></div>
+              <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px;text-align:center;"><b style="color:#991b1b;">+100 ms</b><br><span style="color:#b91c1c;">Alto ⚠️</span></div>
+            </div>
+            <div class="action">✅ Ping menor a 100 ms → estable para N1.</div>
+          </div>` },
+        { pill: "Resultado", title: "🚩 Escalamiento N2", tag: "Finalización",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#fef9c3;border-left:3px solid #facc15;padding:10px;border-radius:8px;font-size:11px;color:#854d0e;">
+              <b>📎 Evidencias obligatorias:</b><br>
+              Video · Nombre del juego · Ping · Dispositivo · Tipo conexión · Horario
+            </div>
+            <div class="alert-pago">
+              <b>Escalar a N2 cuando:</b><br>
+              • Ping alto o pérdida de paquetes con evidencia.<br>
+              • Problema en múltiples juegos.<br>
+              • Problema ocurre por cable LAN.
+            </div>
+          </div>` }
+    ]
+},
     n2: {
         phantom: [
             { 
@@ -1189,6 +1330,7 @@ function cambiarProceso(proc) {
         'offline': 'navOffline', 'bajas': 'navBajas', 'piloto-fx': 'navFX',
         'intermitencia': 'navIntermitencia', 'no_navega': 'navNoNavega',
         'cobertura': 'navCobertura', 'vpn': 'navGaming',
+        'gaming': 'navGamingStream',
         'n2': 'navN2', 'bajasN2': 'navBajasN2'
     };
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1244,12 +1386,14 @@ function render() {
         : '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:10px;text-align:center;margin-bottom:8px;"><div style="font-size:18px;margin-bottom:2px;">&#10003;</div><div style="font-size:11px;font-weight:800;color:#166534;">Proceso completado</div></div>';
 
     document.getElementById('side-panel').innerHTML =
-        '<div class="side-card">' +
-        '<div class="side-card-title"><i class="fas fa-map-signs mr-1"></i> Progreso</div>' +
-        '<div class="step-progress" style="margin-bottom:10px;">' + dotsHtml + '</div>' +
-        '<div style="font-size:11px;color:#64748b;margin-bottom:12px;"><b style="color:#0f172a;">' + data.pill + '</b> &mdash; paso ' + (pasoActual + 1) + ' de ' + pasos.length + '</div>' +
+        '<div class="side-card" style="padding:10px 12px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+        '<span style="font-size:11px;font-weight:700;color:#0f172a;">' + data.pill + '</span>' +
+        '<span style="font-size:10px;color:#94a3b8;">' + (pasoActual+1) + ' / ' + pasos.length + '</span>' +
+        '</div>' +
+        '<div class="step-progress" style="margin-bottom:8px;">' + dotsHtml + '</div>' +
         nextBtn +
-        '<button class="btn-reset" onclick="reset()"><i class="fas fa-redo-alt"></i> Reiniciar proceso</button>' +
+        '<button class="btn-reset" onclick="reset()" style="margin-top:6px;"><i class="fas fa-redo-alt"></i> Reiniciar</button>' +
         '</div>' +
         '<div class="side-card" style="background:#fffbeb;border-color:#fde68a;">' +
         '<div class="side-card-title" style="color:#92400e;"><i class="fas fa-rocket mr-1"></i> Tip de agilidad</div>' +
