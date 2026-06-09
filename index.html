@@ -1014,8 +1014,12 @@ cobertura: {
         { pill: "Latencia", title: "📡 Validar ping", tag: "Diagnóstico",
           html: `<div style="display:flex;flex-direction:column;gap:8px;">
             <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
-              <b style="color:#0f172a;">Paso 3 — ¿Cuál es el ping del juego?</b><br><br>
-              Pedir al cliente que revise el ping que muestra el juego.
+              <b style="color:#0f172a;">Paso 3 — ¿Cuál es el <span class="tec">ping<span class="tt">Ping = tiempo en milisegundos (ms) que tarda un dato en ir desde el PC del cliente hasta el servidor del juego y volver. Mientras más bajo, mejor. El juego normalmente lo muestra en pantalla durante la partida.</span></span> del juego?</b><br><br>
+              Pedir al cliente que revise el número de ping que aparece en pantalla mientras juega y que lo informe.
+            </div>
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-bottom:4px;">
+              <b>💬 Mensaje al cliente:</b><br>
+              "¿Cuánto ping te muestra el juego mientras juegas? Normalmente aparece en la esquina de la pantalla."
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;">
               <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:8px;text-align:center;"><b style="color:#166534;">0–50 ms</b><br><span style="color:#15803d;">Excelente</span></div>
@@ -1023,7 +1027,8 @@ cobertura: {
               <div style="background:#fefce8;border:1px solid #fde047;border-radius:8px;padding:8px;text-align:center;"><b style="color:#854d0e;">81–100 ms</b><br><span style="color:#92400e;">Aceptable</span></div>
               <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px;text-align:center;"><b style="color:#991b1b;">+100 ms</b><br><span style="color:#b91c1c;">Alto ⚠️</span></div>
             </div>
-            <div class="action">✅ Ping menor a 100 ms → estable para N1.</div>
+            <div class="action">✅ <b>Ping menor a 100 ms</b> → conexión estable. No es problema de Somos.</div>
+            <div class="alert-falla">⚠️ <b>Ping mayor a 100 ms</b> → continuar descartes de horario y conexión antes de escalar.</div>
           </div>` },
         { pill: "Horario", title: "🕐 Horario y alcance", tag: "Diagnóstico",
           html: `<div style="display:flex;flex-direction:column;gap:8px;">
