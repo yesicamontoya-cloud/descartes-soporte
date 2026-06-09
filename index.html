@@ -840,74 +840,94 @@ const DATA = {
 },
 cobertura: {
     phantom: [
-      {
-        pill: "Inicio",
-        title: "Cobertura",
-        tag: "Pendiente",
-        html: `
-          <div class="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-5 font-sans">
-            
-            <div class="flex flex-col gap-1 pb-3 border-b border-gray-100 mb-4">
-              <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider self-start">DIAGNÓSTICO N1 - SISTEMAS</span>
-              <div class="flex items-center space-x-2 mt-1">
-                <span class="text-lg">🔍</span>
-                <h2 class="text-base font-bold text-gray-800">Diagnóstico de Red: Cobertura WiFi</h2>
-              </div>
+        { pill: "Validación", title: "📶 Cobertura WiFi", tag: "Sistema",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="alert-falla" style="background:#fefce8;border-color:#f59e0b;color:#92400e;">
+              ⚠️ Verificar que NO exista falla masiva en la zona antes de continuar.
             </div>
-
-            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4 text-center">
-              <p class="text-[11px] font-bold text-amber-800 uppercase tracking-wide mb-2">Verifique que NO exista falla masiva en la zona.</p>
-              <button class="bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-semibold py-2 px-4 rounded-lg transition-colors inline-flex items-center justify-center space-x-2 shadow-sm">
-                <span>🧯</span>
-                <span>Abrir Guión Falla Masiva</span>
-              </button>
-              <p class="text-[10px] text-amber-700 font-medium mt-1.5">Si hay falla — usar guión de falla masiva (Pág. 4)</p>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Primero identificar qué tipo de problema es:</b><br><br>
+              • <b><span class="tec">Cobertura<span class="tt">Cobertura = la señal WiFi no llega bien a ciertos puntos del hogar. El cliente se conecta bien cerca del router pero pierde señal al alejarse o al pasar por muros.</span></span></b> → la señal se va en ciertos puntos o habitaciones.<br>
+              • <b><span class="tec">Intermitencia<span class="tt">Intermitencia = la conexión se corta y vuelve en cualquier punto del hogar, incluso cerca del router. No es un problema de distancia sino de la conexión en sí.</span></span></b> → la conexión se corta en todas partes, no solo lejos del router.<br><br>
+              Si es intermitencia → ir al flujo de <b>Intermitencia</b>.
             </div>
-
-            <div class="space-y-3 mb-4">
-              <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-100">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">❓ Descartes por Preguntas (Indagación)</p>
-                <ul class="space-y-1.5 text-[11px] text-gray-600 font-medium">
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Validar cantidad de equipos conectados (<span class="font-bold text-gray-800">MUROS</span>) si es por WiFi.</li>
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Validar distancia a la cuál se conecta el usuario (<span class="font-bold text-gray-800">WiFi</span>).</li>
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Identificar si en realidad es cobertura (la señal se va en ciertos puntos) o si es intermitencia general.</li>
-                </ul>
-              </div>
-
-              <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-100">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">🛠️ Descartes Herramientas (Validación Técnica)</p>
-                <ul class="space-y-1.5 text-[11px] text-gray-600 font-medium">
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">Grafana (Devices):</span> Verificar la señal. Si al estar más lejos se nota más la intermitencia.</li>
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">CPE Doctor:</span> Revisar cantidad de intermitencias e identificar cambios de estado.</li>
-                  <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><span class="font-bold text-gray-800">Artemis:</span> Validar tamaño del apartamento, tipo de paredes (vaciadas/ladrillo) y routers activos.</li>
-                </ul>
-              </div>
+          </div>` },
+        { pill: "Preguntas", title: "❓ Preguntas al cliente", tag: "Cliente",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Preguntar al cliente:</b><br><br>
+              • ¿En qué parte del hogar pierde la señal?<br>
+              • ¿Cuántos <span class="tec">muros<span class="tt">Muros = paredes entre el router y el dispositivo del cliente. Cada muro reduce la señal WiFi. Los muros de concreto o ladrillo la reducen mucho más que los de drywall.</span></span> hay entre el router y el dispositivo?<br>
+              • ¿A qué distancia aproximada está del router?<br>
+              • ¿Falla en todos los dispositivos o solo en uno?
             </div>
-
-            <div class="bg-orange-500 text-white rounded-xl p-3 text-center font-semibold text-[11px] shadow-sm mb-4">
-              📌 Si cumple todas las condiciones enviar visita para cambiar ubicación de router, añadir router extra o por falla física.
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;">
+              <b>💬 Mensaje al cliente:</b><br>
+              "¿En qué lugar de tu casa pierdes la señal? ¿Cuántas paredes hay entre el router y donde estás?"
             </div>
-
-            <div class="flex flex-col items-center justify-center pt-2 border-t border-gray-100 gap-2">
-              <button class="w-full bg-[#0d1424] hover:bg-gray-800 text-white text-[11px] font-bold py-2.5 px-6 rounded-xl transition-colors flex items-center justify-center space-x-2 tracking-wide uppercase">
-                <span>Continuar Paso</span>
-                <span>→</span>
-              </button>
-              <button class="text-[10px] text-gray-400 hover:text-gray-600 font-bold tracking-wide uppercase transition-colors">
-                🔄 Reiniciar Proceso
-              </button>
+          </div>` },
+        { pill: "Herramientas", title: "🛠️ Validación técnica", tag: "Interno",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Revisar en herramientas:</b><br><br>
+              • <b><span class="tec">Grafana (Devices)<span class="tt">Grafana Devices = sección de Grafana donde se puede ver la calidad de señal WiFi que recibe cada dispositivo conectado al router. Permite confirmar si la señal es débil en el punto donde el cliente reporta el problema.</span></span>:</b> Verificar la calidad de señal. Si es débil confirma el problema de cobertura.<br><br>
+              • <b>CPE Doctor:</b> Revisar cantidad de intermitencias y cambios de estado.<br><br>
+              • <b><span class="tec">Artemis<span class="tt">Artemis = herramienta interna de Somos que tiene información del hogar del cliente: tamaño del apartamento, tipo de paredes y cantidad de routers activos. Ayuda a determinar si se necesita un router adicional.</span></span>:</b> Validar tamaño del apartamento, tipo de paredes (<span class="tec">vaciadas<span class="tt">Paredes vaciadas = paredes de concreto macizo. Son las que más bloquean la señal WiFi. Si el cliente tiene varias paredes vaciadas entre el router y su dispositivo, la señal se reducirá significativamente.</span></span>/ladrillo) y routers activos.
             </div>
-          </div>
-        `
-      }
+          </div>` },
+        { pill: "Resultado", title: "📌 Resultado", tag: "Acción",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="action">✅ Señal OK en herramientas → problema puede ser el dispositivo del cliente. Validar con otros equipos.</div>
+            <div class="alert-falla">📌 Si cumple las condiciones → agendar visita para:<br>• Cambiar ubicación del router.<br>• Agregar un router extra.<br>• Revisar falla física.</div>
+            <div style="background:#fef9c3;border-left:3px solid #facc15;padding:10px;border-radius:8px;font-size:11px;color:#854d0e;">
+              ⚠️ Solo agendar visita si hay 3 o más contactos reiterativos por el mismo problema o si las herramientas confirman señal débil.
+            </div>
+          </div>` }
     ],
     vilo: [
-      { 
-        pill: "Inicio", 
-        title: "Cobertura", 
-        tag: "Pendiente", 
-        html: `<div class="action">Contenido de Cobertura WiFi en construcción.</div>` 
-      }
+        { pill: "Validación", title: "📶 Cobertura WiFi", tag: "Sistema",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="alert-falla" style="background:#fefce8;border-color:#f59e0b;color:#92400e;">
+              ⚠️ Verificar que NO exista falla masiva en la zona antes de continuar.
+            </div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Primero identificar qué tipo de problema es:</b><br><br>
+              • <b><span class="tec">Cobertura<span class="tt">Cobertura = la señal WiFi no llega bien a ciertos puntos del hogar. El cliente se conecta bien cerca del router pero pierde señal al alejarse o al pasar por muros.</span></span></b> → la señal se va en ciertos puntos o habitaciones.<br>
+              • <b><span class="tec">Intermitencia<span class="tt">Intermitencia = la conexión se corta y vuelve en cualquier punto del hogar, incluso cerca del router. No es un problema de distancia sino de la conexión en sí.</span></span></b> → la conexión se corta en todas partes, no solo lejos del router.<br><br>
+              Si es intermitencia → ir al flujo de <b>Intermitencia</b>.
+            </div>
+          </div>` },
+        { pill: "Preguntas", title: "❓ Preguntas al cliente", tag: "Cliente",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Preguntar al cliente:</b><br><br>
+              • ¿En qué parte del hogar pierde la señal?<br>
+              • ¿Cuántos <span class="tec">muros<span class="tt">Muros = paredes entre el router y el dispositivo del cliente. Cada muro reduce la señal WiFi. Los muros de concreto o ladrillo la reducen mucho más que los de drywall.</span></span> hay entre el router y el dispositivo?<br>
+              • ¿A qué distancia aproximada está del router?<br>
+              • ¿Falla en todos los dispositivos o solo en uno?<br>
+              • ¿El LED del Vilo cambia de color cuando ocurre el problema?
+            </div>
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;">
+              <b>💬 Mensaje al cliente:</b><br>
+              "¿En qué lugar de tu casa pierdes la señal? ¿Cuántas paredes hay entre el router y donde estás?"
+            </div>
+          </div>` },
+        { pill: "Herramientas", title: "🛠️ Validación técnica", tag: "Interno",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;">
+              <b style="color:#0f172a;">Revisar en herramientas:</b><br><br>
+              • <b><span class="tec">Grafana (Devices)<span class="tt">Grafana Devices = sección de Grafana donde se puede ver la calidad de señal WiFi que recibe cada dispositivo conectado al router. Permite confirmar si la señal es débil en el punto donde el cliente reporta el problema.</span></span>:</b> Verificar calidad de señal del dispositivo afectado.<br><br>
+              • <b><span class="tec">Artemis<span class="tt">Artemis = herramienta interna de Somos que tiene información del hogar del cliente: tamaño del apartamento, tipo de paredes y cantidad de routers activos. Ayuda a determinar si se necesita un router adicional.</span></span>:</b> Validar tamaño del apartamento, tipo de paredes y routers activos.
+            </div>
+          </div>` },
+        { pill: "Resultado", title: "📌 Resultado", tag: "Acción",
+          html: `<div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="action">✅ Señal OK en herramientas → problema puede ser el dispositivo del cliente. Validar con otros equipos.</div>
+            <div class="alert-falla">📌 Si cumple las condiciones → agendar visita para:<br>• Cambiar ubicación del router.<br>• Agregar un router extra.<br>• Revisar falla física.</div>
+            <div style="background:#fef9c3;border-left:3px solid #facc15;padding:10px;border-radius:8px;font-size:11px;color:#854d0e;">
+              ⚠️ Solo agendar visita si hay 3 o más contactos reiterativos por el mismo problema o si las herramientas confirman señal débil.
+            </div>
+          </div>` }
     ]
   },
     vpn: {
