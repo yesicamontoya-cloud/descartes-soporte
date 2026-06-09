@@ -704,9 +704,9 @@ const DATA = {
             
 
             <div class="item">• CPE Doctor: Identificar cantidad de intermitencias y cambios de estado.</div>
-            <div class="item">• Realizar prueba de ping desde el cmd (ping ipadress -t + enter (mínimo 10 min) para detectar pérdida de paquetes.</div>
-            <div class="item">• Grafana: Verificar si hay más usuarios afectados dentro del mismo site con los mismos cortes.</div>
-            <div class="item">• En CPE doctor ver si tenemos más suscripciones afectadas desde el mismo EDGE.</div>
+            <div class="item">• Realizar prueba de <span class="tec">ping<span class="tt">Ping = herramienta que mide si hay pérdida de paquetes entre el equipo del cliente e internet. Se ejecuta desde CMD con: ping 8.8.8.8 -t (mínimo 10 minutos). Si aparecen líneas con "tiempo agotado" o "Request timed out", hay pérdida de paquetes.</span></span> desde CMD: <code style="background:#e2e8f0;padding:1px 5px;border-radius:4px;font-size:11px;">ping 8.8.8.8 -t</code> (mínimo 10 min) para detectar pérdida de paquetes.</div>
+            <div class="item">• Grafana: Verificar si hay más usuarios afectados dentro del mismo <span class="tec">site<span class="tt">Site = punto de red que agrupa varios clientes de una misma zona. Si varios clientes del mismo site tienen cortes al mismo tiempo, indica un problema de infraestructura, no del equipo individual.</span></span> con los mismos cortes.</div>
+            <div class="item">• En CPE Doctor ver si hay más suscripciones afectadas desde el mismo <span class="tec">EDGE<span class="tt">EDGE = nodo de red de Somos que da servicio a un sector o zona. Si varios clientes del mismo EDGE tienen cortes simultáneos, el problema es de red y no del equipo del cliente.</span></span>.</div>
             <div class="item">• Verificar el último ticket relacionado a la misma novedad.</div>
         ` 
     },
@@ -720,13 +720,14 @@ const DATA = {
             <div class="item">• ¿A qué distancia se encuentra del router?</div>
             
         <div style="margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-    <p style="font-size: 10px; background: #f8fafc; padding: 5px; margin: 0; text-align: center; color: #64748b;">Tabla de Referencia: Calidad de Señal (dBm)</p>
+    <p style="font-size: 10px; background: #f8fafc; padding: 5px; margin: 0; text-align: center; color: #64748b;">Tabla de referencia: Calidad de señal WiFi en <span class="tec">dBm<span class="tt">dBm = unidad que mide la intensidad de la señal WiFi. Mientras más cercano a 0, mejor señal. Ejemplo: -30 dBm es excelente, -70 dBm es débil, -90 dBm casi sin señal.</span></span></p>
     <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; display:block;" alt="Tabla decibeles">
 </div>
 
             <div class="item">• ¿Cuántos muros u obstáculos hay entre el dispositivo y el equipo?</div>
-            <div class="item">• Validar que el cable esté conectado desde el router principal al router secundario en puertos LAN (no en WAN).</div>
-            <div class="item">• Solicitar al cliente un ping -t 8.8.8.8 desde el CMD para evidenciar pérdidas.</div>
+            <div class="item">• Validar que el cable entre principal y secundario esté en puertos <span class="tec">LAN<span class="tt">LAN = puertos de red del router (numerados LAN1, LAN2, etc.). El cable que conecta el principal con el secundario debe ir de un puerto LAN del principal a un puerto LAN del secundario. Nunca en el puerto WAN del secundario.</span></span> (nunca en WAN del secundario).</div>
+            <div class="item">• Solicitar al cliente ejecutar el ping para evidenciar pérdidas.<br>
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:6px;margin-bottom:4px;"><b>💬 Mensaje al cliente:</b><br>"Necesito que abras el CMD (Windows + R, escribe cmd y Enter) y ejecutes este comando: <b>ping 8.8.8.8 -t</b> Déjalo corriendo al menos 10 minutos y cuando termines me envías una captura."</div></div>
             <div class="item">• Preguntar si la falla es constante o ocurre en horarios específicos.</div>
         ` 
     },
@@ -742,7 +743,7 @@ const DATA = {
     <b style="color:#1e293b; display:block; margin-bottom:8px; font-size:12px;">Antes de escalar validar:</b>
     <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Prueba de Ping -t realizada (evidencia de pérdida de paquetes).</div>
     <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Descarte de VPN y Saturación (horarios) realizado.</div>
-    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Conexión física validada (LAN a WAN entre routers).</div>
+    <div style="color:#334155; font-size:11px; margin-bottom:4px;">• Conexiones físicas validadas: cable del principal en puerto <span class="tec">WAN<span class="tt">WAN = puerto de entrada de internet en el router. Solo el router principal debe tener cable en el WAN. El secundario debe tener el puerto WAN vacío y conectarse al principal por un puerto LAN.</span></span>, puerto WAN del secundario vacío.</div>
     <div style="color:#334155; font-size:11px;">• Router principal y secundario con IPs diferentes.</div>
 </div>
 
@@ -764,13 +765,13 @@ const DATA = {
                 </div>
 
             <div class="item">• Revisar que no tomen la misma IP los dos modem (conflicto de IP).</div>
-            <div class="item">• Verificar actualización del FIRMWARE desde la herramienta de gestión (ISP).</div>
-            <div class="item">• Revisar historial de intermitencias en el log del equipo.</div>
-            <div class="item">• Validar si otros usuarios en el mismo site presentan cortes similares.</div>
-            <div class="item">• Intentar separación de redes (2.4GHz y 5GHz) si el equipo lo permite.</div>
+            <div class="item">• Verificar que el <span class="tec">firmware<span class="tt">Firmware = software interno del router. Un firmware desactualizado puede causar cortes e inestabilidad. Se actualiza desde la herramienta ISP/Inventory buscando el equipo y aplicando Firmware Upgrade.</span></span> esté actualizado desde ISP/Inventory.</div>
+            <div class="item">• Revisar historial de intermitencias en el <span class="tec">log del equipo<span class="tt">Log = registro de eventos del router. Muestra cuándo se cayó y volvió la conexión. Se consulta desde la herramienta de gestión (ISP/Inventory) buscando el historial de estados del equipo.</span></span>.</div>
+            <div class="item">• Validar si otros usuarios en el mismo <span class="tec">site<span class="tt">Site = punto de red que agrupa varios clientes de una misma zona. Si varios clientes del mismo site tienen cortes al mismo tiempo, indica un problema de infraestructura, no del equipo individual.</span></span> presentan cortes similares.</div>
+            <div class="item">• Intentar <span class="tec">separación de redes 2.4GHz y 5GHz<span class="tt">Separar redes = crear dos redes WiFi distintas en el router, una de 2.4 GHz (más alcance, menos velocidad) y otra de 5 GHz (más velocidad, menos alcance). Algunos dispositivos antiguos no se conectan a 5 GHz y pueden causar problemas si están en una red mezclada.</span></span> si el equipo lo permite.</div>
 
             <div class="alert-falla" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1; margin-top:10px; font-size:11px;">
-                Tip: Si el firmware está desactualizado, procede con la actualización antes de seguir con los descartes físicos.
+                Si el firmware está desactualizado → actualizarlo antes de continuar con los demás descartes.
             </div>
         ` 
     },
@@ -785,11 +786,12 @@ const DATA = {
 
             <div style="text-align:center; margin: 15px 0;">
                 <img src="https://i.postimg.cc/pdSwxGkF/image-9.png" style="width:100%; border-radius:8px; border:1px solid #e2e8f0;">
-                <p style="font-size: 10px; color: #64748b; margin-top: 5px;">Referencia: Calidad de Señal vs Distancia</p>
+                <p style="font-size: 10px; color: #64748b; margin-top: 5px;">Referencia: Calidad de señal WiFi en <span class="tec">dBm<span class="tt">dBm = unidad que mide la intensidad de la señal WiFi. Mientras más cercano a 0, mejor señal. Ejemplo: -30 dBm es excelente, -70 dBm es débil, -90 dBm casi sin señal.</span></span> según distancia</p>
             </div>
 
-            <div class="item">• Verificar conexiones físicas del equipo secundario (puertos LAN/WAN).</div>
-            <div class="item">• Realizar ping extendido desde el CMD a una IP externa (ej. 8.8.8.8).</div>
+            <div class="item">• Verificar conexiones físicas del secundario: cable en puerto <span class="tec">LAN<span class="tt">LAN = puertos de red del router numerados LAN1, LAN2, etc. El cable entre principal y secundario debe ir en puertos LAN. El puerto WAN del secundario debe estar vacío.</span></span>, puerto WAN vacío.</div>
+            <div class="item">• Solicitar al cliente ejecutar el <span class="tec">ping<span class="tt">Ping = herramienta que detecta pérdida de paquetes. Se ejecuta desde CMD con: ping 8.8.8.8 -t y se deja corriendo mínimo 10 minutos. Si aparecen "Request timed out", hay pérdida de paquetes.</span></span> extendido desde CMD: <code style="background:#e2e8f0;padding:1px 5px;border-radius:4px;font-size:11px;">ping 8.8.8.8 -t</code><br>
+            <div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:6px;"><b>💬 Mensaje al cliente:</b><br>"Abre el CMD (Windows + R, escribe cmd y Enter) y ejecuta: <b>ping 8.8.8.8 -t</b> Déjalo mínimo 10 minutos y envíame una captura."</div></div>
             <div class="item">• ¿La falla ocurre en un horario específico o es constante?</div>
             <div class="item">• ¿El LED del Vilo cambia de color al momento de presentarse la novedad?</div>
         ` 
