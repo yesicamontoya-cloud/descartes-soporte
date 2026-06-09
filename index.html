@@ -16,7 +16,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000; hei
 .sidebar { width: 230px; background: #000; color: white; display: flex; flex-direction: column; padding: 24px 16px; flex-shrink: 0; font-size: 0.875rem; overflow-y: auto; }
 .nav-item { padding: 9px 14px; border-radius: 12px; margin-bottom: 4px; cursor: pointer; transition: 0.2s; color: #94a3b8; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; }
 .nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
-.nav-item.active { background: #3b82f6; color: white; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+.nav-item.active { background: #FFD600; color: #000 !important; box-shadow: 0 4px 12px rgba(255,214,0,0.4); }
 .section-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin-top: 14px; color: #64748b; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; border-radius: 8px; transition: 0.2s; cursor: pointer; }
 .section-header:hover { background: rgba(255,255,255,0.05); }
 .area-separator { border-top: 1px solid rgba(255,255,255,0.05); margin: 10px 0; }
@@ -30,11 +30,11 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000; hei
 .topbar { display: flex; align-items: center; gap: 0; background: white; border-bottom: 1px solid #e8edf2; padding: 0 24px; flex-shrink: 0; }
 .selector { display: flex; gap: 0; border-right: 1px solid #e8edf2; margin-right: 16px; }
 .selector button { padding: 14px 20px; font-weight: 800; font-size: 12px; color: #94a3b8; border-bottom: 3px solid transparent; transition: 0.2s; text-transform: uppercase; background: none; border-top: none; border-left: none; border-right: none; cursor: pointer; white-space: nowrap; }
-.selector button.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+.selector button.active { color: #FFD600; border-bottom-color: #FFD600; }
 .menu { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; }
 .menu button { padding: 6px 14px; border-radius: 20px; background: #f1f5f9; font-size: 11px; font-weight: 700; color: #64748b; transition: 0.2s; border: 1px solid transparent; cursor: pointer; }
 .menu button:hover { background: #e2e8f0; }
-.menu button.active { background: #00c896; color: white; border-color: #00b085; }
+.menu button.active { background: #FFD600; color: #000; border-color: #e6c000; }
 
 /* CONTENT AREA: 2 columnas */
 .content-area { flex: 1; overflow: hidden; display: grid; grid-template-columns: 1fr 260px; gap: 0; }
@@ -52,7 +52,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 .nota-box { background: #fef9c3; border-left: 3px solid #facc15; padding: 8px 10px; border-radius: 8px; font-size: 11px; color: #854d0e; margin-bottom: 6px; margin-top: 6px; line-height: 1.4; }
 .alert-pago { background: #fef2f2; border-left: 3px solid #ef4444; color: #991b1b; padding: 10px 12px; border-radius: 8px; font-weight: 700; margin-top: 6px; font-size: 11px; line-height: 1.4; }
 .alert-falla { background: #fff7ed; border-left: 3px solid #f97316; color: #9a3412; padding: 10px 12px; border-radius: 8px; font-weight: 700; margin-top: 6px; font-size: 11px; line-height: 1.4; }
-.action { background: #eff6ff; border-left: 3px solid #3b82f6; padding: 10px 12px; border-radius: 8px; margin-top: 6px; font-size: 11px; font-weight: 600; color: #1e40af; line-height: 1.4; }
+.action { background: #FFFDE7; border-left: 3px solid #FFD600; padding: 10px 12px; border-radius: 8px; margin-top: 6px; font-size: 11px; font-weight: 600; color: #5a4000; line-height: 1.4; }
 
 /* BOTONES compactos en columna derecha */
 .btn { width: 100%; padding: 9px 14px; border-radius: 10px; background: #0f172a; color: white; font-weight: 700; font-size: 12px; transition: 0.2s; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 7px; }
@@ -68,7 +68,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 .step-progress { display: flex; align-items: center; gap: 4px; margin-bottom: 0; }
 .step-dot { width: 8px; height: 8px; border-radius: 50%; background: #e2e8f0; flex-shrink: 0; cursor: pointer; transition: 0.2s; }
 .step-dot.done { background: #00c896; }
-.step-dot.current { background: #3b82f6; width: 20px; border-radius: 4px; }
+.step-dot.current { background: #FFD600; width: 20px; border-radius: 4px; }
 
 /* N2 colors */
 #navN2.active,#navBajasN2.active,#navIntermitenciaN2.active,#navNoNavegaN2.active,#navCoberturaN2.active,#navGamingN2.active { background: #f97316 !important; box-shadow: 0 4px 12px rgba(249,115,22,0.3); color: white !important; }
@@ -118,7 +118,7 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 
 <div id="modalDbm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10001; justify-content:center; align-items:center; font-family:sans-serif;">
     <div style="background:white; width:90%; max-width:550px; border-radius:16px; overflow:hidden; position:relative;">
-        <div style="background:#0369a1; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="background:#FFD600;color:#000 !important; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
             <span style="font-weight:bold;">📊 Niveles de Señal WiFi (dBm)</span>
             <button onclick="document.getElementById('modalDbm').style.display='none'" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
         </div>
@@ -135,8 +135,8 @@ h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: #0f172a; let
 
 <aside class="sidebar">
     <div class="flex items-center gap-3 mb-8">
-        <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-network-wired text-white"></i></div>
-        <span class="text-xl font-extrabold tracking-tight">Support<span class="text-blue-400">OS</span></span>
+        <img src="data:image/png;base64,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" style="width:36px;height:36px;border-radius:8px;">
+        <span class="text-xl font-extrabold tracking-tight" style="color:white;">Somos<span style="color:#e5e5e5;font-weight:400;font-size:14px;"> Soporte</span></span>
     </div>
 
     <div class="section-header" onclick="toggleMenu('groupN1', this)" style="cursor:pointer">
@@ -549,7 +549,7 @@ const DATA = {
                     </div>
 
                     <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                        <button class="btn" style="flex: 1; background:#a855f7; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">
+                        <button class="btn" style="flex: 1; background:#FFD600;color:#000 !important; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">
                             🚀 CPE Doctor
                         </button>
                     </div>
@@ -1344,8 +1344,8 @@ function render() {
     const data = pasos[pasoActual];
     const isN2 = procesoActual.includes('n2') || procesoActual === 'bajasN2';
     const accentColor = isN2 ? '#f97316' : '#3b82f6';
-    const accentBg = isN2 ? '#fff7ed' : '#eff6ff';
-    const accentText = isN2 ? '#9a3412' : '#1e40af';
+    const accentBg = isN2 ? '#fff7ed' : '#FFFDE7';
+    const accentText = isN2 ? '#9a3412' : '#5a4000';
 
     let pillsHtml = '';
     pasos.forEach((p, index) => {
@@ -1393,9 +1393,9 @@ function render() {
         '<details open>' +
         '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-bolt" style="color:#f59e0b;"></i> Accesos rápidos</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
-        '<button class="btn" style="background:#a855f7;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
-        '<button class="btn" style="background:#3b82f6;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
-        '<button class="btn" style="background:#10b981;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
+        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://admin.somosinternet.com/cpe_doctor/\')"><i class="fas fa-rocket"></i> CPE Doctor</button>' +
+        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit?usp=sharing\')"><i class="fas fa-file-alt"></i> Guíón Falla Masiva</button>' +
+        '<button class="btn" style="background:#FF2D55;" onclick="window.open(\'https://www.speedtest.net/\')"><i class="fas fa-tachometer-alt"></i> Speedtest</button>' +
         '<button class="btn" style="background:#1e293b;" onclick="abrirModal()"><i class="fas fa-plug"></i> Reinicio Cascada</button>' +
         '</div>' +
         '</details>' +
@@ -1403,8 +1403,8 @@ function render() {
         '<details>' +
         '<summary style="font-size:10px;font-weight:800;text-transform:uppercase;color:#64748b;letter-spacing:0.6px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;margin-bottom:8px;padding:4px 6px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;"><i class="fas fa-tools" style="color:#3b82f6;"></i> Herramientas</summary>' +
         '<div style="display:flex;flex-direction:column;gap:6px;">' +
-        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
-        '<button class="btn" style="background:#0369a1;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
+        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://reports.somosinternet.com:3000/login\')"><i class="fas fa-chart-line"></i> Grafana</button>' +
+        '<button class="btn" style="background:#FFD600;color:#000 !important;" onclick="window.open(\'https://sites.google.com/somosinternet.co/formacion/soporte/guias-soporte\')"><i class="fas fa-book"></i> Manuales CPE Doctor</button>' +
         '</div>' +
         '</details>' +
         '<hr style="border:0;border-top:1px solid #e2e8f0;margin:10px 0;">' +
