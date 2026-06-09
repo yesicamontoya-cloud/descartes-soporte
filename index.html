@@ -1293,7 +1293,7 @@ function toggleMenu(groupId, headerElement) {
 function cambiarProceso(proc) {
     procesoActual = proc; 
     pasoActual = 0;
-    if (proc === 'gaming') { equipoActual = 'phantom'; }
+    if (proc === 'gaming' || proc === 'vpn') { equipoActual = 'phantom'; }
 
     // --- NUEVA LÓGICA DE BÚSQUEDA ---
     // Buscamos todos los botones de la parte superior
@@ -1357,6 +1357,9 @@ function render() {
     } else if (procesoActual === 'gaming') {
         if (pBtn) { pBtn.style.display = ''; pBtn.textContent = '🎮 Gaming'; }
         if (vBtn) { vBtn.style.display = ''; vBtn.textContent = '📺 Streaming'; }
+    } else if (procesoActual === 'vpn') {
+        if (pBtn) { pBtn.style.display = ''; pBtn.textContent = '🛡️ VPN'; }
+        if (vBtn) { vBtn.style.display = ''; vBtn.textContent = '🌐 IP Fija'; }
     } else {
         if (pBtn) { pBtn.style.display = ''; pBtn.textContent = 'Phantom'; }
         if (vBtn) { vBtn.style.display = ''; vBtn.textContent = 'Router Vilo'; }
