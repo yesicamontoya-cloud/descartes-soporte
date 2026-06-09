@@ -936,20 +936,14 @@ cobertura: {
                     pill: "Filtro", 
                     title: "🛡️ Validación de Red", 
                     tag: "VPN", 
-                    html: `<div class="item">Revise si existe una falla masiva en la zona.<br><br>⚠️ <b>Si hay falla → usar guion:</b><br>"Verificar si hay una falla masiva reportada en la zona."</div>` 
+                    html: `<div class="item">Verificar que NO exista falla masiva en la zona.<br><br><div class="alert-falla" style="margin-top:6px;">⚠️ Si hay falla masiva → usar guion de falla masiva y finalizar.</div></div>` 
                 },
                 { 
                     pill: "Usuario", 
                     title: "❓ Preguntas al Usuario", 
                     tag: "Diagnóstico", 
                     html: `<div class="item">
-                            • ¿Cuál es el nombre de la VPN?<br>
-                            • ¿Qué error específico le aparece?<br>
-                            • ¿Le funciona con datos del celular? (Hotspot).<br><br>
-                            <b style="color: #ff9800;">👉 NOTA DE VALIDACIÓN:</b><br>
-                            Si con datos del celular o con otro operador <b>SÍ</b> le funciona, el problema es de nuestra red; proceda al paso de <b>Escalado</b>.<br><br>
-                            • <b>Velocidad:</b> Si hay lentitud, explicar que en VPN no se garantiza por el cifrado.<br>
-                            • <b>Reinicio:</b> Realizar un reinicio eléctrico del router.
+                            • ¿Cuál es el nombre de la <span class="tec">VPN<span class="tt">VPN = Red Privada Virtual. Programa que encripta el tráfico de internet y lo redirige por servidores externos. Algunos trabajos o universidades la requieren para acceder a sus sistemas.</span></span>?<br>• ¿Qué error específico le aparece?<br>• ¿Le funciona con datos del celular (<span class="tec">Hotspot<span class="tt">Hotspot = usar los datos móviles del celular como conexión a internet. Si la VPN funciona con hotspot pero no con Somos, el problema está en nuestra red.</span></span>)?<br><br><div class="alert-falla" style="background:#fff7ed;border-color:#f97316;color:#9a3412;margin:6px 0;">👉 <b>Regla clave:</b> Si con datos del celular o con otro operador <b>SÍ</b> funciona → el problema es de la red de Somos → escalar a N2.</div>• <b>Lentitud con VPN:</b> Explicar al cliente que la VPN reduce la velocidad porque <span class="tec">cifra<span class="tt">Cifrado = proceso de encriptar los datos para protegerlos. Consume recursos del equipo y del servidor VPN, lo que naturalmente reduce la velocidad de navegación.</span></span> todo el tráfico — esto es normal y no es falla de Somos.<br>• <b>Reinicio:</b> Realizar un reinicio eléctrico del router.
                            </div>` 
                 },
                 { 
@@ -957,11 +951,7 @@ cobertura: {
                     title: "🚩 Requisitos para N2", 
                     tag: "Transferencia", 
                     html: `<div class="item">
-                            <b>Condición:</b> Escalar solo si con otro operador/datos SÍ funciona.<br><br>
-                            <b>Notas obligatorias:</b><br>
-                            • Nombre de la VPN y Error exacto.<br>
-                            • ¿Tiene IP fija? (Sí/No).<br>
-                            • Confirmar que ya se probó con otra red y funcionó.
+                            <div class="alert-pago"><b>Escalar solo si:</b> con datos del celular o con otro operador SÍ funciona la VPN.</div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;margin-top:6px;"><b>Enviar a N2 con:</b><br>• Nombre exacto de la VPN y error que aparece.<br>• ¿Tiene <span class="tec">IP fija<span class="tt">IP fija = dirección IP permanente asignada específicamente a ese cliente. Algunas VPNs corporativas la requieren para funcionar. Somos la ofrece como servicio adicional con un tiempo de gestión de 72 horas hábiles.</span></span>? (Sí/No).<br>• Confirmación de que se probó con otra red y funcionó.</div>
                            </div>` 
                 }
             ],
@@ -971,10 +961,7 @@ cobertura: {
                     title: "📝 Proceso de Suscripción IP", 
                     tag: "Gestión", 
                     html: `<div class="item">
-                            • <b>Valores cuando aplica:</b> Crea la suscripción en el sistema.<br>
-                            • <b>Importante:</b> No deben realizar ajustes manuales al ticket.<br>
-                            • Revisar si al cerrar el ticket de la conversación se cierra automáticamente el del pedido de IP.<br><br>
-                            ⚠️ <b>Nota:</b> REVISAR PROCESO CUANDO NO DEJA CREAR SUSCRIPCIÓN, PARA ESCALAR AL ONCALL.
+                            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;"><b>Proceso de solicitud de <span class="tec">IP fija<span class="tt">IP fija = dirección IP permanente que no cambia. La necesitan clientes con VPNs corporativas, cámaras de seguridad remotas o servidores propios. Se gestiona como una suscripción adicional en el sistema.</span></span>:</b><br><br>• Crear la suscripción en el sistema.<br>• <b>No</b> hacer ajustes manuales al ticket.<br>• Al cerrar el ticket de la conversación verificar que se cierre también el del pedido de IP.<br><br><div class="alert-falla">⚠️ Si el sistema no deja crear la suscripción → escalar al <span class="tec">OnCall<span class="tt">OnCall = analista de turno disponible para atender escalamientos urgentes o situaciones que el sistema no permite resolver directamente.</span></span>.</div></div>
                            </div>` 
                 },
                 { 
@@ -982,9 +969,7 @@ cobertura: {
                     title: "⏳ ANS y Disponibilidad", 
                     tag: "Información", 
                     html: `<div class="item">
-                            • <b>ANS:</b> 72 Horas hábiles.<br>
-                            • <b>Horario:</b> Lunes a Viernes.<br><br>
-                            Explicar al cliente que el proceso de asignación de IP estática tiene un tiempo de gestión administrativa y técnica.
+                            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;color:#334155;"><b>Tiempos de gestión:</b><br><br>• <b><span class="tec">ANS<span class="tt">ANS = Acuerdo de Nivel de Servicio. Es el tiempo máximo comprometido para resolver una solicitud. Para IP fija el ANS es de 72 horas hábiles (lunes a viernes).</span></span>:</b> 72 horas hábiles, lunes a viernes.<br><br><div style="background:#f0f9ff;border-left:3px solid #0ea5e9;border-radius:8px;padding:10px;font-size:11px;color:#0369a1;margin-top:4px;"><b>💬 Mensaje al cliente:</b><br>"Tu solicitud de IP fija está en proceso. El tiempo de gestión es de 72 horas hábiles (lunes a viernes). Te avisaremos cuando esté lista."</div></div>
                            </div>` 
                 }
             ]
