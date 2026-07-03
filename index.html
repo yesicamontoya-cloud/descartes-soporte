@@ -421,14 +421,14 @@ const DATA = {
                   div style="margin-bottom: 10px;">
         <button class="btn" style="width: 100%; background:#3b82f6; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;" 
         onclick="window.open('https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/present')">
-            🚀 Abrir Guion 
+            🚀 Abrir Guión 
         </button>
     </div>             
                 <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
-                    • <b>Plan:</b> Validar plan contratado y tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
-                    • <b>IP:</b> Validar que los routers NO tengan la misma IP.<br>
-                    • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
-                    • <b>Linkeo:</b> Revisar linkeo del puerto WAN (según tipo de plan).
+                    • <b>Plan:</b> Validar desde Artemis el plan contratado y la tecnología (RE, FO 1.0, FO 2.5 o FX).<br>
+                    • <b>IP:</b> Validar desde Grafana (Devices OpenWisp) que los routers NO tengan la misma IP.<br>
+                    • <b>Test:</b> Realizar test de velocidad desde el sistema (CPE Doctor).<br>
+                    • <b>Linkeo:</b> Revisar desde Grafana (CPEs Somos) el linkeo del puerto WAN (según tipo de plan) (este paso es para confirmar que el cable esté bien ponchado)
                 </div>
 
                 <div style="display: flex; gap: 5px; margin-bottom: 10px;">
@@ -441,7 +441,7 @@ const DATA = {
                 </div>
 
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; padding:8px; font-size:11px;">
-                    ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables y puertos antes de escalar.
+                    ⚠️ <b>Nota Linkeo:</b> Si el linkeo es bajo, validar cables de red y puertos  antes de escalar.
                 </div>
             ` 
         },
