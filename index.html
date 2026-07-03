@@ -432,15 +432,15 @@ const DATA = {
             title: "📉 Bajas Velocidades", 
             tag: "Sistema", 
             html: `
-                <div class="item" style="margin-bottom: 5px;">Verifique que NO exista falla masiva en la zona.</div>
+                <div class="item" style="margin-bottom: 5px;">Verifique que NO exista una falla masiva en la zona.</div>
                 <div class="alert-falla" style="background:#fefce8; border-color:#f59e0b; color:#92400e; margin-bottom:8px; padding:8px; font-size:11px;">
                     ⚠️ Si hay falla → <a href="https://docs.google.com/presentation/d/1JMXrbALMvQ3tWBmwlh9zd4iF1o-o-m3ZlvtuyhR0UbM/edit#slide=id.p4" target="_blank" style="color:#92400e; font-weight:bold; text-decoration:none;">usar guion de falla masiva (Pág. 4)</a>
                 </div>
                 <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
-                    • <b>Plan:</b> Validar plan contratado y tecnología (<span class="tec">RE<span class="tt">RE = Radio Enlace. Conexión de internet por antena de radio, sin fibra óptica.</span></span>, <span class="tec">FO 1.0<span class="tt">FO 1.0 = Fibra Óptica con velocidad de hasta 1 Gbps.</span></span>, <span class="tec">FO 2.5<span class="tt">FO 2.5 = Fibra Óptica con velocidad de hasta 2.5 Gbps.</span></span> o <span class="tec">FX<span class="tt">FX = Fiber X. La tecnología más nueva de Somos, con fibra óptica directa al router usando un Media Converter.</span></span>).<br>
-                    • <b><span class="tec">IP<span class="tt">IP = dirección que identifica a cada router en la red. Si el principal y el secundario tienen la misma IP, se genera un conflicto y ninguno funciona bien.</span></span>:</b> Validar que el router principal y el secundario tengan IPs diferentes.<br>
+                    • <b>Plan:</b> Validar desde Artesmis el plan contratado y tecnología (<span class="tec">RE<span class="tt">RE = Radio Enlace. Conexión de internet por antena de radio, sin fibra óptica.</span></span>, <span class="tec">FO 1.0<span class="tt">FO 1.0 = Fibra Óptica con velocidad de hasta 1 Gbps.</span></span>, <span class="tec">FO 2.5<span class="tt">FO 2.5 = Fibra Óptica con velocidad de hasta 2.5 Gbps.</span></span> o <span class="tec">FX<span class="tt">FX = Fiber X. La tecnología más nueva de Somos, con fibra óptica directa al router usando un Media Converter.</span></span>).<br>
+                    • <b><span class="tec">IP<span class="tt">IP = dirección que identifica a cada router en la red. Si el principal y el secundario tienen la misma IP, se genera un conflicto y ninguno funciona bien.</span></span>:</b> Validar desde Grafana en la opción (Devices OpenWisp) que el router principal y el secundario tengan IPs diferentes y se encuentren dentro de los rangos de somos.<br>
                     • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
-                    • <b><span class="tec">Linkeo<span class="tt">Linkeo = velocidad a la que está negociando el puerto WAN del router. Si es 100 Mbps cuando debería ser 1 Gbps, hay un cuello de botella en el cable o el puerto.</span></span>:</b> Revisar que el puerto WAN esté negociando a la velocidad correcta según el plan.
+                    • <b><span class="tec">Linkeo<span class="tt">Linkeo = velocidad a la que está linqueando el puerto WAN del router. Si es 100 Mbps cuando debería ser 1 Gbps, hay un cuello de botella en el cable o el puerto.</span></span>:</b> Revisar en Grafana desde la opción (CPEs Somos) que el puerto WAN esté linqueando a la velocidad correcta según el plan.
                 </div>
 
                 
