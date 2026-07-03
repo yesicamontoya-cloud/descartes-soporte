@@ -439,7 +439,7 @@ const DATA = {
                 <div style="background:#f8fafc; padding:8px; border-radius:6px; margin-bottom:10px; font-size:11px; line-height:1.4; color:#334155; border: 1px solid #e2e8f0;">
                     • <b>Plan:</b> Validar desde Artesmis el plan contratado y tecnología (<span class="tec">RE<span class="tt">RE = Radio Enlace. Conexión de internet por antena de radio, sin fibra óptica.</span></span>, <span class="tec">FO 1.0<span class="tt">FO 1.0 = Fibra Óptica con velocidad de hasta 1 Gbps.</span></span>, <span class="tec">FO 2.5<span class="tt">FO 2.5 = Fibra Óptica con velocidad de hasta 2.5 Gbps.</span></span> o <span class="tec">FX<span class="tt">FX = Fiber X. La tecnología más nueva de Somos, con fibra óptica directa al router usando un Media Converter.</span></span>).<br>
                     • <b><span class="tec">IP<span class="tt">IP = dirección que identifica a cada router en la red. Si el principal y el secundario tienen la misma IP, se genera un conflicto y ninguno funciona bien.</span></span>:</b> Validar desde Grafana en la opción (Devices OpenWisp) que el router principal y el secundario tengan IPs diferentes y se encuentren dentro de los rangos de somos.<br>
-                    • <b>Test:</b> Realizar test de velocidad desde el sistema.<br>
+                    • <b>Test:</b> Realizar test de velocidad desde el sistema (CPE doctor).<br>
                     • <b><span class="tec">Linkeo<span class="tt">Linkeo = velocidad a la que está linqueando el puerto WAN del router. Si es 100 Mbps cuando debería ser 1 Gbps, hay un cuello de botella en el cable o el puerto.</span></span>:</b> Revisar en Grafana desde la opción (CPEs Somos) que el puerto WAN esté linqueando a la velocidad correcta según el plan.
                 </div>
 
@@ -761,7 +761,7 @@ const DATA = {
                 Verifique que NO exista falla masiva en la zona.
                 </div>
 
-            <div class="item">• Revisar que no tomen la misma IP los dos modem (conflicto de IP).</div>
+            <div class="item">• En vilo desde la parte principal, ubícate en (Wan IP Adress). Revisar que no tomen la misma IP los dos módems (conflicto de IP).</div>
             <div class="item">• Verificar que el <span class="tec">firmware<span class="tt">Firmware = software interno del router. Un firmware desactualizado puede causar cortes e inestabilidad. Se actualiza desde la herramienta ISP/Inventory buscando el equipo y aplicando Firmware Upgrade.</span></span> esté actualizado desde ISP/Inventory.</div>
             <div class="item">• Revisar historial de intermitencias en el <span class="tec">log del equipo<span class="tt">Log = registro de eventos del router. Muestra cuándo se cayó y volvió la conexión. Se consulta desde la herramienta de gestión (ISP/Inventory) buscando el historial de estados del equipo.</span></span>.</div>
             <div class="item">• Validar si otros usuarios en el mismo <span class="tec">site<span class="tt">Site = punto de red que agrupa varios clientes de una misma zona. Si varios clientes del mismo site tienen cortes al mismo tiempo, indica un problema de infraestructura, no del equipo individual.</span></span> presentan cortes similares.</div>
